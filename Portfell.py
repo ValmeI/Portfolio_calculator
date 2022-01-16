@@ -1,15 +1,21 @@
-from Portfolio_calculator import Kinnisvara, Morr, Valme, txt_write_move, Kelly
-from Portfolio_calculator.Funcions import diff_months, need_new_excel_file, update_excel, year_to_year_percent
-from datetime import date
 import datetime
-import time
 import os
 import sys
+import time
+from datetime import date
+from shutil import copy
+
+
 from dateutil.relativedelta import relativedelta
 from termcolor import colored
-from Send_Email import Send
-from Portfolio_calculator.Funcions import what_path_for_file
-from shutil import copy
+
+import Kelly
+import Kinnisvara
+import Morr
+import Valme
+import txt_write_move
+from Funcions import diff_months, need_new_excel_file, update_excel, year_to_year_percent
+from Funcions import what_path_for_file
 
 path = what_path_for_file()
 
