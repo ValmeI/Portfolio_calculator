@@ -1,6 +1,8 @@
-from Portfolio_calculator import Aktsiad, Morr, Funcions as f
+import Aktsiad
+import Morr
+import Funcions as F
 from datetime import date
-from Portfolio_calculator.Funcions import what_path_for_file
+from Funcions import what_path_for_file
 
 path = what_path_for_file()
 
@@ -65,7 +67,7 @@ Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 '#jur isiku raha LHV + IB RAHA'
 JurRaha = 701-10000 #emale võlg 10k ja funder cash
 '# get Funderbeam total'
-JurFunderBeam = f.get_funderbeam_marketvalue()
+JurFunderBeam = F.get_funderbeam_marketvalue()
 Jur_IB_Raha = -950
 JurIsik = round(JurRaha + JurFunderBeam + Jur_IB_Raha + JurAktsiad + Morr.ValCapitalRaha / 2 + Jur_Krypto)
 '# Mörr on väike karu'
@@ -81,10 +83,10 @@ vilde_kindlustus = 6.91
 '# ehk kuupäev millal arvutust tehakse'
 arvutamise_kp = 1
 
-Uus_vilde_summa = f.vilde_calculation(arvutamise_kp,
-                                      f.get_last_row(path + 'Portfolio_calculator/', "Portfell", 9),
-                                      round(f.dividend_with_certain_date(vilde_isa) - vilde_laen - vilde_kindlustus, 2),
-                                      f.get_last_row(path + 'Portfolio_calculator/', "Portfell", 1)
+Uus_vilde_summa = F.vilde_calculation(arvutamise_kp,
+                                      F.get_last_row(path + 'Portfolio_calculator/', "Portfell", 9),
+                                      round(F.dividend_with_certain_date(vilde_isa) - vilde_laen - vilde_kindlustus, 2),
+                                      F.get_last_row(path + 'Portfolio_calculator/', "Portfell", 1)
                                       )
 
 '# to avoid too many decimal places'

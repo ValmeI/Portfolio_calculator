@@ -1,4 +1,4 @@
-from Portfolio_calculator import Aktsiad
+import Aktsiad
 
 jur_eur_stocks = {
                   "EGR1T": 172,
