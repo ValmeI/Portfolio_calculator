@@ -56,8 +56,8 @@ FysIsikAktsaid = Aktsiad.stocks_value_combined(fys_eur_stocks, True)
 FysIsik = round(FüsIsikRaha + FysIsikAktsaid)
 
 CleveronAktsia = 4 * 850
-JurAktsiad = round(Aktsiad.stocks_value_combined(jur_usa_stocks, False) +
-                   Aktsiad.stocks_value_combined(jur_eur_stocks, True) + CleveronAktsia)
+JurAktsiad = round(Aktsiad.stocks_value_combined(jur_usa_stocks, False) + CleveronAktsia)
+                   #Aktsiad.stocks_value_combined(jur_eur_stocks, True)
 
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
