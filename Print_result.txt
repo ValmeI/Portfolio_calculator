@@ -1,4 +1,4 @@
-2022-01-18 18:04:05.386257
+2022-01-19 18:25:23.794235
 
 Akadeemia 42-63 laenumakse: 115 € + kindlustus.
 Vilde 90-193 laenumakse: 155 € + kindlustus.
@@ -16,27 +16,27 @@ Hetkel korteri/krundi puhas väärtus kokku: 20641.0 €.
 Vilde peale makse Isale: [31m-8.08[0m €.
 
 
-Juriidilise isiku väärtus: 79546 €.
+Juriidilise isiku väärtus: 83018 €.
 Krüpto: [31m1091[0m €.
-Juriidilise isiku aktsiad: 60993 €.
-Funderbeam Kokku: [31m22560.71[0m €.
+Juriidilise isiku aktsiad: 54904 €.
+Funderbeam Kokku: [31m22682.97[0m €.
 
 
-Füüsilise isiku aktsia portfell: 30512 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 110058 €.
-Vaba raha Jur/Füs Kokku: [31m17692[0m €.
+Füüsilise isiku aktsia portfell: 26412 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 109430 €.
+Vaba raha Jur/Füs Kokku: [31m25131[0m €.
 
 
-Terve portfell kokku: [31m130699.0[0m €.
+Terve portfell kokku: [31m130071.0[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: [31m-66787.0[0m €.
+Krooni miljonär veel minna: [31m-66159.0[0m €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m369301.0[0m €.
-Mörr-i aktsiad: 25164 €.
+Veel minna: [31m369929.0[0m €.
+Mörr-i aktsiad: 25026 €.
 Mörr-i vaba raha: 28343.33 €.
-Mörr-i portfell kokku: [31m68657[0m €.
-Kelly portfell: [31m1658[0m €.
-Pere portfell kokku: [31m201014.0[0m €.
+Mörr-i portfell kokku: [31m68519[0m €.
+Kelly portfell: [31m1640[0m €.
+Pere portfell kokku: [31m200230.0[0m €.
 ========================
 Fail juba kaustas olemas.
 ========================
@@ -46,7 +46,7 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-01-18                    128823              130699                  1 %
+5  2022-01-19                    128823              130071                  1 %
 ========================
 Tänane seis lisatud.
 [32mE-maili saatmine: Pole reede[0m

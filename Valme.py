@@ -49,7 +49,7 @@ Aka42_63_Laen_Kuupäev = date(2018, 12, 5)
 #Aka38_20_Laen_Kuupäev = date(2018, 12, 5)
 Vilde90_193_Laen_Kuupäev = date(2019, 4, 9)
 
-FüsIsikRaha = 21700+2117
+FüsIsikRaha = 29700-10000 #emale võlg 10k
 FysIsikAktsaid = Aktsiad.stocks_value_combined(fys_eur_stocks, True)
 
 '# Vaba raha ja aktsiad kokku'
@@ -62,7 +62,7 @@ JurAktsiad = round(Aktsiad.stocks_value_combined(jur_usa_stocks, False) + Clever
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
 '#jur isiku raha LHV + IB RAHA'
-JurRaha = 6190-10000 #emale võlg 10k ja funder cash
+JurRaha = 160
 '# get Funderbeam total'
 JurFunderBeam = F.get_funderbeam_marketvalue()
 Jur_IB_Raha = -970

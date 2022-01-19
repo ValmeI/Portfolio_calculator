@@ -5,7 +5,6 @@ import time
 from datetime import date
 from shutil import copy
 
-
 from dateutil.relativedelta import relativedelta
 from termcolor import colored
 
@@ -14,8 +13,7 @@ import Kinnisvara
 import Morr
 import Valme
 import txt_write_move
-from Funcions import diff_months, need_new_excel_file, update_excel, year_to_year_percent
-from Funcions import what_path_for_file
+from Funcions import *
 
 path = what_path_for_file()
 
