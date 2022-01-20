@@ -27,13 +27,13 @@ today_str = str(date.today())
 column_extender = 350
 
 '#kodu path'
-path_home = r"D:\PycharmProjects\Projects/"
+path_home = r"D:\PycharmProjects/"
 
 '#Laptop path'
 path_laptop = r"C:\PycharmProjects/"
 
 '#töö path'
-path_work = r"V:\rik_oigusk\Päringud\Krmr\Ignar Valme\PythonProjects\Projects/"
+path_work = r"V:\rik_oigusk\Päringud\Krmr\Ignar Valme\PythonProjects/"
 
 '# headrid mida exceli loogmisel ja updateimisel kasutatakse'
 headers = {0: "Kuupäev",

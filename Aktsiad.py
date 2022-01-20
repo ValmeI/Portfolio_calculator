@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from Portfolio_calculator.Funcions import what_path_for_file
+from Funcions import what_path_for_file
 import re
 import time
 
