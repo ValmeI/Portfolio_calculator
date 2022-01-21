@@ -146,7 +146,7 @@ Tulemus = "\nTerve portfell kokku: " + str(Ignar_Kokku) + " €." + \
           "\n" + str(Kinnisvara.Korter3_Nimi) + " laenu jääk " + str(BalanceVilde90) + " €." + ' Laenu summa ' + str(Kinnisvara.Korter3_Laen)
 
 '#if it is friday and password file is in directory, then send e-mail'
-if os.path.isfile(what_path_for_file() + r'Projects\My_Send_Email\synology_pass2222'):
+if os.path.isfile(what_path_for_file() + r'Projects\My_Send_Email\synology_pass'):
 
     no_file = 'E-maili saatmine: Parooli faili ei ole kataloogis: ' + what_path_for_file()
     no_file = colored(no_file, 'red')
