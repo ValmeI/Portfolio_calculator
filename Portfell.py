@@ -8,7 +8,7 @@ import shutil
 from dateutil.relativedelta import relativedelta
 from termcolor import colored
 
-import My_Send_Email as Send
+from My_Send_Email.Send import send_email
 import Kelly
 import Kinnisvara
 import Morr
@@ -154,13 +154,13 @@ if os.path.isfile(what_path_for_file() + r'Send_Email\synology_pass'):
 elif date.today().weekday() == 4:
 
     '# Variables are: STMP, username, password file, send from, send to, email title and email body'
-    Send.send_email('192.168.1.172', #'valme.noip.me',
-                    'email',
-                    what_path_for_file() + r'Send_Email\synology_pass',
-                    'email@valme.noip.me',
-                    'val-capital@googlegroups.com',
-                    'Portfelli seis: ' + time.strftime('%d-%m-%Y'),
-                    Tulemus)
+    send_email('192.168.1.172',
+               'email',
+               what_path_for_file() + r'Send_Email\synology_pass',
+               'email@valme.noip.me',
+               'val-capital@googlegroups.com',
+               'Portfelli seis: ' + time.strftime('%d-%m-%Y'),
+               Tulemus)
 else:
     print(colored('E-maili saatmine: Pole reede', 'green'))
 
