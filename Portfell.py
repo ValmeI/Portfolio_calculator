@@ -3,17 +3,18 @@ import os
 import sys
 import time
 from datetime import date
-from shutil import copy
+import shutil
 
 from dateutil.relativedelta import relativedelta
 from termcolor import colored
 
+import My_Send_Email as Send
 import Kelly
 import Kinnisvara
 import Morr
 import Valme
 import txt_write_move
-from Funcions import *
+from Funcions import what_path_for_file, diff_months, need_new_excel_file, year_to_year_percent, update_excel
 
 path = what_path_for_file()
 
@@ -26,8 +27,8 @@ nas_des_path = r'\\RMI_NAS\Python\Calculators\portfolio_result'
 '# Copy txt result and excel file to Nas server, if all the files or path exists'
 if os.path.isfile(txt_source) and os.path.isfile(excel_source) and os.path.isdir(nas_des_path):
     '# Copy previously created file to Calculators directory'
-    copy(txt_source, nas_des_path)
-    copy(excel_source, nas_des_path)
+    shutil.copy(txt_source, nas_des_path)
+    shutil.copy(excel_source, nas_des_path)
     print("Kopeeritud edukalt")
 else:
     print("Ei kopeeritud")
