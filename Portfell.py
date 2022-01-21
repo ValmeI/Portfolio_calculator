@@ -146,7 +146,7 @@ Tulemus = "\nTerve portfell kokku: " + str(Ignar_Kokku) + " €." + \
           "\n" + str(Kinnisvara.Korter3_Nimi) + " laenu jääk " + str(BalanceVilde90) + " €." + ' Laenu summa ' + str(Kinnisvara.Korter3_Laen)
 
 '#if it is friday and password file is in directory, then send e-mail'
-if os.path.isfile(what_path_for_file() + r'Send_Email\synology_pass'):
+if os.path.isfile(what_path_for_file() + r'Projects\My_Send_Email\synology_pass2222'):
 
     no_file = 'E-maili saatmine: Parooli faili ei ole kataloogis: ' + what_path_for_file()
     no_file = colored(no_file, 'red')
@@ -156,7 +156,7 @@ elif date.today().weekday() == 4:
     '# Variables are: STMP, username, password file, send from, send to, email title and email body'
     send_email('192.168.1.172',
                'email',
-               what_path_for_file() + r'Send_Email\synology_pass',
+               what_path_for_file() + r'Projects\My_Send_Email\synology_pass',
                'email@valme.noip.me',
                'val-capital@googlegroups.com',
                'Portfelli seis: ' + time.strftime('%d-%m-%Y'),
