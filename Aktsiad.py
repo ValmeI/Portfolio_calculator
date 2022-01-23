@@ -1,9 +1,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from Funcions import what_path_for_file
 import re
-import time
 
 
 def replace_comma_google(stat):

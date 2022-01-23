@@ -1,14 +1,13 @@
 import matplotlib.pyplot as plt
 import matplotlib
-from Portfolio_calculator import Funcions
-from Portfolio_calculator.Funcions import what_path_for_file
+from Funcions import what_path_for_file, get_excel_column, get_last_row
 from dateutil.parser import parse
 
 path = what_path_for_file()
 '# x axis dates list, 1 column'
-x = Funcions.get_excel_column(path + 'Portfolio_calculator/', "Portfell", 1)
+x = get_excel_column(path + 'Portfolio_calculator/', "Portfell", 1)
 '# y axis values list, 6 column'
-y = Funcions.get_excel_column(path + 'Portfolio_calculator/', "Portfell", 6)
+y = get_excel_column(path + 'Portfolio_calculator/', "Portfell", 6)
 
 '# str to list of dates for axis X, converting to date also removes the problem of too many str date values'
 new_list1 = []
@@ -43,9 +42,9 @@ def show_diagram():
 
 def show_percentages_diagram():
 
-    real_estate = Funcions.get_last_row(path + 'Portfolio_calculator/', "Portfell", 2)
-    personal_stocks = Funcions.get_last_row(path + 'Portfolio_calculator/', "Portfell", 3)
-    company_stocks = Funcions.get_last_row(path + 'Portfolio_calculator/', "Portfell", 4)
+    real_estate = get_last_row(path + 'Portfolio_calculator/', "Portfell", 2)
+    personal_stocks = get_last_row(path + 'Portfolio_calculator/', "Portfell", 3)
+    company_stocks = get_last_row(path + 'Portfolio_calculator/', "Portfell", 4)
 
     labels = "Kinnisvara puhas väärtus", "Füüsilise isiku aktsiad", "Juriidilise isiku aktsiad"
 
