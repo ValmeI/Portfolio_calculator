@@ -3,6 +3,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import re
 
+import chromedriver_autoinstaller
+
+'''Check if the current version of chromedriver exists
+and if it doesn't exist, download it automatically,
+then add chromedriver to path'''
+chromedriver_autoinstaller.install()
+
 
 def replace_comma_google(stat):
     '# removes comma in numbers. Is needed to convert to float. Numbers like 1,0000 and so on.'
