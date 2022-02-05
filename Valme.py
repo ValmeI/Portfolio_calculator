@@ -15,7 +15,7 @@ jur_usa_stocks = {"AAPL": 93,
                   "AMD": 84,
                   "MSFT": 12,
                   "AMZN": 3,
-                  "GOOGL": 1,
+                  "GOOGL": 2,
                   "NIO": 93,
                   "XPEV": 72,
                   "PLTR": 1,
@@ -49,7 +49,7 @@ Aka42_63_Laen_Kuupäev = date(2018, 12, 5)
 #Aka38_20_Laen_Kuupäev = date(2018, 12, 5)
 Vilde90_193_Laen_Kuupäev = date(2019, 4, 9)
 
-FüsIsikRaha = 34100-10000 #emale võlg 10k
+FüsIsikRaha = 35100-10000 #emale võlg 10k
 FysIsikAktsaid = Aktsiad.stocks_value_combined(fys_eur_stocks, True)
 
 '# Vaba raha ja aktsiad kokku'
@@ -65,7 +65,7 @@ Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 JurRaha = 160
 '# get Funderbeam total'
 JurFunderBeam = F.get_funderbeam_marketvalue()
-Jur_IB_Raha = -3720
+Jur_IB_Raha = -6720
 JurIsik = round(JurRaha + JurFunderBeam + Jur_IB_Raha + JurAktsiad + Morr.ValCapitalRaha / 2 + Jur_Krypto)
 '# Mörr on väike karu'
 
