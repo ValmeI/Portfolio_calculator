@@ -48,13 +48,13 @@ Aka42_63_Laen_Kuupäev = date(2018, 12, 5)
 #Aka38_20_Laen_Kuupäev = date(2018, 12, 5)
 Vilde90_193_Laen_Kuupäev = date(2019, 4, 9)
 
-FüsIsikRaha = 35100-10000 #emale võlg 10k
+FüsIsikRaha = 36000-10000 #emale võlg 10k
 FysIsikAktsaid = Aktsiad.stocks_value_combined(fys_eur_stocks, True)
 
 '# Vaba raha ja aktsiad kokku'
 FysIsik = round(FüsIsikRaha + FysIsikAktsaid)
 
-CleveronAktsia = 4 * 850
+CleveronAktsia = 4 * 1050
 JurAktsiad = round(Aktsiad.stocks_value_combined(jur_usa_stocks, False) + CleveronAktsia)
                    #Aktsiad.stocks_value_combined(jur_eur_stocks, True)
 
