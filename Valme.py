@@ -27,12 +27,7 @@ jur_usa_stocks = {"AAPL": 93,
 
 '# Crypto Amounts'
 BTC_amount = 0.021538
-Million_Coin_amount = 7.125
-ETH_amount = 0.16298
-
-'# All crypto and to EUR from USD'
-#Million_Coin_USD = Aktsiad.crypto_price_from_coinmarketcap('million') * Million_Coin_amount
-#Million_Coin_EUR = Aktsiad.usd_to_eur_convert(Million_Coin_USD)
+ETH_amount = 0.12037
 
 ETH_USD = Aktsiad.crypto_to_eur('Ethereum') * ETH_amount
 ETH_EUR = Aktsiad.usd_to_eur_convert(ETH_USD)
