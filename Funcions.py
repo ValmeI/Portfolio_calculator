@@ -375,7 +375,7 @@ def year_to_year_percent(path, excel_name, mm_dd, todays_total_portfolio):
             date_list.append(date1)
 
             '# is same year as last row (for example 2022-01-01) and it is not January 1st, then add today s portfolio amount'
-            if date.today().year == parse(date1).date().year and date.today().month is not '1' and date.today().day is not '1':
+            if date.today().year == parse(date1).date().year and date.today().month != '1' and date.today().day != '1':
                 amount_list.append(round(todays_total_portfolio))
                 date_list.append(date.today())
 
