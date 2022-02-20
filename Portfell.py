@@ -29,9 +29,9 @@ if os.path.isfile(txt_source) and os.path.isfile(excel_source) and os.path.isdir
     '# Copy previously created file to Calculators directory'
     shutil.copy(txt_source, nas_des_path)
     shutil.copy(excel_source, nas_des_path)
-    print("Kopeeritud edukalt")
+    print("Kopeeritud edukalt", datetime.datetime.now())
 else:
-    print("Ei kopeeritud")
+    print("Ei kopeeritud", datetime.datetime.now())
     pass
 
 '# create file from consol output'
@@ -39,7 +39,6 @@ sys.stdout = txt_write_move.Logger()
 
 '# tänane kuupäev arvutamaks, et mitu makset on tehtud juba'
 Täna = date.today()
-print(datetime.datetime.now())
 '#Kinnisvara objetktide print'
 
 PerMonthAka42 = Kinnisvara.apr_month(Kinnisvara.Korter1_Laen, 3, 15)
@@ -72,7 +71,6 @@ print("Laenu kohutus kokku(Kõik):", BalanceAka42 + BalanceVilde90)
 
 '#Kinnisvara kokku. Liidetakse kõik Dics korterite ostu hinnad - balancid ehk palju laenu veel maksta'
 KinnisVaraPort = Kinnisvara.kinnisvara_vaartus() - BalanceAka42 + Morr.Lähtse_Raha/2
-#MorrKinnisvaraPort = 67700 - BalanceSõle
 
 print("\nHetkel korteri/krundi puhas väärtus kokku:", KinnisVaraPort, "€.")
 
@@ -100,10 +98,9 @@ print("Krooni miljonär veel minna:", colored(Eesmark - Ignar_Kokku, 'red'), "�
 print("Eesmärk 35 aastaselt portfelli väärtus", Eesmark2, "€.")
 print("Veel minna:", colored(Eesmark2 - Ignar_Kokku, 'red'), "€.")
 
-Morr_kokku = Morr.kokku #+ MorrKinnisvaraPort
+Morr_kokku = Morr.kokku
 print("Mörr-i aktsiad:",  Morr.m_aktsiad, "€.")
 print("Mörr-i vaba raha:",  Morr.m_raha, "€.")
-#print("Mörr-i kinnisvara:", MorrKinnisvaraPort, "€.")
 print("Mörr-i portfell kokku:", colored(Morr_kokku, 'red'), "€.")
 
 '# Kelly Portfell'
@@ -120,9 +117,7 @@ need_new_excel_file("Portfell", "Porfelli Info")
 '# Aastate võrldus %, pandas print'
 print("========================")
 print(year_to_year_percent(path + 'Portfolio_calculator/', "Portfell", "01-01", Ignar_Kokku))
-
 print("========================")
-
 
 '#exceli_nimi, kinnisvara_puhas, füs_aktsiad, jur_aktsiad, aktsiad_kokku, kokku_portfell, pere portfell, Vilde, Vaba raha, Funderbeam, Kelly '
 update_excel(path + 'Portfolio_calculator/', "Portfell",
@@ -163,10 +158,3 @@ elif date.today().weekday() == 4:
                Tulemus)
 else:
     print(colored('E-maili saatmine: Pole reede', 'green'))
-
-'''
-from Komfovent_Ventilation import main, functions
-
-functions.write_to_excel("Data", main.new_vent_data_list)
-
-'''
