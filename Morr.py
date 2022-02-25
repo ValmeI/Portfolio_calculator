@@ -22,6 +22,6 @@ Lähtse_Raha = 20000
 
 m_aktsiad = round(Aktsiad.stocks_value_combined(morr_eur_stocks, True))
 
-m_raha = 32572.51
+m_raha = 32568.30
 
 kokku = round(ValCapitalRaha/2 + m_raha + m_aktsiad + Lähtse_Raha/2)
