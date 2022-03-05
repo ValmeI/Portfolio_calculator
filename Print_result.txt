@@ -5,37 +5,37 @@ Vilde 90-193 laenumakse: 155 € + kindlustus.
 Laenu Akadeemia 42-63 makstud: 6 Years, 0 Months
 Laenu Vilde 90-193 makstud: 2 Years, 10 Months
 
-Akadeemia 42-63 laenu jääk 13778 €. Laenu summa 16708.64
+Akadeemia 42-63 laenu jääk 13697 €. Laenu summa 16708.64
 Vilde 90-193 laenu jääk 13760 €. Laenu summa 17940.0
 
-Laenu kohutus kokku(ainult Akadeemia): 13778
-Laenu kohutus kokku(Kõik): 27538
+Laenu kohutus kokku(ainult Akadeemia): 13697
+Laenu kohutus kokku(Kõik): 27457
 
-Hetkel korteri/krundi puhas väärtus kokku: 20722.0 €.
+Hetkel korteri/krundi puhas väärtus kokku: 20803.0 €.
 Vilde peale makse Isale: [31m-9.87[0m €.
 
 
-Juriidilise isiku väärtus: 70795 €.
-Krüpto: [31m1004[0m €.
-Juriidilise isiku aktsiad: 53729 €.
-Funderbeam Kokku: [31m16912.49[0m €.
+Juriidilise isiku väärtus: 70090 €.
+Krüpto: [31m967[0m €.
+Juriidilise isiku aktsiad: 55435 €.
+Funderbeam Kokku: [31m16677.25[0m €.
 
 
 Füüsilise isiku aktsia portfell: 32120 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 102915 €.
-Vaba raha Jur/Füs Kokku: [31m26154[0m €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 102210 €.
+Vaba raha Jur/Füs Kokku: [31m23978[0m €.
 
 
-Terve portfell kokku: [31m123637.0[0m €.
+Terve portfell kokku: [31m123013.0[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: [31m-59725.0[0m €.
+Krooni miljonär veel minna: [31m-59101.0[0m €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m376363.0[0m €.
-Mörr-i aktsiad: 19258 €.
+Veel minna: [31m376987.0[0m €.
+Mörr-i aktsiad: 19260 €.
 Mörr-i vaba raha: 32568.3 €.
-Mörr-i portfell kokku: [31m67076[0m €.
-Kelly portfell: [31m1614[0m €.
-Pere portfell kokku: [31m192327.0[0m €.
+Mörr-i portfell kokku: [31m67078[0m €.
+Kelly portfell: [31m1611[0m €.
+Pere portfell kokku: [31m191702.0[0m €.
 ========================
 Fail juba kaustas olemas.
 ========================
@@ -45,8 +45,7 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-03-04                    128823              123637                 -4 %
+5  2022-03-05                    128823              123013                 -5 %
 ========================
-Tänane seis muudetud.
-[32m
-Mail Send Successfully[0m
+Tänane seis lisatud.
+[32mE-maili saatmine: Pole reede[0m
