@@ -16,7 +16,7 @@ morr_eur_stocks = {"APG1L": 196,
 
 '''Sõle_Laen_Kuupäev = date(2011, 8, 25) #Müüdud 22.06.2021'''
 
-ValCapitalRaha = 10500
+ValCapitalRaha = 10700
 
 Lähtse_Raha = 20000
 
