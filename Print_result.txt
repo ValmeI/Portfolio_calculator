@@ -12,30 +12,30 @@ Laenu kohutus kokku(ainult Akadeemia): 13697
 Laenu kohutus kokku(Kõik): 27329
 
 Hetkel korteri/krundi puhas väärtus kokku: 20803.0 €.
-Vilde peale makse Isale: [31m-9.87[0m €.
+Vilde peale makse Isale: [31m-11.66[0m €.
 
 
-Juriidilise isiku väärtus: 76511 €.
-Krüpto: [31m1105[0m €.
-Juriidilise isiku aktsiad: 59917 €.
-Funderbeam Kokku: [31m18109.39[0m €.
+Juriidilise isiku väärtus: 76056 €.
+Krüpto: [31m1125[0m €.
+Juriidilise isiku aktsiad: 59212 €.
+Funderbeam Kokku: [31m18339.32[0m €.
 
 
-Füüsilise isiku aktsia portfell: 32577 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 109088 €.
-Vaba raha Jur/Füs Kokku: [31m24485[0m €.
+Füüsilise isiku aktsia portfell: 32401 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 108457 €.
+Vaba raha Jur/Füs Kokku: [31m24505[0m €.
 
 
-Terve portfell kokku: [31m129891.0[0m €.
+Terve portfell kokku: [31m129260.0[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: [31m-65979.0[0m €.
+Krooni miljonär veel minna: [31m-65348.0[0m €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m370109.0[0m €.
-Mörr-i aktsiad: 20452 €.
+Veel minna: [31m370740.0[0m €.
+Mörr-i aktsiad: 20611 €.
 Mörr-i vaba raha: 32568.3 €.
-Mörr-i portfell kokku: [31m68370[0m €.
-Kelly portfell: [31m1697[0m €.
-Pere portfell kokku: [31m199958.0[0m €.
+Mörr-i portfell kokku: [31m68529[0m €.
+Kelly portfell: [31m1717[0m €.
+Pere portfell kokku: [31m199506.0[0m €.
 ========================
 Fail juba kaustas olemas.
 ========================
@@ -45,7 +45,8 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-03-26                    128823              129891                  1 %
+5  2022-04-01                    128823              129260                  0 %
 ========================
 Tänane seis lisatud.
-[32mE-maili saatmine: Pole reede[0m
+[32m
+Mail Send Successfully[0m
