@@ -5,37 +5,37 @@ Vilde 90-193 laenumakse: 155 € + kindlustus.
 Laenu Akadeemia 42-63 makstud: 6 Years, 2 Months
 Laenu Vilde 90-193 makstud: 3 Years, 0 Months
 
-Akadeemia 42-63 laenu jääk 13616 €. Laenu summa 16708.64
+Akadeemia 42-63 laenu jääk 13534 €. Laenu summa 16708.64
 Vilde 90-193 laenu jääk 13505 €. Laenu summa 17940.0
 
-Laenu kohutus kokku(ainult Akadeemia): 13616
-Laenu kohutus kokku(Kõik): 27121
+Laenu kohutus kokku(ainult Akadeemia): 13534
+Laenu kohutus kokku(Kõik): 27039
 
-Hetkel korteri/krundi puhas väärtus kokku: 20884.0 €.
+Hetkel korteri/krundi puhas väärtus kokku: 20966.0 €.
 Vilde peale makse Isale: [31m-13.45[0m €.
 
 
-Juriidilise isiku väärtus: 68984 €.
-Krüpto: [31m1062[0m €.
-Juriidilise isiku aktsiad: 53768 €.
-Funderbeam Kokku: [31m17743.5[0m €.
+Juriidilise isiku väärtus: 67709 €.
+Krüpto: [31m947[0m €.
+Juriidilise isiku aktsiad: 52615 €.
+Funderbeam Kokku: [31m17737.25[0m €.
 
 
-Füüsilise isiku aktsia portfell: 32249 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 101233 €.
-Vaba raha Jur/Füs Kokku: [31m23472[0m €.
+Füüsilise isiku aktsia portfell: 32204 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 99913 €.
+Vaba raha Jur/Füs Kokku: [31m23357[0m €.
 
 
-Terve portfell kokku: [31m122117.0[0m €.
+Terve portfell kokku: [31m120879.0[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: [31m-58205.0[0m €.
+Krooni miljonär veel minna: [31m-56967.0[0m €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m377883.0[0m €.
-Mörr-i aktsiad: 20085 €.
+Veel minna: [31m379121.0[0m €.
+Mörr-i aktsiad: 19722 €.
 Mörr-i vaba raha: 32568.3 €.
-Mörr-i portfell kokku: [31m68153[0m €.
-Kelly portfell: [31m2201[0m €.
-Pere portfell kokku: [31m192471.0[0m €.
+Mörr-i portfell kokku: [31m67790[0m €.
+Kelly portfell: [31m2144[0m €.
+Pere portfell kokku: [31m190813.0[0m €.
 ========================
 Fail juba kaustas olemas.
 ========================
@@ -45,7 +45,7 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-05-04                    128823              122117                 -5 %
+5  2022-05-08                    128823              120879                 -6 %
 ========================
-Tänane seis muudetud.
+Tänane seis lisatud.
 [32mE-maili saatmine: Pole reede[0m
