@@ -348,7 +348,10 @@ def get_funderbeam_marketvalue():
         content = driver.find_element_by_tag_name('pre').text
         parsed_json = json.loads(content)
         '# to get only marketValueTotal'
-        parsed_market_value = parsed_json['totals'][0]['marketValueTotal']
+        '# 13.05.2022 old pars, before API change'
+        #parsed_market_value = parsed_json['totals'][0]['marketValueTotal']
+        '# 13.05.2022 new API parse'
+        parsed_market_value = parsed_json['totalValueInEur']
         '# UPDATE 4.06.2021 problems maybe fixed it'
         driver.quit()
 
@@ -412,3 +415,4 @@ def year_to_year_percent(path, excel_name, mm_dd, todays_total_portfolio):
 
 #path = what_path_for_file()
 #print(year_to_year_percent(path + 'Portfolio_calculator/', "Portfell", "01-01", 100))
+#get_funderbeam_marketvalue()
