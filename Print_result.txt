@@ -11,31 +11,31 @@ Vilde 90-193 laenu jääk 13377 €. Laenu summa 17940.0
 Laenu kohutus kokku(ainult Akadeemia): 13534
 Laenu kohutus kokku(Kõik): 26911
 
-Hetkel korteri/krundi puhas väärtus kokku: 20966.0 €.
+Hetkel korteri/krundi puhas väärtus kokku: 60966.0 €.
 Vilde peale makse Isale: [31m-13.45[0m €.
 
 
-Juriidilise isiku väärtus: 64206 €.
-Krüpto: [31m787[0m €.
-Juriidilise isiku aktsiad: 49664 €.
-Funderbeam Kokku: [31m17344.56[0m €.
+Juriidilise isiku väärtus: 63238 €.
+Krüpto: [31m780[0m €.
+Juriidilise isiku aktsiad: 48419 €.
+Funderbeam Kokku: [31m17169.45[0m €.
 
 
-Füüsilise isiku aktsia portfell: 32087 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 96293 €.
-Vaba raha Jur/Füs Kokku: [31m23197[0m €.
+Füüsilise isiku aktsia portfell: -3955 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 59283 €.
+Vaba raha Jur/Füs Kokku: [31m-12350[0m €.
 
 
-Terve portfell kokku: [31m117259.0[0m €.
+Terve portfell kokku: [31m120249.0[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: [31m-53347.0[0m €.
+Krooni miljonär veel minna: [31m-56337.0[0m €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m382741.0[0m €.
-Mörr-i aktsiad: 19176 €.
-Mörr-i vaba raha: 32568.3 €.
-Mörr-i portfell kokku: [31m67244[0m €.
-Kelly portfell: [31m2026[0m €.
-Pere portfell kokku: [31m186529.0[0m €.
+Veel minna: [31m379751.0[0m €.
+Mörr-i aktsiad: 13057 €.
+Mörr-i vaba raha: 223 €.
+Mörr-i portfell kokku: [31m68780[0m €.
+Kelly portfell: [31m2102[0m €.
+Pere portfell kokku: [31m191131.0[0m €.
 ========================
 Fail juba kaustas olemas.
 ========================
@@ -45,7 +45,7 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-05-19                    128823              117259                 -9 %
+5  2022-05-21                    128823              120249                 -7 %
 ========================
 Tänane seis lisatud.
 [32mE-maili saatmine: Pole reede[0m
