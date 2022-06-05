@@ -47,5 +47,5 @@ Fail juba kaustas olemas.
 4  2022-01-01                     82751              128823                 56 %
 5  2022-06-05                    128823              122565                 -5 %
 ========================
-Tänane seis lisatud.
+Tänase päeva andmed pole muutunud.
 [32mE-maili saatmine: Pole reede[0m
