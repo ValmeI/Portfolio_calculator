@@ -149,7 +149,7 @@ if os.path.isfile(what_path_for_file() + r'Projects\My_Send_Email\synology_pass'
 elif date.today().weekday() == 4:
 
     '# Variables are: STMP, username, password file, send from, send to, email title and email body'
-    send_email('192.168.1.172',
+    send_email('http://valme.noip.me/',
                'email',
                what_path_for_file() + r'Projects\My_Send_Email\synology_pass',
                'email@valme.noip.me',
