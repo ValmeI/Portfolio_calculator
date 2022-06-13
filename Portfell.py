@@ -73,6 +73,7 @@ print("Laenu kohutus kokku(Kõik):", BalanceAka42 + BalanceVilde90)
 KinnisVaraPort = Kinnisvara.kinnisvara_vaartus() - BalanceAka42 + Morr.Lähtse_Raha/2
 
 print("\nHetkel korteri/krundi puhas väärtus kokku:", KinnisVaraPort, "€.")
+print("\nLähtse investeering:", colored(Morr.Lähtse_Raha/2, 'red'), "€.")
 
 '# Portfell kokku'
 Ignar_Kokku = Valme.FysIsik + Valme.JurIsik + KinnisVaraPort
@@ -93,7 +94,7 @@ print("Vaba raha Jur/Füs Kokku:", colored(Valme.RahaKokku, 'red'), "€.")
 print("\n")
 print("Terve portfell kokku:", colored(Ignar_Kokku, 'red'), "€.")
 print("Eesmärk krooni miljonär", Eesmark, "€.")
-print("Krooni miljonär veel minna:", colored(Eesmark - Ignar_Kokku, 'red'), "€.")
+print("Krooni miljonär veel minna:", Eesmark - Ignar_Kokku, "€.")
 
 print("Eesmärk 35 aastaselt portfelli väärtus", Eesmark2, "€.")
 print("Veel minna:", colored(Eesmark2 - Ignar_Kokku, 'red'), "€.")
