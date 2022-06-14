@@ -17,8 +17,8 @@ import Kinnisvara
 import Morr
 import Valme
 import txt_write_move
-from Functions import what_path_for_file, diff_months, year_to_year_percent
-from Excel_functions import need_new_excel_file, write_to_excel, column_width, headers
+from Functions import what_path_for_file, diff_months
+from Excel_functions import need_new_excel_file, write_to_excel, column_width, headers, year_to_year_percent
 
 import warnings
 
@@ -126,7 +126,7 @@ need_new_excel_file("Portfell", "Porfelli Info", Excel_functions.headers)
 
 '# Aastate võrldus %, pandas print'
 print("========================")
-print(year_to_year_percent(path + 'Portfolio_calculator/', "Portfell", "01-01", Ignar_Kokku))
+print(year_to_year_percent("Portfell", "01-01", Ignar_Kokku))
 print("========================")
 
 values_list = []
