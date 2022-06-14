@@ -1,8 +1,9 @@
 import Aktsiad
 import Morr
-import Funcions as F
+import Excel_functions
+import Functions as F
 from datetime import date
-from Funcions import what_path_for_file
+from Functions import what_path_for_file
 
 path = what_path_for_file()
 
@@ -77,9 +78,9 @@ vilde_kindlustus = 6.91
 arvutamise_kp = 1
 
 Uus_vilde_summa = F.vilde_calculation(arvutamise_kp,
-                                      F.get_last_row(path + 'Portfolio_calculator/', "Portfell", 9),
+                                      Excel_functions.get_last_row("Portfell", 9),
                                       round(F.dividend_with_certain_date(vilde_isa) - vilde_laen - vilde_kindlustus, 2),
-                                      F.get_last_row(path + 'Portfolio_calculator/', "Portfell", 1)
+                                      Excel_functions.get_last_row("Portfell", 1)
                                       )
 
 '# to avoid too many decimal places'

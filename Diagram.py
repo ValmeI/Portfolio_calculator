@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
 import matplotlib
-from Funcions import what_path_for_file, get_excel_column, get_last_row
+from Functions import what_path_for_file
+from Excel_functions import get_excel_column_values, get_last_row
 from dateutil.parser import parse
 
 path = what_path_for_file()
-'# x axis dates list, 1 column'
-x = get_excel_column(path + 'Portfolio_calculator/', "Portfell", 1)
-'# y axis values list, 6 column'
-y = get_excel_column(path + 'Portfolio_calculator/', "Portfell", 6)
-
+'# x axis dates list, A column'
+x = get_excel_column_values("Portfell", 'A')
+'# y axis values list, E column'
+y = get_excel_column_values("Portfell", 'E')
 '# str to list of dates for axis X, converting to date also removes the problem of too many str date values'
 new_list1 = []
 for i in x:
@@ -20,7 +20,7 @@ def show_diagram():
 
     ax = plt.gca()
     '# str to date format'
-    x1 = new_list1
+    x1 = x
     plt.plot(x1, y)
 
     ax.xaxis.set_minor_locator(matplotlib.dates.MonthLocator())
@@ -42,13 +42,13 @@ def show_diagram():
 
 def show_percentages_diagram():
 
-    real_estate = get_last_row(path + 'Portfolio_calculator/', "Portfell", 2)
-    personal_stocks = get_last_row(path + 'Portfolio_calculator/', "Portfell", 3)
-    company_stocks = get_last_row(path + 'Portfolio_calculator/', "Portfell", 4)
+    real_estate = get_last_row("Portfell", 2)
+    personal_stocks = get_last_row("Portfell", 3)
+    company_stocks = get_last_row("Portfell", 4)
 
-    labels = "Kinnisvara puhas väärtus", "Füüsilise isiku aktsiad", "Juriidilise isiku aktsiad"
+    labels = "Kinnisvara puhas väärtus", "Juriidilise isiku aktsiad"#, "Füüsilise isiku aktsiad",
 
-    sizes = [real_estate, personal_stocks, company_stocks]
+    sizes = [real_estate, company_stocks] #personal_stocks,#miinuses hetkel
 
     colors = ['yellowgreen', 'gold', 'lightskyblue', 'lightcoral']
     # Plot

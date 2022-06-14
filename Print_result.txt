@@ -17,37 +17,27 @@ Lähtse investeering: [31m50908.0[0m €.
 Vilde peale makse Isale: [31m-15.24[0m €.
 
 
-Juriidilise isiku väärtus: 64393 €.
-Krüpto: [31m638[0m €.
-Juriidilise isiku aktsiad: 49474 €.
-Funderbeam Kokku: [31m16810.78[0m €.
+Juriidilise isiku väärtus: 61464 €.
+Krüpto: [31m574[0m €.
+Juriidilise isiku aktsiad: 47040 €.
+Funderbeam Kokku: [31m16380.08[0m €.
 
 
-Füüsilise isiku aktsia portfell: -3928 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 60465 €.
-Vaba raha Jur/Füs Kokku: [31m-11892[0m €.
+Füüsilise isiku aktsia portfell: -4047 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 57417 €.
+Vaba raha Jur/Füs Kokku: [31m-11956[0m €.
 
 
-Terve portfell kokku: [31m122420.0[0m €.
+Terve portfell kokku: [31m119372.0[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: -58508.0 €.
+Krooni miljonär veel minna: -55460.0 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m377580.0[0m €.
-Mörr-i aktsiad: 13033 €.
+Veel minna: [31m380628.0[0m €.
+Mörr-i aktsiad: 12722 €.
 Mörr-i vaba raha: 223 €.
-Mörr-i portfell kokku: [31m69714[0m €.
-Kelly portfell: [31m2095[0m €.
-Pere portfell kokku: [31m194229.0[0m €.
+Mörr-i portfell kokku: [31m69403[0m €.
+Kelly portfell: [31m2039[0m €.
+Pere portfell kokku: [31m190814.0[0m €.
 ========================
 Fail juba kaustas olemas.
 ========================
-        Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
-0  2018-01-01                         0               28570                  0 %
-1  2019-01-01                     28570               33435                 17 %
-2  2020-01-01                     33435               50223                 50 %
-3  2021-01-01                     50223               82751                 65 %
-4  2022-01-01                     82751              128823                 56 %
-5  2022-06-13                    128823              122420                 -5 %
-========================
-Tänane seis lisatud.
-[32mE-maili saatmine: Pole reede[0m

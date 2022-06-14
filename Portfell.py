@@ -5,16 +5,25 @@ import time
 from datetime import date
 import shutil
 
+
 from dateutil.relativedelta import relativedelta
 from termcolor import colored
 
 from My_Send_Email.Send import send_email
+
+import Excel_functions
 import Kelly
 import Kinnisvara
 import Morr
 import Valme
 import txt_write_move
-from Funcions import what_path_for_file, diff_months, need_new_excel_file, year_to_year_percent, update_excel
+from Functions import what_path_for_file, diff_months, year_to_year_percent
+from Excel_functions import need_new_excel_file, write_to_excel, column_width, headers
+
+import warnings
+
+'# to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored warn("""Cannot parse header or footer so it will be ignored""")'
+warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
 path = what_path_for_file()
 
@@ -24,7 +33,7 @@ excel_source = path + r'Portfolio_calculator\Portfell.xls'
 pc_des_path = path + r'Calculators\portfolio_result'
 nas_des_path = r'\\RMI_NAS\Python\Calculators\portfolio_result'
 
-'# Copy txt result and excel file to Nas server, if all the files or path exists'
+'# Copy txt result and excel file to NAS server, if all the files or path exists'
 if os.path.isfile(txt_source) and os.path.isfile(excel_source) and os.path.isdir(nas_des_path):
     '# Copy previously created file to Calculators directory'
     shutil.copy(txt_source, nas_des_path)
@@ -113,17 +122,21 @@ Pere = Ignar_Kokku + Morr_kokku + Kelly_kokku
 print("Pere portfell kokku:", colored(Pere, 'red'), "€.")
 
 Aktsiad_kokku = Valme.FysIsik+Valme.JurIsik
-need_new_excel_file("Portfell", "Porfelli Info")
+need_new_excel_file("Portfell", "Porfelli Info", Excel_functions.headers)
 
 '# Aastate võrldus %, pandas print'
 print("========================")
 print(year_to_year_percent(path + 'Portfolio_calculator/', "Portfell", "01-01", Ignar_Kokku))
 print("========================")
 
+values_list = []
+values_list.extend((str(Täna), KinnisVaraPort, Valme.FysIsik, Valme.JurIsik, Aktsiad_kokku,
+                    Ignar_Kokku, Morr_kokku, Pere, Valme.Uus_vilde_summa,
+                    Valme.RahaKokku, Valme.JurFunderBeam, Kelly_kokku))
+
 '#exceli_nimi, kinnisvara_puhas, füs_aktsiad, jur_aktsiad, aktsiad_kokku, kokku_portfell, pere portfell, Vilde, Vaba raha, Funderbeam, Kelly '
-update_excel(path + 'Portfolio_calculator/', "Portfell",
-             KinnisVaraPort, Valme.FysIsik, Valme.JurIsik, Aktsiad_kokku,
-             Ignar_Kokku, Morr_kokku, Pere, Valme.Uus_vilde_summa, Valme.RahaKokku, Valme.JurFunderBeam, Kelly_kokku)
+write_to_excel("Portfell", values_list, 1)
+column_width("Portfell", headers)
 
 '# for combining results to send in e-mail'
 Tulemus = "\nTerve portfell kokku: " + str(Ignar_Kokku) + " €." + \
