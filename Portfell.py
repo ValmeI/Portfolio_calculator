@@ -29,7 +29,7 @@ path = what_path_for_file()
 
 'copy to nas webserver'
 txt_source = path + r'Portfolio_calculator\Print_result.txt'
-excel_source = path + r'Portfolio_calculator\Portfell.xls'
+excel_source = path + r'Portfolio_calculator\Portfell.xlsx'
 pc_des_path = path + r'Calculators\portfolio_result'
 nas_des_path = r'\\RMI_NAS\Python\Calculators\portfolio_result'
 
