@@ -58,7 +58,7 @@ def create_excel(excel_name, sheet_name):
     wb.save(filename=file_name)
 
     wb.close()
-    print("========================")
+    print("==================================================")
     print("Loodud uus fail", file_name)
 
 
@@ -76,45 +76,44 @@ def check_if_excel_exists(excel_name):
 
 '# append new rows/info to excel'
 '# how_to_add: 1 = append, 2 = overwrite, 3 = compare if change is needed'
+'# compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on'
 
 
-def write_to_excel(excel_name, list_of_data, how_to_add):
+def write_to_excel(excel_name, list_of_data, how_to_add, compare_column):
     '# add file type'
     file_name = excel_name + ".xlsx"
 
     workbook_name = file_name
     wb = load_workbook(workbook_name)
     sheet1 = wb.active
-    # New data to write:
-    new_data = [list_of_data]
 
     if how_to_add == 1:
-        for info in new_data:
-            sheet1.append(info)
+        sheet1.append(list_of_data)
+        print("Tänane seis lisatud.")
 
-    '''elif how_to_add == 2:
-        print('overwrite')
+    elif how_to_add == 2:
         max_row = sheet1.max_row
-        for col_cells in sheet1.iter_rows(min_row=max_row, max_row=max_row):
-            for index, cell in enumerate(col_cells):
-                #print(index+1, max_row, cell, cell.value)
-                for info in list_of_data:
-                    print(info)
-                    cell.value(row=max_row, column=int(index+1))
-                #cell.value(row=max_row, )=2
-                #print(max_row, cell, cell.value)
+        '# Overwrite row if compared column value is the same as given data column'
+        if sheet1.cell(column=compare_column, row=max_row).value == list_of_data[compare_column-1]:
+            sheet1.delete_rows(max_row)
+            sheet1.append(list_of_data)
+            print("Tänane seis üle kirjutatud")
+        else:
+            sheet1.append(list_of_data)
+            print("Tänane seis lisatud.")
 
-
-
-
-
+    #TODO
     elif how_to_add == 3:
-        print('compare')'''
+        print('compare')
 
     wb.save(filename=workbook_name)
 
-    print("Tänane seis lisatud.")
 
+'''
+plaa = []
+plaa.extend(('2022-06-16',61955))
+
+write_to_excel('Portfell', plaa, 2, 1)'''
 
 '# makes columns length wider'
 
@@ -145,7 +144,7 @@ def column_width(excel_name, excel_headers):
 
 def need_new_excel_file(excel_name, sheet_name, excel_headers):
     if check_if_excel_exists(excel_name):
-        print("========================")
+        print("==================================================")
         print("Fail juba kaustas olemas.")
     else:
         create_excel(excel_name, sheet_name)
