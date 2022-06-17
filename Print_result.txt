@@ -17,37 +17,36 @@ Lähtse investeering: [31m50908.0[0m €.
 Vilde peale makse Isale: [31m-15.24[0m €.
 
 
-Juriidilise isiku väärtus: 60701 €.
-Krüpto: [31m529[0m €.
-Juriidilise isiku aktsiad: 46480 €.
-Funderbeam Kokku: [31m16222.12[0m €.
+Juriidilise isiku väärtus: 60650 €.
+Krüpto: [31m521[0m €.
+Juriidilise isiku aktsiad: 46518 €.
+Funderbeam Kokku: [31m16140.8[0m €.
 
 
 Füüsilise isiku aktsia portfell: -4171 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 56530 €.
-Vaba raha Jur/Füs Kokku: [31m-12001[0m €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 56479 €.
+Vaba raha Jur/Füs Kokku: [31m-12009[0m €.
 
 
-Terve portfell kokku: [31m118485.0[0m €.
+Terve portfell kokku: [31m118434.0[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: -54573.0 €.
+Krooni miljonär veel minna: -54522.0 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m381515.0[0m €.
-Mörr-i aktsiad: 12377 €.
+Veel minna: [31m381566.0[0m €.
+Mörr-i aktsiad: 12371 €.
 Mörr-i vaba raha: 223 €.
-Mörr-i portfell kokku: [31m69058[0m €.
-Kelly portfell: [31m1990[0m €.
-Pere portfell kokku: [31m189533.0[0m €.
-========================
+Mörr-i portfell kokku: [31m69052[0m €.
+Kelly portfell: [31m1988[0m €.
+Pere portfell kokku: [31m189474.0[0m €.
+==================================================
 Fail juba kaustas olemas.
-========================
+==================================================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2018-01-01                         0               28570                  0 %
 1  2019-01-01                     28570               33435                 17 %
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-06-16                    128823              118485                 -8 %
-========================
-Tänane seis üle kirjutatud
-[32mE-maili saatmine: Pole reede[0m
+5  2022-06-17                    128823              118434                 -8 %
+==================================================
+Tänane seis lisatud.
