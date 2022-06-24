@@ -22,7 +22,8 @@ from Excel_functions import need_new_excel_file, write_to_excel, column_width, h
 
 import warnings
 
-'# to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored warn("""Cannot parse header or footer so it will be ignored""")'
+'# to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored ' \
+'warn("""Cannot parse header or footer so it will be ignored""")'
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
 path = what_path_for_file()
