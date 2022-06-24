@@ -49,10 +49,11 @@ def stock_price_from_google(stock, original_currency):
     convert_html = driver.page_source
     soup = BeautifulSoup(convert_html, 'lxml')
     '# 27.01 Update, parse from google search'
-    str_price_org_currency = soup.find('span', jsname='vWLAgc').text.strip(',.-').replace(' ', '')
+    '# 24.06.2022 added replace , with nothing'
+    str_price_org_currency = soup.find('span', jsname='vWLAgc').text.strip(',.-').replace(' ', '').replace(',', '')
     '# 27.01.2020 UPDATE replace comma from google'
-    str_price_org_currency = replace_comma_google(str_price_org_currency)
 
+    #str_price_org_currency = replace_comma_google(str_price_org_currency)
     if original_currency:
         '#Returns original currency'
         return float(str_price_org_currency)
@@ -68,10 +69,13 @@ def stock_price_from_google(stock, original_currency):
         convert_html = driver.page_source
         '# scrape with BeautifulSoup'
         soup = BeautifulSoup(convert_html, 'lxml')
+        #print(soup.encode("utf-8"))
         to_eur_convert = soup.find('span', class_='DFlfde SwHCTb').text
-        to_eur_convert = replace_whitespaces(to_eur_convert)
+
+        '# 24.06.2022 added replace , with nothing'
+        to_eur_convert = replace_whitespaces(to_eur_convert).replace(',', '')
         '# 27.01.2020 UPDATE replace comma from convert'
-        to_eur_convert = replace_comma_google(to_eur_convert)
+        #to_eur_convert = replace_comma_google(to_eur_convert)
         '# 15.10.2021 UPDATE only keep numbers and ,.'
         to_eur_convert = re.sub("[^0-9.,]", "", to_eur_convert)
         '# UPDATE 4.06.2021 problems maybe fixed it'
