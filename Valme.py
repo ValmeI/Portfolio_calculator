@@ -32,11 +32,9 @@ jur_usa_stocks = {"AAPL": 93,
 BTC_amount = 0.021538
 ETH_amount = 0.12037
 
-ETH_USD = Aktsiad.crypto_to_eur('Ethereum') * ETH_amount
-ETH_EUR = Aktsiad.usd_to_eur_convert(ETH_USD)
+ETH_EUR = Aktsiad.crypto_to_eur('Ethereum') * ETH_amount
 
-Bitcoin_USD = Aktsiad.crypto_to_eur('bitcoin') * BTC_amount
-Bitcoin_EUR = Aktsiad.usd_to_eur_convert(Bitcoin_USD)
+Bitcoin_EUR = Aktsiad.crypto_to_eur('bitcoin') * BTC_amount
 
 '#Vanad ja refinants Akadeemia laenu kuupäevad yyyy.mm.dd'
 Vana_Aka42_63_Laen_Kuupäev = date(2016, 2, 16)

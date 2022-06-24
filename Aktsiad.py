@@ -41,7 +41,7 @@ def stock_price_from_google(stock, original_currency):
     options.add_argument("--headless")
     options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
     '# UPDATE 25.01.2021 to avoid cannot find Chrome binary error'
-    options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    #options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
     driver = webdriver.Chrome("chromedriver.exe", options=options)
     url = "https://www.google.com/search?q=" + stock + " stock"
     driver.get(url)
@@ -131,8 +131,8 @@ def crypto_to_eur(crypto):
     convert_html = driver.page_source
     soup = BeautifulSoup(convert_html, 'lxml')
     str_price_org_currency = soup.find('span', class_='pclqee').text
-    str_price_org_currency = replace_comma_google(str_price_org_currency)
-    str_price_org_currency = replace_whitespaces(str_price_org_currency)
+    #str_price_org_currency = replace_comma_google(str_price_org_currency)
+    str_price_org_currency = replace_whitespaces(str_price_org_currency).replace(',', '')
     '# UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
     return float(str_price_org_currency)
@@ -168,7 +168,7 @@ def usd_to_eur_convert(number):
     options.add_argument("--headless")
     options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
     '# UPDATE 25.01.2021 to avoid cannot find Chrome binary error'
-    options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    #options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
     driver = webdriver.Chrome("chromedriver.exe", options=options)
     convert_url = "https://www.google.com/search?q=" + str(number) + "+usd+to+eur+currency+converter"
     driver.get(convert_url)
@@ -184,11 +184,3 @@ def usd_to_eur_convert(number):
     '# UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
     return float(to_eur_convert)
-
-
-#print(crypto_price_from_coinmarketcap('million'))
-#print(crypto_price_from_coinmarketcap('ethereum'))
-
-#print(usd_to_eur_convert(crypto_price_from_coinmarketcap('ethereum')*0.65012))
-#print(usd_to_eur_convert(crypto_price_from_coinmarketcap('bitcoin')))
-#print(crypto_to_eur("Ethereum"))
