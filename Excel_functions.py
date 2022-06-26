@@ -87,14 +87,16 @@ def write_to_excel(excel_name, list_of_data, how_to_add, compare_column):
     wb = load_workbook(workbook_name)
     sheet1 = wb.active
 
+    '# just append a row'
     if how_to_add == 1:
         sheet1.append(list_of_data)
         print("Tänane seis lisatud.")
 
     elif how_to_add == 2:
         max_row = sheet1.max_row
-        '# Overwrite row if compared column value is the same as given data column'
+        '# Overwrite row if compared column value (ex. date) is the same as given data column'
         if sheet1.cell(column=compare_column, row=max_row).value == list_of_data[compare_column-1]:
+            '# easier to delete row and append looks easier than replace cell by cell'
             sheet1.delete_rows(max_row)
             sheet1.append(list_of_data)
             print("Tänane seis üle kirjutatud")
@@ -102,7 +104,7 @@ def write_to_excel(excel_name, list_of_data, how_to_add, compare_column):
             sheet1.append(list_of_data)
             print("Tänane seis lisatud.")
 
-    #TODO
+    #TODO compare cell by cell if any change is acutally needed
     elif how_to_add == 3:
         print('compare')
 
