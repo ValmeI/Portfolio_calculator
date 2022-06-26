@@ -20,12 +20,12 @@ def show_diagram():
 
     ax = plt.gca()
     '# str to date format'
-    x1 = x
+    x1 = new_list1
     plt.plot(x1, y)
 
     ax.xaxis.set_minor_locator(matplotlib.dates.MonthLocator())
     '# month is in words, if removed then in numbers'
-    ax.xaxis.set_minor_formatter(matplotlib.dates.DateFormatter('%b'))
+    #ax.xaxis.set_minor_formatter(matplotlib.dates.DateFormatter('%b'))
     '# Display only year'
     ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter('%Y'))
     '# move year down, so they would not overlay each other'
