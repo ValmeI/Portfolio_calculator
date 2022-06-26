@@ -111,15 +111,6 @@ def write_to_excel(excel_name, list_of_data, how_to_add, compare_column):
     wb.save(filename=workbook_name)
 
 
-'''
-plaa = []
-plaa.extend(('2022-06-16',61955))
-
-write_to_excel('Portfell', plaa, 2, 1)'''
-
-'# makes columns length wider'
-
-
 def column_width(excel_name, excel_headers):
     '# add file type'
     file_name = excel_name + ".xlsx"
