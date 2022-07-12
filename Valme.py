@@ -33,7 +33,6 @@ BTC_amount = 0.021538
 ETH_amount = 0.12037
 
 ETH_EUR = Aktsiad.crypto_to_eur('Ethereum') * ETH_amount
-
 Bitcoin_EUR = Aktsiad.crypto_to_eur('bitcoin') * BTC_amount
 
 '#Vanad ja refinants Akadeemia laenu kuupäevad yyyy.mm.dd'
@@ -53,7 +52,6 @@ FysIsik = round(FüsIsikRaha + FysIsikAktsaid)
 CleveronAktsia = 4 * 1050
 JurAktsiad = round(Aktsiad.stocks_value_combined(jur_usa_stocks, False) + CleveronAktsia)
                    #Aktsiad.stocks_value_combined(jur_eur_stocks, True)
-
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
 '#jur isiku raha LHV'
