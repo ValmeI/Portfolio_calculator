@@ -166,12 +166,12 @@ if os.path.isfile(what_path_for_file() + r'Projects\My_Send_Email\synology_pass'
 elif date.today().weekday() == 4:
 
     '# Variables are: STMP, username, password file, send from, send to, email title and email body'
-    send_email('valme.noip.me', #'192.168.50.235',
-               'email',
-               what_path_for_file() + r'Projects\My_Send_Email\synology_pass',
-               'email@valme.noip.me',
-               'val-capital@googlegroups.com',
-               'Portfelli seis: ' + time.strftime('%d-%m-%Y'),
-               Tulemus)
+    send_email(stmp_variable='valme.noip.me', #'192.168.50.235',
+               user='email',
+               password_file=what_path_for_file() + r'Projects\My_Send_Email\synology_pass',
+               sent_from='email@valme.noip.me',
+               sent_to='val-capital@googlegroups.com',
+               sent_subject='Portfelli seis: ' + time.strftime('%d-%m-%Y'),
+               sent_body=Tulemus)
 else:
     print(colored('E-maili saatmine: Pole reede', 'green'))
