@@ -125,7 +125,7 @@ print("Pere portfell kokku:", colored(Pere, 'red'), "€.")
 Aktsiad_kokku = Valme.FysIsik+Valme.JurIsik
 need_new_excel_file("Portfell", "Porfelli Info", Excel_functions.headers)
 
-'# Aastate võrldus %, pandas print'
+'# date võrldus %, pandas print'
 print("==================================================")
 print(year_to_year_percent("Portfell", "01-01", Ignar_Kokku))
 print("==================================================")
