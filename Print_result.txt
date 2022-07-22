@@ -17,27 +17,27 @@ Lähtse investeering: [31m51516.5[0m €.
 Vilde peale makse Isale: [31m-17.03[0m €.
 
 
-Juriidilise isiku väärtus: 62895 €.
-Krüpto: [31m645[0m €.
-Juriidilise isiku aktsiad: 51370 €.
-Funderbeam Kokku: [31m14306.9[0m €.
+Juriidilise isiku väärtus: 66702 €.
+Krüpto: [31m693[0m €.
+Juriidilise isiku aktsiad: 55019 €.
+Funderbeam Kokku: [31m14416.58[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4169 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 58726 €.
-Vaba raha Jur/Füs Kokku: [31m-12782[0m €.
+Füüsilise isiku aktsia portfell: -4129 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 62573 €.
+Vaba raha Jur/Füs Kokku: [31m-12734[0m €.
 
 
-Terve portfell kokku: [31m121371.5[0m €.
+Terve portfell kokku: [31m125218.5[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: -57459.5 €.
+Krooni miljonär veel minna: -61306.5 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m378628.5[0m €.
-Mörr-i aktsiad: 13530 €.
+Veel minna: [31m374781.5[0m €.
+Mörr-i aktsiad: 13786 €.
 Mörr-i vaba raha: 305.16 €.
-Mörr-i portfell kokku: [31m71052[0m €.
-Kelly portfell: [31m2377[0m €.
-Pere portfell kokku: [31m194800.5[0m €.
+Mörr-i portfell kokku: [31m71308[0m €.
+Kelly portfell: [31m2465[0m €.
+Pere portfell kokku: [31m198991.5[0m €.
 ==================================================
 Fail juba kaustas olemas.
 ==================================================
@@ -47,7 +47,8 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-07-19                    128823              121372                 -6 %
+5  2022-07-22                    128823              125218                 -3 %
 ==================================================
 Tänane seis lisatud.
-[32mE-maili saatmine: Pole reede[0m
+[32m
+Mail Send Successfully[0m

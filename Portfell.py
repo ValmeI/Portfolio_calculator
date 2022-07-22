@@ -122,14 +122,15 @@ Pere = Ignar_Kokku + Morr_kokku + Kelly_kokku
 print("Pere portfell kokku:", colored(Pere, 'red'), "€.")
 
 Aktsiad_kokku = Valme.FysIsik+Valme.JurIsik
-need_new_excel_file("Portfell", "Porfelli Info", Excel_functions.headers)
+# check if new Excel file is needed and if so, create it
+need_new_excel_file(excel_name="Portfell", sheet_name="Porfelli Info", excel_headers=Excel_functions.headers)
 
-'# date võrldus %, pandas print'
+# compare the current portfolio with the previous years
 print("==================================================")
-print(year_to_year_percent("Portfell", "01-01", Ignar_Kokku))
+print(year_to_year_percent(excel_name="Portfell", mm_dd="01-01", todays_total_portfolio=Ignar_Kokku))
 print("==================================================")
 
-'#exceli_nimi, kinnisvara_puhas, füs_aktsiad, jur_aktsiad, aktsiad_kokku, kokku_portfell, pere portfell, Vilde, Vaba raha, Funderbeam, Kelly '
+# make a list with all the data for Excel file input
 values_list = []
 values_list.extend((str(Täna), KinnisVaraPort, Valme.FysIsik, Valme.JurIsik, Aktsiad_kokku,
                     Ignar_Kokku, Morr_kokku, Pere, Valme.Uus_vilde_summa,
@@ -137,8 +138,8 @@ values_list.extend((str(Täna), KinnisVaraPort, Valme.FysIsik, Valme.JurIsik, Ak
 
 '# how_to_add: 1 = append, 2 = overwrite, 3 = compare if change is needed'
 '# compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on'
-write_to_excel("Portfell", values_list, 2, 1)
-column_width("Portfell", headers)
+write_to_excel(excel_name="Portfell", list_of_data=values_list, how_to_add= 2, compare_column=1)
+column_width(excel_name="Portfell", excel_headers=headers)
 
 '# for combining results to send in e-mail'
 Tulemus = "\nTerve portfell kokku: " + str(Ignar_Kokku) + " €." + \
