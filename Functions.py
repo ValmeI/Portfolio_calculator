@@ -109,7 +109,7 @@ def get_funderbeam_marketvalue():
     return parsed_market_value
 
 
-def get_funderbeam_companys():
+def get_funderbeam_syndicate_listings():
     options = Options()
     '# parse without displaying Chrome'
     options.add_argument("--headless")
@@ -145,30 +145,33 @@ def get_funderbeam_companys():
     # without dumps it gives error ValueError: Invalid file path or buffer object type: <class 'dict'>
     parsed_json = json.dumps(content)
     parsed_json = json.loads(parsed_json)
-    #print(parsed_json)
 
-    pd.set_option('display.max_rows', None)
-    pd.set_option('display.width', None)
+    # pd.set_option('display.max_rows', None)
+    # pd.set_option('display.width', None)
+
     # without lines=true it gives an error
     df = pd.read_json(parsed_json, lines=True)
-    #print(df)
-    #df.to_excel(r'D:\PycharmProjects\Portfolio_calculator\export_dataframe.xlsx', index=False, header=True)
-    df = pd.json_normalize(df['rows'])
-    #df.to_excel(r'D:\PycharmProjects\Portfolio_calculator\export_dataframe2.xlsx', index=False, header=True)
-    print(df)
-    '''df = pd.json_normalize(data=parsed_json, record_path='rows', meta=[#"totalGainInEur",
-                                                 #"totalGainPct",
-                                                 "totalDayChangeInEur",
-                                                 "totalDayChangePct",
-                                                 "totalValueInEur"])'''
-    print(df.head())
+
+    # drop empty or columns that are not needed.
+    # where 1 is the axis number (0 for rows and 1 for columns.)
+    df = df.drop(['portfolioCompanies', 'portfolioIndustries', 'portfolioCountries'], axis=1)
+
+    # Encoding/decoding a Dataframe using ``'records'`` formatted JSON.
+    #         Note that index labels are not preserved with this encoding.
+    # read to json format so that json_normalize can be used again for nested json flattening
+    json_struct = json.loads(df.to_json(orient="records"))
+
+    # without record_prefix it gives an ValueError: Conflicting metadata name totalGainPct, need distinguishing prefix
+    df = pd.json_normalize(data=json_struct, record_path='rows', record_prefix='_', meta=["totalGainInEur",
+                                                                                          "totalGainPct",
+                                                                                          "totalDayChangeInEur",
+                                                                                          "totalDayChangePct",
+                                                                                          "totalValueInEur"])
+
     '# UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
 
-    #return parsed_market_value
+    return df
 
-get_funderbeam_companys()
+print(get_funderbeam_syndicate_listings())
 
-#path = what_path_for_file()
-#print(year_to_year_percent(path + 'Portfolio_calculator/', "Portfell", "01-01", 100))
-#get_funderbeam_marketvalue()
