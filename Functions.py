@@ -55,9 +55,9 @@ def what_path_for_file():
 
 
 def diff_months(date2, date1):
-    # saada, et palju on tänase ja laenu kuupäevade vahe
+    # get difference between two dates
     difference = relativedelta.relativedelta(date2, date1)
-    # konventeerida aastad kuudeks ja liita leitud kuud
+    # convert years to months and add previous months
     total_months = difference.years*12+difference.months
     return total_months
 
