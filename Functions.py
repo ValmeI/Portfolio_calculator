@@ -38,8 +38,8 @@ def vilde_calculation(input_day, last_calculation_sum, new_sum_to_add, last_inpu
         return float(last_calculation_sum)
 
 
-def dividend_with_certain_date(sum):
-    after_tax = sum - (sum * 0.2)
+def dividend_with_certain_date(total):
+    after_tax = total - (total * 0.2)
     return after_tax
 
 
@@ -55,9 +55,9 @@ def what_path_for_file():
 
 
 def diff_months(date2, date1):
-    '#saada, et palju on tänase ja laenu kuupäevade vahe'
+    # saada, et palju on tänase ja laenu kuupäevade vahe
     difference = relativedelta.relativedelta(date2, date1)
-    '#konventeerida aastad kuudeks ja liita leitud kuud'
+    # konventeerida aastad kuudeks ja liita leitud kuud
     total_months = difference.years*12+difference.months
     return total_months
 
@@ -71,7 +71,7 @@ def get_funderbeam_marketvalue():
     options.add_argument("--headless")
     options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
     '# UPDATE 25.01.2021 to avoid cannot find Chrome binary error'
-    #options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    # options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
     '# get Chrome driver with path'
     driver = webdriver.Chrome("chromedriver.exe", options=options)
     '# url we want to parse'
@@ -93,14 +93,12 @@ def get_funderbeam_marketvalue():
     time.sleep(5)
     '# get data from direct url API'
     driver.get('https://www.funderbeam.com/api/user/tokenSummaryStatement')
-    '# get page source'
-    driver.page_source
     '# parse only json part of the page source'
-    content = driver.find_element_by_tag_name('pre').text
+    content = driver.find_element(By.TAG_NAME, 'pre').text
     parsed_json = json.loads(content)
     '# to get only marketValueTotal'
     '# 13.05.2022 old pars, before API change'
-    #parsed_market_value = parsed_json['totals'][0]['marketValueTotal']
+    # parsed_market_value = parsed_json['totals'][0]['marketValueTotal']
     '# 13.05.2022 new API parse'
     parsed_market_value = parsed_json['totalValueInEur']
     '# UPDATE 4.06.2021 problems maybe fixed it'
@@ -115,7 +113,7 @@ def get_funderbeam_syndicate_listings():
     options.add_argument("--headless")
     options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
     '# UPDATE 25.01.2021 to avoid cannot find Chrome binary error'
-    #options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    # options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
     '# get Chrome driver with path'
     driver = webdriver.Chrome("chromedriver.exe", options=options)
     '# url we want to parse'
@@ -137,8 +135,6 @@ def get_funderbeam_syndicate_listings():
     time.sleep(5)
     '# get data from direct url API'
     driver.get('https://www.funderbeam.com/api/user/tokenSummaryStatement')
-    '# get page source'
-    driver.page_source
     '# parse only json part of the page source'
     content = driver.find_element(By.TAG_NAME, 'pre').text
 
@@ -167,11 +163,10 @@ def get_funderbeam_syndicate_listings():
                                                                                           "totalDayChangeInEur",
                                                                                           "totalDayChangePct",
                                                                                           "totalValueInEur"])
-
+    df.to_excel('funderbeam_syndicate_listings.xlsx')
     '# UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
 
     return df
 
-print(get_funderbeam_syndicate_listings())
-
+# print(get_funderbeam_syndicate_listings())
