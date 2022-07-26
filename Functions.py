@@ -163,10 +163,11 @@ def get_funderbeam_syndicate_listings():
                                                                                           "totalDayChangeInEur",
                                                                                           "totalDayChangePct",
                                                                                           "totalValueInEur"])
-    df.to_excel('funderbeam_syndicate_listings.xlsx')
+    # pandas dataframe to list
+    list_from_df = df.values.tolist()
     '# UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
 
-    return df
+    return list_from_df
 
-# print(get_funderbeam_syndicate_listings())
+# get_funderbeam_syndicate_listings()

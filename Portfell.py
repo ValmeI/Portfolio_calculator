@@ -16,7 +16,7 @@ import Kinnisvara
 import Morr
 import Valme
 import txt_write_move
-from Functions import what_path_for_file, diff_months
+from Functions import what_path_for_file, diff_months, get_funderbeam_syndicate_listings
 from Excel_functions import need_new_excel_file, write_to_excel, column_width, headers, year_to_year_percent
 
 import warnings
@@ -138,8 +138,16 @@ values_list.extend((str(Täna), KinnisVaraPort, Valme.FysIsik, Valme.JurIsik, Ak
 
 '# how_to_add: 1 = append, 2 = overwrite, 3 = compare if change is needed'
 '# compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on'
-write_to_excel(excel_name="Portfell", list_of_data=values_list, how_to_add= 2, compare_column=1)
+write_to_excel(excel_name="Portfell", list_of_data=values_list, how_to_add=2, compare_column=1)
 column_width(excel_name="Portfell", excel_headers=headers)
+
+funderbeam_list = []
+# adds today's date to the beginning of the list
+funderbeam_list.extend((str(Täna)))
+funderbeam_list = funderbeam_list + get_funderbeam_syndicate_listings()
+# write_to_excel(excel_name="funderbeam_syndicate_listings",
+#               list_of_data=funderbeam_list, how_to_add=2, compare_column=1)
+
 
 '# for combining results to send in e-mail'
 Tulemus = "\nTerve portfell kokku: " + str(Ignar_Kokku) + " €." + \
@@ -171,7 +179,7 @@ elif date.today().weekday() == 4:
                password_file=what_path_for_file() + r'Projects\My_Send_Email\synology_pass',
                sent_from='email@valme.noip.me',
                sent_to='val-capital@googlegroups.com',
-               sent_subject='Portfelli seis: ' + time.strftime('%d-%m-%Y'),
+               sent_subject=f'Portfelli seis: ' + time.strftime('%d-%m-%Y'),
                sent_body=Tulemus)
 else:
     print(colored('E-maili saatmine: Pole reede', 'green'))
