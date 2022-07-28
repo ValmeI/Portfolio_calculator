@@ -12,7 +12,7 @@ ETH_EUR = Aktsiad.crypto_to_eur('Ethereum') * ETH_amount
 
 Kelly_raha = 0
 Kelly_Invest_raha = 0 + 241 #textmagic
-Kelly_Invest_aktsiad = Aktsiad.stocks_value_combined(jur_eur_stocks, True)
+Kelly_Invest_aktsiad = Aktsiad.stocks_value_combined(stock_dictionary=jur_eur_stocks, org_currency=True)
 
 Kelly_Portfell_Kokku = round(Kelly_raha + Kelly_Invest_raha + ETH_EUR + Kelly_Invest_aktsiad)
 

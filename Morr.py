@@ -20,7 +20,7 @@ ValCapitalRaha = 11400
 
 Lähtse_Raha = 103033
 
-m_aktsiad = round(Aktsiad.stocks_value_combined(morr_eur_stocks, True))
+m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=morr_eur_stocks, org_currency=True))
 
 m_raha = 305.16
 

@@ -145,6 +145,7 @@ funderbeam_list = []
 # adds today's date to the beginning of the list
 funderbeam_list.extend((str(Täna)))
 funderbeam_list = funderbeam_list + get_funderbeam_syndicate_listings()
+# TODO: check why it doesn't work with the following line. ERROR
 # write_to_excel(excel_name="funderbeam_syndicate_listings",
 #               list_of_data=funderbeam_list, how_to_add=2, compare_column=1)
 

@@ -121,7 +121,7 @@ def stocks_portfolio_percentages(portfolio_size, stocks_dictionary, org_currency
 '# convert bitcoin to eur'
 
 
-def crypto_to_eur(crypto):
+def crypto_in_eur(crypto):
 
     options = Options()
     '# add options to chrome, to run it headless as not opening it'

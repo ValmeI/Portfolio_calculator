@@ -26,32 +26,30 @@ jur_usa_stocks = {"AAPL": 93,
                   "SNOW": 6
                   }
 
-#jur_eur_stocks = {                  }
-
 '# Crypto Amounts'
 BTC_amount = 0.021538
 ETH_amount = 0.12037
 
-ETH_EUR = Aktsiad.crypto_to_eur('Ethereum') * ETH_amount
-Bitcoin_EUR = Aktsiad.crypto_to_eur('bitcoin') * BTC_amount
+ETH_EUR = Aktsiad.crypto_in_eur('Ethereum') * ETH_amount
+Bitcoin_EUR = Aktsiad.crypto_in_eur('bitcoin') * BTC_amount
 
 '#Vanad ja refinants Akadeemia laenu kuupäevad yyyy.mm.dd'
 Vana_Aka42_63_Laen_Kuupäev = date(2016, 2, 16)
 Vana_Aka38_20_Laen_Kuupäev = date(2017, 5, 9)
 
 Aka42_63_Laen_Kuupäev = date(2018, 12, 5)
-#Aka38_20_Laen_Kuupäev = date(2018, 12, 5)
+# Aka38_20_Laen_Kuupäev = date(2018, 12, 5)
 Vilde90_193_Laen_Kuupäev = date(2019, 4, 9)
 
-FüsIsikRaha = 0-10000 #emale võlg 10k
-FysIsikAktsaid = Aktsiad.stocks_value_combined(fys_eur_stocks, True)
+# emale võlg 10k
+FüsIsikRaha = 0-10000
+FysIsikAktsaid = Aktsiad.stocks_value_combined(stock_dictionary=fys_eur_stocks, org_currency=True)
 
 '# Vaba raha ja aktsiad kokku'
 FysIsik = round(FüsIsikRaha + FysIsikAktsaid)
 
 CleveronAktsia = 4 * 1050
-JurAktsiad = round(Aktsiad.stocks_value_combined(jur_usa_stocks, False) + CleveronAktsia)
-                   #Aktsiad.stocks_value_combined(jur_eur_stocks, True)
+JurAktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=jur_usa_stocks, org_currency=False) + CleveronAktsia)
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
 '#jur isiku raha LHV'
@@ -67,16 +65,16 @@ JurIsik = round(JurRaha + JurFunderBeam + Jur_IB_Raha + JurAktsiad + Morr.ValCap
 RahaKokku = round(FüsIsikRaha + JurRaha + Morr.ValCapitalRaha / 2 + Jur_IB_Raha + Jur_Krypto)
 
 '# üür'
-vilde_isa = 200
+vilde_isa = 240
 vilde_laen = 154.88
 vilde_kindlustus = 6.91
 '# ehk kuupäev millal arvutust tehakse'
 arvutamise_kp = 1
 
-Uus_vilde_summa = F.vilde_calculation(arvutamise_kp,
-                                      Excel_functions.get_last_row("Portfell", 9),
-                                      round(F.dividend_with_certain_date(vilde_isa) - vilde_laen - vilde_kindlustus, 2),
-                                      Excel_functions.get_last_row("Portfell", 1)
+Uus_vilde_summa = F.vilde_calculation(input_day=arvutamise_kp,
+                                      last_calculation_sum=Excel_functions.get_last_row(excel_name="Portfell", column_number=9),
+                                      new_sum_to_add=round(F.dividend_with_certain_date(vilde_isa) - vilde_laen - vilde_kindlustus, 2),
+                                      last_input_excel_date=Excel_functions.get_last_row(excel_name="Portfell", column_number=1)
                                       )
 
 '# to avoid too many decimal places'
