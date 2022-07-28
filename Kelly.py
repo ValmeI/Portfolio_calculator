@@ -8,7 +8,7 @@ jur_eur_stocks = {
 
 ETH_amount = 0.10581
 
-ETH_EUR = Aktsiad.crypto_to_eur('Ethereum') * ETH_amount
+ETH_EUR = Aktsiad.crypto_in_eur('Ethereum') * ETH_amount
 
 Kelly_raha = 0
 Kelly_Invest_raha = 0 + 241 #textmagic
