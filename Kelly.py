@@ -10,7 +10,7 @@ ETH_amount = 0.10581
 
 ETH_EUR = Aktsiad.crypto_in_eur('Ethereum') * ETH_amount
 
-Kelly_raha = 0
+Kelly_raha = 160
 Kelly_Invest_raha = 0 + 241 #textmagic
 Kelly_Invest_aktsiad = Aktsiad.stocks_value_combined(stock_dictionary=jur_eur_stocks, org_currency=True)
 
