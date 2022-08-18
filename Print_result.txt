@@ -2,7 +2,7 @@
 Akadeemia 42-63 laenumakse: 115 € + kindlustus.
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
-Laenu Akadeemia 42-63 makstud: 6 Years, 5 Months
+Laenu Akadeemia 42-63 makstud: 6 Years, 6 Months
 Laenu Vilde 90-193 makstud: 3 Years, 4 Months
 
 Akadeemia 42-63 laenu jääk 13289 €. Laenu summa 16708.64
@@ -17,27 +17,27 @@ Lähtse investeering: [31m51516.5[0m €.
 Vilde peale makse Isale: [31m13.18[0m €.
 
 
-Juriidilise isiku väärtus: 68955 €.
-Krüpto: [31m713[0m €.
-Juriidilise isiku aktsiad: 57219 €.
-Funderbeam Kokku: [31m14471.53[0m €.
+Juriidilise isiku väärtus: 73085 €.
+Krüpto: [31m719[0m €.
+Juriidilise isiku aktsiad: 51460 €.
+Funderbeam Kokku: [31m14793.19[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4139 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 64816 €.
-Vaba raha Jur/Füs Kokku: [31m-12736[0m €.
+Füüsilise isiku aktsia portfell: -4124 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 68961 €.
+Vaba raha Jur/Füs Kokku: [31m-3168[0m €.
 
 
-Terve portfell kokku: [31m127543.5[0m €.
+Terve portfell kokku: [31m131688.5[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: -63631.5 €.
+Krooni miljonär veel minna: -67776.5 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m372456.5[0m €.
-Mörr-i aktsiad: 14325 €.
+Veel minna: [31m368311.5[0m €.
+Mörr-i aktsiad: 14473 €.
 Mörr-i vaba raha: 305.16 €.
-Mörr-i portfell kokku: [31m71972[0m €.
-Kelly portfell: [31m2888[0m €.
-Pere portfell kokku: [31m202403.5[0m €.
+Mörr-i portfell kokku: [31m72120[0m €.
+Kelly portfell: [31m2880[0m €.
+Pere portfell kokku: [31m206688.5[0m €.
 ==================================================
 Fail juba kaustas olemas.
 ==================================================
@@ -47,7 +47,7 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-08-10                    128823              127544                 -1 %
+5  2022-08-18                    128823              131688                  2 %
 ==================================================
-Tänane seis lisatud.
+Tänane seis üle kirjutatud
 [32mE-maili saatmine: Pole reede[0m
