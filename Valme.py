@@ -12,7 +12,7 @@ fys_eur_stocks = {"TKM1T": 355,
                   }
 
 jur_usa_stocks = {"AAPL": 69,
-                  "TSLA": 7,
+                  "TSLA": 15,
                   "AMD": 78,
                   "MSFT": 10,
                   "AMZN": 56,
