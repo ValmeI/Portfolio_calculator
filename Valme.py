@@ -65,7 +65,7 @@ RahaKokku = round(FüsIsikRaha + JurRaha + Morr.ValCapitalRaha / 2 + Jur_IB_Raha
 
 '# üür'
 vilde_isa = 240
-vilde_laen = 154.88
+vilde_laen = 154.88 # alates oktoobrist on tegelikult 163.35 EUR kuu
 vilde_kindlustus = 6.91
 '# ehk kuupäev millal arvutust tehakse'
 arvutamise_kp = 1

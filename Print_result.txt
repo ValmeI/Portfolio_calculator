@@ -2,42 +2,42 @@
 Akadeemia 42-63 laenumakse: 115 € + kindlustus.
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
-Laenu Akadeemia 42-63 makstud: 6 Years, 6 Months
-Laenu Vilde 90-193 makstud: 3 Years, 4 Months
+Laenu Akadeemia 42-63 makstud: 6 Years, 7 Months
+Laenu Vilde 90-193 makstud: 3 Years, 5 Months
 
-Akadeemia 42-63 laenu jääk 13289 €. Laenu summa 16708.64
-Vilde 90-193 laenu jääk 12992 €. Laenu summa 17940.0
+Akadeemia 42-63 laenu jääk 13207 €. Laenu summa 16708.64
+Vilde 90-193 laenu jääk 12863 €. Laenu summa 17940.0
 
-Laenu kohutus kokku(ainult Akadeemia): 13289
-Laenu kohutus kokku(Kõik): 26281
+Laenu kohutus kokku(ainult Akadeemia): 13207
+Laenu kohutus kokku(Kõik): 26070
 
-Hetkel korteri/krundi puhas väärtus kokku: 62727.5 €.
+Hetkel korteri/krundi puhas väärtus kokku: 62809.5 €.
 
 Lähtse investeering: [31m51516.5[0m €.
 Vilde peale makse Isale: [31m13.18[0m €.
 
 
-Juriidilise isiku väärtus: 65999 €.
-Krüpto: [31m616[0m €.
-Juriidilise isiku aktsiad: 44982 €.
-Funderbeam Kokku: [31m14288.35[0m €.
+Juriidilise isiku väärtus: 64162 €.
+Krüpto: [31m601[0m €.
+Juriidilise isiku aktsiad: 44160 €.
+Funderbeam Kokku: [31m13288.46[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4237 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 61762 €.
-Vaba raha Jur/Füs Kokku: [31m-3271[0m €.
+Füüsilise isiku aktsia portfell: -4215 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 59947 €.
+Vaba raha Jur/Füs Kokku: [31m-3286[0m €.
 
 
-Terve portfell kokku: [31m124489.5[0m €.
+Terve portfell kokku: [31m122756.5[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: -60577.5 €.
+Krooni miljonär veel minna: -58844.5 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m375510.5[0m €.
-Mörr-i aktsiad: 13639 €.
+Veel minna: [31m377243.5[0m €.
+Mörr-i aktsiad: 13412 €.
 Mörr-i vaba raha: 305.16 €.
-Mörr-i portfell kokku: [31m71286[0m €.
-Kelly portfell: [31m2704[0m €.
-Pere portfell kokku: [31m198479.5[0m €.
+Mörr-i portfell kokku: [31m71059[0m €.
+Kelly portfell: [31m2628[0m €.
+Pere portfell kokku: [31m196443.5[0m €.
 ==================================================
 Fail juba kaustas olemas.
 ==================================================
@@ -47,7 +47,7 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-09-04                    128823              124490                 -3 %
+5  2022-09-18                    128823              122756                 -5 %
 ==================================================
 Tänane seis lisatud.
 [32mE-maili saatmine: Pole reede[0m
