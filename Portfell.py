@@ -50,13 +50,11 @@ if __name__ == '__main__':
 
     '# Tänane kuupäev arvutamaks, et mitu makset on tehtud juba'
     today = date.today()
-    '#Kinnisvara objetktide print'
-
     PerMonthAka42 = Kinnisvara.apr_month(Kinnisvara.Korter1_Laen, 3, 15)
     '# Akadeemia 38-20 Müüdud 28.10.2021 Laenujääk 18 800 EUR'
     PerMonthVilde90 = Kinnisvara.apr_month(Kinnisvara.Korter3_Laen, 2.39, 11)
 
-    print('\n' + Kinnisvara.Korter1_Nimi, "laenumakse:", PerMonthAka42, "€ + kindlustus.")
+    print(f'\n{Kinnisvara.Korter1_Nimi} laenumakse: {PerMonthAka42} € + kindlustus.')
     print(Kinnisvara.Korter3_Nimi, "laenumakse:", PerMonthVilde90, "€ + kindlustus.\n")
 
     '# how many years and months each loan is paid already'
@@ -77,8 +75,8 @@ if __name__ == '__main__':
     print(Kinnisvara.Korter1_Nimi, "laenu jääk", BalanceAka42, "€.", 'Laenu summa', Kinnisvara.Korter1_Laen)
     print(Kinnisvara.Korter3_Nimi, "laenu jääk", BalanceVilde90, "€.", 'Laenu summa', Kinnisvara.Korter3_Laen)
 
-    print("\nLaenu kohutus kokku(ainult Akadeemia):", BalanceAka42)
-    print("Laenu kohutus kokku(Kõik):", BalanceAka42 + BalanceVilde90)
+    print(f"\nLaenu kohutus kokku(ainult Akadeemia): {BalanceAka42}")
+    print(f"Laenu kohutus kokku(Kõik): {BalanceAka42 + BalanceVilde90}")
 
     '#Kinnisvara kokku. Liidetakse kõik Dics korterite ostu hinnad - balancid ehk palju laenu veel maksta'
     KinnisVaraPort = Kinnisvara.kinnisvara_vaartus() - BalanceAka42 + Morr.Lähtse_Raha / 2
