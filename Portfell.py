@@ -69,7 +69,7 @@ if __name__ == '__main__':
     KuudMakstudVilde90 = diff_months(today, Valme.Vilde90_193_Laen_Kuupäev)
 
     '#diffMonths annab natuke erineva tulemuse, kui aastad vs kuud'
-    BalanceAka42 = Kinnisvara.apr_balance(Kinnisvara.Korter1_Laen, 3, 15, KuudMakstudAka42)
+    BalanceAka42 = Kinnisvara.apr_balance(Kinnisvara.Korter1_Laen, 5.198, 15, KuudMakstudAka42)
     BalanceVilde90 = Kinnisvara.apr_balance(Kinnisvara.Korter3_Laen, 2.39, 11, KuudMakstudVilde90)
 
     print(Kinnisvara.Korter1_Nimi, "laenu jääk", BalanceAka42, "€.", 'Laenu summa', Kinnisvara.Korter1_Laen)
