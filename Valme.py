@@ -52,7 +52,7 @@ JurAktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=jur_usa_stocks
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
 '#jur isiku raha LHV'
-JurRaha = 1125
+JurRaha = 2440
 '# get Funderbeam total'
 JurFunderBeam = F.get_funderbeam_marketvalue()
 Jur_IB_Raha = -100
@@ -65,7 +65,7 @@ RahaKokku = round(FüsIsikRaha + JurRaha + Morr.ValCapitalRaha / 2 + Jur_IB_Raha
 
 '# üür'
 vilde_isa = 240
-vilde_laen = 154.88 # alates oktoobrist on tegelikult 163.35 EUR kuu
+vilde_laen = 170.31 # alates oktoobrist on tegelikult 163.35 EUR kuu
 vilde_kindlustus = 6.91
 '# ehk kuupäev millal arvutust tehakse'
 arvutamise_kp = 1
