@@ -48,10 +48,19 @@ def stock_price_from_google(stock, original_currency):
 
     convert_html = driver.page_source
     soup = BeautifulSoup(convert_html, 'lxml')
-    '# 27.01 Update, parse from google search'
-    '# 24.06.2022 added replace , with nothing'
-    str_price_org_currency = soup.find('span', jsname='vWLAgc').text.strip(',.-').replace(' ', '')#.replace(',', '')
-    '# 27.01.2020 UPDATE replace comma from google'
+
+    # 12.12.2022 UPDATE, Because of Google doesn't show preview for example EXSA.DE anymore for some reason.
+    try:
+        '# 27.01 Update, parse from google search'
+        '# 24.06.2022 added replace , with nothing'
+        str_price_org_currency = soup.find('span', jsname='vWLAgc').text.strip(',.-').replace(' ', '')#.replace(',', '')
+        '# 27.01.2020 UPDATE replace comma from google'
+    except:
+        import yfinance as yf
+        # Get the stock data from yfinance
+        stock = yf.Ticker(stock)
+        # Get the current price of the stock
+        str_price_org_currency = stock.info["regularMarketPrice"]
 
     str_price_org_currency = replace_comma_google(str_price_org_currency)
     if original_currency:

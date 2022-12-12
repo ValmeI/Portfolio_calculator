@@ -5,7 +5,7 @@ morr_eur_stocks = {"APG1L": 196,
                    "TKM1T": 53,
                    "TSM1T": 560,
                    "EXS1": 0.013,
-                   "EXSA": 0.069,
+                   "EXSA.DE": 0.069,
                    "EXXT": 41.536,
                    "SPYD": 83.155,
                    "SPYW": 182.241

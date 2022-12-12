@@ -3,41 +3,41 @@ Akadeemia 42-63 laenumakse: 115 € + kindlustus.
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
 Laenu Akadeemia 42-63 makstud: 6 Years, 9 Months
-Laenu Vilde 90-193 makstud: 3 Years, 7 Months
+Laenu Vilde 90-193 makstud: 3 Years, 8 Months
 
-Akadeemia 42-63 laenu jääk 13511 €. Laenu summa 16708.64
-Vilde 90-193 laenu jääk 12605 €. Laenu summa 17940.0
+Akadeemia 42-63 laenu jääk 13436 €. Laenu summa 16708.64
+Vilde 90-193 laenu jääk 12475 €. Laenu summa 17940.0
 
-Laenu kohutus kokku(ainult Akadeemia): 13511
-Laenu kohutus kokku(Kõik): 26116
+Laenu kohutus kokku(ainult Akadeemia): 13436
+Laenu kohutus kokku(Kõik): 25911
 
-Hetkel korteri/krundi puhas väärtus kokku: 62505.5 €.
+Hetkel korteri/krundi puhas väärtus kokku: 62580.5 €.
 
 Lähtse investeering: [31m51516.5[0m €.
 Vilde peale makse Isale: [31m43.39[0m €.
 
 
-Juriidilise isiku väärtus: 57650 €.
-Krüpto: [31m493[0m €.
-Juriidilise isiku aktsiad: 37880 €.
-Funderbeam Kokku: [31m11611.6[0m €.
+Juriidilise isiku väärtus: 56230 €.
+Krüpto: [31m490[0m €.
+Juriidilise isiku aktsiad: 35951 €.
+Funderbeam Kokku: [31m12124.47[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4406 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 53244 €.
-Vaba raha Jur/Füs Kokku: [31m-1842[0m €.
+Füüsilise isiku aktsia portfell: -4436 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 51794 €.
+Vaba raha Jur/Füs Kokku: [31m-1845[0m €.
 
 
-Terve portfell kokku: [31m115749.5[0m €.
+Terve portfell kokku: [31m114374.5[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: -51837.5 €.
+Krooni miljonär veel minna: -50462.5 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m384250.5[0m €.
-Mörr-i aktsiad: 14580 €.
+Veel minna: [31m385625.5[0m €.
+Mörr-i aktsiad: 14271 €.
 Mörr-i vaba raha: 305.16 €.
-Mörr-i portfell kokku: [31m72367[0m €.
-Kelly portfell: [31m3054[0m €.
-Pere portfell kokku: [31m191170.5[0m €.
+Mörr-i portfell kokku: [31m72058[0m €.
+Kelly portfell: [31m2994[0m €.
+Pere portfell kokku: [31m189426.5[0m €.
 ==================================================
 Fail juba kaustas olemas.
 ==================================================
@@ -47,7 +47,7 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-12-03                    128823              115750                -10 %
+5  2022-12-12                    128823              114374                -11 %
 ==================================================
 Tänane seis lisatud.
 [32mE-maili saatmine: Pole reede[0m
