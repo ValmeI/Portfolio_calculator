@@ -149,7 +149,7 @@ if __name__ == '__main__':
     # write_to_excel(excel_name="funderbeam_syndicate_listings",
     #               list_of_data=funderbeam_list, how_to_add=2, compare_column=1)
 
-    '# for combining results to send in e-mail'
+    # for combining results to send in e-mail
     mail_body = f"\nTerve portfell kokku: {Ignar_Kokku} €." + \
               f"\nEesmärk krooni miljonär: {Eesmark} €." + \
               f"\nKrooni miljonär veel minna: {Eesmark - Ignar_Kokku} €." + \

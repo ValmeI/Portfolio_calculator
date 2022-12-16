@@ -3,7 +3,7 @@ import Aktsiad
 jur_eur_stocks = {
                   "EGR1T": 172,
                   "HPR1T": 23,
-                  "EXXT": 15.437
+                  "EXXT": 16.903
                  }
 
 ETH_amount = 0.10581
