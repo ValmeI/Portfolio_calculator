@@ -17,27 +17,27 @@ Lähtse investeering: [31m51516.5[0m €.
 Vilde peale makse Isale: [31m43.39[0m €.
 
 
-Juriidilise isiku väärtus: 55160 €.
-Krüpto: [31m496[0m €.
-Juriidilise isiku aktsiad: 34647 €.
-Funderbeam Kokku: [31m12151.83[0m €.
+Juriidilise isiku väärtus: 54098 €.
+Krüpto: [31m480[0m €.
+Juriidilise isiku aktsiad: 33636 €.
+Funderbeam Kokku: [31m12117.04[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4458 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 50702 €.
-Vaba raha Jur/Füs Kokku: [31m-1639[0m €.
+Füüsilise isiku aktsia portfell: -4543 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 49555 €.
+Vaba raha Jur/Füs Kokku: [31m-1655[0m €.
 
 
-Terve portfell kokku: [31m113282.5[0m €.
+Terve portfell kokku: [31m112135.5[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: -49370.5 €.
+Krooni miljonär veel minna: -48223.5 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m386717.5[0m €.
-Mörr-i aktsiad: 14094 €.
+Veel minna: [31m387864.5[0m €.
+Mörr-i aktsiad: 13898 €.
 Mörr-i vaba raha: 305.16 €.
-Mörr-i portfell kokku: [31m71881[0m €.
-Kelly portfell: [31m3099[0m €.
-Pere portfell kokku: [31m188262.5[0m €.
+Mörr-i portfell kokku: [31m71685[0m €.
+Kelly portfell: [31m3055[0m €.
+Pere portfell kokku: [31m186875.5[0m €.
 ==================================================
 Fail juba kaustas olemas.
 ==================================================
@@ -47,8 +47,7 @@ Fail juba kaustas olemas.
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-12-16                    128823              113282                -12 %
+5  2022-12-21                    128823              112136                -13 %
 ==================================================
-Tänane seis üle kirjutatud
-[32m
-Mail Send Successfully[0m
+Tänane seis lisatud.
+[32mE-maili saatmine: Pole reede[0m

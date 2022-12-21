@@ -56,11 +56,13 @@ def stock_price_from_google(stock, original_currency):
         str_price_org_currency = soup.find('span', jsname='vWLAgc').text.strip(',.-').replace(' ', '')#.replace(',', '')
         '# 27.01.2020 UPDATE replace comma from google'
     except:
+        # hack for getting the price for stocks, that google doesn't show preview for example EXSA.DE
         import yfinance as yf
         # Get the stock data from yfinance
         stock = yf.Ticker(stock)
+        one_day_close_price = stock.history(period="1d")['Close'][0]
         # Get the current price of the stock
-        str_price_org_currency = stock.info["regularMarketPrice"]
+        str_price_org_currency = round(one_day_close_price)
 
     str_price_org_currency = replace_comma_google(str_price_org_currency)
     if original_currency:
