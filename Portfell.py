@@ -143,7 +143,7 @@ if __name__ == '__main__':
 
     funderbeam_list = []
     # adds today's date to the beginning of the list
-    funderbeam_list.extend((str(today)))
+    funderbeam_list.extend(str(today))
     funderbeam_list = funderbeam_list + get_funderbeam_syndicate_listings()
     # TODO: check why it doesn't work with the following line. ERROR
     # write_to_excel(excel_name="funderbeam_syndicate_listings",
