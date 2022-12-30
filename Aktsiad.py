@@ -2,13 +2,19 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import re
-
+import threading
+import queue
 import chromedriver_autoinstaller
+# ignore DeprecationWarning
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 '''Check if the current version of chromedriver exists
 and if it doesn't exist, download it automatically,
 then add chromedriver to path'''
 chromedriver_autoinstaller.install()
+
+stock_prices_queue = queue.Queue()
 
 
 def replace_comma_google(stat):
@@ -66,6 +72,9 @@ def stock_price_from_google(stock, original_currency):
 
     str_price_org_currency = replace_comma_google(str_price_org_currency)
     if original_currency:
+
+        stock_prices_queue.put({stock: float(str_price_org_currency)})
+        driver.quit()
         '#Returns original currency'
         return float(str_price_org_currency)
     else:
@@ -80,7 +89,6 @@ def stock_price_from_google(stock, original_currency):
         convert_html = driver.page_source
         '# scrape with BeautifulSoup'
         soup = BeautifulSoup(convert_html, 'lxml')
-        #print(soup.encode("utf-8"))
         to_eur_convert = soup.find('span', class_='DFlfde SwHCTb').text
 
         '# 24.06.2022 added replace , with nothing'
@@ -91,6 +99,7 @@ def stock_price_from_google(stock, original_currency):
         to_eur_convert = re.sub("[^0-9.,]", "", to_eur_convert)
         '# UPDATE 4.06.2021 problems maybe fixed it'
         driver.quit()
+        stock_prices_queue.put({stock: float(to_eur_convert)})
         return float(to_eur_convert)
 
 
@@ -99,11 +108,24 @@ def stock_price_from_google(stock, original_currency):
 
 def stocks_value_combined(stock_dictionary, org_currency):
     total_value = 0
+    threads = []
     for sym, amount in stock_dictionary.items():
-        price = stock_price_from_google(sym, org_currency)
-        value = price * amount
-        total_value += value
-    return total_value
+        thread = threading.Thread(target=stock_price_from_google, args=(sym, org_currency))
+        thread.start()
+        threads.append(thread)
+
+    # wait till all the threads are done
+    for thread in threads:
+        thread.join()
+
+    # query the queue for the results
+    while not stock_prices_queue.empty():
+        item = stock_prices_queue.get()
+        for key, value in item.items():
+            for sym, amount in stock_dictionary.items():
+                if sym == key:
+                    total_value += value * amount
+    return round(total_value)
 
 
 '#Single stock price, input symbol, org_currency = True/False and stock dictionary'
@@ -215,3 +237,16 @@ print("NVDA", stock_price_from_google("NVDA", False))
 print("INTC", stock_price_from_google("INTC", False))
 print("SNOW", stock_price_from_google("SNOW", False))'''
 
+'''
+stock_dictionary_test = {"AAPL": 1, "TSLA": 1, "AMD": 1, "MSFT": 1, "AMZN": 1, "GOOGL": 1, "NIO": 1, "XPEV": 1, "NKE": 1, "NFLX": 1, "NVDA": 1, "INTC": 1, "SNOW": 1}
+#stock_dictionary_test = {"AAPL": 1, "TSLA": 1}
+from datetime import datetime
+print('Start time: ', datetime.now())
+res = stocks_value_combined(jur_usa_stocks, True)
+print('stocks_value_combined', res)
+# loop stock_prices_queue queue while empty
+#while not stock_prices_queue.empty():
+    #print(stock_prices_queue.get())
+print('End time: ', datetime.now())
+
+'''
