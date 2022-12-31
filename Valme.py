@@ -25,7 +25,6 @@ jur_usa_stocks = {"AAPL": 69,
                   "SNOW": 6
                   }
 
-'# Crypto Amounts'
 BTC_amount = 0.021538
 ETH_amount = 0.12037
 
@@ -44,7 +43,6 @@ Vilde90_193_Laen_Kuupäev = date(2019, 4, 9)
 FüsIsikRaha = -10000
 FysIsikAktsaid = Aktsiad.stocks_value_combined(stock_dictionary=fys_eur_stocks, org_currency=True)
 
-'# Vaba raha ja aktsiad kokku'
 FysIsik = round(FüsIsikRaha + FysIsikAktsaid)
 
 CleveronAktsia = 4 * 1050
@@ -53,7 +51,6 @@ Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
 '#jur isiku raha LHV'
 JurRaha = 1000
-'# get Funderbeam total'
 JurFunderBeam = F.get_funderbeam_marketvalue()
 Jur_IB_Raha = 900
 JurIsik = round(JurRaha + JurFunderBeam + Jur_IB_Raha + JurAktsiad + Morr.ValCapitalRaha / 2 + Jur_Krypto)
@@ -67,7 +64,7 @@ RahaKokku = round(FüsIsikRaha + JurRaha + Morr.ValCapitalRaha / 2 + Jur_IB_Raha
 vilde_isa = 240
 vilde_laen = 170.31 # alates oktoobrist on tegelikult 163.35 EUR kuu
 vilde_kindlustus = 6.91
-'# ehk kuupäev millal arvutust tehakse'
+# ehk kuupäev millal arvutust tehakse
 arvutamise_kp = 1
 
 Uus_vilde_summa = F.vilde_calculation(input_day=arvutamise_kp,
@@ -76,5 +73,4 @@ Uus_vilde_summa = F.vilde_calculation(input_day=arvutamise_kp,
                                       last_input_excel_date=Excel_functions.get_last_row(excel_name="Portfell", column_number=1)
                                       )
 
-'# to avoid too many decimal places'
 Uus_vilde_summa = round(Uus_vilde_summa, 2)

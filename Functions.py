@@ -25,10 +25,6 @@ path_home = r"D:\PycharmProjects/"
 '#Laptop path'
 path_laptop = r"C:\PycharmProjects/"
 
-'#töö path'
-path_work = r"V:\rik_oigusk\Päringud\Krmr\Ignar Valme\PythonProjects/"
-
-
 def vilde_calculation(input_day, last_calculation_sum, new_sum_to_add, last_input_excel_date):
     if date.today().day == input_day and str(date.today()) != last_input_excel_date:
         new_vilde = float(last_calculation_sum)
@@ -46,9 +42,6 @@ def dividend_with_certain_date(total):
 def what_path_for_file():
     if os.path.exists(path_home):
         return str(path_home)
-
-    elif os.path.exists(path_work):
-        return str(path_work)
 
     elif os.path.exists(path_laptop):
         return str(path_laptop)
