@@ -176,7 +176,7 @@ def get_last_row(excel_name, column_number):
     return cell
 
 
-def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio):
+def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column_input, filter_nr_input=0):
     '# add file type'
     file_name = excel_name + ".xlsx"
 
@@ -185,7 +185,7 @@ def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio):
     sheet1 = wb.active
 
     '# all dates and all values from total sum of portfolio'
-    date_and_sum_dict = dict(zip(get_excel_column_values(excel_name, 'A'), get_excel_column_values(excel_name, 'F')))
+    date_and_sum_dict = dict(zip(get_excel_column_values(excel_name, 'A'), get_excel_column_values(excel_name, excel_column_input)))
 
     amount_list = []
     date_list = []
@@ -228,6 +228,10 @@ def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio):
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
     df = pd.DataFrame(data)
+    df = df[df['Portfell see aasta'] >= filter_nr_input]
+    # replace last Aasta columns value with 'Täna'
+    df.iloc[-1, df.columns.get_loc('Aasta')] = 'Täna'
+    df.reset_index(drop=True, inplace=True)
 
     return df
 

@@ -5,49 +5,64 @@ Vilde 90-193 laenumakse: 155 € + kindlustus.
 Laenu Akadeemia 42-63 makstud: 6 Years, 10 Months
 Laenu Vilde 90-193 makstud: 3 Years, 8 Months
 
-Akadeemia 42-63 laenu jääk 13436 €. Laenu summa 16708.64
+Akadeemia 42-63 laenu jääk 13360 €. Laenu summa 16708.64
 Vilde 90-193 laenu jääk 12475 €. Laenu summa 17940.0
 
-Laenu kohutus kokku(ainult Akadeemia): 13436
-Laenu kohutus kokku(Kõik): 25911
+Laenu kohutus kokku(ainult Akadeemia): 13360
+Laenu kohutus kokku(Kõik): 25835
 
-Hetkel korteri/krundi puhas väärtus kokku: 62580.5 €.
+Hetkel korteri/krundi puhas väärtus kokku: 62656.5 €.
 
 Lähtse investeering: [31m51516.5[0m €.
-Vilde peale makse Isale: [31m43.39[0m €.
+Vilde peale makse Isale: [31m58.17[0m €.
 
 
-Juriidilise isiku väärtus: 53034 €.
-Krüpto: [31m466[0m €.
-Juriidilise isiku aktsiad: 32840 €.
-Funderbeam Kokku: [31m11847.88[0m €.
+Juriidilise isiku väärtus: 53689 €.
+Krüpto: [31m485[0m €.
+Juriidilise isiku aktsiad: 32816 €.
+Funderbeam Kokku: [31m12507.67[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4442 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 48592 €.
-Vaba raha Jur/Füs Kokku: [31m-1654[0m €.
+Füüsilise isiku aktsia portfell: -4378 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 49311 €.
+Vaba raha Jur/Füs Kokku: [31m-1635[0m €.
 
 
-Terve portfell kokku: [31m111172.5[0m €.
+Terve portfell kokku: [31m111967.5[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: -47260.5 €.
+Krooni miljonär veel minna: -48055.5 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m388827.5[0m €.
-Mörr-i aktsiad: 13848 €.
+Veel minna: [31m388032.5[0m €.
+Mörr-i aktsiad: 14183 €.
 Mörr-i vaba raha: 174.42 €.
-Mörr-i portfell kokku: [31m71519[0m €.
-Kelly portfell: [31m2755[0m €.
-Pere portfell kokku: [31m185446.5[0m €.
+Mörr-i portfell kokku: [31m71854[0m €.
+Kelly portfell: [31m2785[0m €.
+Pere portfell kokku: [31m186606.5[0m €.
 ==================================================
 Fail juba kaustas olemas.
-==================================================
+=================Ignar's==========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2018-01-01                         0               28570                  0 %
 1  2019-01-01                     28570               33435                 17 %
 2  2020-01-01                     33435               50223                 50 %
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
-5  2022-12-31                    128823              111172                -14 %
+5  2023-01-01                    128823              111318                -14 %
+6        Täna                    111318              111968                  1 %
+=================Mörr's===========================
+        Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
+0  2018-01-01                         0                1000                  0 %
+1  2019-01-01                      1000                3958                296 %
+2  2020-01-01                      3958               29432                644 %
+3  2021-01-01                     29432               34345                 17 %
+4  2022-01-01                     34345               68468                 99 %
+5  2023-01-01                     68468               71519                  4 %
+6        Täna                     71519               71854                  0 %
+=================Kelly's==========================
+        Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
+0  2022-01-01                         1                1514             151300 %
+1  2023-01-01                      1514                2755                 82 %
+2        Täna                      2755                2785                  1 %
 ==================================================
 Tänane seis üle kirjutatud
 [32mE-maili saatmine: Pole reede[0m

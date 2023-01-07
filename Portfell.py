@@ -126,9 +126,25 @@ if __name__ == '__main__':
     need_new_excel_file(excel_name="Portfell", sheet_name="Porfelli Info", excel_headers=Excel_functions.headers)
 
     # compare the current portfolio with the previous years
+    print("=================Ignar's==========================")
+    print(year_to_year_percent(excel_name="Portfell",
+                               mm_dd="01-01",
+                               todays_total_portfolio=Ignar_Kokku,
+                               excel_column_input='F'))
+    print("=================Mörr's===========================")
+    print(year_to_year_percent(excel_name="Portfell",
+                               mm_dd="01-01",
+                               todays_total_portfolio=Morr_kokku,
+                               excel_column_input='G',
+                               filter_nr_input=2000))
+    print("=================Kelly's==========================")
+    print(year_to_year_percent(excel_name="Portfell",
+                               mm_dd="01-01",
+                               todays_total_portfolio=Kelly_kokku,
+                               excel_column_input='L',
+                               filter_nr_input=2))
     print("==================================================")
-    print(year_to_year_percent(excel_name="Portfell", mm_dd="01-01", todays_total_portfolio=Ignar_Kokku))
-    print("==================================================")
+
 
     # make a list with all the data for Excel file input
     values_list = []
