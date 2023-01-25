@@ -22,11 +22,10 @@ import warnings
 
 
 if __name__ == '__main__':
-
+    start_time = time.time()
     '# to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
     '# warn("""Cannot parse header or footer so it will be ignored""")'
     warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
-
     path = what_path_for_file()
 
     'copy to nas webserver'
@@ -145,7 +144,6 @@ if __name__ == '__main__':
                                filter_nr_input=2))
     print("==================================================")
 
-
     # make a list with all the data for Excel file input
     values_list = []
     values_list.extend((str(today), KinnisVaraPort, Valme.FysIsik, Valme.JurIsik, Aktsiad_kokku,
@@ -199,3 +197,5 @@ if __name__ == '__main__':
                    sent_body=mail_body)
     else:
         print(colored('E-maili saatmine: Pole reede', 'green'))
+
+    print(f"Program took: {round(time.time() - start_time)} seconds to run")
