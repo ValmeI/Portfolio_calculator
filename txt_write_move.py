@@ -17,5 +17,5 @@ class Logger(object):
         pass
 
 
-'# Call out class so it runs when imported'
+# Call out class so it runs when imported
 # sys.stdout = Logger()

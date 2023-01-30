@@ -21,9 +21,9 @@ chromedriver_autoinstaller.install()
 
 '#kodu path'
 path_home = r"D:\PycharmProjects/"
-
 '#Laptop path'
 path_laptop = r"C:\PycharmProjects/"
+
 
 def vilde_calculation(input_day, last_calculation_sum, new_sum_to_add, last_input_excel_date):
     if date.today().day == input_day and str(date.today()) != last_input_excel_date:
@@ -42,20 +42,15 @@ def dividend_with_certain_date(total):
 def what_path_for_file():
     if os.path.exists(path_home):
         return str(path_home)
-
     elif os.path.exists(path_laptop):
         return str(path_laptop)
 
 
 def diff_months(date2, date1):
-    # get difference between two dates
     difference = relativedelta.relativedelta(date2, date1)
     # convert years to months and add previous months
     total_months = difference.years*12+difference.months
     return total_months
-
-
-'# get funderbeam_marketvalue'
 
 
 def get_funderbeam_marketvalue():
@@ -65,16 +60,10 @@ def get_funderbeam_marketvalue():
     options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
     '# UPDATE 25.01.2021 to avoid cannot find Chrome binary error'
     # options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    '# get Chrome driver with path'
     driver = webdriver.Chrome("chromedriver.exe", options=options)
-    '# url we want to parse'
     url = "https://www.funderbeam.com/dashboard"
-    '# get url'
     driver.get(url)
-    '# login to funderbeam'
-    '# send username'
     driver.find_element(By.NAME, 'username').send_keys(funderbeam_username)
-    '# send password'
     driver.find_element(By.NAME, 'password').send_keys(funderbeam_password)
     '#send enter for links, buttons'
     driver.find_element(By.CLASS_NAME, 'button-primary').send_keys("\n")
@@ -89,15 +78,9 @@ def get_funderbeam_marketvalue():
     '# parse only json part of the page source'
     content = driver.find_element(By.TAG_NAME, 'pre').text
     parsed_json = json.loads(content)
-    '# to get only marketValueTotal'
-    '# 13.05.2022 old pars, before API change'
-    # parsed_market_value = parsed_json['totals'][0]['marketValueTotal']
-    '# 13.05.2022 new API parse'
-    parsed_market_value = parsed_json['totalValueInEur']
     '# UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
-
-    return parsed_market_value
+    return parsed_json['totalValueInEur']
 
 
 def get_funderbeam_syndicate_listings():
@@ -107,16 +90,11 @@ def get_funderbeam_syndicate_listings():
     options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
     '# UPDATE 25.01.2021 to avoid cannot find Chrome binary error'
     # options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    '# get Chrome driver with path'
     driver = webdriver.Chrome("chromedriver.exe", options=options)
-    '# url we want to parse'
     url = "https://www.funderbeam.com/dashboard"
-    '# get url'
     driver.get(url)
     '# login to funderbeam'
-    '# send username'
     driver.find_element(By.NAME, 'username').send_keys(funderbeam_username)
-    '# send password'
     driver.find_element(By.NAME, 'password').send_keys(funderbeam_password)
     '#send enter for links, buttons'
     driver.find_element(By.CLASS_NAME, 'button-primary').send_keys("\n")
@@ -126,41 +104,25 @@ def get_funderbeam_syndicate_listings():
     driver.find_elements(By.CLASS_NAME, 'cards__title')[1].click()
     '# Sleep so it could load company dashboard, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'
     time.sleep(5)
-    '# get data from direct url API'
     driver.get('https://www.funderbeam.com/api/user/tokenSummaryStatement')
     '# parse only json part of the page source'
     content = driver.find_element(By.TAG_NAME, 'pre').text
-
-    # without dumps it gives error ValueError: Invalid file path or buffer object type: <class 'dict'>
+    # without dump's it gives error ValueError: Invalid file path or buffer object type: <class 'dict'>
     parsed_json = json.dumps(content)
     parsed_json = json.loads(parsed_json)
-
-    # pd.set_option('display.max_rows', None)
-    # pd.set_option('display.width', None)
-
     # without lines=true it gives an error
     df = pd.read_json(parsed_json, lines=True)
-
     # drop empty or columns that are not needed.
     # where 1 is the axis number (0 for rows and 1 for columns.)
     df = df.drop(['portfolioCompanies', 'portfolioIndustries', 'portfolioCountries'], axis=1)
-
-    # Encoding/decoding a Dataframe using ``'records'`` formatted JSON.
-    #         Note that index labels are not preserved with this encoding.
-    # read to json format so that json_normalize can be used again for nested json flattening
     json_struct = json.loads(df.to_json(orient="records"))
-
     # without record_prefix it gives an ValueError: Conflicting metadata name totalGainPct, need distinguishing prefix
-    df = pd.json_normalize(data=json_struct, record_path='rows', record_prefix='_', meta=["totalGainInEur",
-                                                                                          "totalGainPct",
-                                                                                          "totalDayChangeInEur",
-                                                                                          "totalDayChangePct",
+    df = pd.json_normalize(data=json_struct, record_path='rows', record_prefix='_', meta=["totalGainInEur", "totalGainPct",
+                                                                                          "totalDayChangeInEur", "totalDayChangePct",
                                                                                           "totalValueInEur"])
-    # pandas dataframe to list
     list_from_df = df.values.tolist()
     '# UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
-
     return list_from_df
 
 # get_funderbeam_syndicate_listings()

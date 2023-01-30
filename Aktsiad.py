@@ -13,12 +13,11 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 and if it doesn't exist, download it automatically,
 then add chromedriver to path'''
 chromedriver_autoinstaller.install()
-
 stock_prices_queue = queue.Queue()
 
 
+# removes comma in numbers. Is needed to convert to float. Numbers like 1,0000 and so on
 def replace_comma_google(stat):
-    '# removes comma in numbers. Is needed to convert to float. Numbers like 1,0000 and so on.'
     stat = str(stat)
     if "," in stat:
         stat = stat.replace(",", ".")
@@ -27,8 +26,8 @@ def replace_comma_google(stat):
         return stat
 
 
+# removes whitespaces in numbers. Is needed to convert to float. Numbers like 1 000 and so on
 def replace_whitespaces(stat):
-    '# removes whitespaces in numbers. Is needed to convert to float. Numbers like 1 000 and so on.'
     stat = str(stat)
     if " " in stat:
         stat = stat.replace(" ", "")
@@ -81,14 +80,11 @@ def stock_price_from_google(stock, original_currency):
         '# UPDATE 25.08.2018 USD to EUR converting page started using JS and I needed to use Selenium and Soup but'
         '# UPDATE 25.08.2018 opening every page in Chrome and parsing made it much more slower'
         '# UPDATE 14.01.2021 use Google as currency converter service'
-        '# use page to convert USD to EUR'
         convert_url = "https://www.google.com/search?q=" + str_price_org_currency + "+usd+to+eur+currency+converter"
         driver.get(convert_url)
         convert_html = driver.page_source
-        '# scrape with BeautifulSoup'
         soup = BeautifulSoup(convert_html, 'lxml')
         to_eur_convert = soup.find('span', class_='DFlfde SwHCTb').text
-
         '# 24.06.2022 added replace , with nothing'
         to_eur_convert = replace_whitespaces(to_eur_convert)#.replace(',', '')
         '# 27.01.2020 UPDATE replace comma from convert'
@@ -101,9 +97,7 @@ def stock_price_from_google(stock, original_currency):
         return float(to_eur_convert)
 
 
-'#Stock list input and True/False as do you want it to bet original currency or in euros'
-
-
+# Stock list input and True/False as do you want it to bet original currency or in euros'
 def stocks_value_combined(stock_dictionary, org_currency):
     total_value = 0
     threads = []
@@ -126,19 +120,15 @@ def stocks_value_combined(stock_dictionary, org_currency):
     return round(total_value)
 
 
-'#Single stock price, input symbol, org_currency = True/False and stock dictionary'
-
-
+# Single stock price, input symbol, org_currency = True/False and stock dictionary
 def stock_amount_value(stock_symbol, org_currency, stocks_dictionary):
         amount = stocks_dictionary[stock_symbol]
         price = stock_price_from_google(stock_symbol, org_currency)
-        value = price * amount
+        value = price * stocks_dictionary[stock_symbol]
         return value
 
 
-'#  Portfolio stocks %, input: Portfolio size, stock dictionary, org_currency = True/False'
-
-
+# Portfolio stocks %, input: Portfolio size, stock dictionary, org_currency = True/False
 def stocks_portfolio_percentages(portfolio_size, stocks_dictionary, org_currency):
     for sym, amount in stocks_dictionary.items():
         value = stock_amount_value(sym, org_currency, stocks_dictionary)
@@ -149,9 +139,7 @@ def stocks_portfolio_percentages(portfolio_size, stocks_dictionary, org_currency
               .format(portfolio_size, sym, value, amount, percentage))
 
 
-'# convert bitcoin to eur'
-
-
+# convert bitcoin to eur
 def crypto_in_eur(crypto):
 
     options = Options()
@@ -162,7 +150,6 @@ def crypto_in_eur(crypto):
     driver = webdriver.Chrome("chromedriver.exe", options=options)
     url = "https://www.google.com/search?q=" + crypto + "  price eur"
     driver.get(url)
-
     convert_html = driver.page_source
     soup = BeautifulSoup(convert_html, 'lxml')
     str_price_org_currency = soup.find('span', class_='pclqee').text

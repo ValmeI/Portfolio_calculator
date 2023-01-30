@@ -39,9 +39,9 @@ if __name__ == '__main__':
         '# Copy previously created file to Calculators directory'
         shutil.copy(txt_source, nas_des_path)
         shutil.copy(excel_source, nas_des_path)
-        print("Kopeeritud edukalt", datetime.datetime.now())
+        print(f"Kopeeritud edukalt {datetime.datetime.now()}")
     else:
-        print("Ei kopeeritud", datetime.datetime.now())
+        print(f"Ei kopeeritud {datetime.datetime.now()}")
         pass
 
     '# create file from consol output'
@@ -155,10 +155,10 @@ if __name__ == '__main__':
     write_to_excel(excel_name="Portfell", list_of_data=values_list, how_to_add=2, compare_column=1)
     column_width(excel_name="Portfell", excel_headers=headers)
 
-    funderbeam_list = []
+    #funderbeam_list = []
     # adds today's date to the beginning of the list
-    funderbeam_list.extend(str(today))
-    funderbeam_list = funderbeam_list + get_funderbeam_syndicate_listings()
+    #funderbeam_list.extend(str(today))
+    #funderbeam_list = funderbeam_list + get_funderbeam_syndicate_listings()
     # TODO: check why it doesn't work with the following line. ERROR
     # write_to_excel(excel_name="funderbeam_syndicate_listings",
     #               list_of_data=funderbeam_list, how_to_add=2, compare_column=1)
@@ -181,12 +181,9 @@ if __name__ == '__main__':
 
     '#if it is friday and password file is in directory, then send e-mail'
     if os.path.isfile(what_path_for_file() + r'Projects\My_Send_Email\synology_pass'):
-
         no_file = 'E-maili saatmine: Parooli faili ei ole kataloogis: ' + what_path_for_file()
         no_file = colored(no_file, 'red')
-
     elif date.today().weekday() == 4:
-
         '# Variables are: STMP, username, password file, send from, send to, email title and email body'
         send_email(stmp_variable='valme.noip.me',  # '192.168.50.235',
                    user='email',
