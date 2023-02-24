@@ -25,7 +25,7 @@ jur_usa_stocks = {"AAPL": 69,
                   "SNOW": 6
                   }
 
-BTC_amount = 0.021538
+BTC_amount = 0.016908
 ETH_amount = 0.12037
 
 ETH_EUR = Aktsiad.crypto_in_eur('Ethereum') * ETH_amount
@@ -50,7 +50,7 @@ JurAktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=jur_usa_stocks
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
 '#jur isiku raha LHV'
-JurRaha = 633.83
+JurRaha = 1233.83
 JurFunderBeam = F.get_funderbeam_marketvalue()
 Jur_IB_Raha = 0
 JurIsik = round(JurRaha + JurFunderBeam + Jur_IB_Raha + JurAktsiad + Morr.ValCapitalRaha / 2 + Jur_Krypto)
