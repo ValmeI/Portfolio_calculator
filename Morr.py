@@ -15,10 +15,11 @@ morr_eur_stocks = {"EFT1T": 55,
 
 ValCapitalRaha = 12040
 
-Lähtse_Raha = 103033
+Lähtse_Raha = 110420
+
 
 m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=morr_eur_stocks, org_currency=True))
 
-m_raha = 0
+m_raha = 133.96
 
 kokku = round(ValCapitalRaha / 2 + m_raha + m_aktsiad + Lähtse_Raha / 2)
