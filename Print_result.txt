@@ -2,42 +2,42 @@
 Akadeemia 42-63 laenumakse: 115 € + kindlustus.
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
-Laenu Akadeemia 42-63 makstud: 7 Years, 3 Months
-Laenu Vilde 90-193 makstud: 4 Years, 1 Months
+Laenu Akadeemia 42-63 makstud: 7 Years, 4 Months
+Laenu Vilde 90-193 makstud: 4 Years, 2 Months
 
-Akadeemia 42-63 laenu jääk 13054 €. Laenu summa 16708.64
-Vilde 90-193 laenu jääk 11823 €. Laenu summa 17940.0
+Akadeemia 42-63 laenu jääk 12977 €. Laenu summa 16708.64
+Vilde 90-193 laenu jääk 11692 €. Laenu summa 17940.0
 
-Laenu kohutus kokku(ainult Akadeemia): 13054
-Laenu kohutus kokku(Kõik): 24877
+Laenu kohutus kokku(ainult Akadeemia): 12977
+Laenu kohutus kokku(Kõik): 24669
 
-Hetkel korteri/krundi puhas väärtus kokku: 66656.0 €.
+Hetkel korteri/krundi puhas väärtus kokku: 70214.0 €.
 
-Lähtse investeering: [31m55210.0[0m €.
+Lähtse investeering: [31m58691.0[0m €.
 Vilde peale makse Isale: [31m72.95[0m €.
 
 
-Juriidilise isiku väärtus: 66124 €.
-Krüpto: [31m643[0m €.
-Juriidilise isiku aktsiad: 46492 €.
-Funderbeam Kokku: [31m10544.35[0m €.
+Juriidilise isiku väärtus: 67104 €.
+Krüpto: [31m600[0m €.
+Juriidilise isiku aktsiad: 47988 €.
+Funderbeam Kokku: [31m10531.83[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4286 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 61838 €.
-Vaba raha Jur/Füs Kokku: [31m-913[0m €.
+Füüsilise isiku aktsia portfell: -4250 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 62854 €.
+Vaba raha Jur/Füs Kokku: [31m-1416[0m €.
 
 
-Terve portfell kokku: [31m128494.0[0m €.
+Terve portfell kokku: [31m133068.0[0m €.
 Eesmärk krooni miljonär 63912 €.
-Krooni miljonär veel minna: -64582.0 €.
+Krooni miljonär veel minna: -69156.0 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [31m371506.0[0m €.
-Mörr-i aktsiad: 11985 €.
-Mörr-i vaba raha: 133.96 €.
-Mörr-i portfell kokku: [31m73349[0m €.
-Kelly portfell: [31m4533[0m €.
-Pere portfell kokku: [31m206376.0[0m €.
+Veel minna: [31m366932.0[0m €.
+Mörr-i aktsiad: 12210 €.
+Mörr-i vaba raha: 0 €.
+Mörr-i portfell kokku: [31m77031[0m €.
+Kelly portfell: [31m4667[0m €.
+Pere portfell kokku: [31m214766.0[0m €.
 ==================================================
 Fail juba kaustas olemas.
 =================Ignar's==========================
@@ -48,7 +48,7 @@ Fail juba kaustas olemas.
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
 5  2023-01-01                    128823              111318                -14 %
-6        Täna                    111318              128494                 15 %
+6        Täna                    111318              133068                 20 %
 =================Mörr's===========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2019-01-01                      1000                3958                296 %
@@ -56,13 +56,13 @@ Fail juba kaustas olemas.
 2  2021-01-01                     29432               34345                 17 %
 3  2022-01-01                     34345               68468                 99 %
 4  2023-01-01                     68468               71519                  4 %
-5        Täna                     71519               73349                  3 %
+5        Täna                     71519               77031                  8 %
 =================Kelly's==========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2022-01-01                         1                1514             151300 %
 1  2023-01-01                      1514                2755                 82 %
-2        Täna                      2755                4533                 65 %
+2        Täna                      2755                4667                 69 %
 ==================================================
-Tänane seis lisatud.
+Tänane seis üle kirjutatud
 [32mE-maili saatmine: Pole reede[0m
-Program took: 3 seconds to run
+Program took: 2 seconds to run
