@@ -13,7 +13,7 @@ morr_eur_stocks = {"EFT1T": 55,
 
 ValCapitalRaha = 12260
 
-Lähtse_Raha = 117382
+Lähtse_Raha = 120210
 
 
 m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=morr_eur_stocks, org_currency=True))
