@@ -194,5 +194,5 @@ if __name__ == '__main__':
                    sent_body=mail_body)
     else:
         print(colored('E-maili saatmine: Pole reede', 'green'))
-
+    print(f'Program Star_Time: {start_time} and End_time: {time.time()}')
     print(f"Program took: {round(time.time() - start_time)} seconds to run")
