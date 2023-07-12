@@ -23,6 +23,7 @@ import warnings
 
 if __name__ == '__main__':
     start_time = time.time()
+    start_date = datetime.datetime.now()
     '# to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
     '# warn("""Cannot parse header or footer so it will be ignored""")'
     warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
@@ -194,5 +195,6 @@ if __name__ == '__main__':
                    sent_body=mail_body)
     else:
         print(colored('E-maili saatmine: Pole reede', 'green'))
-    print(f'Program Star_Time: {start_time} and End_time: {time.time()}')
+    print(f'Program Star_Time: {start_date} and End_time: {datetime.datetime.now()}')
     print(f"Program took: {round(time.time() - start_time)} seconds to run")
+
