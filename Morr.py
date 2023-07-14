@@ -3,7 +3,7 @@ import Aktsiad
 morr_eur_stocks = {"EFT1T": 55,
                    "TKM1T": 53,
                    "TSM1T": 560,
-                   "EXXT": 42.434,
+                   "EXXT.DE": 42.434,
                    "SPYW": 184.498
                    }
 

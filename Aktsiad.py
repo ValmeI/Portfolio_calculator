@@ -109,13 +109,13 @@ def stocks_value_combined(stock_dictionary, org_currency):
     # wait till all the threads are done
     for thread in threads:
         thread.join()
-
     # query the queue for the results
     while not stock_prices_queue.empty():
         item = stock_prices_queue.get()
         for key, value in item.items():
             for sym, amount in stock_dictionary.items():
-                if sym == key:
+                """Changed on 14.07.2023 as key values was returned now as "yfinance.Ticker object <EXXT.DE>" and so on"""
+                if sym in str(key):
                     total_value += value * amount
     return round(total_value)
 
