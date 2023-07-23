@@ -1,13 +1,12 @@
-from openpyxl import Workbook
-from openpyxl import load_workbook
-from openpyxl.utils import get_column_letter
-
 import os.path
-import Functions
+from datetime import date
 
 import pandas as pd
 from dateutil.parser import parse
-from datetime import date
+from openpyxl import Workbook, load_workbook
+from openpyxl.utils import get_column_letter
+
+import Functions
 
 # Excel headers
 headers = ["Kuupäev",
@@ -60,15 +59,15 @@ def write_to_excel(excel_name, list_of_data, how_to_add, compare_column):
     workbook_name = file_name
     wb = load_workbook(workbook_name)
     sheet1 = wb.active
-    '# just append a row'
+    # just append a row'
     if how_to_add == 1:
         sheet1.append(list_of_data)
         print("Tänane seis lisatud.")
     elif how_to_add == 2:
         max_row = sheet1.max_row
-        '# Overwrite row if compared column value (ex. date) is the same as given data column'
+        # Overwrite row if compared column value (ex. date) is the same as given data column'
         if sheet1.cell(column=compare_column, row=max_row).value == list_of_data[compare_column-1]:
-            '# easier to delete row and append looks easier than replace cell by cell'
+            # easier to delete row and append looks easier than replace cell by cell'
             sheet1.delete_rows(max_row)
             sheet1.append(list_of_data)
             print("Tänane seis üle kirjutatud")
@@ -89,12 +88,12 @@ def column_width(excel_name, excel_headers):
     wb = load_workbook(workbook_name)
     sheet1 = wb.active
     for i, col_value in enumerate(excel_headers, 1):
-        '# if column length is very small (less then 5), then give static length of 10, else length of column'
+        # if column length is very small (less then 5), then give static length of 10, else length of column'
         if len(col_value) < 5:
             column_extender = 10
         else:
             column_extender = len(col_value)
-        '# wants column letter for input, as i. Width input is in the end of it'
+        # wants column letter for input, as i. Width input is in the end of it'
         sheet1.column_dimensions[get_column_letter(i)].width = column_extender
     wb.save(filename=workbook_name)
 
@@ -130,7 +129,7 @@ def get_excel_column_values(excel_name, column_letter):
 
 # returns last row of given columns number
 def get_last_row(excel_name, column_number):
-    '# add file type'
+    # add file type'
     file_name = excel_name + ".xlsx"
 
     workbook_name = file_name
@@ -143,42 +142,42 @@ def get_last_row(excel_name, column_number):
 
 
 def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column_input, filter_nr_input=0):
-    '# add file type'
+    # add file type'
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
     wb = load_workbook(workbook_name)
     sheet1 = wb.active
 
-    '# all dates and all values from total sum of portfolio'
+    # all dates and all values from total sum of portfolio'
     date_and_sum_dict = dict(zip(get_excel_column_values(excel_name, 'A'), get_excel_column_values(excel_name, excel_column_input)))
 
     amount_list = []
     date_list = []
-    '# to filter out only give dates (mm_dd input) and sums'
+    # to filter out only give dates (mm_dd input) and sums'
     for date1, amount in date_and_sum_dict.items():
         if mm_dd in date1:
             amount_list.append(round(amount))
             date_list.append(date1)
-            '# is same year as last row (for example 2022-01-01) and it is not January 1st, then add today s portfolio amount'
+            # is same year as last row (for example 2022-01-01) and it is not January 1st, then add today s portfolio amount'
             if date.today().year == parse(date1).date().year and date.today().month != '1' and date.today().day != '1':
                 amount_list.append(round(todays_total_portfolio))
                 date_list.append(date.today())
 
     previous_amount_list = []
     percentage_increase_list = []
-    '# to get previous vs current values and percentage increase'
+    # to get previous vs current values and percentage increase'
     for previous, current in zip(amount_list, amount_list[1:]):
         percentage_increase = round(100*((current-previous)/previous))
         previous_amount_list.append(previous)
         percentage_increase_list.append(str(percentage_increase) + ' %')
 
-    '# need to add 0 to the beginning of list, so dataframe would have exactly same amount of rows'
+    # need to add 0 to the beginning of list, so dataframe would have exactly same amount of rows'
     if len(previous_amount_list) != len(date_list):
-        '# pos and value added'
+        # pos and value added'
         previous_amount_list.insert(0, 0)
 
     if len(percentage_increase_list) != len(date_list):
-        '# pos and value added'
+        # pos and value added'
         percentage_increase_list.insert(0, '0 %')
 
     data = {"Aasta": date_list,

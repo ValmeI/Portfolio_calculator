@@ -1,10 +1,14 @@
-from bs4 import BeautifulSoup
+import queue
 import re
 import threading
-import queue
-from Functions import chrome_driver
 # ignore DeprecationWarning
 import warnings
+
+import yfinance as yf
+from bs4 import BeautifulSoup
+
+from Functions import chrome_driver
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 stock_prices_queue = queue.Queue()
@@ -42,13 +46,12 @@ def stock_price_from_google(stock, original_currency):
 
     # 12.12.2022 UPDATE, Because of Google doesn't show preview for example EXSA.DE anymore for some reason.
     try:
-        '# 27.01 Update, parse from google search'
-        '# 24.06.2022 added replace , with nothing'
+        # 27.01 Update, parse from google search'
+        # 24.06.2022 added replace , with nothing'
         str_price_org_currency = soup.find('span', jsname='vWLAgc').text.strip(',.-').replace(' ', '')#.replace(',', '')
-        '# 27.01.2020 UPDATE replace comma from google'
+        # 27.01.2020 UPDATE replace comma from google'
     except:
         # hack for getting the price for stocks, that google doesn't show preview for example EXSA.DE
-        import yfinance as yf
         stock = yf.Ticker(stock)
         one_day_close_price = stock.history(period="1d")['Close'][0]
         str_price_org_currency = round(one_day_close_price)
@@ -57,26 +60,26 @@ def stock_price_from_google(stock, original_currency):
     if original_currency:
         stock_prices_queue.put({stock: float(str_price_org_currency)})
         driver.quit()
-        '#Returns original currency'
+        #Returns original currency'
         return float(str_price_org_currency)
     else:
-        '#Converts and Returns currency in euros'
+        #Converts and Returns currency in euros'
 
-        '# UPDATE 25.08.2018 USD to EUR converting page started using JS and I needed to use Selenium and Soup but'
-        '# UPDATE 25.08.2018 opening every page in Chrome and parsing made it much more slower'
-        '# UPDATE 14.01.2021 use Google as currency converter service'
+        # UPDATE 25.08.2018 USD to EUR converting page started using JS and I needed to use Selenium and Soup but'
+        # UPDATE 25.08.2018 opening every page in Chrome and parsing made it much more slower'
+        # UPDATE 14.01.2021 use Google as currency converter service'
         convert_url = "https://www.google.com/search?q=" + str_price_org_currency + "+usd+to+eur+currency+converter"
         driver.get(convert_url)
         convert_html = driver.page_source
         soup = BeautifulSoup(convert_html, 'lxml')
         to_eur_convert = soup.find('span', class_='DFlfde SwHCTb').text
-        '# 24.06.2022 added replace , with nothing'
+        # 24.06.2022 added replace , with nothing'
         to_eur_convert = replace_whitespaces(to_eur_convert)#.replace(',', '')
-        '# 27.01.2020 UPDATE replace comma from convert'
+        # 27.01.2020 UPDATE replace comma from convert'
         to_eur_convert = replace_comma_google(to_eur_convert)
-        '# 15.10.2021 UPDATE only keep numbers and ,.'
+        # 15.10.2021 UPDATE only keep numbers and ,.'
         to_eur_convert = re.sub("[^0-9.,]", "", to_eur_convert)
-        '# UPDATE 4.06.2021 problems maybe fixed it'
+        # UPDATE 4.06.2021 problems maybe fixed it'
         driver.quit()
         stock_prices_queue.put({stock: float(to_eur_convert)})
         return float(to_eur_convert)
@@ -134,7 +137,7 @@ def crypto_in_eur(crypto):
     str_price_org_currency = soup.find('span', class_='pclqee').text
     str_price_org_currency = replace_comma_google(str_price_org_currency)
     str_price_org_currency = replace_whitespaces(str_price_org_currency)#.replace(',', '')
-    '# UPDATE 4.06.2021 problems maybe fixed it'
+    # UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
     return float(str_price_org_currency)
 
@@ -144,15 +147,15 @@ def usd_to_eur_convert(number):
     convert_url = "https://www.google.com/search?q=" + str(number) + "+usd+to+eur+currency+converter"
     driver.get(convert_url)
     convert_html = driver.page_source
-    '# scrape with BeautifulSoup'
+    # scrape with BeautifulSoup'
     soup = BeautifulSoup(convert_html, 'lxml')
     to_eur_convert = soup.find('span', class_='DFlfde SwHCTb').text
     to_eur_convert = replace_whitespaces(to_eur_convert)
-    '# 27.01.2020 UPDATE replace comma from convert'
+    # 27.01.2020 UPDATE replace comma from convert'
     to_eur_convert = replace_comma_google(to_eur_convert)
-    '# 15.10.2021 UPDATE only keep numbers and ,.'
+    # 15.10.2021 UPDATE only keep numbers and ,.'
     to_eur_convert = re.sub("[^0-9.,]", "", to_eur_convert)
-    '# UPDATE 4.06.2021 problems maybe fixed it'
+    # UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
     return float(to_eur_convert)
 

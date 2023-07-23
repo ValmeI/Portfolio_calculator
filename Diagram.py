@@ -18,7 +18,6 @@ for i in x:
 
 def show_diagram():
     ax = plt.gca()
-    '# str to date format'
     x1 = new_list1
     plt.plot(x1, y)
     ax.xaxis.set_minor_locator(matplotlib.dates.MonthLocator())
@@ -52,6 +51,3 @@ def show_percentages_diagram():
 
 show_diagram()
 show_percentages_diagram()
-
-
-

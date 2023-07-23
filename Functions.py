@@ -1,38 +1,36 @@
-from dateutil import relativedelta
-from datetime import date
+import json
 import os.path
+import time
+from datetime import date
 
-from selenium.webdriver.common.by import By
-
-'# Funderbean imports'
+import pandas as pd
+from dateutil import relativedelta
+# Funderbean imports'
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import time
-import json
-import pandas as pd
-from config import funderbeam_username, funderbeam_password
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 
-import chromedriver_autoinstaller
+from config import funderbeam_password, funderbeam_username
 
-'''Check if the current version of chromedriver exists
-and if it doesn't exist, download it automatically,
-then add chromedriver to path'''
-chromedriver_autoinstaller.install()
-
-'#kodu path'
+#kodu path'
 path_home = r"D:\PycharmProjects/"
-'#Laptop path'
+#Laptop path'
 path_laptop = r"C:\PycharmProjects/"
 
 
 def chrome_driver():
     options = Options()
-    '# parse without displaying Chrome'
     options.add_argument("--headless")
     options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
-    '# UPDATE 25.01.2021 to avoid cannot find Chrome binary error'
+    options.add_argument("--log-level=3")  # Adjust the log level
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])  # This line disables the DevTools logging
+    service = Service(executable_path='./chromedriver.exe')
+    service.log_path = "null"  # Disable driver logs
+    service.enable_logging = False  # Disable driver logs
+    # UPDATE 25.01.2021 to avoid cannot find Chrome binary error
     # options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    driver = webdriver.Chrome(r"D:\PycharmProjects\chromedriver.exe", options=options)
+    driver = webdriver.Chrome(service=service, options=options)
     return driver
 
 def vilde_calculation(input_day, last_calculation_sum, new_sum_to_add, last_input_excel_date):
@@ -69,20 +67,20 @@ def get_funderbeam_marketvalue():
     driver.get(url)
     driver.find_element(By.NAME, 'username').send_keys(funderbeam_username)
     driver.find_element(By.NAME, 'password').send_keys(funderbeam_password)
-    '#send enter for links, buttons'
+    #send enter for links, buttons'
     driver.find_element(By.CLASS_NAME, 'button-primary').send_keys("\n")
-    '# Sleep so it could load role selection page, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'
+    # Sleep so it could load role selection page, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'
     time.sleep(5)
-    '# Select element nr 1, as nr 0 is personal role and nr 1 is company role. Need company role'
+    # Select element nr 1, as nr 0 is personal role and nr 1 is company role. Need company role'
     driver.find_elements(By.CLASS_NAME, 'cards__title')[1].click()
-    '# Sleep so it could load company dashboard, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'
+    # Sleep so it could load company dashboard, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'
     time.sleep(5)
-    '# get data from direct url API'
+    # get data from direct url API'
     driver.get('https://www.funderbeam.com/api/user/tokenSummaryStatement')
-    '# parse only json part of the page source'
+    # parse only json part of the page source'
     content = driver.find_element(By.TAG_NAME, 'pre').text
     parsed_json = json.loads(content)
-    '# UPDATE 4.06.2021 problems maybe fixed it'
+    # UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
     return parsed_json['totalValueInEur']
 
@@ -91,19 +89,19 @@ def get_funderbeam_syndicate_listings():
     driver = chrome_driver()
     url = "https://www.funderbeam.com/dashboard"
     driver.get(url)
-    '# login to funderbeam'
+    # login to funderbeam'
     driver.find_element(By.NAME, 'username').send_keys(funderbeam_username)
     driver.find_element(By.NAME, 'password').send_keys(funderbeam_password)
-    '#send enter for links, buttons'
+    #send enter for links, buttons'
     driver.find_element(By.CLASS_NAME, 'button-primary').send_keys("\n")
-    '# Sleep so it could load role selection page, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'
+    # Sleep so it could load role selection page, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'
     time.sleep(5)
-    '# Select element nr 1, as nr 0 is personal role and nr 1 is company role. Need company role'
+    # Select element nr 1, as nr 0 is personal role and nr 1 is company role. Need company role'
     driver.find_elements(By.CLASS_NAME, 'cards__title')[1].click()
-    '# Sleep so it could load company dashboard, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'
+    # Sleep so it could load company dashboard, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'
     time.sleep(5)
     driver.get('https://www.funderbeam.com/api/user/tokenSummaryStatement')
-    '# parse only json part of the page source'
+    # parse only json part of the page source'
     content = driver.find_element(By.TAG_NAME, 'pre').text
     # without dump's it gives error ValueError: Invalid file path or buffer object type: <class 'dict'>
     parsed_json = json.dumps(content)
@@ -119,7 +117,7 @@ def get_funderbeam_syndicate_listings():
                                                                                           "totalDayChangeInEur", "totalDayChangePct",
                                                                                           "totalValueInEur"])
     list_from_df = df.values.tolist()
-    '# UPDATE 4.06.2021 problems maybe fixed it'
+    # UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
     return list_from_df
 

@@ -19,11 +19,11 @@ LaenuSummad = {Korter1_Nimi: Korter1_Laen}
 def apr_month(loan_sum, annual_interest_rate, years):
     rate = annual_interest_rate / 1200
     months = years * 12
-    '# Ülemine osa APR tehtest ja kuud on astmes'
+    # Ülemine osa APR tehtest ja kuud on astmes'
     a = (loan_sum * rate * ((1 + rate) ** months))
-    '# Alumine osa tehtest ja kuud on astmes'
+    # Alumine osa tehtest ja kuud on astmes'
     b = (((1+rate)**months)-1)
-    '# tehte jagamine'
+    # tehte jagamine'
     monthly_payment = a/b
 
     return round(monthly_payment)

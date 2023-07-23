@@ -1,8 +1,9 @@
+from datetime import date
+
 import Aktsiad
-import Morr
 import Excel_functions
 import Functions as F
-from datetime import date
+import Morr
 from Functions import what_path_for_file
 
 path = what_path_for_file()
@@ -31,7 +32,7 @@ ETH_amount = 0.12037
 ETH_EUR = Aktsiad.crypto_in_eur('Ethereum') * ETH_amount
 Bitcoin_EUR = Aktsiad.crypto_in_eur('bitcoin') * BTC_amount
 
-'#Vanad ja refinants Akadeemia laenu kuupäevad yyyy.mm.dd'
+#Vanad ja refinants Akadeemia laenu kuupäevad yyyy.mm.dd'
 Vana_Aka42_63_Laen_Kuupäev = date(2016, 2, 16)
 Vana_Aka38_20_Laen_Kuupäev = date(2017, 5, 9)
 
@@ -49,18 +50,18 @@ CleveronAktsia = 4 * 1050
 JurAktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=jur_usa_stocks, org_currency=False) + CleveronAktsia)
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
-'#jur isiku raha LHV'
+#jur isiku raha LHV'
 JurRaha = 3000
 JurFunderBeam = F.get_funderbeam_marketvalue()
 Jur_IB_Raha = -170
 JurIsik = round(JurRaha + JurFunderBeam + Jur_IB_Raha + JurAktsiad + Morr.ValCapitalRaha / 2 + Jur_Krypto)
-'# Mörr on väike karu'
+# Mörr on väike karu'
 
 
-'# Raha ehk likviitsus,ka Krypto, jur ja fys kokku'
+# Raha ehk likviitsus,ka Krypto, jur ja fys kokku'
 RahaKokku = round(FüsIsikRaha + JurRaha + Morr.ValCapitalRaha / 2 + Jur_IB_Raha + Jur_Krypto)
 
-'# üür'
+# üür'
 vilde_isa = 240
 vilde_laen = 175 # alates oktoobrist on tegelikult 163.35 EUR kuu
 vilde_kindlustus = 7.91
