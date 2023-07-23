@@ -1,18 +1,12 @@
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 import re
 import threading
 import queue
-import chromedriver_autoinstaller
+from Functions import chrome_driver
 # ignore DeprecationWarning
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-'''Check if the current version of chromedriver exists
-and if it doesn't exist, download it automatically,
-then add chromedriver to path'''
-chromedriver_autoinstaller.install()
 stock_prices_queue = queue.Queue()
 
 
@@ -40,17 +34,9 @@ def replace_whitespaces(stat):
 
 
 def stock_price_from_google(stock, original_currency):
-
-    options = Options()
-    '# add options to chrome, to run it headless as not opening it'
-    options.add_argument("--headless")
-    options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
-    '# UPDATE 25.01.2021 to avoid cannot find Chrome binary error'
-    #options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    driver = webdriver.Chrome("chromedriver.exe", options=options)
+    driver = chrome_driver()
     url = "https://www.google.com/search?q=" + stock + " stock"
     driver.get(url)
-
     convert_html = driver.page_source
     soup = BeautifulSoup(convert_html, 'lxml')
 
@@ -69,7 +55,6 @@ def stock_price_from_google(stock, original_currency):
 
     str_price_org_currency = replace_comma_google(str_price_org_currency)
     if original_currency:
-
         stock_prices_queue.put({stock: float(str_price_org_currency)})
         driver.quit()
         '#Returns original currency'
@@ -141,13 +126,7 @@ def stocks_portfolio_percentages(portfolio_size, stocks_dictionary, org_currency
 
 # convert bitcoin to eur
 def crypto_in_eur(crypto):
-
-    options = Options()
-    '# add options to chrome, to run it headless as not opening it'
-    options.add_argument("--headless")
-    options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
-    #options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    driver = webdriver.Chrome("chromedriver.exe", options=options)
+    driver = chrome_driver()
     url = "https://www.google.com/search?q=" + crypto + "  price eur"
     driver.get(url)
     convert_html = driver.page_source
@@ -161,14 +140,7 @@ def crypto_in_eur(crypto):
 
 
 def usd_to_eur_convert(number):
-
-    options = Options()
-    '# add options to chrome, to run it headless as not opening it'
-    options.add_argument("--headless")
-    options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
-    '# UPDATE 25.01.2021 to avoid cannot find Chrome binary error'
-    #options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    driver = webdriver.Chrome("chromedriver.exe", options=options)
+    driver = chrome_driver()
     convert_url = "https://www.google.com/search?q=" + str(number) + "+usd+to+eur+currency+converter"
     driver.get(convert_url)
     convert_html = driver.page_source
@@ -184,8 +156,8 @@ def usd_to_eur_convert(number):
     driver.quit()
     return float(to_eur_convert)
 
-
-'''print("AAPL", stock_price_from_google("AAPL", True))
+"""
+print("AAPL", stock_price_from_google("AAPL", True))
 print("TSLA", stock_price_from_google("TSLA", False))
 print("AMD", stock_price_from_google("AMD", False))
 print("MSFT", stock_price_from_google("MSFT", False))
@@ -197,8 +169,8 @@ print("NKE", stock_price_from_google("NKE", False))
 print("NFLX", stock_price_from_google("NFLX", False))
 print("NVDA", stock_price_from_google("NVDA", False))
 print("INTC", stock_price_from_google("INTC", False))
-print("SNOW", stock_price_from_google("SNOW", False))'''
-
+print("SNOW", stock_price_from_google("SNOW", False))
+"""
 '''
 stock_dictionary_test = {"AAPL": 1, "TSLA": 1, "AMD": 1, "MSFT": 1, "AMZN": 1, "GOOGL": 1, "NIO": 1, "XPEV": 1, "NKE": 1, "NFLX": 1, "NVDA": 1, "INTC": 1, "SNOW": 1}
 #stock_dictionary_test = {"AAPL": 1, "TSLA": 1}

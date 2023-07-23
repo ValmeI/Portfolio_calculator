@@ -4,7 +4,7 @@ morr_eur_stocks = {"EFT1T": 55,
                    "TKM1T": 53,
                    "TSM1T": 560,
                    "EXXT.DE": 42.434,
-                   "SPYW": 184.498
+                   "SPYW.DE": 184.498
                    }
 
 '''morr_usa_stocks = {}'''
