@@ -100,7 +100,6 @@ if __name__ == '__main__':
     print(f"Aktsiad/Raha Jur ja Füs isikud kokku: {Valme.FysIsik + Valme.JurIsik} €.")
     print(f"Vaba raha Jur/Füs Kokku: {fg('red')}{Valme.RahaKokku}{attr('reset')} €.")
 
-
     print("\n")
     print(f"Terve portfell kokku: {fg('red')}{Ignar_Kokku}{attr('reset')} €.")
     print(f"Eesmärk krooni miljonär: {Eesmark} €.")
@@ -169,12 +168,12 @@ if __name__ == '__main__':
                 f"\nEesmärk krooni miljonär: {Eesmark} €." + \
                 f"\nKrooni miljonär veel minna: {Eesmark - Ignar_Kokku} €." + \
                 f"\nEesmärk 35 aastaselt portfelli väärtus: {Eesmark2} €." + \
-                f"\nVeel minna: {fg('red')}{Eesmark2 - Ignar_Kokku}{attr('reset')} €." + \
+                f"\nVeel minna: {Eesmark2 - Ignar_Kokku} €." + \
                 f"\nMörr-i aktsiad: {Morr.m_aktsiad} €." + \
                 f"\nMörr-i vaba raha:{Morr.m_raha} €." + \
-                f"\nMörr-i portfell kokku: {fg('red')}{Morr_kokku}{attr('reset')} €. " \
-                f"\nKelly portfell: {fg('red')}{Kelly_kokku}{attr('reset')} €. " + \
-                f"\nPere portfell kokku: {fg('red')}{Pere}{attr('reset')} €." + "\n\n" +\
+                f"\nMörr-i portfell kokku: {Morr_kokku} €. " \
+                f"\nKelly portfell: {Kelly_kokku} €. " + \
+                f"\nPere portfell kokku: {Pere} €." + "\n\n" +\
                 f"\nLaenu Akadeemia 42-63 makstud: {dateAka42.years} Years, {dateAka42.months} Months" +\
                 f"\nLaenu Vilde 90-193 makstud: {dateVilde90.years} Years, {dateVilde90.months} Months" +\
                 f"\n\n{Kinnisvara.Korter1_Nimi} laenu jääk {BalanceAka42} €. Laenu summa {Kinnisvara.Korter1_Laen}" +\
@@ -191,7 +190,7 @@ if __name__ == '__main__':
                     password_file=what_path_for_file() + r'Projects\My_Send_Email\synology_pass',
                     sent_from='email@valme.noip.me',
                     sent_to='val-capital@googlegroups.com',
-                    sent_subject=f'Portfelli seis: ' + time.strftime('%d-%m-%Y'),
+                    sent_subject='Portfelli seis: ' + time.strftime('%d-%m-%Y'),
                     sent_body=mail_body)
     else:
         print(fg('green') + 'E-maili saatmine: Pole reede' + attr('reset'))

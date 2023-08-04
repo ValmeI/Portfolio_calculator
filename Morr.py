@@ -11,7 +11,7 @@ morr_eur_stocks = {"EFT1T": 55,
 
 '''Sõle_Laen_Kuupäev = date(2011, 8, 25) #Müüdud 22.06.2021'''
 
-ValCapitalRaha = 12260
+ValCapitalRaha = 12460
 
 Lähtse_Raha = 123210
 

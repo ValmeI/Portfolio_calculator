@@ -109,8 +109,7 @@ def get_funderbeam_syndicate_listings():
     # without lines=true it gives an error
     df = pd.read_json(parsed_json, lines=True)
     # drop empty or columns that are not needed.
-    # where 1 is the axis number (0 for rows and 1 for columns.)
-    df = df.drop(['portfolioCompanies', 'portfolioIndustries', 'portfolioCountries'], axis=1)
+    df = df.drop(columns=['portfolioCompanies', 'portfolioIndustries', 'portfolioCountries'])
     json_struct = json.loads(df.to_json(orient="records"))
     # without record_prefix it gives an ValueError: Conflicting metadata name totalGainPct, need distinguishing prefix
     df = pd.json_normalize(data=json_struct, record_path='rows', record_prefix='_', meta=["totalGainInEur", "totalGainPct",
