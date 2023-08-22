@@ -27,19 +27,19 @@ if __name__ == '__main__':
     # to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
     # warn("""Cannot parse header or footer so it will be ignored""")'
     warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
-    path = what_path_for_file()
+    PATH = what_path_for_file()
 
     'copy to nas webserver'
-    txt_source = path + r'Portfolio_calculator\Print_result.txt'
-    excel_source = path + r'Portfolio_calculator\Portfell.xlsx'
-    pc_des_path = path + r'Calculators\portfolio_result'
-    nas_des_path = r'\\RMI_NAS\Python\Calculators\portfolio_result'
+    TXT_SOURCE = PATH + r'Portfolio_calculator\Print_result.txt'
+    EXCEK_SOURCE = PATH + r'Portfolio_calculator\Portfell.xlsx'
+    PC_DES_PATH = PATH + r'Calculators\portfolio_result'
+    NAS_DES_PATH = r'\\RMI_NAS\Python\Calculators\portfolio_result'
 
     # Copy txt result and excel file to NAS server, if all the files or path exists'
-    if os.path.isfile(txt_source) and os.path.isfile(excel_source) and os.path.isdir(nas_des_path):
+    if os.path.isfile(TXT_SOURCE) and os.path.isfile(EXCEK_SOURCE) and os.path.isdir(NAS_DES_PATH):
         # Copy previously created file to Calculators directory'
-        shutil.copy(txt_source, nas_des_path)
-        shutil.copy(excel_source, nas_des_path)
+        shutil.copy(TXT_SOURCE, NAS_DES_PATH)
+        shutil.copy(EXCEK_SOURCE, NAS_DES_PATH)
         print(f"Kopeeritud edukalt {datetime.datetime.now()}")
     else:
         print(f"Ei kopeeritud {datetime.datetime.now()}")
@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     #Ehk 1 000 000 Eesti krooni'
     Eesmark = round(1000000 / 15.6466)
-    Eesmark2 = 500000
+    EESMARK_2 = 500000
     print(f"Vilde peale makse Isale: {fg('red')}{Valme.Uus_vilde_summa}{attr('reset')} €.")
     print("\n")
     print(f"Juriidilise isiku väärtus: {Valme.JurIsik} €.")
@@ -104,8 +104,8 @@ if __name__ == '__main__':
     print(f"Terve portfell kokku: {fg('red')}{Ignar_Kokku}{attr('reset')} €.")
     print(f"Eesmärk krooni miljonär: {Eesmark} €.")
     print(f"Krooni miljonär veel minna: {Eesmark - Ignar_Kokku} €.")
-    print(f"Eesmärk 35 aastaselt portfelli väärtus {Eesmark2} €.")
-    print(f"Veel minna: {fg('red')}{Eesmark2 - Ignar_Kokku}{attr('reset')} €.")
+    print(f"Eesmärk 35 aastaselt portfelli väärtus {EESMARK_2} €.")
+    print(f"Veel minna: {fg('red')}{EESMARK_2 - Ignar_Kokku}{attr('reset')} €.")
 
     Morr_kokku = Morr.kokku
     print(f"Mörr-i aktsiad: {Morr.m_aktsiad} €.")
@@ -167,10 +167,10 @@ if __name__ == '__main__':
     mail_body = f"\nTerve portfell kokku: {Ignar_Kokku} €." + \
                 f"\nEesmärk krooni miljonär: {Eesmark} €." + \
                 f"\nKrooni miljonär veel minna: {Eesmark - Ignar_Kokku} €." + \
-                f"\nEesmärk 35 aastaselt portfelli väärtus: {Eesmark2} €." + \
-                f"\nVeel minna: {Eesmark2 - Ignar_Kokku} €." + \
+                f"\nEesmärk 35 aastaselt portfelli väärtus: {EESMARK_2} €." + \
+                f"\nVeel minna: {EESMARK_2 - Ignar_Kokku} €." + \
                 f"\nMörr-i aktsiad: {Morr.m_aktsiad} €." + \
-                f"\nMörr-i vaba raha:{Morr.m_raha} €." + \
+                f"\nMörr-i vaba raha: {Morr.m_raha} €." + \
                 f"\nMörr-i portfell kokku: {Morr_kokku} €. " \
                 f"\nKelly portfell: {Kelly_kokku} €. " + \
                 f"\nPere portfell kokku: {Pere} €." + "\n\n" +\
@@ -193,6 +193,6 @@ if __name__ == '__main__':
                     sent_subject='Portfelli seis: ' + time.strftime('%d-%m-%Y'),
                     sent_body=mail_body)
     else:
-        print(fg('green') + 'E-maili saatmine: Pole reede' + attr('reset'))
+        print(f"{fg('green')}E-maili saatmine: Pole reede {attr('reset')}")
     print(f'Program Star_Time: {start_date} and End_time: {datetime.datetime.now()}')
     print(f"Program took: {round(time.time() - start_time)} seconds to run")

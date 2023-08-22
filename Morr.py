@@ -7,13 +7,13 @@ morr_eur_stocks = {"EFT1T": 55,
                    "SPYW.DE": 184.498
                    }
 
-'''morr_usa_stocks = {}'''
+# morr_usa_stocks = {}
 
-'''Sõle_Laen_Kuupäev = date(2011, 8, 25) #Müüdud 22.06.2021'''
+# Sõle_Laen_Kuupäev = date(2011, 8, 25) #Müüdud 22.06.2021
 
-ValCapitalRaha = 12460
+ValCapitalRaha = 12660
 
-Lähtse_Raha = 123210
+Lähtse_Raha = 132809
 
 
 m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=morr_eur_stocks, org_currency=True))
