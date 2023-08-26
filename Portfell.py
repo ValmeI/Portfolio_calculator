@@ -1,10 +1,10 @@
-import datetime
 import os
 import shutil
 import sys
 import time
 import warnings
 from datetime import date
+import datetime
 
 from colored import attr, fg
 from dateutil.relativedelta import relativedelta
@@ -18,10 +18,10 @@ import txt_write_move
 import Valme
 from Excel_functions import (column_width, headers, need_new_excel_file,
                              write_to_excel, year_to_year_percent)
-from Functions import (diff_months, get_funderbeam_syndicate_listings,
-                       what_path_for_file)
+from Functions import diff_months, what_path_for_file
 
 if __name__ == '__main__':
+    print(f'Programm: "{__file__}"" käivitus: {datetime.datetime.now()}')
     start_time = time.time()
     start_date = datetime.datetime.now()
     # to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'

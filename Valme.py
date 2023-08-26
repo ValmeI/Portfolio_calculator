@@ -52,7 +52,7 @@ Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
 #jur isiku raha LHV'
 JurRaha = 3000
-JurFunderBeam = F.get_funderbeam_marketvalue()
+JurFunderBeam = 9000 #F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
 Jur_IB_Raha = -170
 JurIsik = round(JurRaha + JurFunderBeam + Jur_IB_Raha + JurAktsiad + Morr.ValCapitalRaha / 2 + Jur_Krypto)
 # Mörr on väike karu'

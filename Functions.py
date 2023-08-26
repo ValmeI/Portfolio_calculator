@@ -13,10 +13,8 @@ from selenium.webdriver.common.by import By
 
 from config import funderbeam_password, funderbeam_username
 
-#kodu path'
-path_home = r"D:\PycharmProjects/"
-#Laptop path'
-path_laptop = r"C:\PycharmProjects/"
+PATH_HOME = r"D:\PycharmProjects/"
+PATH_LAPTOP = r"C:\PycharmProjects/"
 
 
 def chrome_driver():
@@ -25,7 +23,7 @@ def chrome_driver():
     options.add_argument('--no-sandbox')  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
     options.add_argument("--log-level=3")  # Adjust the log level
     options.add_experimental_option('excludeSwitches', ['enable-logging'])  # This line disables the DevTools logging
-    service = Service(executable_path="D:\PycharmProjects\chromedriver.exe")
+    service = Service(executable_path=r"D:\PycharmProjects\chromedriver.exe")
     service.log_path = "null"  # Disable driver logs
     service.enable_logging = False  # Disable driver logs
     # UPDATE 25.01.2021 to avoid cannot find Chrome binary error
@@ -48,10 +46,10 @@ def dividend_with_certain_date(total):
 
 
 def what_path_for_file():
-    if os.path.exists(path_home):
-        return str(path_home)
-    elif os.path.exists(path_laptop):
-        return str(path_laptop)
+    if os.path.exists(PATH_HOME):
+        return str(PATH_HOME)
+    elif os.path.exists(PATH_LAPTOP):
+        return str(PATH_LAPTOP)
 
 
 def diff_months(date2, date1):
@@ -62,6 +60,9 @@ def diff_months(date2, date1):
 
 
 def get_funderbeam_marketvalue():
+    """
+    26.08.2023 - Not used anymore as Funderbeam added 2FA and market value does not change that often anymore
+    """
     driver = chrome_driver()
     url = "https://www.funderbeam.com/dashboard"
     driver.get(url)
@@ -86,6 +87,9 @@ def get_funderbeam_marketvalue():
 
 
 def get_funderbeam_syndicate_listings():
+    """
+    26.08.2023 - Not used anymore as Funderbeam added 2FA and market value does not change that often anymore
+    """
     driver = chrome_driver()
     url = "https://www.funderbeam.com/dashboard"
     driver.get(url)
