@@ -69,7 +69,7 @@ if __name__ == '__main__':
 
     #diffMonths annab natuke erineva tulemuse, kui aastad vs kuud'
     BalanceAka42 = Kinnisvara.apr_balance(Kinnisvara.Korter1_Laen, 5.198, 15, KuudMakstudAka42)
-    BalanceVilde90 = Kinnisvara.apr_balance(Kinnisvara.Korter3_Laen, 2.39, 11, KuudMakstudVilde90)
+    BalanceVilde90 = Kinnisvara.apr_balance(Kinnisvara.Korter3_Laen, 6.342, 11, KuudMakstudVilde90)
 
     print(f"{Kinnisvara.Korter1_Nimi} laenu jääk: {BalanceAka42} €. Laenu summa: {Kinnisvara.Korter1_Laen}")
     print(f"{Kinnisvara.Korter3_Nimi} laenu jääk: {BalanceVilde90} €. Laenu summa: {Kinnisvara.Korter3_Laen}")
