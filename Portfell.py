@@ -16,7 +16,7 @@ import Kinnisvara
 import Morr
 import txt_write_move
 import Valme
-from Excel_functions import (column_width, headers, need_new_excel_file,
+from Excel_functions import (column_width, HEADERS, need_new_excel_file,
                              write_to_excel, year_to_year_percent)
 from Functions import diff_months, what_path_for_file
 
@@ -78,16 +78,16 @@ if __name__ == '__main__':
     print(f"Laenu kohutus kokku(Kõik): {BalanceAka42 + BalanceVilde90}")
 
     # Kinnisvara kokku. Liidetakse kõik Dics korterite ostu hinnad - balancid ehk palju laenu veel maksta'
-    KinnisVaraPort = Kinnisvara.kinnisvara_vaartus() - BalanceAka42 + Morr.Lähtse_Raha / 2
+    KinnisVaraPort = Kinnisvara.kinnisvara_vaartus() - BalanceAka42 + Morr.LAHTSE_RAHA / 2
 
     print(f"\nHetkel korteri/krundi puhas väärtus kokku: {KinnisVaraPort} €.")
-    print(f"\nLähtse investeering: {fg('red')}{Morr.Lähtse_Raha / 2}{attr('reset')} €.")
+    print(f"\nLähtse investeering: {fg('red')}{Morr.LAHTSE_RAHA / 2}{attr('reset')} €.")
 
     # Portfell kokku'
     Ignar_Kokku = Valme.FysIsik + Valme.JurIsik + KinnisVaraPort
 
     #Ehk 1 000 000 Eesti krooni'
-    Eesmark = round(1000000 / 15.6466)
+    EESMARK_1 = round(1000000 / 15.6466)
     EESMARK_2 = 500000
     print(f"Vilde peale makse Isale: {fg('red')}{Valme.Uus_vilde_summa}{attr('reset')} €.")
     print("\n")
@@ -102,14 +102,14 @@ if __name__ == '__main__':
 
     print("\n")
     print(f"Terve portfell kokku: {fg('red')}{Ignar_Kokku}{attr('reset')} €.")
-    print(f"Eesmärk krooni miljonär: {Eesmark} €.")
-    print(f"Krooni miljonär veel minna: {Eesmark - Ignar_Kokku} €.")
+    print(f"Eesmärk krooni miljonär: {EESMARK_1} €.")
+    print(f"Krooni miljonär veel minna: {EESMARK_1 - Ignar_Kokku} €.")
     print(f"Eesmärk 35 aastaselt portfelli väärtus {EESMARK_2} €.")
     print(f"Veel minna: {fg('red')}{EESMARK_2 - Ignar_Kokku}{attr('reset')} €.")
 
     Morr_kokku = Morr.kokku
     print(f"Mörr-i aktsiad: {Morr.m_aktsiad} €.")
-    print(f"Mörr-i vaba raha: {Morr.m_raha} €.")
+    print(f"Mörr-i vaba raha: {Morr.MORR_RAHA} €.")
     print(f"Mörr-i portfell kokku: {fg('red')}{Morr_kokku}{attr('reset')} €.")
 
     # Kelly Portfell'
@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
     Aktsiad_kokku = Valme.FysIsik + Valme.JurIsik
     # check if new Excel file is needed and if so, create it
-    need_new_excel_file(excel_name="Portfell", sheet_name="Porfelli Info", excel_headers=Excel_functions.headers)
+    need_new_excel_file(excel_name="Portfell", sheet_name="Porfelli Info", excel_headers=Excel_functions.HEADERS)
 
     # compare the current portfolio with the previous years
     print("=================Ignar's==========================")
@@ -153,7 +153,7 @@ if __name__ == '__main__':
     # how_to_add: 1 = append, 2 = overwrite, 3 = compare if change is needed
     # compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on
     write_to_excel(excel_name="Portfell", list_of_data=values_list, how_to_add=2, compare_column=1)
-    column_width(excel_name="Portfell", excel_headers=headers)
+    column_width(excel_name="Portfell", excel_headers=HEADERS)
 
     #funderbeam_list = []
     # adds today's date to the beginning of the list
@@ -165,12 +165,12 @@ if __name__ == '__main__':
 
     # for combining results to send in e-mail
     mail_body = f"\nTerve portfell kokku: {Ignar_Kokku} €." + \
-                f"\nEesmärk krooni miljonär: {Eesmark} €." + \
-                f"\nKrooni miljonär veel minna: {Eesmark - Ignar_Kokku} €." + \
+                f"\nEesmärk krooni miljonär: {EESMARK_1} €." + \
+                f"\nKrooni miljonär veel minna: {EESMARK_1 - Ignar_Kokku} €." + \
                 f"\nEesmärk 35 aastaselt portfelli väärtus: {EESMARK_2} €." + \
                 f"\nVeel minna: {EESMARK_2 - Ignar_Kokku} €." + \
                 f"\nMörr-i aktsiad: {Morr.m_aktsiad} €." + \
-                f"\nMörr-i vaba raha: {Morr.m_raha} €." + \
+                f"\nMörr-i vaba raha: {Morr.MORR_RAHA} €." + \
                 f"\nMörr-i portfell kokku: {Morr_kokku} €. " \
                 f"\nKelly portfell: {Kelly_kokku} €. " + \
                 f"\nPere portfell kokku: {Pere} €." + "\n\n" +\

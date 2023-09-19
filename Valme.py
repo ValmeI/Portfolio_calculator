@@ -8,11 +8,11 @@ from Functions import what_path_for_file
 
 path = what_path_for_file()
 
-fys_eur_stocks = {"TKM1T": 355,
+FYS_EUR_STOCKS = {"TKM1T": 355,
                   "EFT1T": 113
                   }
 
-jur_usa_stocks = {"AAPL": 69,
+JUR_USA_STOCKS = {"AAPL": 69,
                   "TSLA": 15,
                   "AMD": 78,
                   "MSFT": 14,
@@ -26,11 +26,11 @@ jur_usa_stocks = {"AAPL": 69,
                   "BRK.B": 2
                   }
 
-BTC_amount = 0.016908
-ETH_amount = 0.12037
+BTC_AMOUNT = 0.016908
+ETH_AMOUNT = 0.12037
 
-ETH_EUR = Aktsiad.crypto_in_eur('Ethereum') * ETH_amount
-Bitcoin_EUR = Aktsiad.crypto_in_eur('bitcoin') * BTC_amount
+ETH_EUR = Aktsiad.crypto_in_eur('Ethereum') * ETH_AMOUNT
+Bitcoin_EUR = Aktsiad.crypto_in_eur('bitcoin') * BTC_AMOUNT
 
 #Vanad ja refinants Akadeemia laenu kuupäevad yyyy.mm.dd'
 Vana_Aka42_63_Laen_Kuupäev = date(2016, 2, 16)
@@ -42,24 +42,24 @@ Vilde90_193_Laen_Kuupäev = date(2019, 4, 9)
 
 # emale võlg 10k
 FüsIsikRaha = -10000+15000
-FysIsikAktsaid = Aktsiad.stocks_value_combined(stock_dictionary=fys_eur_stocks, org_currency=True)
+FysIsikAktsaid = Aktsiad.stocks_value_combined(stock_dictionary=FYS_EUR_STOCKS, org_currency=True)
 
 FysIsik = round(FüsIsikRaha + FysIsikAktsaid)
 
 CleveronAktsia = 4 * 1050
-JurAktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=jur_usa_stocks, org_currency=False) + CleveronAktsia)
+JurAktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=JUR_USA_STOCKS, org_currency=False) + CleveronAktsia)
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
 #jur isiku raha LHV'
 JurRaha = 3000
 JurFunderBeam = 9000 #F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
 Jur_IB_Raha = -170
-JurIsik = round(JurRaha + JurFunderBeam + Jur_IB_Raha + JurAktsiad + Morr.ValCapitalRaha / 2 + Jur_Krypto)
+JurIsik = round(JurRaha + JurFunderBeam + Jur_IB_Raha + JurAktsiad + Morr.VAL_CAPITAL_RAHA / 2 + Jur_Krypto)
 # Mörr on väike karu'
 
 
 # Raha ehk likviitsus,ka Krypto, jur ja fys kokku'
-RahaKokku = round(FüsIsikRaha + JurRaha + Morr.ValCapitalRaha / 2 + Jur_IB_Raha + Jur_Krypto)
+RahaKokku = round(FüsIsikRaha + JurRaha + Morr.VAL_CAPITAL_RAHA / 2 + Jur_IB_Raha + Jur_Krypto)
 
 # üür'
 vilde_isa = 240

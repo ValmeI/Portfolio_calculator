@@ -21,4 +21,3 @@ except Exception as e:
 # get funderbeam config values
 funderbeam_username = parser.get('Funderbeam', 'username')
 funderbeam_password = parser.get('Funderbeam', 'password')
-

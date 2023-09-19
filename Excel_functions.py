@@ -8,8 +8,7 @@ from openpyxl.utils import get_column_letter
 
 import Functions
 
-# Excel headers
-headers = ["Kuupäev",
+HEADERS = ["Kuupäev",
            "Kinnisvara puhas väärtus",
            "Füüsilise isiku aktsiad",
            "Juriidilise isiku aktsiad",
@@ -28,8 +27,7 @@ def freeze_excel_row(excel_name):
     workbook_name = file_name
     wb = load_workbook(workbook_name)
     sheet1 = wb.active
-    'freeze 1st row'
-    sheet1.freeze_panes = 'A2'
+    sheet1.freeze_panes = 'A2' # freeze first row
     wb.save(filename=workbook_name)
 
 
@@ -106,7 +104,7 @@ def need_new_excel_file(excel_name, sheet_name, excel_headers):
     else:
         create_excel(excel_name, sheet_name)
         freeze_excel_row(excel_name)
-        write_to_excel(excel_name, headers)
+        write_to_excel(excel_name, HEADERS)
         column_width(excel_name, excel_headers)
 
 
@@ -142,15 +140,11 @@ def get_last_row(excel_name, column_number):
 
 
 def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column_input, filter_nr_input=0):
-    # add file type'
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
-    wb = load_workbook(workbook_name)
-    sheet1 = wb.active
-
+    wb = load_workbook(workbook_name).active
     # all dates and all values from total sum of portfolio'
     date_and_sum_dict = dict(zip(get_excel_column_values(excel_name, 'A'), get_excel_column_values(excel_name, excel_column_input)))
-
     amount_list = []
     date_list = []
     # to filter out only give dates (mm_dd input) and sums'
@@ -194,9 +188,3 @@ def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column
     df.iloc[-1, df.columns.get_loc('Aasta')] = 'Täna'
     df.reset_index(drop=True, inplace=True)
     return df
-
-
-'''
-values_list = []
-values_list.extend(('1-1-2023', 3,3,3,3,3))
-write_to_excel('excel_name', values_list, 2)'''
