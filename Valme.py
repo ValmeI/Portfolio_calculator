@@ -41,7 +41,7 @@ Aka42_63_Laen_Kuupäev = date(2018, 12, 5)
 Vilde90_193_Laen_Kuupäev = date(2019, 4, 9)
 
 # emale võlg 10k
-FüsIsikRaha = -10000
+FüsIsikRaha = -10000+15000
 FysIsikAktsaid = Aktsiad.stocks_value_combined(stock_dictionary=fys_eur_stocks, org_currency=True)
 
 FysIsik = round(FüsIsikRaha + FysIsikAktsaid)
