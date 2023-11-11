@@ -20,16 +20,17 @@ from Excel_functions import (column_width, HEADERS, need_new_excel_file,
                              write_to_excel, year_to_year_percent)
 from Functions import diff_months, what_path_for_file
 
+
+# to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
+# warn("""Cannot parse header or footer so it will be ignored""")'
+warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
+
+
 if __name__ == '__main__':
     print(f'Programm: "{__file__}"" käivitus: {datetime.datetime.now()}')
     start_time = time.time()
     start_date = datetime.datetime.now()
-    # to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
-    # warn("""Cannot parse header or footer so it will be ignored""")'
-    warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
     PATH = what_path_for_file()
-
-    'copy to nas webserver'
     TXT_SOURCE = PATH + r'Portfolio_calculator\Print_result.txt'
     EXCEK_SOURCE = PATH + r'Portfolio_calculator\Portfell.xlsx'
     PC_DES_PATH = PATH + r'Calculators\portfolio_result'
@@ -47,44 +48,29 @@ if __name__ == '__main__':
     # create file from consol output'
     sys.stdout = txt_write_move.Logger()
 
-    # Tänane kuupäev arvutamaks, et mitu makset on tehtud juba'
     today = date.today()
-    PerMonthAka42 = Kinnisvara.apr_month(Kinnisvara.Korter1_Laen, 3, 15)
+    # Akadeemia 42-63 Välja ostetud 10.11.2023 - Laenujääk 12 200 EUR
     # Akadeemia 38-20 Müüdud 28.10.2021 Laenujääk 18 800 EUR'
     PerMonthVilde90 = Kinnisvara.apr_month(Kinnisvara.Korter3_Laen, 2.39, 11)
 
-    print(f'\n{Kinnisvara.Korter1_Nimi} laenumakse: {PerMonthAka42} € + kindlustus.')
     print(f"{Kinnisvara.Korter3_Nimi} laenumakse: {PerMonthVilde90} € + kindlustus.\n")
-
-    # how many years and months each loan is paid already'
-    dateAka42 = relativedelta(today, Valme.Vana_Aka42_63_Laen_Kuupäev)
-    dateVilde90 = relativedelta(today, Valme.Vilde90_193_Laen_Kuupäev)
-
-    print(f"Laenu {Kinnisvara.Korter1_Nimi} makstud: {dateAka42.years} Years, {dateAka42.months} Months")
+    dateVilde90 = relativedelta(today, Valme.VILDE90_193_LAEN_KUUPÄEV)
     print(f"Laenu {Kinnisvara.Korter3_Nimi} makstud: {dateVilde90.years} Years, {dateVilde90.months} Months\n")
 
-    #makstud kuude vahe arvutus'
-    KuudMakstudAka42 = diff_months(today, Valme.Aka42_63_Laen_Kuupäev)
-    KuudMakstudVilde90 = diff_months(today, Valme.Vilde90_193_Laen_Kuupäev)
-
-    #diffMonths annab natuke erineva tulemuse, kui aastad vs kuud'
-    BalanceAka42 = Kinnisvara.apr_balance(Kinnisvara.Korter1_Laen, 5.198, 15, KuudMakstudAka42)
+    KuudMakstudVilde90 = diff_months(today, Valme.VILDE90_193_LAEN_KUUPÄEV)
     BalanceVilde90 = Kinnisvara.apr_balance(Kinnisvara.Korter3_Laen, 6.342, 11, KuudMakstudVilde90)
 
-    print(f"{Kinnisvara.Korter1_Nimi} laenu jääk: {BalanceAka42} €. Laenu summa: {Kinnisvara.Korter1_Laen}")
     print(f"{Kinnisvara.Korter3_Nimi} laenu jääk: {BalanceVilde90} €. Laenu summa: {Kinnisvara.Korter3_Laen}")
-
-    print(f"\nLaenu kohutus kokku(ainult {Kinnisvara.Korter1_Nimi}): {BalanceAka42}")
-    print(f"Laenu kohutus kokku(Kõik): {BalanceAka42 + BalanceVilde90}")
+    print(f"Laenu kohutus kokku(Kõik): {BalanceVilde90}")
 
     # Kinnisvara kokku. Liidetakse kõik Dics korterite ostu hinnad - balancid ehk palju laenu veel maksta'
-    KinnisVaraPort = Kinnisvara.kinnisvara_vaartus() - BalanceAka42 + Morr.LAHTSE_RAHA / 2
+    Kinnisvara_Port = Kinnisvara.kinnisvara_vaartus() + Morr.LAHTSE_RAHA / 2
 
-    print(f"\nHetkel korteri/krundi puhas väärtus kokku: {KinnisVaraPort} €.")
+    print(f"\nHetkel korteri/krundi puhas väärtus kokku: {Kinnisvara_Port} €.")
     print(f"\nLähtse investeering: {fg('red')}{Morr.LAHTSE_RAHA / 2}{attr('reset')} €.")
 
     # Portfell kokku'
-    Ignar_Kokku = Valme.FysIsik + Valme.JurIsik + KinnisVaraPort
+    Ignar_Kokku = Valme.FysIsik + Valme.JurIsik + Kinnisvara_Port
 
     #Ehk 1 000 000 Eesti krooni'
     EESMARK_1 = round(1000000 / 15.6466)
@@ -94,7 +80,7 @@ if __name__ == '__main__':
     print(f"Juriidilise isiku väärtus: {Valme.JurIsik} €.")
     print(f"Krüpto: {fg('red')}{Valme.Jur_Krypto}{attr('reset')} €.")
     print(f"Juriidilise isiku aktsiad: {Valme.JurAktsiad} €.")
-    print(f"Funderbeam Kokku: {fg('red')}{Valme.JurFunderBeam}{attr('reset')} €.")
+    print(f"Funderbeam Kokku: {fg('red')}{Valme.JUR_FUNDERBEAM}{attr('reset')} €.")
     print("\n")
     print(f"Füüsilise isiku aktsia portfell: {Valme.FysIsik} €.")
     print(f"Aktsiad/Raha Jur ja Füs isikud kokku: {Valme.FysIsik + Valme.JurIsik} €.")
@@ -146,22 +132,14 @@ if __name__ == '__main__':
 
     # make a list with all the data for Excel file input
     values_list = []
-    values_list.extend((str(today), KinnisVaraPort, Valme.FysIsik, Valme.JurIsik, Aktsiad_kokku,
+    values_list.extend((str(today), Kinnisvara_Port, Valme.FysIsik, Valme.JurIsik, Aktsiad_kokku,
                         Ignar_Kokku, Morr_kokku, Pere, Valme.Uus_vilde_summa,
-                        Valme.RahaKokku, Valme.JurFunderBeam, Kelly_kokku))
+                        Valme.RahaKokku, Valme.JUR_FUNDERBEAM, Kelly_kokku))
 
     # how_to_add: 1 = append, 2 = overwrite, 3 = compare if change is needed
     # compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on
     write_to_excel(excel_name="Portfell", list_of_data=values_list, how_to_add=2, compare_column=1)
     column_width(excel_name="Portfell", excel_headers=HEADERS)
-
-    #funderbeam_list = []
-    # adds today's date to the beginning of the list
-    #funderbeam_list.extend(str(today))
-    #funderbeam_list = funderbeam_list + get_funderbeam_syndicate_listings()
-    # TODO: check why it doesn't work with the following line. ERROR
-    # write_to_excel(excel_name="funderbeam_syndicate_listings",
-    #               list_of_data=funderbeam_list, how_to_add=2, compare_column=1)
 
     # for combining results to send in e-mail
     mail_body = f"\nTerve portfell kokku: {Ignar_Kokku} €." + \
@@ -174,20 +152,19 @@ if __name__ == '__main__':
                 f"\nMörr-i portfell kokku: {Morr_kokku} €. " \
                 f"\nKelly portfell: {Kelly_kokku} €. " + \
                 f"\nPere portfell kokku: {Pere} €." + "\n\n" +\
-                f"\nLaenu Akadeemia 42-63 makstud: {dateAka42.years} Years, {dateAka42.months} Months" +\
                 f"\nLaenu Vilde 90-193 makstud: {dateVilde90.years} Years, {dateVilde90.months} Months" +\
-                f"\n\n{Kinnisvara.Korter1_Nimi} laenu jääk {BalanceAka42} €. Laenu summa {Kinnisvara.Korter1_Laen}" +\
-                f"\nK{Kinnisvara.Korter3_Nimi} laenu jääk {BalanceVilde90} €. Laenu summa {Kinnisvara.Korter3_Laen}"
+                f"\n\nK{Kinnisvara.Korter3_Nimi} laenu jääk {BalanceVilde90} €. Laenu summa {Kinnisvara.Korter3_Laen}"
 
+    SYNOLOGY_PATH = r'Projects\My_Send_Email\synology_pass'
     #if it is friday and password file is in directory, then send e-mail'
-    if os.path.isfile(what_path_for_file() + r'Projects\My_Send_Email\synology_pass'):
+    if os.path.isfile(what_path_for_file() + SYNOLOGY_PATH):
         no_file = f'E-maili saatmine: Parooli faili ei ole kataloogis: {what_path_for_file()}'
         no_file = fg('red') + no_file + attr('reset')
     elif date.today().weekday() == 4:
         # Variables are: STMP, username, password file, send from, send to, email title and email body'
         send_email(stmp_variable='valme.noip.me',  # '192.168.50.235',
                     user='email',
-                    password_file=what_path_for_file() + r'Projects\My_Send_Email\synology_pass',
+                    password_file=what_path_for_file() + SYNOLOGY_PATH,
                     sent_from='email@valme.noip.me',
                     sent_to='val-capital@googlegroups.com',
                     sent_subject='Portfelli seis: ' + time.strftime('%d-%m-%Y'),

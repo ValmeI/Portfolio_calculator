@@ -1,43 +1,37 @@
-
-Akadeemia 42-63 laenumakse: 115 € + kindlustus.
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
-Laenu Akadeemia 42-63 makstud: 7 Years, 7 Months
-Laenu Vilde 90-193 makstud: 4 Years, 5 Months
+Laenu Vilde 90-193 makstud: 4 Years, 7 Months
 
-Akadeemia 42-63 laenu jääk: 12743 €. Laenu summa: 16708.64
-Vilde 90-193 laenu jääk: 12188 €. Laenu summa: 17940.0
+Vilde 90-193 laenu jääk: 11938 €. Laenu summa: 17940.0
+Laenu kohutus kokku(Kõik): 11938
 
-Laenu kohutus kokku(ainult Akadeemia 42-63): 12743
-Laenu kohutus kokku(Kõik): 24931
+Hetkel korteri/krundi puhas väärtus kokku: 75685.0 €.
 
-Hetkel korteri/krundi puhas väärtus kokku: 67942.0 €.
-
-Lähtse investeering: [38;5;1m56185.0[0m €.
+Lähtse investeering: [38;5;1m51185.0[0m €.
 Vilde peale makse Isale: [38;5;1m72.95[0m €.
 
 
-Juriidilise isiku väärtus: 67368 €.
-Krüpto: [38;5;1m616[0m €.
-Juriidilise isiku aktsiad: 48492 €.
-Funderbeam Kokku: [38;5;1m9000[0m €.
+Juriidilise isiku väärtus: 69205 €.
+Krüpto: [38;5;1m819[0m €.
+Juriidilise isiku aktsiad: 50456 €.
+Funderbeam Kokku: [38;5;1m8000[0m €.
 
 
-Füüsilise isiku aktsia portfell: 10545 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 77913 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m14876[0m €.
+Füüsilise isiku aktsia portfell: -4372 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 64833 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m-1251[0m €.
 
 
-Terve portfell kokku: [38;5;1m145855.0[0m €.
+Terve portfell kokku: [38;5;1m140518.0[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -81943.0 €.
+Krooni miljonär veel minna: -76606.0 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €.
-Veel minna: [38;5;1m354145.0[0m €.
-Mörr-i aktsiad: 12113 €.
+Veel minna: [38;5;1m359482.0[0m €.
+Mörr-i aktsiad: 12012 €.
 Mörr-i vaba raha: 17144 €.
-Mörr-i portfell kokku: [38;5;1m91872[0m €.
-Kelly portfell: [38;5;1m5479[0m €.
-Pere portfell kokku: [38;5;1m243206.0[0m €.
+Mörr-i portfell kokku: [38;5;1m89271[0m €.
+Kelly portfell: [38;5;1m5442[0m €.
+Pere portfell kokku: [38;5;1m235231.0[0m €.
 ==================================================
 Fail juba kaustas olemas.
 =================Ignar's==========================
@@ -48,7 +42,7 @@ Fail juba kaustas olemas.
 3  2021-01-01                     50223               82751                 65 %
 4  2022-01-01                     82751              128823                 56 %
 5  2023-01-01                    128823              111318                -14 %
-6        Täna                    111318              145855                 31 %
+6        Täna                    111318              140518                 26 %
 =================Mörr's===========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2019-01-01                      1000                3958                296 %
@@ -56,14 +50,14 @@ Fail juba kaustas olemas.
 2  2021-01-01                     29432               34345                 17 %
 3  2022-01-01                     34345               68468                 99 %
 4  2023-01-01                     68468               71519                  4 %
-5        Täna                     71519               91872                 28 %
+5        Täna                     71519               89271                 25 %
 =================Kelly's==========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2022-01-01                         1                1514             151300 %
 1  2023-01-01                      1514                2755                 82 %
-2        Täna                      2755                5479                 99 %
+2        Täna                      2755                5442                 98 %
 ==================================================
 Tänane seis üle kirjutatud
 [38;5;2mE-maili saatmine: Pole reede [0m
-Program Star_Time: 2023-09-19 20:50:56.700139 and End_time: 2023-09-19 20:51:02.457950
-Program took: 6 seconds to run
+Program Star_Time: 2023-11-11 20:53:56.967216 and End_time: 2023-11-11 20:53:58.894546
+Program took: 2 seconds to run
