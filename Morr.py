@@ -13,7 +13,7 @@ MORR_EUR_STOCKS = {"EFT1T": 55,
 
 VAL_CAPITAL_RAHA = 13860
 
-LAHTSE_RAHA = 132370-30000 # maha liita tasaarvestuse raha
+LAHTSE_RAHA = 102370 # maha liita tasaarvestuse raha
 
 m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=MORR_EUR_STOCKS, org_currency=True))
 

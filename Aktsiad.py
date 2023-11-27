@@ -98,7 +98,7 @@ def stock_amount_value(stock_symbol, org_currency, stocks_dictionary):
     input: stock dictionary, org_currency = True/False"""
     price = stock_price_from_google(stock_symbol, org_currency)
     value = price * stocks_dictionary[stock_symbol]
-    return value
+    return round(value, 2)
 
 
 def stocks_portfolio_percentages(portfolio_size, stocks_dictionary, org_currency):

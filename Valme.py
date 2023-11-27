@@ -21,10 +21,10 @@ JUR_USA_STOCKS = {
     "NKE": 11,
     "INTC": 25,
     "SNOW": 6,
-    "BRK.B": 14.91,
+    "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE.UK": 14.92}
+JUR_EUR_STOCKS = {"IUSE.UK": 22.84}
 
 BTC_AMOUNT = 0.016908
 ETH_AMOUNT = 0.12037
@@ -53,15 +53,16 @@ CLEVERONAKTSIA = (
 )  # Ümber hinnatud 11.11.2023. Uus hind 150 EUR, vana koos clevoniga 1050 EUR tk
 JurAktsiad = round(
     Aktsiad.stocks_value_combined(stock_dictionary=JUR_USA_STOCKS, org_currency=False)
+    + Aktsiad.stocks_value_combined(stock_dictionary=JUR_EUR_STOCKS, org_currency=True)
     + CLEVERONAKTSIA
 )
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 LHV_VOLAKIRI = 2000
 
 # jur isiku raha LHV'
-JUR_RAHA = 1600
+JUR_RAHA = 380
 JUR_FUNDERBEAM = 8000  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
-JUR_IB_RAHA = -600
+JUR_IB_RAHA = 0
 JurIsik = round(
     JUR_RAHA
     + JUR_FUNDERBEAM
