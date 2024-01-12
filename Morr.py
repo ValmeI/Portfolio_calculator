@@ -17,7 +17,7 @@ LAHTSE_RAHA = 100370 # maha liita tasaarvestuse raha
 
 m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=MORR_EUR_STOCKS, org_currency=True))
 
-MORR_RAHA = 14240
+MORR_RAHA = 14816
 
 LHV_VOLAKIRI = 2402
 BIGBANK_VOLAKIRI = 3221
