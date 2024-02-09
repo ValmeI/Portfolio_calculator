@@ -3,8 +3,8 @@ import Aktsiad
 MORR_EUR_STOCKS = {"EFT1T": 55,
                    "TKM1T": 53,
                    "TSM1T": 560,
-                   "EXXT.DE": 49.668,
-                   "SPYW.DE": 204.817	
+                   "EXXT.DE": 52.014,
+                   "SPYW.DE": 211.337	
                    }
 
 # morr_usa_stocks = {}
@@ -17,7 +17,7 @@ LAHTSE_RAHA = 100370 # maha liita tasaarvestuse raha
 
 m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=MORR_EUR_STOCKS, org_currency=True))
 
-MORR_RAHA = 14816
+MORR_RAHA = 14450
 
 LHV_VOLAKIRI = 2402
 BIGBANK_VOLAKIRI = 3221
