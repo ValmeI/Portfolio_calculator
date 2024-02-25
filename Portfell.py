@@ -90,7 +90,7 @@ if __name__ == '__main__':
     print(f"Terve portfell kokku: {fg('red')}{Ignar_Kokku}{attr('reset')} €.")
     print(f"Eesmärk krooni miljonär: {EESMARK_1} €.")
     print(f"Krooni miljonär veel minna: {EESMARK_1 - Ignar_Kokku} €.")
-    print(f"Eesmärk 35 aastaselt portfelli väärtus {EESMARK_2} €.")
+    print(f"Eesmärk 35 aastaselt portfelli väärtus {EESMARK_2} €. Vanus hetkel: {date.today() - date(1990, 2, 19)}")
     print(f"Veel minna: {fg('red')}{EESMARK_2 - Ignar_Kokku}{attr('reset')} €.")
 
     Morr_kokku = Morr.kokku
