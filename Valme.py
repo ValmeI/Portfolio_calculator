@@ -24,7 +24,7 @@ JUR_USA_STOCKS = {
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE": 52.5598}
+JUR_EUR_STOCKS = {"IUSE": 59.50}
 
 BTC_AMOUNT = 0.016908
 ETH_AMOUNT = 0.12037
@@ -61,7 +61,7 @@ LHV_VOLAKIRI = 2400
 
 # jur isiku raha LHV'
 JUR_RAHA = 380
-JUR_FUNDERBEAM = 9000  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
+JUR_FUNDERBEAM = 6844  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
 JUR_IB_RAHA = -900
 JurIsik = round(
     JUR_RAHA

@@ -3,7 +3,7 @@ import Aktsiad
 JUR_EUR_STOCKS = {
                 "EGR1T": 172,
                 "HPR1T": 23,
-                "EXXT.DE": 36.413,
+                "EXXT.DE": 37.512,
                 "MAGIC.RG": 35
                 }
 
