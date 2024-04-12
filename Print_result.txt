@@ -1,37 +1,37 @@
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
-Laenu Vilde 90-193 makstud: 4 Years, 11 Months
+Laenu Vilde 90-193 makstud: 5 Years, 0 Months
 
-Vilde 90-193 laenu jääk: 11430 €. Laenu summa: 17940.0
-Laenu kohutus kokku(Kõik): 11430
+Vilde 90-193 laenu jääk: 11301 €. Laenu summa: 17940.0
+Laenu kohutus kokku(Kõik): 11301
 
-Hetkel korteri/krundi puhas väärtus kokku: 74685.0 €.
+Hetkel korteri/krundi puhas väärtus kokku: 69632.0 €.
 
-Lähtse investeering: [38;5;1m50185.0[0m €.
+Lähtse investeering: [38;5;1m45132.0[0m €.
 Vilde peale makse Isale: [38;5;1m82.04[0m €.
 
 
-Juriidilise isiku väärtus: 75588 €.
-Krüpto: [38;5;1m1463[0m €.
-Juriidilise isiku aktsiad: 57545 €.
+Juriidilise isiku väärtus: 80486 €.
+Krüpto: [38;5;1m1490[0m €.
+Juriidilise isiku aktsiad: 57995 €.
 Funderbeam Kokku: [38;5;1m6844[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4097 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 71491 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m-1200[0m €.
+Füüsilise isiku aktsia portfell: -4276 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 76210 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m-952[0m €.
 
 
-Terve portfell kokku: [38;5;1m146176.0[0m €.
+Terve portfell kokku: [38;5;1m145842.0[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -82264.0 €.
-Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 12444 days, 0:00:00
-Veel minna: [38;5;1m353824.0[0m €.
-Mörr-i aktsiad: 16279 €.
+Krooni miljonär veel minna: -81930.0 €.
+Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 12471 days, 0:00:00
+Veel minna: [38;5;1m354158.0[0m €.
+Mörr-i aktsiad: 21644 €.
 Mörr-i vaba raha: 6667 €.
-Mörr-i portfell kokku: [38;5;1m90856[0m €.
-Kelly portfell: [38;5;1m7180[0m €.
-Pere portfell kokku: [38;5;1m244212.0[0m €.
+Mörr-i portfell kokku: [38;5;1m91388[0m €.
+Kelly portfell: [38;5;1m7419[0m €.
+Pere portfell kokku: [38;5;1m244649.0[0m €.
 ==================================================
 Fail juba kaustas olemas.
 =================Ignar's==========================
@@ -43,7 +43,7 @@ Fail juba kaustas olemas.
 4  2022-01-01                     82751              128823                 56 %
 5  2023-01-01                    128823              111318                -14 %
 6  2024-01-01                    111318              142798                 28 %
-7        Täna                    142798              146176                  2 %
+7        Täna                    142798              145842                  2 %
 =================Mörr's===========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2019-01-01                      1000                3958                296 %
@@ -52,15 +52,16 @@ Fail juba kaustas olemas.
 3  2022-01-01                     34345               68468                 99 %
 4  2023-01-01                     68468               71519                  4 %
 5  2024-01-01                     71519               92587                 29 %
-6        Täna                     92587               90856                 -2 %
+6        Täna                     92587               91388                 -1 %
 =================Kelly's==========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2022-01-01                         1                1514             151300 %
 1  2023-01-01                      1514                2755                 82 %
 2  2024-01-01                      2755                6214                126 %
-3        Täna                      6214                7180                 16 %
+3        Täna                      6214                7419                 19 %
 ==================================================
-Tänane seis üle kirjutatud
-[38;5;2mE-maili saatmine: Pole reede [0m
-Program Star_Time: 2024-03-16 18:53:46.545623 and End_time: 2024-03-16 18:53:48.581623
-Program took: 2 seconds to run
+Tänane seis lisatud.
+[38;5;2m
+Mail Send Successfully[0m
+Program Star_Time: 2024-04-12 18:05:32.080451 and End_time: 2024-04-12 18:05:36.473451
+Program took: 4 seconds to run

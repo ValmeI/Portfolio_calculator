@@ -1,7 +1,7 @@
 import Aktsiad
 
 MORR_EUR_STOCKS = {"EFT1T": 55,
-                   "TKM1T": 53,
+                   "TKM1T": 563,
                    "TSM1T": 560,
                    "EXXT.DE": 55.874,
                    "SPYW.DE": 223.030	
@@ -11,11 +11,11 @@ MORR_EUR_STOCKS = {"EFT1T": 55,
 
 # Sõle_Laen_Kuupäev = date(2011, 8, 25) #Müüdud 22.06.2021
 
-VAL_CAPITAL_RAHA = 15713
+VAL_CAPITAL_RAHA = 16155
 
 TAHTAJALINE_HOIUS = 4016
 
-LAHTSE_RAHA = 100370 # maha liita tasaarvestuse raha
+LAHTSE_RAHA = 90264 # maha liita tasaarvestuse raha
 
 m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=MORR_EUR_STOCKS, org_currency=True))
 

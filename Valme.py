@@ -58,6 +58,7 @@ JurAktsiad = round(
 )
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 LHV_VOLAKIRI = 2400
+BIGBANK_VOLAKIRI = 4200
 
 # jur isiku raha LHV'
 JUR_RAHA = 380
@@ -71,6 +72,7 @@ JurIsik = round(
     + Morr.VAL_CAPITAL_RAHA / 2
     + Jur_Krypto
     + LHV_VOLAKIRI
+    + BIGBANK_VOLAKIRI
 )
 # Mörr on väike karu'
 
