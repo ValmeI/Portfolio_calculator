@@ -11,27 +11,27 @@ Lähtse investeering: [38;5;1m45132.0[0m €.
 Vilde peale makse Isale: [38;5;1m82.04[0m €.
 
 
-Juriidilise isiku väärtus: 80486 €.
-Krüpto: [38;5;1m1490[0m €.
-Juriidilise isiku aktsiad: 57995 €.
+Juriidilise isiku väärtus: 80168 €.
+Krüpto: [38;5;1m1445[0m €.
+Juriidilise isiku aktsiad: 57721 €.
 Funderbeam Kokku: [38;5;1m6844[0m €.
 
 
 Füüsilise isiku aktsia portfell: -4276 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 76210 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m-952[0m €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 75892 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m-998[0m €.
 
 
-Terve portfell kokku: [38;5;1m145842.0[0m €.
+Terve portfell kokku: [38;5;1m145524.0[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -81930.0 €.
-Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 12471 days, 0:00:00
-Veel minna: [38;5;1m354158.0[0m €.
+Krooni miljonär veel minna: -81612.0 €.
+Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 12472 days, 0:00:00
+Veel minna: [38;5;1m354476.0[0m €.
 Mörr-i aktsiad: 21644 €.
 Mörr-i vaba raha: 6667 €.
 Mörr-i portfell kokku: [38;5;1m91388[0m €.
-Kelly portfell: [38;5;1m7419[0m €.
-Pere portfell kokku: [38;5;1m244649.0[0m €.
+Kelly portfell: [38;5;1m7403[0m €.
+Pere portfell kokku: [38;5;1m244315.0[0m €.
 ==================================================
 Fail juba kaustas olemas.
 =================Ignar's==========================
@@ -43,7 +43,7 @@ Fail juba kaustas olemas.
 4  2022-01-01                     82751              128823                 56 %
 5  2023-01-01                    128823              111318                -14 %
 6  2024-01-01                    111318              142798                 28 %
-7        Täna                    142798              145842                  2 %
+7        Täna                    142798              145524                  2 %
 =================Mörr's===========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2019-01-01                      1000                3958                296 %
@@ -58,10 +58,9 @@ Fail juba kaustas olemas.
 0  2022-01-01                         1                1514             151300 %
 1  2023-01-01                      1514                2755                 82 %
 2  2024-01-01                      2755                6214                126 %
-3        Täna                      6214                7419                 19 %
+3        Täna                      6214                7403                 19 %
 ==================================================
 Tänane seis lisatud.
-[38;5;2m
-Mail Send Successfully[0m
-Program Star_Time: 2024-04-12 18:05:32.080451 and End_time: 2024-04-12 18:05:36.473451
-Program took: 4 seconds to run
+[38;5;2mE-maili saatmine: Pole reede [0m
+Program Star_Time: 2024-04-13 18:39:59.264876 and End_time: 2024-04-13 18:40:01.358877
+Program took: 2 seconds to run
