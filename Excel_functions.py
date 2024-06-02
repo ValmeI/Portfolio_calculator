@@ -142,7 +142,7 @@ def get_last_row(excel_name, column_number):
 def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column_input, filter_nr_input=0):
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
-    wb = load_workbook(workbook_name).active
+    load_workbook(workbook_name).active
     # all dates and all values from total sum of portfolio'
     date_and_sum_dict = dict(zip(get_excel_column_values(excel_name, 'A'), get_excel_column_values(excel_name, excel_column_input)))
     amount_list = []

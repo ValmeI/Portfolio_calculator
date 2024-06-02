@@ -12,8 +12,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from config import funderbeam_password, funderbeam_username
 
 
-PATH_HOME = r"D:\PycharmProjects/"
-PATH_LAPTOP = r"C:\PycharmProjects/"
+PATH_HOME_DESKTOP_PC = r"D:\PycharmProjects/"
+PATH_WIN_LAPTOP = r"C:\PycharmProjects/"
+PATH_LINUX_LAPTOP = r"/home/ignar-valme-p42/personal_git/Portfolio_calculator/"
 
 
 def chrome_driver():
@@ -47,10 +48,15 @@ def dividend_with_certain_date(total):
 
 
 def what_path_for_file():
-    if os.path.exists(PATH_HOME):
-        return str(PATH_HOME)
-    elif os.path.exists(PATH_LAPTOP):
-        return str(PATH_LAPTOP)
+    if os.path.exists(PATH_HOME_DESKTOP_PC):
+        return str(PATH_HOME_DESKTOP_PC)
+    elif os.path.exists(PATH_WIN_LAPTOP):
+        return str(PATH_WIN_LAPTOP)
+    elif os.path.exists(PATH_LINUX_LAPTOP):
+        return str(PATH_LINUX_LAPTOP)
+    else:
+        print(f"Current path: {os.getcwd()}, Path not found")
+        return None
 
 
 def diff_months(date2, date1):

@@ -1,9 +1,9 @@
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
-Laenu Vilde 90-193 makstud: 5 Years, 0 Months
+Laenu Vilde 90-193 makstud: 5 Years, 1 Months
 
-Vilde 90-193 laenu jääk: 11301 €. Laenu summa: 17940.0
-Laenu kohutus kokku(Kõik): 11301
+Vilde 90-193 laenu jääk: 11172 €. Laenu summa: 17940.0
+Laenu kohutus kokku(Kõik): 11172
 
 Hetkel korteri/krundi puhas väärtus kokku: 69632.0 €.
 
@@ -11,56 +11,26 @@ Lähtse investeering: [38;5;1m45132.0[0m €.
 Vilde peale makse Isale: [38;5;1m82.04[0m €.
 
 
-Juriidilise isiku väärtus: 78208 €.
-Krüpto: [38;5;1m1423[0m €.
-Juriidilise isiku aktsiad: 55776 €.
+Juriidilise isiku väärtus: 81921 €.
+Krüpto: [38;5;1m1475[0m €.
+Juriidilise isiku aktsiad: 59437 €.
 Funderbeam Kokku: [38;5;1m6844[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4416 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 73792 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m-1012[0m €.
+Füüsilise isiku aktsia portfell: -4434 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 77487 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m-960[0m €.
 
 
-Terve portfell kokku: [38;5;1m143424.0[0m €.
+Terve portfell kokku: [38;5;1m147119.0[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -79512.0 €.
-Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 12481 days, 0:00:00
-Veel minna: [38;5;1m356576.0[0m €.
-Mörr-i aktsiad: 21044 €.
+Krooni miljonär veel minna: -83207.0 €.
+Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 12522 days, 0:00:00
+Veel minna: [38;5;1m352881.0[0m €.
+Mörr-i aktsiad: 21847 €.
 Mörr-i vaba raha: 6667 €.
-Mörr-i portfell kokku: [38;5;1m90796[0m €.
-Kelly portfell: [38;5;1m7186[0m €.
-Pere portfell kokku: [38;5;1m241406.0[0m €.
+Mörr-i portfell kokku: [38;5;1m91599[0m €.
+Kelly portfell: [38;5;1m7520[0m €.
+Pere portfell kokku: [38;5;1m246238.0[0m €.
 ==================================================
-Fail juba kaustas olemas.
-=================Ignar's==========================
-        Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
-0  2018-01-01                         0               28570                  0 %
-1  2019-01-01                     28570               33435                 17 %
-2  2020-01-01                     33435               50223                 50 %
-3  2021-01-01                     50223               82751                 65 %
-4  2022-01-01                     82751              128823                 56 %
-5  2023-01-01                    128823              111318                -14 %
-6  2024-01-01                    111318              142798                 28 %
-7        Täna                    142798              143424                  0 %
-=================Mörr's===========================
-        Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
-0  2019-01-01                      1000                3958                296 %
-1  2020-01-01                      3958               29432                644 %
-2  2021-01-01                     29432               34345                 17 %
-3  2022-01-01                     34345               68468                 99 %
-4  2023-01-01                     68468               71519                  4 %
-5  2024-01-01                     71519               92587                 29 %
-6        Täna                     92587               90796                 -2 %
-=================Kelly's==========================
-        Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
-0  2022-01-01                         1                1514             151300 %
-1  2023-01-01                      1514                2755                 82 %
-2  2024-01-01                      2755                6214                126 %
-3        Täna                      6214                7186                 16 %
-==================================================
-Tänane seis üle kirjutatud
-[38;5;2mE-maili saatmine: Pole reede [0m
-Program Star_Time: 2024-04-22 20:35:08.736800 and End_time: 2024-04-22 20:35:11.588798
-Program took: 3 seconds to run
+Loodud uus fail Portfell.xlsx

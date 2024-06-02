@@ -8,7 +8,7 @@ import datetime
 
 from colored import attr, fg
 from dateutil.relativedelta import relativedelta
-from My_Send_Email.Send import send_email
+#from My_Send_Email.Send import send_email
 
 import Excel_functions
 import Kelly
@@ -90,7 +90,8 @@ if __name__ == '__main__':
     print(f"Terve portfell kokku: {fg('red')}{Ignar_Kokku}{attr('reset')} €.")
     print(f"Eesmärk krooni miljonär: {EESMARK_1} €.")
     print(f"Krooni miljonär veel minna: {EESMARK_1 - Ignar_Kokku} €.")
-    print(f"Eesmärk 35 aastaselt portfelli väärtus {EESMARK_2} €. Vanus hetkel: {date.today() - date(1990, 2, 19)}")
+    age = relativedelta(date.today(), date(1990, 2, 19)).years
+    print(f"Eesmärk 35 aastaselt portfelli väärtus {EESMARK_2} €. Vanus hetkel: {age} aastat")
     print(f"Veel minna: {fg('red')}{EESMARK_2 - Ignar_Kokku}{attr('reset')} €.")
 
     Morr_kokku = Morr.kokku
