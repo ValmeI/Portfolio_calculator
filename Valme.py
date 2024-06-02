@@ -59,10 +59,12 @@ JurAktsiad = round(
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 LHV_VOLAKIRI = 2400
 BIGBANK_VOLAKIRI = 4200
+HOLM_VOLAKIRI = 3000
+LIVEN_VOLAKIRI = 4000
 
 # jur isiku raha LHV'
-JUR_RAHA = 380
-JUR_FUNDERBEAM = 6844  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
+JUR_RAHA = 0
+JUR_FUNDERBEAM = 7500 # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
 JUR_IB_RAHA = -900
 JurIsik = round(
     JUR_RAHA

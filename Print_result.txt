@@ -5,12 +5,13 @@ Laenu Vilde 90-193 makstud: 5 Years, 1 Months
 Vilde 90-193 laenu jääk: 11172 €. Laenu summa: 17940.0
 Laenu kohutus kokku(Kõik): 11172
 
-Hetkel korteri/krundi puhas väärtus kokku: 69632.0 €.
+Hetkel korteri/krundi puhas väärtus kokku: 59685.0 €.
 
-Lähtse investeering: [38;5;1m45132.0[0m €.
-Vilde peale makse Isale: [38;5;1m82.04[0m €.
+Lähtse investeering: [38;5;1m35185.0[0m €.
+Vilde peale makse Isale: [38;5;1m91.13[0m €.
 
 
+<<<<<<< HEAD
 Juriidilise isiku väärtus: 81921 €.
 Krüpto: [38;5;1m1475[0m €.
 Juriidilise isiku aktsiad: 59437 €.
@@ -34,3 +35,19 @@ Kelly portfell: [38;5;1m7520[0m €.
 Pere portfell kokku: [38;5;1m246238.0[0m €.
 ==================================================
 Loodud uus fail Portfell.xlsx
+=======
+Juriidilise isiku väärtus: 82178 €.
+Krüpto: [38;5;1m1474[0m €.
+Juriidilise isiku aktsiad: 59419 €.
+Funderbeam Kokku: [38;5;1m7500[0m €.
+
+
+Füüsilise isiku aktsia portfell: -4434 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 77744 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m-1341[0m €.
+
+
+Terve portfell kokku: [38;5;1m137429.0[0m €.
+Eesmärk krooni miljonär: 63912 €.
+Krooni miljonär veel minna: -73517.0 €.
+>>>>>>> 0b417a3305d07a301e60473abdcb4f58a35d3c49
