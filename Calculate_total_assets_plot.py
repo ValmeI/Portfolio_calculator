@@ -35,17 +35,17 @@ symbol_to_name: dict = {
 
 
 jur_usa_stocks: dict = {
-    stock_sym: stock_price_from_google(stock_sym, False) * stock_amount
+    stock_sym: round(stock_price_from_google(stock_sym, False) * stock_amount, 0)
     for stock_sym, stock_amount in JUR_USA_STOCKS.items()
 }
 
 jur_euro_stocks: dict = {
-    stock_sym: round(stock_price_from_google(stock_sym, True) * stock_amount)
+    stock_sym: round(stock_price_from_google(stock_sym, True) * stock_amount, 0)
     for stock_sym, stock_amount in JUR_EUR_STOCKS.items()
 }
 
 fys_euro_stocks: dict = {
-    stock_sym: round(stock_price_from_google(stock_sym, True) * stock_amount)
+    stock_sym: round(stock_price_from_google(stock_sym, True) * stock_amount, 0)
     for stock_sym, stock_amount in FYS_EUR_STOCKS.items()
 }
 
