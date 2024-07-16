@@ -12,8 +12,6 @@ TAHTAJALINE_HOIUS = 4000
 
 LAHTSE_RAHA = 55370  # maha liita tasaarvestuse raha
 
-# TODO:  Lähtse laen lisada ka siia sisse, sest see on hetkel vara
-
 m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=MORR_EUR_STOCKS, org_currency=True))
 
 MORR_RAHA = 8900
