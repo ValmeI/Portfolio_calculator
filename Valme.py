@@ -12,7 +12,8 @@ FYS_EUR_STOCKS = {"TAL: TKM1T": 355, "EFT1T": 113}
 JUR_USA_STOCKS = {
     "AAPL": 69,
     "TSLA": 15,
-    "AMD": 78,
+    "AMD": 40,
+    "QCOM": 24.9907,
     "MSFT": 14,
     "AMZN": 56,
     "GOOGL": 36,
@@ -24,7 +25,7 @@ JUR_USA_STOCKS = {
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE": 70.95}
+JUR_EUR_STOCKS = {"IUSE": 80.2097}
 
 BTC_AMOUNT = 0.016908
 ETH_AMOUNT = 0.12037
@@ -38,35 +39,31 @@ Bitcoin_EUR = Aktsiad.crypto_in_eur("bitcoin") * BTC_AMOUNT
 
 # Aka42_63_Laen_Kuupäev = date(2018, 12, 5) # Välja ostetud 10.11.2023
 # Aka38_20_Laen_Kuupäev = date(2018, 12, 5) # 28.10.2021 Müüdud
-VILDE90_193_LAEN_KUUPÄEV = date(2019, 4, 9)
+VILDE90_193_LAEN_KUUPAEV = date(2019, 4, 9)
 
 # emale võlg 10k
-FÜSISIKRAHA = -10000
-FysIsikAktsaid = Aktsiad.stocks_value_combined(
-    stock_dictionary=FYS_EUR_STOCKS, org_currency=True
-)
+FUSISIK_RAHA = -10000
+FysIsikAktsaid = Aktsiad.stocks_value_combined(stock_dictionary=FYS_EUR_STOCKS, org_currency=True)
 
-FysIsik = round(FÜSISIKRAHA + FysIsikAktsaid)
+FysIsik = round(FUSISIK_RAHA + FysIsikAktsaid)
 
-CLEVERONAKTSIA = (
-    4 * 150
-)  # Ümber hinnatud 11.11.2023. Uus hind 150 EUR, vana koos clevoniga 1050 EUR tk
+CLEVERON_AKTSIA = 4 * 150  # Ümber hinnatud 11.11.2023. Uus hind 150 EUR, vana koos clevoniga 1050 EUR tk
 JurAktsiad = round(
     Aktsiad.stocks_value_combined(stock_dictionary=JUR_USA_STOCKS, org_currency=False)
     + Aktsiad.stocks_value_combined(stock_dictionary=JUR_EUR_STOCKS, org_currency=True)
-    + CLEVERONAKTSIA
+    + CLEVERON_AKTSIA
 )
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 LHV_VOLAKIRI = 2400
 BIGBANK_VOLAKIRI = 4200
-HOLM_VOLAKIRI = 3000
-LIVEN_VOLAKIRI = 4000
+HOLM_VOLAKIRI = 3300
+LIVEN_VOLAKIRI = 4300
 EVERAUS_VOLAKIRI = 5000
 
 # jur isiku raha LHV'
-JUR_RAHA = 0
-JUR_FUNDERBEAM = 7500 # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
-JUR_IB_RAHA = -900
+JUR_RAHA = 730
+JUR_FUNDERBEAM = 4400  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
+JUR_IB_RAHA = 0
 JurIsik = round(
     JUR_RAHA
     + JUR_FUNDERBEAM
@@ -80,9 +77,7 @@ JurIsik = round(
 # Mörr on väike karu'
 
 # Raha ehk likviitsus,ka Krypto, jur ja fys kokku'
-RahaKokku = round(
-    FÜSISIKRAHA + JUR_RAHA + Morr.VAL_CAPITAL_RAHA / 2 + JUR_IB_RAHA + Jur_Krypto
-)
+RahaKokku = round(FUSISIK_RAHA + JUR_RAHA + Morr.VAL_CAPITAL_RAHA / 2 + JUR_IB_RAHA + Jur_Krypto)
 
 # üür'
 VILDE_ISA = 240
@@ -93,15 +88,9 @@ ARVUTAMISE_KP = 1
 
 Uus_vilde_summa = F.vilde_calculation(
     input_day=ARVUTAMISE_KP,
-    last_calculation_sum=Excel_functions.get_last_row(
-        excel_name="Portfell", column_number=9
-    ),
-    new_sum_to_add=round(
-        F.dividend_with_certain_date(VILDE_ISA) - VILDE_LAEN - VILDE_KINDLUSTUS, 2
-    ),
-    last_input_excel_date=Excel_functions.get_last_row(
-        excel_name="Portfell", column_number=1
-    ),
+    last_calculation_sum=Excel_functions.get_last_row(excel_name="Portfell", column_number=9),
+    new_sum_to_add=round(F.dividend_with_certain_date(VILDE_ISA) - VILDE_LAEN - VILDE_KINDLUSTUS, 2),
+    last_input_excel_date=Excel_functions.get_last_row(excel_name="Portfell", column_number=1),
 )
 
 Uus_vilde_summa = round(Uus_vilde_summa, 2)

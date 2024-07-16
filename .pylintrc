@@ -3,4 +3,11 @@
 max-line-length = 120
 
 [MESSAGES CONTROL]
-disable=line-too-long, missing-module-docstring, missing-function-docstring, expression-not-assigned
+disable = 
+    line-too-long,
+    missing-module-docstring,
+    missing-function-docstring,
+    expression-not-assigned,
+    wrong-import-position,
+    wrong-import-order,
+    invalid-name # Allow snake_case names for now, remove later when we have time to refactor

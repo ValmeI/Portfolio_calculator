@@ -2,10 +2,8 @@ import queue
 import re
 import threading
 import warnings
-
 import yfinance as yf
 from bs4 import BeautifulSoup
-
 from Functions import chrome_driver
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -22,7 +20,7 @@ def replace_comma_google(stat) -> str:
     return stat
 
 
-def replace_whitespaces(stat) -> str:
+def replace_whitespaces(stat: str) -> str:
     stat = str(stat)
     if " " in stat:
         stat = stat.replace(" ", "")
@@ -33,22 +31,24 @@ def replace_whitespaces(stat) -> str:
     return stat
 
 
-def stock_price_from_google(stock, original_currency) -> float:
+def stock_price_from_google(stock: str, original_currency: bool) -> float:
     driver = chrome_driver()
     url = GOOGLE_BASE_URL + stock + " stock"
     driver.get(url)
     convert_html = driver.page_source
-    soup = BeautifulSoup(convert_html, 'lxml')
+    soup = BeautifulSoup(convert_html, "lxml")
     # 12.12.2022 UPDATE, Because of Google doesn't show preview for example EXSA.DE anymore for some reason.
     try:
         # 27.01 Update, parse from google search'
         # 24.06.2022 added replace , with nothing'
-        str_price_org_currency = soup.find('span', jsname='vWLAgc').text.strip(',.-').replace(' ', '')#.replace(',', '')
+        str_price_org_currency = (
+            soup.find("span", jsname="vWLAgc").text.strip(",.-").replace(" ", "")
+        )  # .replace(',', '')
         # 27.01.2020 UPDATE replace comma from google'
-    except: # bad practice but works for now will fix it later
+    except:  # bad practice but works for now will fix it later
         # hack for getting the price for stocks, that google doesn't show preview for example EXSA.DE
         stock = yf.Ticker(stock)
-        one_day_close_price = stock.history(period="1d")['Close'][0]
+        one_day_close_price = stock.history(period="1d")["Close"][0]
         str_price_org_currency = round(one_day_close_price)
 
     str_price_org_currency = replace_comma_google(str_price_org_currency)
@@ -59,9 +59,9 @@ def stock_price_from_google(stock, original_currency) -> float:
     convert_url = GOOGLE_BASE_URL + str_price_org_currency + "+usd+to+eur+currency+converter"
     driver.get(convert_url)
     convert_html = driver.page_source
-    soup = BeautifulSoup(convert_html, 'lxml')
-    to_eur_convert = soup.find('span', class_='DFlfde SwHCTb').text
-    to_eur_convert = replace_whitespaces(to_eur_convert)#.replace(',', '')
+    soup = BeautifulSoup(convert_html, "lxml")
+    to_eur_convert = soup.find("span", class_="DFlfde SwHCTb").text
+    to_eur_convert = replace_whitespaces(to_eur_convert)  # .replace(',', '')
     to_eur_convert = replace_comma_google(to_eur_convert)
     to_eur_convert = re.sub("[^0-9.,]", "", to_eur_convert)
     # UPDATE 4.06.2021 problems maybe fixed it'
@@ -71,7 +71,7 @@ def stock_price_from_google(stock, original_currency) -> float:
 
 
 def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
-    """Returns total value of stocks in portfolio, 
+    """Returns total value of stocks in portfolio,
     input: stock dictionary, org_currency = True/False"""
     total_value = 0
     threads = []
@@ -109,7 +109,9 @@ def stocks_portfolio_percentages(portfolio_size: int, stocks_dictionary: dict, o
         value = round(value, 2)
         percentage = value / portfolio_size * 100
         percentage = round(percentage, 2)
-        print(f"Portfelli suurus {portfolio_size} € - Aktsia {sym} väärtus {value} € - Kogus {amount} - Portfellist {percentage} %")
+        print(
+            f"Portfelli suurus {portfolio_size} € - Aktsia {sym} väärtus {value} € - Kogus {amount} - Portfellist {percentage} %"
+        )
 
 
 def crypto_in_eur(crypto) -> float:
@@ -117,15 +119,15 @@ def crypto_in_eur(crypto) -> float:
     url = GOOGLE_BASE_URL + crypto + "  price eur"
     driver.get(url)
     convert_html = driver.page_source
-    soup = BeautifulSoup(convert_html, 'lxml')
+    soup = BeautifulSoup(convert_html, "lxml")
     try:
-        str_price_org_currency = soup.find('span', class_='pclqee').text
+        str_price_org_currency = soup.find("span", class_="pclqee").text
     except AttributeError:
         print("Crypto price not found")
         driver.quit()
         return float(0)
     str_price_org_currency = replace_comma_google(str_price_org_currency)
-    str_price_org_currency = replace_whitespaces(str_price_org_currency)#.replace(',', '')
+    str_price_org_currency = replace_whitespaces(str_price_org_currency)  # .replace(',', '')
     # UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
     return float(str_price_org_currency)
@@ -136,8 +138,8 @@ def usd_to_eur_convert(number: int) -> float:
     convert_url = GOOGLE_BASE_URL + str(number) + "+usd+to+eur+currency+converter"
     driver.get(convert_url)
     convert_html = driver.page_source
-    soup = BeautifulSoup(convert_html, 'lxml')
-    to_eur_convert = soup.find('span', class_='DFlfde SwHCTb').text
+    soup = BeautifulSoup(convert_html, "lxml")
+    to_eur_convert = soup.find("span", class_="DFlfde SwHCTb").text
     to_eur_convert = replace_whitespaces(to_eur_convert)
     to_eur_convert = replace_comma_google(to_eur_convert)
     to_eur_convert = re.sub("[^0-9.,]", "", to_eur_convert)

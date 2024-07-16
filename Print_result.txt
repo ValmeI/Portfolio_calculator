@@ -5,32 +5,62 @@ Laenu Vilde 90-193 makstud: 5 Years, 3 Months
 Vilde 90-193 laenu jääk: 10911 €. Laenu summa: 17940.0
 Laenu kohutus kokku(Kõik): 10911
 
-Hetkel korteri/krundi puhas väärtus kokku: 59685.0 €.
+Hetkel korteri/krundi puhas väärtus kokku: 52185.0 €.
 
-Lähtse investeering: [38;5;1m35185.0[0m €.
+Lähtse investeering: [38;5;1m27685.0[0m €.
 Vilde peale makse Isale: [38;5;1m91.13[0m €.
 
 
-Juriidilise isiku väärtus: 88721 €.
-Krüpto: [38;5;1m1352[0m €.
-Juriidilise isiku aktsiad: 66084 €.
-Funderbeam Kokku: [38;5;1m7500[0m €.
+Juriidilise isiku väärtus: 87501 €.
+Krüpto: [38;5;1m1357[0m €.
+Juriidilise isiku aktsiad: 65664 €.
+Funderbeam Kokku: [38;5;1m4400[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4456 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 84265 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m-1463[0m €.
+Füüsilise isiku aktsia portfell: -10000 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 77501 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m837[0m €.
 
 
-Terve portfell kokku: [38;5;1m143950.0[0m €.
+Terve portfell kokku: [38;5;1m129686[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -80038.0 €.
-Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 12566 days, 0:00:00
-Veel minna: [38;5;1m356050.0[0m €.
-Mörr-i aktsiad: 23611 €.
-Mörr-i vaba raha: 7800 €.
-Mörr-i portfell kokku: [38;5;1m84415[0m €.
-Kelly portfell: [38;5;1m8353[0m €.
-Pere portfell kokku: [38;5;1m236718.0[0m €.
+Krooni miljonär veel minna: -65774.0 €.
+Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 34 years, 5 months
+Veel minna: [38;5;1m370314[0m €.
+Mörr-i aktsiad: 23622 €.
+Mörr-i vaba raha: 8900 €.
+Mörr-i portfell kokku: [38;5;1m78557[0m €.
+Kelly portfell: [38;5;1m8779[0m €.
+Pere portfell kokku: [38;5;1m217022[0m €.
 ==================================================
-Loodud uus fail Portfell.xlsx
+Fail juba kaustas olemas.
+=================Ignar's==========================
+        Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
+0  2018-01-01                         0               28570                  0 %
+1  2019-01-01                     28570               33435                 17 %
+2  2020-01-01                     33435               50223                 50 %
+3  2021-01-01                     50223               82751                 65 %
+4  2022-01-01                     82751              128823                 56 %
+5  2023-01-01                    128823              111318                -14 %
+6  2024-01-01                    111318              142798                 28 %
+7        Täna                    142798              129686                 -9 %
+=================Mörr's===========================
+        Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
+0  2019-01-01                      1000                3958                296 %
+1  2020-01-01                      3958               29432                644 %
+2  2021-01-01                     29432               34345                 17 %
+3  2022-01-01                     34345               68468                 99 %
+4  2023-01-01                     68468               71519                  4 %
+5  2024-01-01                     71519               92587                 29 %
+6        Täna                     92587               78557                -15 %
+=================Kelly's==========================
+        Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
+0  2022-01-01                         1                1514             151300 %
+1  2023-01-01                      1514                2755                 82 %
+2  2024-01-01                      2755                6214                126 %
+3        Täna                      6214                8779                 41 %
+==================================================
+Tänane seis üle kirjutatud
+[38;5;2mE-maili saatmine: Pole reede [0m
+Program Star_Time: 2024-07-16 13:25:16.503975 and End_time: 2024-07-16 13:25:17.701793
+Program took: 1 seconds to run

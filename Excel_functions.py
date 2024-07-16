@@ -1,28 +1,27 @@
-from decimal import Decimal
+from datetime import date
 import os.path
-from datetime import date, datetime, time, timedelta
 from typing import Any
-from openpyxl.cell.rich_text import CellRichText
-from openpyxl.worksheet.formula import ArrayFormula, DataTableFormula
 import pandas as pd
 from dateutil.parser import parse
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
-
 import Functions
 
-HEADERS = ["Kuupäev",
-           "Kinnisvara puhas väärtus",
-           "Füüsilise isiku aktsiad",
-           "Juriidilise isiku aktsiad",
-           "Aktsiad kokku",
-           "Terve portfell kokku",
-           "Mörr-i portfell",
-           "Pere portfell kokku",
-           "Vilde after Tax",
-           "Vaba Raha",
-           "Funderbeam Väärtus",
-           "Kelly portfell kokku"]
+
+HEADERS = [
+    "Kuupäev",
+    "Kinnisvara puhas väärtus",
+    "Füüsilise isiku aktsiad",
+    "Juriidilise isiku aktsiad",
+    "Aktsiad kokku",
+    "Terve portfell kokku",
+    "Mörr-i portfell",
+    "Pere portfell kokku",
+    "Vilde after Tax",
+    "Vaba Raha",
+    "Funderbeam Väärtus",
+    "Kelly portfell kokku",
+]
 
 
 def freeze_excel_row(excel_name: str) -> None:
@@ -30,7 +29,7 @@ def freeze_excel_row(excel_name: str) -> None:
     workbook_name = file_name
     wb = load_workbook(workbook_name)
     sheet1 = wb.active
-    sheet1.freeze_panes = 'A2' # freeze first row
+    sheet1.freeze_panes = "A2"  # freeze first row
     wb.save(filename=workbook_name)
 
 
@@ -46,9 +45,7 @@ def create_excel(excel_name: str, sheet_name: str) -> None:
 
 
 def check_if_excel_exists(excel_name: str) -> bool:
-    print(os.path.isfile(Functions.what_path_for_file() + 'Portfolio_calculator/' + excel_name + ".xlsx"))
-    exit()
-    if os.path.isfile(Functions.what_path_for_file() + 'Portfolio_calculator/' + excel_name + ".xlsx"):
+    if os.path.isfile(Functions.what_path_for_file() + "Portfolio_calculator/" + excel_name + ".xlsx"):
         return True
     else:
         return False
@@ -57,7 +54,7 @@ def check_if_excel_exists(excel_name: str) -> bool:
 # append new rows/info to excel
 # how_to_add: 1 = append, 2 = overwrite, 3 = compare if change is needed
 # compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on
-def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, compare_column: int = None ) -> None:
+def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, compare_column: int = None) -> None:
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
     wb = load_workbook(workbook_name)
@@ -69,7 +66,7 @@ def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, 
     elif how_to_add == 2:
         max_row = sheet1.max_row
         # Overwrite row if compared column value (ex. date) is the same as given data column'
-        if sheet1.cell(column=compare_column, row=max_row).value == list_of_data[compare_column-1]:
+        if sheet1.cell(column=compare_column, row=max_row).value == list_of_data[compare_column - 1]:
             # easier to delete row and append looks easier than replace cell by cell'
             sheet1.delete_rows(max_row)
             sheet1.append(list_of_data)
@@ -80,12 +77,12 @@ def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, 
 
     # TODO compare cell by cell if any change is acutally needed
     elif how_to_add == 3:
-        print('compare')
+        print("compare")
 
     wb.save(filename=workbook_name)
 
 
-def column_width(excel_name: str, excel_headers: list) -> None: 
+def column_width(excel_name: str, excel_headers: list) -> None:
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
     wb = load_workbook(workbook_name)
@@ -149,7 +146,9 @@ def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column
     workbook_name = file_name
     load_workbook(workbook_name).active
     # all dates and all values from total sum of portfolio'
-    date_and_sum_dict = dict(zip(get_excel_column_values(excel_name, 'A'), get_excel_column_values(excel_name, excel_column_input)))
+    date_and_sum_dict = dict(
+        zip(get_excel_column_values(excel_name, "A"), get_excel_column_values(excel_name, excel_column_input))
+    )
     amount_list = []
     date_list = []
     # to filter out only give dates (mm_dd input) and sums'
@@ -158,7 +157,7 @@ def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column
             amount_list.append(round(amount))
             date_list.append(date1)
             # is same year as last row (for example 2022-01-01) and it is not January 1st, then add today s portfolio amount'
-            if date.today().year == parse(date1).date().year and date.today().month != '1' and date.today().day != '1':
+            if date.today().year == parse(date1).date().year and date.today().month != "1" and date.today().day != "1":
                 amount_list.append(round(todays_total_portfolio))
                 date_list.append(date.today())
 
@@ -166,9 +165,9 @@ def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column
     percentage_increase_list = []
     # to get previous vs current values and percentage increase'
     for previous, current in zip(amount_list, amount_list[1:]):
-        percentage_increase = round(100*((current-previous)/previous))
+        percentage_increase = round(100 * ((current - previous) / previous))
         previous_amount_list.append(previous)
-        percentage_increase_list.append(str(percentage_increase) + ' %')
+        percentage_increase_list.append(str(percentage_increase) + " %")
 
     # need to add 0 to the beginning of list, so dataframe would have exactly same amount of rows'
     if len(previous_amount_list) != len(date_list):
@@ -177,19 +176,21 @@ def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column
 
     if len(percentage_increase_list) != len(date_list):
         # pos and value added'
-        percentage_increase_list.insert(0, '0 %')
+        percentage_increase_list.insert(0, "0 %")
 
-    data = {"Aasta": date_list,
-            "Portfell eelmisel aastal": previous_amount_list,
-            "Portfell see aasta": amount_list,
-            "Protsendiline muutus": percentage_increase_list}
+    data = {
+        "Aasta": date_list,
+        "Portfell eelmisel aastal": previous_amount_list,
+        "Portfell see aasta": amount_list,
+        "Protsendiline muutus": percentage_increase_list,
+    }
 
-    pd.set_option('display.max_rows', None)
-    pd.set_option('display.max_columns', None)
-    pd.set_option('display.width', None)
+    pd.set_option("display.max_rows", None)
+    pd.set_option("display.max_columns", None)
+    pd.set_option("display.width", None)
     df = pd.DataFrame(data)
-    df = df[df['Portfell see aasta'] >= filter_nr_input]
+    df = df[df["Portfell see aasta"] >= filter_nr_input]
     # replace last Aasta columns value with 'Täna'
-    df.iloc[-1, df.columns.get_loc('Aasta')] = 'Täna'
+    df.iloc[-1, df.columns.get_loc("Aasta")] = "Täna"
     df.reset_index(drop=True, inplace=True)
     return df
