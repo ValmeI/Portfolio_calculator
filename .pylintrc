@@ -3,4 +3,4 @@
 max-line-length = 120
 
 [MESSAGES CONTROL]
-disable=line-too-long, missing-module-docstring, missing-function-docstring
+disable=line-too-long, missing-module-docstring, missing-function-docstring, expression-not-assigned

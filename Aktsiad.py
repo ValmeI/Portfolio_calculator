@@ -14,7 +14,7 @@ stock_prices_queue = queue.Queue()
 GOOGLE_BASE_URL = "https://www.google.com/search?q="
 
 
-def replace_comma_google(stat):
+def replace_comma_google(stat) -> str:
     stat = str(stat)
     if "," in stat:
         stat = stat.replace(",", ".")
@@ -22,7 +22,7 @@ def replace_comma_google(stat):
     return stat
 
 
-def replace_whitespaces(stat):
+def replace_whitespaces(stat) -> str:
     stat = str(stat)
     if " " in stat:
         stat = stat.replace(" ", "")
@@ -33,7 +33,7 @@ def replace_whitespaces(stat):
     return stat
 
 
-def stock_price_from_google(stock, original_currency):
+def stock_price_from_google(stock, original_currency) -> float:
     driver = chrome_driver()
     url = GOOGLE_BASE_URL + stock + " stock"
     driver.get(url)
@@ -70,7 +70,7 @@ def stock_price_from_google(stock, original_currency):
     return float(to_eur_convert)
 
 
-def stocks_value_combined(stock_dictionary, org_currency):
+def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
     """Returns total value of stocks in portfolio, 
     input: stock dictionary, org_currency = True/False"""
     total_value = 0
@@ -101,7 +101,7 @@ def stock_amount_value(stock_symbol, org_currency, stocks_dictionary):
     return round(value, 2)
 
 
-def stocks_portfolio_percentages(portfolio_size, stocks_dictionary, org_currency):
+def stocks_portfolio_percentages(portfolio_size: int, stocks_dictionary: dict, org_currency: bool) -> None:
     """Returns total value of stocks in portfolio,
     input: portfolio size, stock dictionary, org_currency = True/False"""
     for sym, amount in stocks_dictionary.items():
@@ -112,13 +112,18 @@ def stocks_portfolio_percentages(portfolio_size, stocks_dictionary, org_currency
         print(f"Portfelli suurus {portfolio_size} € - Aktsia {sym} väärtus {value} € - Kogus {amount} - Portfellist {percentage} %")
 
 
-def crypto_in_eur(crypto):
+def crypto_in_eur(crypto) -> float:
     driver = chrome_driver()
     url = GOOGLE_BASE_URL + crypto + "  price eur"
     driver.get(url)
     convert_html = driver.page_source
     soup = BeautifulSoup(convert_html, 'lxml')
-    str_price_org_currency = soup.find('span', class_='pclqee').text
+    try:
+        str_price_org_currency = soup.find('span', class_='pclqee').text
+    except AttributeError:
+        print("Crypto price not found")
+        driver.quit()
+        return float(0)
     str_price_org_currency = replace_comma_google(str_price_org_currency)
     str_price_org_currency = replace_whitespaces(str_price_org_currency)#.replace(',', '')
     # UPDATE 4.06.2021 problems maybe fixed it'
@@ -126,7 +131,7 @@ def crypto_in_eur(crypto):
     return float(str_price_org_currency)
 
 
-def usd_to_eur_convert(number):
+def usd_to_eur_convert(number: int) -> float:
     driver = chrome_driver()
     convert_url = GOOGLE_BASE_URL + str(number) + "+usd+to+eur+currency+converter"
     driver.get(convert_url)

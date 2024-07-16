@@ -1,6 +1,9 @@
+from decimal import Decimal
 import os.path
-from datetime import date
-
+from datetime import date, datetime, time, timedelta
+from typing import Any
+from openpyxl.cell.rich_text import CellRichText
+from openpyxl.worksheet.formula import ArrayFormula, DataTableFormula
 import pandas as pd
 from dateutil.parser import parse
 from openpyxl import Workbook, load_workbook
@@ -22,7 +25,7 @@ HEADERS = ["Kuupäev",
            "Kelly portfell kokku"]
 
 
-def freeze_excel_row(excel_name):
+def freeze_excel_row(excel_name: str) -> None:
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
     wb = load_workbook(workbook_name)
@@ -31,7 +34,7 @@ def freeze_excel_row(excel_name):
     wb.save(filename=workbook_name)
 
 
-def create_excel(excel_name, sheet_name):
+def create_excel(excel_name: str, sheet_name: str) -> None:
     wb = Workbook()
     sheet1 = wb.active
     sheet1.title = sheet_name
@@ -42,7 +45,9 @@ def create_excel(excel_name, sheet_name):
     print("Loodud uus fail", file_name)
 
 
-def check_if_excel_exists(excel_name):
+def check_if_excel_exists(excel_name: str) -> bool:
+    print(os.path.isfile(Functions.what_path_for_file() + 'Portfolio_calculator/' + excel_name + ".xlsx"))
+    exit()
     if os.path.isfile(Functions.what_path_for_file() + 'Portfolio_calculator/' + excel_name + ".xlsx"):
         return True
     else:
@@ -52,7 +57,7 @@ def check_if_excel_exists(excel_name):
 # append new rows/info to excel
 # how_to_add: 1 = append, 2 = overwrite, 3 = compare if change is needed
 # compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on
-def write_to_excel(excel_name, list_of_data, how_to_add, compare_column):
+def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, compare_column: int = None ) -> None:
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
     wb = load_workbook(workbook_name)
@@ -80,7 +85,7 @@ def write_to_excel(excel_name, list_of_data, how_to_add, compare_column):
     wb.save(filename=workbook_name)
 
 
-def column_width(excel_name, excel_headers):
+def column_width(excel_name: str, excel_headers: list) -> None: 
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
     wb = load_workbook(workbook_name)
@@ -97,7 +102,7 @@ def column_width(excel_name, excel_headers):
 
 
 # check if excel file is there, if not create it
-def need_new_excel_file(excel_name, sheet_name, excel_headers):
+def need_new_excel_file(excel_name: str, sheet_name: str, excel_headers: list) -> None:
     if check_if_excel_exists(excel_name):
         print("==================================================")
         print("Fail juba kaustas olemas.")
@@ -109,7 +114,7 @@ def need_new_excel_file(excel_name, sheet_name, excel_headers):
 
 
 # returns all values of given column in list
-def get_excel_column_values(excel_name, column_letter):
+def get_excel_column_values(excel_name: str, column_letter: str) -> list:
     # add file type
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
@@ -126,7 +131,7 @@ def get_excel_column_values(excel_name, column_letter):
 
 
 # returns last row of given columns number
-def get_last_row(excel_name, column_number):
+def get_last_row(excel_name: str, column_number: int) -> Any:
     # add file type'
     file_name = excel_name + ".xlsx"
 

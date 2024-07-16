@@ -15,6 +15,7 @@ from config import funderbeam_password, funderbeam_username
 PATH_HOME_DESKTOP_PC = r"D:\PycharmProjects/"
 PATH_WIN_LAPTOP = r"C:\PycharmProjects/"
 PATH_LINUX_LAPTOP = r"/home/ignar-valme-p42/personal_git/Portfolio_calculator/"
+PATH_MACBOOK = r"/Users/ignar/Documents/git/Portfolio_calculator"
 
 
 def chrome_driver():
@@ -54,8 +55,10 @@ def what_path_for_file():
         return str(PATH_WIN_LAPTOP)
     elif os.path.exists(PATH_LINUX_LAPTOP):
         return str(PATH_LINUX_LAPTOP)
+    elif os.path.exists(PATH_MACBOOK):
+        return str(PATH_MACBOOK)
     else:
-        print(f"Current path: {os.getcwd()}, Path not found")
+        print(f"WARNING: Current Device path is not found: {os.getcwd()}")
         return None
 
 
