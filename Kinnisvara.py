@@ -16,21 +16,20 @@ LaenuSummad = {Korter1_Nimi: Korter1_Laen}
 
 
 # Laenumakse kuus - Laenu summa, intress % na ja aastad
-def apr_month(loan_sum, annual_interest_rate, years):
+def apr_month(loan_sum: float, annual_interest_rate: float, years: int) -> int:
     rate = annual_interest_rate / 1200
     months = years * 12
     # Ülemine osa APR tehtest ja kuud on astmes'
     a = loan_sum * rate * ((1 + rate) ** months)
     # Alumine osa tehtest ja kuud on astmes'
     b = ((1 + rate) ** months) - 1
-    # tehte jagamine'
     monthly_payment = a / b
 
     return round(monthly_payment)
 
 
 # Function that gives the balance - Laenu summa, intress %na, aastad ja number_of_payments made already kuudes
-def apr_balance(principle, annual_interest_rate, duration, number_of_payments):
+def apr_balance(principle: float, annual_interest_rate: float, duration: int, number_of_payments: int) -> float:
     rate = annual_interest_rate / 1200
     months = duration * 12
     a = (1 + rate) ** months
@@ -44,7 +43,7 @@ def apr_balance(principle, annual_interest_rate, duration, number_of_payments):
 
 
 # Total value of the property
-def kinnisvara_vaartus():
+def kinnisvara_vaartus() -> int:
     total_value = 0
     for k, v in Korterid.items():
         total_value += v

@@ -7,7 +7,10 @@ disable =
     line-too-long,
     missing-module-docstring,
     missing-function-docstring,
+    missing-class-docstring,
     expression-not-assigned,
     wrong-import-position,
     wrong-import-order,
+    broad-exception-raised,
+    bare-except,
     invalid-name # Allow snake_case names for now, remove later when we have time to refactor

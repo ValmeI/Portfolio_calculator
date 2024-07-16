@@ -55,7 +55,7 @@ def stock_price_from_google(stock: str, original_currency: bool) -> float:
     if original_currency:
         stock_prices_queue.put({stock: float(str_price_org_currency)})
         driver.quit()
-        return float(str_price_org_currency)
+        return round(float(str_price_org_currency), 0)
     convert_url = GOOGLE_BASE_URL + str_price_org_currency + "+usd+to+eur+currency+converter"
     driver.get(convert_url)
     convert_html = driver.page_source
@@ -67,7 +67,7 @@ def stock_price_from_google(stock: str, original_currency: bool) -> float:
     # UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
     stock_prices_queue.put({stock: float(to_eur_convert)})
-    return float(to_eur_convert)
+    return round(float(to_eur_convert), 0)
 
 
 def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
@@ -114,7 +114,7 @@ def stocks_portfolio_percentages(portfolio_size: int, stocks_dictionary: dict, o
         )
 
 
-def crypto_in_eur(crypto) -> float:
+def crypto_in_eur(crypto: str) -> float:
     driver = chrome_driver()
     url = GOOGLE_BASE_URL + crypto + "  price eur"
     driver.get(url)

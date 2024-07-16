@@ -38,7 +38,9 @@ def chrome_driver() -> WebDriver:
     return driver
 
 
-def vilde_calculation(input_day, last_calculation_sum, new_sum_to_add, last_input_excel_date) -> float:
+def vilde_calculation(
+    input_day: int, last_calculation_sum: float, new_sum_to_add: float, last_input_excel_date: str
+) -> float:
     if date.today().day == input_day and str(date.today()) != last_input_excel_date:
         new_vilde = float(last_calculation_sum)
         new_vilde += float(new_sum_to_add)
@@ -47,7 +49,7 @@ def vilde_calculation(input_day, last_calculation_sum, new_sum_to_add, last_inpu
         return float(last_calculation_sum)
 
 
-def dividend_with_certain_date(total):
+def dividend_with_certain_date(total: float) -> float:
     after_tax = total - (total * 0.2)
     return after_tax
 
@@ -66,14 +68,14 @@ def what_path_for_file() -> Optional[str]:
         return None
 
 
-def diff_months(date2, date1):
+def diff_months(date2: date, date1: date) -> int:
     difference = relativedelta.relativedelta(date2, date1)
     # convert years to months and add previous months
     total_months = difference.years * 12 + difference.months
     return total_months
 
 
-def get_funderbeam_marketvalue():
+def get_funderbeam_marketvalue() -> float:
     """
     26.08.2023 - Not used anymore as Funderbeam added 2FA and market value does not change that often anymore
     """

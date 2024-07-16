@@ -141,7 +141,9 @@ def get_last_row(excel_name: str, column_number: int) -> Any:
     return cell
 
 
-def year_to_year_percent(excel_name, mm_dd, todays_total_portfolio, excel_column_input, filter_nr_input=0):
+def year_to_year_percent(
+    excel_name: str, mm_dd: str, todays_total_portfolio: float, excel_column_input: str, filter_nr_input: int = 0
+) -> pd.DataFrame:
     file_name = excel_name + ".xlsx"
     workbook_name = file_name
     load_workbook(workbook_name).active
