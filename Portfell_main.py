@@ -16,6 +16,8 @@ import Valme
 from Excel_functions import column_width, HEADERS, need_new_excel_file, write_to_excel, year_to_year_percent
 from Functions import diff_months, what_path_for_file
 
+# TODO: Add logguru for logging and different log levels so debug/warning can be turned off from output
+
 # import from upper directory
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from Projects.My_Send_Email.Send import send_email  # type: ignore
