@@ -1,3 +1,4 @@
+from distutils.command import clean
 import queue
 import re
 import threading
@@ -12,11 +13,10 @@ stock_prices_queue = queue.Queue()
 GOOGLE_BASE_URL = "https://www.google.com/search?q="
 
 
-def to_int(input_number) -> int:
-    if isinstance(input_number, str):
-        input_number = replace_comma(input_number)
-        input_number = replace_whitespaces(input_number)
-    return int(float(input_number))
+def clean_string(input_string: str) -> str:
+    input_string = replace_comma(input_string)
+    input_string = replace_whitespaces(input_string)
+    return input_string
 
 
 def replace_comma(stat: str) -> str:
@@ -138,8 +138,7 @@ def crypto_in_eur(crypto: str) -> float:
         print("Crypto price not found")
         driver.quit()
         return float(0)
-    str_price_org_currency = replace_comma(str_price_org_currency)
-    str_price_org_currency = replace_whitespaces(str_price_org_currency)
+    str_price_org_currency = clean_string(str_price_org_currency)
     # UPDATE 4.06.2021 problems maybe fixed it'
     driver.quit()
     return float(str_price_org_currency)
@@ -153,8 +152,7 @@ def usd_to_eur_convert(stock: str, value_amount: float) -> float:
     convert_html = driver.page_source
     soup = BeautifulSoup(convert_html, "lxml")
     to_eur_convert = soup.find("span", class_="DFlfde SwHCTb").text
-    to_eur_convert = replace_whitespaces(to_eur_convert)
-    to_eur_convert = replace_comma(to_eur_convert)
+    to_eur_convert = clean_string(to_eur_convert)
     to_eur_convert = re.sub("[^0-9.,]", "", to_eur_convert)
     driver.quit()
     return float(to_eur_convert)
