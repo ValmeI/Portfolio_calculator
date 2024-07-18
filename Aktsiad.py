@@ -18,6 +18,7 @@ def to_int(input_number) -> int:
         input_number = replace_whitespaces(input_number)
     return int(float(input_number))
 
+
 def replace_comma(stat: str) -> str:
     stat = str(stat)
     if "," in stat:
@@ -42,9 +43,9 @@ def get_stock_price_from_yfinance(stock: str, original_currency: bool) -> float:
     one_day_close_price = yahoo_stock.history(period="1d")["Close"][0]
     str_price_org_currency = round(one_day_close_price)
     if original_currency:
-        return to_int(str_price_org_currency)
+        return float(str_price_org_currency)
     to_eur_convert = usd_to_eur_convert(stock, str_price_org_currency)
-    return to_int(to_eur_convert)
+    return float(to_eur_convert)
 
 
 def get_stock_price_from_google(stock: str, original_currency: bool) -> float:
@@ -62,20 +63,22 @@ def get_stock_price_from_google(stock: str, original_currency: bool) -> float:
     str_price_org_currency = replace_comma(str_price_org_currency)
     if original_currency:
         driver.quit()
-        return to_int(str_price_org_currency)
+        return float(str_price_org_currency)
     to_eur_convert = usd_to_eur_convert(stock, str_price_org_currency)
     driver.quit()
-    return to_int(to_eur_convert)
+    return float(to_eur_convert)
 
 
 def get_stock_price(stock: str, original_currency: bool) -> float:
     try:
         stock_price = get_stock_price_from_yfinance(stock, original_currency)
         stock_prices_queue.put({stock: float(stock_price)})
+        print(f"Stock price for {stock} is {stock_price} from Yahoo Finance")
         return stock_price
     except:  # bad practice but works for now will fix it later
         stock_price = get_stock_price_from_google(stock, original_currency)
         stock_prices_queue.put({stock: float(stock_price)})
+        print(f"Stock price for {stock} is {stock_price} from Google Search")
         return stock_price
 
 

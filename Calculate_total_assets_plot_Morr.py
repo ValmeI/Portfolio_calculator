@@ -1,70 +1,47 @@
 import plotly.graph_objs as go
-from Valme import (
-    JUR_FUNDERBEAM,
-    JUR_USA_STOCKS,
-    JUR_EUR_STOCKS,
-    FYS_EUR_STOCKS,
+from Aktsiad import get_stock_price
+from Morr import (
+    LAHTSE_RAHA,
+    MORR_EUR_STOCKS,
+    TAHTAJALINE_HOIUS,
     LHV_VOLAKIRI,
     BIGBANK_VOLAKIRI,
     HOLM_VOLAKIRI,
     LIVEN_VOLAKIRI,
-    CLEVERON_AKTSIA,
+    INBANK_VOLAKIRI,
+    MORR_RAHA,
 )
-from Aktsiad import get_stock_price
-from Kinnisvara import Korter1_Hind
-from Morr import LAHTSE_RAHA
 
 symbol_to_name: dict = {
-    "AAPL": "Apple",
-    "TSLA": "Tesla",
-    "AMD": "AMD",
-    "MSFT": "Microsoft",
-    "AMZN": "Amazon",
-    "GOOGL": "Google",
-    "NIO": "NIO",
-    "XPEV": "Xpeng - ADR",
-    "NKE": "Nike",
-    "INTC": "Intel",
-    "SNOW": "Snowflake",
-    "IUSE.MI": "S&P 500",
-    "BRK.B": "Berkshire Hathaway B",
-    "QCOM": "Qualcomm",
+    "TSM1T": "Tallinna Sadam",
     "TAL: TKM1T": "Tallinna Kaubamaja",
     "EFT1T": "EfTEN Real Estate Fund III",
+    "EXXT.DE": "ETF NASDAQ100",
+    "SPYW.DE": "ETF S&P 500",
 }
 
-
-jur_usa_stocks: dict = {
-    stock_sym: int(round(get_stock_price(stock_sym, False) * stock_amount, 0))
-    for stock_sym, stock_amount in JUR_USA_STOCKS.items()
-}
-
-jur_euro_stocks: dict = {
-    stock_sym: int(round(get_stock_price(stock_sym, True) * stock_amount, 0))
-    for stock_sym, stock_amount in JUR_EUR_STOCKS.items()
-}
 
 fys_euro_stocks: dict = {
     stock_sym: int(round(get_stock_price(stock_sym, True) * stock_amount, 0))
-    for stock_sym, stock_amount in FYS_EUR_STOCKS.items()
+    for stock_sym, stock_amount in MORR_EUR_STOCKS.items()
 }
 
 # combine the two dictionaries
-stocks_assets: dict = {**jur_euro_stocks, **fys_euro_stocks, **jur_usa_stocks}
+stocks_assets: dict = {**fys_euro_stocks}
 stock_with_names_assets: dict = {symbol_to_name.get(key, key): value for key, value in stocks_assets.items()}
 print(stock_with_names_assets)
 
+
 assets = {
-    "Funderbeam Kokku": JUR_FUNDERBEAM,
     "LHV Võlakirjad": LHV_VOLAKIRI,
     "Bigbank Võlakirjad": BIGBANK_VOLAKIRI,
     "Holm Bank Võlakirjad": HOLM_VOLAKIRI,
+    "InBank Võlakirjad": INBANK_VOLAKIRI,
     "Liven Võlakirjad": LIVEN_VOLAKIRI,
-    "Cleveron Aktsiad": CLEVERON_AKTSIA,
-    "Kinnisvara: Akadeemia 12 m2": Korter1_Hind,
     "Kinnisvara: Maja ehitus": LAHTSE_RAHA / 2,
+    "Tähtajaline hoius": TAHTAJALINE_HOIUS,
+    "Vaba Raha": MORR_RAHA,
 }
-
 
 assets.update({**stock_with_names_assets})
 
