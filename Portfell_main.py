@@ -184,7 +184,7 @@ if __name__ == "__main__":
         + f"\n\nK{Kinnisvara.Korter3_Nimi} laenu jääk {BalanceVilde90} €. Laenu summa {Kinnisvara.Korter3_Laen}"
     )
 
-    SYNOLOGY_PATH = r"Projects\My_Send_Email\synology_pass"
+    SYNOLOGY_PATH = r"Projects/My_Send_Email/synology_pass"
     # if it is friday and password file is in directory, then send e-mail'
     if os.path.isfile(what_path_for_file() + SYNOLOGY_PATH):
         no_file = f"E-maili saatmine: Parooli faili ei ole kataloogis: {what_path_for_file()}"
