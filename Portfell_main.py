@@ -15,12 +15,11 @@ import txt_write_move
 import Valme
 from Excel_functions import column_width, HEADERS, need_new_excel_file, write_to_excel, year_to_year_percent
 from Functions import diff_months, what_path_for_file
+import utils
 
 # TODO: Add logguru for logging and different log levels so debug/warning can be turned off from output
 
 # import from upper directory
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from Projects.My_Send_Email.Send import send_email  # type: ignore
 
 # to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
 # warn("""Cannot parse header or footer so it will be ignored""")'
@@ -65,7 +64,7 @@ if __name__ == "__main__":
     print(f"Laenu kohutus kokku(Kõik): {BalanceVilde90}")
 
     # Kinnisvara kokku. Liidetakse kõik Dics korterite ostu hinnad - balancid ehk palju laenu veel maksta'
-    kinnisvara_port = Kinnisvara.kinnisvara_vaartus() + Morr.LAHTSE_RAHA / 2
+    kinnisvara_port = Kinnisvara.calculate_real_estate_total_value() + Morr.LAHTSE_RAHA / 2
 
     print(f"\nHetkel korteri/krundi puhas väärtus kokku: {kinnisvara_port} €.")
     print(f"\nLähtse investeering: {fg('red')}{Morr.LAHTSE_RAHA / 2}{attr('reset')} €.")
@@ -166,41 +165,19 @@ if __name__ == "__main__":
     # compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on
     write_to_excel(excel_name="Portfell", list_of_data=values_list, how_to_add=2, compare_column=1)
     column_width(excel_name="Portfell", excel_headers=HEADERS)
-
-    # for combining results to send in e-mail
-    mail_body = (
-        f"\nTerve portfell kokku: {Ignar_Kokku} €."
-        + f"\nEesmärk krooni miljonär: {EESMARK_1} €."
-        + f"\nKrooni miljonär veel minna: {EESMARK_1 - Ignar_Kokku} €."
-        + f"\nEesmärk 35 aastaselt portfelli väärtus: {EESMARK_2} €."
-        + f"\nVeel minna: {EESMARK_2 - Ignar_Kokku} €."
-        + f"\nMörr-i aktsiad: {Morr.m_aktsiad} €."
-        + f"\nMörr-i vaba raha: {Morr.MORR_RAHA} €."
-        + f"\nMörr-i portfell kokku: {Morr_kokku} €. "
-        f"\nKelly portfell: {Kelly_kokku} €. "
-        + f"\nPere portfell kokku: {Pere} €."
-        + "\n\n"
-        + f"\nLaenu Vilde 90-193 makstud: {dateVilde90.years} Years, {dateVilde90.months} Months"
-        + f"\n\nK{Kinnisvara.Korter3_Nimi} laenu jääk {BalanceVilde90} €. Laenu summa {Kinnisvara.Korter3_Laen}"
+    mail_body = utils.generate_mail_body(
+        portfolio_goal_no_1=EESMARK_1,
+        portfolio_goal_no_2=EESMARK_2,
+        kelly_total_portfolio=Kelly_kokku,
+        family_total_portfolio=Pere,
+        ignar_total_portfolio=Ignar_Kokku,
+        morr_stocks=Morr.m_aktsiad,
+        morr_free_cash=Morr.MORR_RAHA,
+        morr_total_portfolio=Morr_kokku,
+        vilde_apartment=age,
+        real_estate=Valme,
+        vilde_balance=Valme.Uus_vilde_summa,
     )
-
-    SYNOLOGY_PATH = r"Projects/My_Send_Email/synology_pass"
-    # if it is friday and password file is in directory, then send e-mail'
-    if os.path.isfile(what_path_for_file() + SYNOLOGY_PATH):
-        no_file = f"E-maili saatmine: Parooli faili ei ole kataloogis: {what_path_for_file()}"
-        no_file = fg("red") + no_file + attr("reset")
-    elif date.today().weekday() == 4:
-        # Variables are: STMP, username, password file, send from, send to, email title and email body'
-        send_email(
-            stmp_variable="valme.noip.me",  # '192.168.50.235',
-            user="email",
-            password_file=what_path_for_file() + SYNOLOGY_PATH,
-            sent_from="email@valme.noip.me",
-            sent_to="val-capital@googlegroups.com",
-            sent_subject="Portfelli seis: " + time.strftime("%d-%m-%Y"),
-            sent_body=mail_body,
-        )
-    else:
-        print(f"{fg('green')}E-maili saatmine: Pole reede {attr('reset')}")
+    utils.check_if_and_send_email(mail_body=mail_body)
     print(f"Program Star_Time: {start_date} and End_time: {datetime.datetime.now()}")
     print(f"Program took: {round(time.time() - start_time)} seconds to run")

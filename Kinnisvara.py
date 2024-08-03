@@ -8,27 +8,21 @@ Korter1_Hind = 24500
 Korter3_Hind = 29900
 
 Korter1_Laen = 16708.64  # Algne laen 19600
-# Korter2_Laen = 22146.08 #Algne laen 23920
+# Korter2_Laen = 22146.08 # Algne laen 23920
 Korter3_Laen = 17940.00
 Korter4_Laen = 58500
-Korterid = {Korter1_Nimi: Korter1_Hind}
-LaenuSummad = {Korter1_Nimi: Korter1_Laen}
+APARTMENTS = {Korter1_Nimi: Korter1_Hind}
 
 
-# Laenumakse kuus - Laenu summa, intress % na ja aastad
 def apr_month(loan_sum: float, annual_interest_rate: float, years: int) -> int:
     rate = annual_interest_rate / 1200
     months = years * 12
-    # Ülemine osa APR tehtest ja kuud on astmes'
     a = loan_sum * rate * ((1 + rate) ** months)
-    # Alumine osa tehtest ja kuud on astmes'
     b = ((1 + rate) ** months) - 1
     monthly_payment = a / b
-
     return round(monthly_payment)
 
 
-# Function that gives the balance - Laenu summa, intress %na, aastad ja number_of_payments made already kuudes
 def apr_balance(principle: float, annual_interest_rate: float, duration: int, number_of_payments: int) -> float:
     rate = annual_interest_rate / 1200
     months = duration * 12
@@ -37,14 +31,8 @@ def apr_balance(principle: float, annual_interest_rate: float, duration: int, nu
     c = ((1 + rate) ** months) - 1
     if rate > 0:
         remaining_loan_balance = principle * ((a - b) / c)
-    # else:
-    # remaining_loan_balance = principle*(1-(number_of_payments/n))
     return round(remaining_loan_balance)
 
 
-# Total value of the property
-def kinnisvara_vaartus() -> int:
-    total_value = 0
-    for k, v in Korterid.items():
-        total_value += v
-    return total_value
+def calculate_real_estate_total_value() -> int:
+    return sum(v for v in APARTMENTS.values())

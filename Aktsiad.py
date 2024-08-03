@@ -1,4 +1,3 @@
-from distutils.command import clean
 import queue
 import re
 import threading
