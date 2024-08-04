@@ -174,10 +174,13 @@ if __name__ == "__main__":
         morr_stocks=Morr.m_aktsiad,
         morr_free_cash=Morr.MORR_RAHA,
         morr_total_portfolio=Morr_kokku,
-        vilde_apartment=age,
-        real_estate=Valme,
-        vilde_balance=Valme.Uus_vilde_summa,
+        vilde_apartment=dateVilde90,
+        real_estate=Kinnisvara,
+        vilde_balance=BalanceVilde90,
     )
     utils.check_if_and_send_email(mail_body=mail_body)
-    print(f"Program Star_Time: {start_date} and End_time: {datetime.datetime.now()}")
+    print(
+        f"Program Start_Time: {start_date.strftime('%Y-%m-%d %H:%M:%S')} 
+            and End_time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+    )
     print(f"Program took: {round(time.time() - start_time)} seconds to run")

@@ -20,20 +20,13 @@ def clean_string(input_string: str) -> str:
 
 def replace_comma(stat: str) -> str:
     stat = str(stat)
-    if "," in stat:
-        stat = stat.replace(",", ".")
-        return stat
-    return stat
+    return stat.replace(",", ".") if "," in stat or "." in stat else stat
 
 
 def replace_whitespaces(stat: str) -> str:
     stat = str(stat)
-    if " " in stat:
-        stat = stat.replace(" ", "")
-        return stat
-    elif " " in stat:
-        stat = stat.replace(" ", "")
-        return stat
+    if " " in stat or " " in stat:
+        stat = stat.replace(" ", "").replace(" ", "")
     return stat
 
 

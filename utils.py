@@ -1,13 +1,9 @@
 from Functions import what_path_for_file
 from colored import attr, fg
 import os
-import sys
 import time
 from datetime import date
-
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from Projects.My_Send_Email.Send import send_email  # type: ignore
+import mail
 
 
 def generate_mail_body(
@@ -19,9 +15,9 @@ def generate_mail_body(
     morr_stocks: float,
     morr_free_cash: float,
     morr_total_portfolio: float,
-    vilde_apartment: date.relativedelta,
-    real_estate,
-    vilde_balance,
+    vilde_apartment: date,
+    real_estate: float,
+    vilde_balance: float,
 ) -> str:
 
     # for combining results to send in e-mail
@@ -51,7 +47,7 @@ def check_if_and_send_email(mail_body: str) -> None:
         no_file = fg("red") + no_file + attr("reset")
     elif date.today().weekday() == 4:
         # Variables are: STMP, username, password file, send from, send to, email title and email body'
-        send_email(
+        mail.send_email(
             stmp_variable="valme.noip.me",  # '192.168.50.235',
             user="email",
             password_file=what_path_for_file() + SYNOLOGY_PATH,
