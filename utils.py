@@ -24,7 +24,7 @@ def get_data_copy_paths_based_on_os() -> tuple:
     return TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_PATH
 
 
-def copy_files_to_nas(TXT_SOURCE: str, EXCEL_SOURCE: str, PC_DES_PATH: str, NAS_DES_PATH: str) -> None:
+def copy_files_to_nas(TXT_SOURCE: str, EXCEL_SOURCE: str, NAS_DES_PATH: str) -> None:
     # Copy txt result and excel file to NAS server, if all the files or path exists'
     if os.path.isfile(TXT_SOURCE) and os.path.isfile(EXCEL_SOURCE) and os.path.isdir(NAS_DES_PATH):
         # Copy previously created file to Calculators directory'
@@ -68,7 +68,7 @@ def generate_mail_body(
     return mail_body
 
 
-def check_if_and_send_email(mail_body: str, day_to_send_email: str, send_every_day: bool) -> None:
+def check_if_and_send_email(mail_body: str, day_to_send_email: str, send_every_day: bool = False) -> None:
 
     SYNOLOGY_PATH = r"Projects/My_Send_Email/synology_pass"
     password_file_path = what_path_for_file() + SYNOLOGY_PATH

@@ -31,6 +31,9 @@ if __name__ == "__main__":
 
     # create file from consol output'
     sys.stdout = txt_write_move.Logger()
+    
+    TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_DES_PATH = utils.get_data_copy_paths_based_on_os()
+    utils.copy_files_to_nas(TXT_SOURCE, EXCEL_SOURCE, NAS_DES_PATH)
 
     today = date.today()
     # Akadeemia 42-63 Välja ostetud 10.11.2023 - Laenujääk 12 200 EUR
@@ -162,11 +165,7 @@ if __name__ == "__main__":
         real_estate=Kinnisvara,
         vilde_balance=BalanceVilde90,
     )
-    utils.check_if_and_send_email(mail_body=mail_body, day_to_send_email="Sunday")
-
-    TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_DES_PATH = utils.get_data_copy_paths_based_on_os()
-
-    utils.copy_files_to_nas(TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_DES_PATH)
+    utils.check_if_and_send_email(mail_body=mail_body, day_to_send_email="Sunday", send_every_day=True)
 
     print(f"Program took: {round(time.time() - start_time)} seconds to run")
     print("==================================================")
