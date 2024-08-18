@@ -30,7 +30,7 @@ def copy_files_to_nas(TXT_SOURCE: str, EXCEL_SOURCE: str, NAS_DES_PATH: str) -> 
         # Copy previously created file to Calculators directory'
         shutil.copy(TXT_SOURCE, NAS_DES_PATH)
         shutil.copy(EXCEL_SOURCE, NAS_DES_PATH)
-        print(f"Successfully copied at {datetime.now()} to {NAS_DES_PATH}")
+        print(f'Successfully copied "{TXT_SOURCE}" to "{NAS_DES_PATH}".')
     else:
         print(f"Could not copy at {datetime.now()} to {NAS_DES_PATH}")
 
