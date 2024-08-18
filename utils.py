@@ -1,9 +1,38 @@
+import shutil
 from Functions import what_path_for_file
 from colored import attr, fg
 import os
 import time
-from datetime import date
+from datetime import date, datetime
 import mail
+
+
+def get_data_copy_paths_based_on_os() -> tuple:
+    BASE_PATH = "Portfolio_calculator"
+    BASE_PATH = what_path_for_file()
+
+    # Define paths using os.path.join for cross-platform compatibility
+    TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator", "Print_result.txt")
+    EXCEL_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator", "Portfell.xlsx")
+    PC_DES_PATH = os.path.join(BASE_PATH, "Calculators", "portfolio_result")
+
+    if os.name == "nt":  # Windows
+        NAS_PATH = r"\\RMI_NAS\Python\Calculators\portfolio_result"
+    elif os.name == "posix":  # macOS or Linux
+        NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"
+
+    return TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_PATH
+
+
+def copy_files_to_nas(TXT_SOURCE: str, EXCEL_SOURCE: str, PC_DES_PATH: str, NAS_DES_PATH: str) -> None:
+    # Copy txt result and excel file to NAS server, if all the files or path exists'
+    if os.path.isfile(TXT_SOURCE) and os.path.isfile(EXCEL_SOURCE) and os.path.isdir(NAS_DES_PATH):
+        # Copy previously created file to Calculators directory'
+        shutil.copy(TXT_SOURCE, NAS_DES_PATH)
+        shutil.copy(EXCEL_SOURCE, NAS_DES_PATH)
+        print(f"Successfully copied at {datetime.now()} to {NAS_DES_PATH}")
+    else:
+        print(f"Could not copy at {datetime.now()} to {NAS_DES_PATH}")
 
 
 def generate_mail_body(
@@ -39,22 +68,29 @@ def generate_mail_body(
     return mail_body
 
 
-def check_if_and_send_email(mail_body: str) -> None:
+def check_if_and_send_email(mail_body: str, day_to_send_email: str, send_every_day: bool) -> None:
+
     SYNOLOGY_PATH = r"Projects/My_Send_Email/synology_pass"
-    # if it is friday and password file is in directory, then send e-mail'
+    password_file_path = what_path_for_file() + SYNOLOGY_PATH
+
     if os.path.isfile(what_path_for_file() + SYNOLOGY_PATH):
         no_file = f"E-maili saatmine: Parooli faili ei ole kataloogis: {what_path_for_file()}"
         no_file = fg("red") + no_file + attr("reset")
-    elif date.today().weekday() == 4:
+        return
+    if date.today().strftime("%A") == day_to_send_email or send_every_day is True:
         # Variables are: STMP, username, password file, send from, send to, email title and email body'
-        mail.send_email(
-            stmp_variable="valme.noip.me",  # '192.168.50.235',
-            user="email",
-            password_file=what_path_for_file() + SYNOLOGY_PATH,
-            sent_from="email@valme.noip.me",
-            sent_to="val-capital@googlegroups.com",
-            sent_subject="Portfelli seis: " + time.strftime("%d-%m-%Y"),
-            sent_body=mail_body,
-        )
+        try:
+            mail.send_email(
+                stmp_variable="valme.noip.me",  # '192.168.50.235',
+                user="email",
+                password_file=password_file_path,
+                sent_from="email@valme.noip.me",
+                sent_to="val-capital@googlegroups.com",
+                sent_subject=f"Portfelli seis: {time.strftime('%d-%m-%Y')}",
+                sent_body=mail_body,
+            )
+            print(f"{fg('green')}E-maili saatmine: E-mail saadetud!{attr('reset')}")
+        except Exception as e:
+            print(f"{fg('red')}E-maili saatmine ebaõnnestus: {e}{attr('reset')}")
     else:
-        print(f"{fg('green')}E-maili saatmine: Pole reede {attr('reset')}")
+        print(f"{fg('green')}E-maili saatmine: Pole {day_to_send_email}{attr('reset')}")

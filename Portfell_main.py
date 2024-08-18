@@ -1,5 +1,3 @@
-import os
-import shutil
 import sys
 import time
 import warnings
@@ -14,7 +12,7 @@ import Morr
 import txt_write_move
 import Valme
 from Excel_functions import column_width, HEADERS, need_new_excel_file, write_to_excel, year_to_year_percent
-from Functions import diff_months, what_path_for_file
+from Functions import diff_months
 import utils
 
 # TODO: Add logguru for logging and different log levels so debug/warning can be turned off from output
@@ -30,20 +28,6 @@ if __name__ == "__main__":
     print(f'Programm: "{__file__}" käivitus: {datetime.datetime.now()}')
     start_time = time.time()
     start_date = datetime.datetime.now()
-    PATH = what_path_for_file()
-    TXT_SOURCE = PATH + r"Portfolio_calculator/Print_result.txt"
-    EXCEL_SOURCE = PATH + r"Portfolio_calculator\Portfell.xlsx"
-    PC_DES_PATH = PATH + r"Calculators\portfolio_result"
-    NAS_DES_PATH = r"\\RMI_NAS\Python\Calculators\portfolio_result"
-
-    # Copy txt result and excel file to NAS server, if all the files or path exists'
-    if os.path.isfile(TXT_SOURCE) and os.path.isfile(EXCEL_SOURCE) and os.path.isdir(NAS_DES_PATH):
-        # Copy previously created file to Calculators directory'
-        shutil.copy(TXT_SOURCE, NAS_DES_PATH)
-        shutil.copy(EXCEL_SOURCE, NAS_DES_PATH)
-        print(f"Kopeeritud edukalt {datetime.datetime.now()}")
-    else:
-        print(f"Ei kopeeritud {datetime.datetime.now()}")
 
     # create file from consol output'
     sys.stdout = txt_write_move.Logger()
@@ -178,9 +162,14 @@ if __name__ == "__main__":
         real_estate=Kinnisvara,
         vilde_balance=BalanceVilde90,
     )
-    utils.check_if_and_send_email(mail_body=mail_body)
-    print(
-        f"Program Start_Time: {start_date.strftime('%Y-%m-%d %H:%M:%S')} 
-            and End_time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-    )
+    utils.check_if_and_send_email(mail_body=mail_body, day_to_send_email="Sunday")
+
+    TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_DES_PATH = utils.get_data_copy_paths_based_on_os()
+
+    utils.copy_files_to_nas(TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_DES_PATH)
+
     print(f"Program took: {round(time.time() - start_time)} seconds to run")
+    print("==================================================")
+    print(
+        f"Program Start_Time: {start_date.strftime('%Y-%m-%d %H:%M:%S')} and End_time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+    )

@@ -10,7 +10,7 @@ VAL_CAPITAL_RAHA = 17500
 
 TAHTAJALINE_HOIUS = 4000
 
-LAHTSE_RAHA = 55370  # maha liita tasaarvestuse raha
+LAHTSE_RAHA = 53370  # maha liita tasaarvestuse raha
 
 m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=MORR_EUR_STOCKS, org_currency=True))
 
