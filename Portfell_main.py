@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
     # create file from consol output'
     sys.stdout = txt_write_move.Logger()
-    
+
     TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_DES_PATH = utils.get_data_copy_paths_based_on_os()
     utils.copy_files_to_nas(TXT_SOURCE, EXCEL_SOURCE, NAS_DES_PATH)
 
