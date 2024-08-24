@@ -99,6 +99,7 @@ if __name__ == "__main__":
     # check if new Excel file is needed and if so, create it
     need_new_excel_file(excel_name="Portfell", sheet_name="Porfelli Info", excel_headers=Excel_functions.HEADERS)
 
+    # TODO: move those family pandas df printing to separate function
     # compare the current portfolio with the previous years
     print("=================Ignar's==========================")
     print(
