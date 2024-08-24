@@ -1,10 +1,12 @@
 import queue
 import re
 import threading
+from app_logging import logger
 import warnings
 import yfinance as yf
 from bs4 import BeautifulSoup
 from Functions import chrome_driver
+import logging
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -31,9 +33,15 @@ def replace_whitespaces(stat: str) -> str:
 
 
 def get_stock_price_from_yfinance(stock: str, original_currency: bool) -> float:
-    yahoo_stock = yf.Ticker(stock)
-    one_day_close_price = yahoo_stock.history(period="1d")["Close"][0]
-    str_price_org_currency = round(one_day_close_price)
+    try:
+        # Suppress "No data found, symbol may be delisted"
+        logging.getLogger("yfinance").setLevel(logging.CRITICAL)
+        yahoo_stock = yf.Ticker(stock)
+        one_day_close_price = yahoo_stock.history(period="1d")["Close"][0]
+        str_price_org_currency = round(one_day_close_price)
+    except IndexError:
+        logger.warning(f"No data found for {stock}, symbol may be delisted")
+        return 0.0
     if original_currency:
         return float(str_price_org_currency)
     to_eur_convert = usd_to_eur_convert(stock, str_price_org_currency)
@@ -49,7 +57,7 @@ def get_stock_price_from_google(stock: str, original_currency: bool) -> float:
     try:
         str_price_org_currency = soup.find("span", jsname="vWLAgc").text.strip(",.-").replace(" ", "")
     except:  # bad practice but works for now will fix it later
-        print(f"Stock price not found for {stock} in Google search")
+        logger.debug(f"Stock price not found for {stock} in Google search")
         driver.quit()
         return float(0)
     str_price_org_currency = replace_comma(str_price_org_currency)
@@ -65,12 +73,12 @@ def get_stock_price(stock: str, original_currency: bool) -> float:
     try:
         stock_price = get_stock_price_from_yfinance(stock, original_currency)
         stock_prices_queue.put({stock: float(stock_price)})
-        print(f"Stock price for {stock} is {stock_price} from Yahoo Finance")
+        logger.debug(f"Stock price for {stock} is {stock_price} from Yahoo Finance")
         return stock_price
     except:  # bad practice but works for now will fix it later
         stock_price = get_stock_price_from_google(stock, original_currency)
         stock_prices_queue.put({stock: float(stock_price)})
-        print(f"Stock price for {stock} is {stock_price} from Google Search")
+        logger.debug(f"Stock price for {stock} is {stock_price} from Google Search")
         return stock_price
 
 
@@ -127,7 +135,7 @@ def crypto_in_eur(crypto: str) -> float:
     try:
         str_price_org_currency = soup.find("span", class_="pclqee").text
     except AttributeError:
-        print("Crypto price not found")
+        logger.error("Crypto price not found")
         driver.quit()
         return float(0)
     str_price_org_currency = clean_string(str_price_org_currency)
@@ -137,7 +145,7 @@ def crypto_in_eur(crypto: str) -> float:
 
 
 def usd_to_eur_convert(stock: str, value_amount: float) -> float:
-    print(f"Converting {stock} price of {value_amount} USD to EUR")
+    logger.debug(f"Converting {stock} price of {value_amount} USD to EUR")
     driver = chrome_driver()
     convert_url = GOOGLE_BASE_URL + str(value_amount) + "+usd+to+eur+currency+converter"
     driver.get(convert_url)

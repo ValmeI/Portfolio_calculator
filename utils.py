@@ -5,6 +5,9 @@ import os
 import time
 from datetime import date, datetime
 import mail
+from app_logging import logger
+import subprocess
+import platform
 
 
 def get_data_copy_paths_based_on_os() -> tuple:
@@ -20,19 +23,42 @@ def get_data_copy_paths_based_on_os() -> tuple:
         NAS_PATH = r"\\RMI_NAS\Python\Calculators\portfolio_result"
     elif os.name == "posix":  # macOS or Linux
         NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"
-
+    logger.debug(
+        f"TXT_SOURCE: {TXT_SOURCE}, EXCEL_SOURCE: {EXCEL_SOURCE}, PC_DES_PATH: {PC_DES_PATH}, NAS_PATH: {NAS_PATH}"
+    )
     return TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_PATH
 
 
-def copy_files_to_nas(TXT_SOURCE: str, EXCEL_SOURCE: str, NAS_DES_PATH: str) -> None:
-    # Copy txt result and excel file to NAS server, if all the files or path exists'
-    if os.path.isfile(TXT_SOURCE) and os.path.isfile(EXCEL_SOURCE) and os.path.isdir(NAS_DES_PATH):
-        # Copy previously created file to Calculators directory'
-        shutil.copy(TXT_SOURCE, NAS_DES_PATH)
-        shutil.copy(EXCEL_SOURCE, NAS_DES_PATH)
-        print(f'Successfully copied "{TXT_SOURCE}" to "{NAS_DES_PATH}".')
+def copy_file_to_nas(source_file: str, destination_path: str) -> None:
+    # Check if the source file exists and the destination directory exists
+    if os.path.isfile(source_file) and os.path.isdir(destination_path):
+        if platform.system() in ["Linux", "Darwin"]:  # Darwin is macOS
+            try:
+                # Use rsync to copy the file to the NAS destination path
+                result = subprocess.run(
+                    ["rsync", "-av", source_file, destination_path], capture_output=True, text=True, check=True
+                )
+                if result.returncode == 0:
+                    print(f'Successfully copied "{source_file}" to "{destination_path}" using rsync.')
+                else:
+                    logger.warning(
+                        f"Failed to copy {source_file} at {datetime.now()} to {destination_path} using rsync: {result.stderr}"
+                    )
+            except Exception as e:
+                logger.error(f"An error occurred while copying {source_file} to NAS using rsync: {e}")
+
+        elif platform.system() == "Windows":
+            try:
+                shutil.copy(source_file, destination_path)
+                print(f'Successfully copied "{source_file}" to "{destination_path}" using shutil.')
+            except Exception as e:
+                logger.error(f"An error occurred while copying {source_file} to NAS using shutil: {e}")
+        else:
+            logger.error(f"Unsupported OS: {platform.system()}")
     else:
-        print(f"Could not copy at {datetime.now()} to {NAS_DES_PATH}")
+        logger.warning(
+            f"Could not copy at {datetime.now()} to {destination_path} - source file or destination directory missing."
+        )
 
 
 def generate_mail_body(
@@ -91,6 +117,6 @@ def check_if_and_send_email(mail_body: str, day_to_send_email: str, send_every_d
             )
             print(f"{fg('green')}E-maili saatmine: E-mail saadetud!{attr('reset')}")
         except Exception as e:
-            print(f"{fg('red')}E-maili saatmine ebaõnnestus: {e}{attr('reset')}")
+            logger.warning(f"{fg('red')}E-maili saatmine ebaõnnestus: {e}{attr('reset')}")
     else:
         print(f"{fg('green')}E-maili saatmine: Pole {day_to_send_email}{attr('reset')}")
