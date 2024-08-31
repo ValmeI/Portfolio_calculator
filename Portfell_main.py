@@ -17,7 +17,7 @@ from Functions import diff_months
 import utils
 
 # TODO: Add logguru for logging and different log levels so debug/warning can be turned off from output
-
+# TODO: Cache the USD to EUR Conversion Rate and calculate it only once
 # to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
 # warn("""Cannot parse header or footer so it will be ignored""")'
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")

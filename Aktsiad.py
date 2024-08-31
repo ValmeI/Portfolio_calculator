@@ -1,6 +1,7 @@
 import queue
 import re
 import threading
+import requests
 from app_logging import logger
 import warnings
 import yfinance as yf
@@ -70,17 +71,24 @@ def get_stock_price_from_google(stock: str, original_currency: bool) -> float:
 
 
 def get_stock_price(stock: str, original_currency: bool) -> float:
-    try:
-        stock_price = get_stock_price_from_yfinance(stock, original_currency)
-        stock_prices_queue.put({stock: float(stock_price)})
+    logger.debug(f"[{threading.current_thread().name}] fetching stock price for {stock}")
+    #try:
+    stock_price = get_stock_price_from_yfinance(stock, original_currency)
+    if stock_price == 0.0:
+        logger.warning(f"Stock price not found for {stock} from Yahoo Finance try Google Search")
+        stock_price = get_stock_price_from_google(stock, original_currency)
+    else:
         logger.debug(f"Stock price for {stock} is {stock_price} from Yahoo Finance")
-        return stock_price
-    except:  # bad practice but works for now will fix it later
+    stock_prices_queue.put({stock: float(stock_price)})
+    return stock_price
+"""
+    except:  # bad practice but works for now, will fix it later
+        logger.warning(f"Exception got from Yahoo Finance for {stock}, try Google Search")
         stock_price = get_stock_price_from_google(stock, original_currency)
         stock_prices_queue.put({stock: float(stock_price)})
         logger.debug(f"Stock price for {stock} is {stock_price} from Google Search")
         return stock_price
-
+"""
 
 def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
     """Returns total value of stocks in portfolio,
@@ -127,25 +135,20 @@ def stocks_portfolio_percentages(portfolio_size: int, stocks_dictionary: dict, o
 
 
 def crypto_in_eur(crypto: str) -> float:
-    driver = chrome_driver()
-    url = GOOGLE_BASE_URL + crypto + "  price eur"
-    driver.get(url)
-    convert_html = driver.page_source
-    soup = BeautifulSoup(convert_html, "lxml")
+    crypto = crypto.lower().replace(" ", "")
+    logger.debug(f"Fetching the price of {crypto} in EUR")
     try:
-        str_price_org_currency = soup.find("span", class_="pclqee").text
-    except AttributeError:
-        logger.error("Crypto price not found")
-        driver.quit()
-        return float(0)
-    str_price_org_currency = clean_string(str_price_org_currency)
-    # UPDATE 4.06.2021 problems maybe fixed it'
-    driver.quit()
-    return float(str_price_org_currency)
-
+        url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto}&vs_currencies=eur"
+        response = requests.get(url, timeout=30)
+        if response.status_code == 200:
+            data = response.json()
+            return data[crypto]['eur']
+    except Exception as e:
+        logger.error(f"Failed to fetch the price from the API: {e}")
+        return 0
 
 def usd_to_eur_convert(stock: str, value_amount: float) -> float:
-    logger.debug(f"Converting {stock} price of {value_amount} USD to EUR")
+    logger.debug(f"[{threading.current_thread().name}] Converting {stock} price of {value_amount} USD to EUR")
     driver = chrome_driver()
     convert_url = GOOGLE_BASE_URL + str(value_amount) + "+usd+to+eur+currency+converter"
     driver.get(convert_url)

@@ -1,4 +1,9 @@
 import plotly.graph_objs as go
+
+import sys
+from os.path import dirname, abspath
+sys.path.append(dirname(dirname(abspath(__file__))))
+
 from Valme import (
     JUR_FUNDERBEAM,
     JUR_USA_STOCKS,
@@ -65,7 +70,6 @@ assets = {
     "Kinnisvara: Maja ehitus": LAHTSE_RAHA / 2,
 }
 
-
 assets.update({**stock_with_names_assets})
 
 kokku_varad = sum(assets.values())
@@ -84,6 +88,18 @@ fig = go.Figure(
 
 # Update the layout for a cleaner look
 fig.update_layout(title="Finance Portfolio Overview", showlegend=True)
+
+# Add the total amount as an annotation
+fig.add_annotation(
+    text=f"Total: {kokku_varad} EUR",
+    x=0.5,  # Position in the middle
+    y=-0.1,  # Position below the pie chart
+    showarrow=False,
+    font=dict(size=16),
+    xref="paper",
+    yref="paper"
+)
+
 # title to center
 fig.update_layout(title_x=0.5)
 fig.show()

@@ -9,6 +9,8 @@ path = what_path_for_file()
 
 FYS_EUR_STOCKS = {"TAL: TKM1T": 355, "EFT1T": 113}
 
+FYS_USA_STOCKS = {"SXR8": 0.805}
+
 JUR_USA_STOCKS = {
     "AAPL": 69,
     "TSLA": 15,
@@ -25,7 +27,7 @@ JUR_USA_STOCKS = {
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE.MI": 80.2097}
+JUR_EUR_STOCKS = {"IUSE.MI": 80.6334}
 
 BTC_AMOUNT = 0.016908
 ETH_AMOUNT = 0.12037
@@ -51,6 +53,7 @@ CLEVERON_AKTSIA = 4 * 150  # Ümber hinnatud 11.11.2023. Uus hind 150 EUR, vana 
 JurAktsiad = round(
     Aktsiad.stocks_value_combined(stock_dictionary=JUR_USA_STOCKS, org_currency=False)
     + Aktsiad.stocks_value_combined(stock_dictionary=JUR_EUR_STOCKS, org_currency=True)
+    + Aktsiad.stocks_value_combined(stock_dictionary=FYS_USA_STOCKS, org_currency=False)
     + CLEVERON_AKTSIA
 )
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
@@ -61,9 +64,9 @@ LIVEN_VOLAKIRI = 4300
 EVERAUS_VOLAKIRI = 5000
 
 # jur isiku raha LHV'
-JUR_RAHA = 730
+JUR_RAHA = 600
 JUR_FUNDERBEAM = 4400  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
-JUR_IB_RAHA = 0
+JUR_IB_RAHA = 150
 JurIsik = round(
     JUR_RAHA
     + JUR_FUNDERBEAM
