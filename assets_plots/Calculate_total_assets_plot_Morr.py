@@ -2,6 +2,7 @@ import plotly.graph_objs as go
 
 import sys
 from os.path import dirname, abspath
+
 sys.path.append(dirname(dirname(abspath(__file__))))
 
 from Aktsiad import get_stock_price
@@ -75,7 +76,7 @@ fig.add_annotation(
     showarrow=False,
     font=dict(size=16),
     xref="paper",
-    yref="paper"
+    yref="paper",
 )
 
 # title to center

@@ -72,23 +72,22 @@ def get_stock_price_from_google(stock: str, original_currency: bool) -> float:
 
 def get_stock_price(stock: str, original_currency: bool) -> float:
     logger.debug(f"[{threading.current_thread().name}] fetching stock price for {stock}")
-    #try:
-    stock_price = get_stock_price_from_yfinance(stock, original_currency)
-    if stock_price == 0.0:
-        logger.warning(f"Stock price not found for {stock} from Yahoo Finance try Google Search")
-        stock_price = get_stock_price_from_google(stock, original_currency)
-    else:
-        logger.debug(f"Stock price for {stock} is {stock_price} from Yahoo Finance")
-    stock_prices_queue.put({stock: float(stock_price)})
-    return stock_price
-"""
+    try:
+        stock_price = get_stock_price_from_yfinance(stock, original_currency)
+        if stock_price == 0.0:
+            logger.warning(f"Stock price not found for {stock} from Yahoo Finance try Google Search")
+            stock_price = get_stock_price_from_google(stock, original_currency)
+        else:
+            logger.debug(f"Stock price for {stock} is {stock_price} from Yahoo Finance")
+        stock_prices_queue.put({stock: float(stock_price)})
+        return stock_price
     except:  # bad practice but works for now, will fix it later
         logger.warning(f"Exception got from Yahoo Finance for {stock}, try Google Search")
         stock_price = get_stock_price_from_google(stock, original_currency)
         stock_prices_queue.put({stock: float(stock_price)})
         logger.debug(f"Stock price for {stock} is {stock_price} from Google Search")
         return stock_price
-"""
+
 
 def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
     """Returns total value of stocks in portfolio,
@@ -142,10 +141,11 @@ def crypto_in_eur(crypto: str) -> float:
         response = requests.get(url, timeout=30)
         if response.status_code == 200:
             data = response.json()
-            return data[crypto]['eur']
+            return data[crypto]["eur"]
     except Exception as e:
         logger.error(f"Failed to fetch the price from the API: {e}")
         return 0
+
 
 def usd_to_eur_convert(stock: str, value_amount: float) -> float:
     logger.debug(f"[{threading.current_thread().name}] Converting {stock} price of {value_amount} USD to EUR")

@@ -2,9 +2,11 @@ import plotly.graph_objs as go
 
 import sys
 from os.path import dirname, abspath
+
 sys.path.append(dirname(dirname(abspath(__file__))))
 
 from Valme import (
+    FYS_USA_STOCKS,
     JUR_FUNDERBEAM,
     JUR_USA_STOCKS,
     JUR_EUR_STOCKS,
@@ -54,8 +56,13 @@ fys_euro_stocks: dict = {
     for stock_sym, stock_amount in FYS_EUR_STOCKS.items()
 }
 
+fys_usa_stocks: dict = {
+    stock_sym: int(round(get_stock_price(stock_sym, False) * stock_amount, 0))
+    for stock_sym, stock_amount in FYS_USA_STOCKS.items()
+}
+
 # combine the two dictionaries
-stocks_assets: dict = {**jur_euro_stocks, **fys_euro_stocks, **jur_usa_stocks}
+stocks_assets: dict = {**jur_euro_stocks, **fys_euro_stocks, **jur_usa_stocks, **fys_usa_stocks}
 stock_with_names_assets: dict = {symbol_to_name.get(key, key): value for key, value in stocks_assets.items()}
 print(stock_with_names_assets)
 
@@ -97,7 +104,7 @@ fig.add_annotation(
     showarrow=False,
     font=dict(size=16),
     xref="paper",
-    yref="paper"
+    yref="paper",
 )
 
 # title to center

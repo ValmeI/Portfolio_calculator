@@ -45,7 +45,9 @@ VILDE90_193_LAEN_KUUPAEV = date(2019, 4, 9)
 
 # emale võlg 10k
 FUSISIK_RAHA = -10000
-FysIsikAktsaid = Aktsiad.stocks_value_combined(stock_dictionary=FYS_EUR_STOCKS, org_currency=True)
+FysIsikAktsaid = Aktsiad.stocks_value_combined(
+    stock_dictionary=FYS_EUR_STOCKS, org_currency=True
+) + Aktsiad.stocks_value_combined(stock_dictionary=FYS_USA_STOCKS, org_currency=False)
 
 FysIsik = round(FUSISIK_RAHA + FysIsikAktsaid)
 
@@ -53,7 +55,6 @@ CLEVERON_AKTSIA = 4 * 150  # Ümber hinnatud 11.11.2023. Uus hind 150 EUR, vana 
 JurAktsiad = round(
     Aktsiad.stocks_value_combined(stock_dictionary=JUR_USA_STOCKS, org_currency=False)
     + Aktsiad.stocks_value_combined(stock_dictionary=JUR_EUR_STOCKS, org_currency=True)
-    + Aktsiad.stocks_value_combined(stock_dictionary=FYS_USA_STOCKS, org_currency=False)
     + CLEVERON_AKTSIA
 )
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
