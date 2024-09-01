@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 stock_prices_queue = queue.Queue()
 GOOGLE_BASE_URL = "https://www.google.com/search?q="
-
+CONVERSION_RATE_CACHE = {}
 
 def clean_string(input_string: str) -> str:
     input_string = replace_comma(input_string)
@@ -45,7 +45,7 @@ def get_stock_price_from_yfinance(stock: str, original_currency: bool) -> float:
         return 0.0
     if original_currency:
         return float(str_price_org_currency)
-    to_eur_convert = usd_to_eur_convert(stock, str_price_org_currency)
+    to_eur_convert = usd_to_eur_convert(stock)
     return float(to_eur_convert)
 
 
@@ -65,7 +65,7 @@ def get_stock_price_from_google(stock: str, original_currency: bool) -> float:
     if original_currency:
         driver.quit()
         return float(str_price_org_currency)
-    to_eur_convert = usd_to_eur_convert(stock, str_price_org_currency)
+    to_eur_convert = usd_to_eur_convert(stock)
     driver.quit()
     return float(to_eur_convert)
 
@@ -146,16 +146,18 @@ def crypto_in_eur(crypto: str) -> float:
         logger.error(f"Failed to fetch the price from the API: {e}")
         return 0
 
+def get_usd_to_eur_conversion_rate() -> float:
+    if "USD_EUR" not in CONVERSION_RATE_CACHE:
+        logger.debug("Fetching USD to EUR conversion rate")
+        url = "https://api.exchangerate-api.com/v4/latest/USD"
+        response = requests.get(url, timeout=30)
+        if response.status_code == 200:
+            data = response.json()
+            CONVERSION_RATE_CACHE["USD_EUR"] = data['rates']['EUR']
+        else:
+            logger.error(f"Failed to fetch conversion rate from {url}: {response.text}")
+    return CONVERSION_RATE_CACHE["USD_EUR"]
 
-def usd_to_eur_convert(stock: str, value_amount: float) -> float:
-    logger.debug(f"[{threading.current_thread().name}] Converting {stock} price of {value_amount} USD to EUR")
-    driver = chrome_driver()
-    convert_url = GOOGLE_BASE_URL + str(value_amount) + "+usd+to+eur+currency+converter"
-    driver.get(convert_url)
-    convert_html = driver.page_source
-    soup = BeautifulSoup(convert_html, "lxml")
-    to_eur_convert = soup.find("span", class_="DFlfde SwHCTb").text
-    to_eur_convert = clean_string(to_eur_convert)
-    to_eur_convert = re.sub("[^0-9.,]", "", to_eur_convert)
-    driver.quit()
-    return float(to_eur_convert)
+def usd_to_eur_convert(value_amount: float) -> float:
+    conversion_rate = get_usd_to_eur_conversion_rate()
+    return value_amount * conversion_rate
