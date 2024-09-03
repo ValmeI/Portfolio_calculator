@@ -9,15 +9,15 @@ import Excel_functions
 import Kelly
 import Kinnisvara
 import Morr
+from family import calculate_family_portfolios_year_to_years
 import txt_write_move
 import Valme
 from app_logging import logger
-from Excel_functions import column_width, HEADERS, need_new_excel_file, write_to_excel, year_to_year_percent
+from Excel_functions import column_width, HEADERS, need_new_excel_file, write_to_excel
 from Functions import diff_months
 import utils
 
 # TODO: Add logguru for logging and different log levels so debug/warning can be turned off from output
-# TODO: Cache the USD to EUR Conversion Rate and calculate it only once
 # TODO: change treading to use from concurrent.futures import ThreadPoolExecutor to avoid less segmentation fault errors
 # to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
 # warn("""Cannot parse header or footer so it will be ignored""")'
@@ -100,35 +100,7 @@ if __name__ == "__main__":
     # check if new Excel file is needed and if so, create it
     need_new_excel_file(excel_name="Portfell", sheet_name="Porfelli Info", excel_headers=Excel_functions.HEADERS)
 
-    # TODO: move those family pandas df printing to separate function
-    # compare the current portfolio with the previous years
-    print("=================Ignar's==========================")
-    print(
-        year_to_year_percent(
-            excel_name="Portfell", mm_dd="01-01", todays_total_portfolio=Ignar_Kokku, excel_column_input="F"
-        )
-    )
-    print("=================Mörr's===========================")
-    print(
-        year_to_year_percent(
-            excel_name="Portfell",
-            mm_dd="01-01",
-            todays_total_portfolio=Morr_kokku,
-            excel_column_input="G",
-            filter_nr_input=2000,
-        )
-    )
-    print("=================Kelly's==========================")
-    print(
-        year_to_year_percent(
-            excel_name="Portfell",
-            mm_dd="01-01",
-            todays_total_portfolio=Kelly_kokku,
-            excel_column_input="L",
-            filter_nr_input=2,
-        )
-    )
-    print("==================================================")
+    calculate_family_portfolios_year_to_years(Ignar_Kokku, Morr_kokku, Kelly_kokku)
 
     # make a list with all the data for Excel file input
     values_list = []
