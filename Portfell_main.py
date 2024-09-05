@@ -18,7 +18,6 @@ from Functions import diff_months
 import utils
 
 # TODO: Add logguru for logging and different log levels so debug/warning can be turned off from output
-# TODO: change treading to use from concurrent.futures import ThreadPoolExecutor to avoid less segmentation fault errors
 # to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
 # warn("""Cannot parse header or footer so it will be ignored""")'
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")

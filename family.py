@@ -4,7 +4,7 @@ from Excel_functions import year_to_year_percent
 def calculate_family_portfolios_year_to_years(
     ignar_total_portfolio: int, morr_total_portfolio: int, kelly_total_portfolio: int
 ) -> None:
-    
+
     PORTFOLIO_FILTER_DATE = "01-01"
     print("=================Ignar's==========================")
     print(

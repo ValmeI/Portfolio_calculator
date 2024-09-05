@@ -51,8 +51,7 @@ def check_if_excel_exists(excel_name: str) -> bool:
         return False
 
 
-# append new rows/info to excel
-# how_to_add: 1 = append, 2 = overwrite, 3 = compare if change is needed
+# how_to_add: 1 = append, 2 = overwrite,
 # compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on
 def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, compare_column: int = None) -> None:
     file_name = excel_name + ".xlsx"
@@ -74,11 +73,6 @@ def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, 
         else:
             sheet1.append(list_of_data)
             print("Tänane seis lisatud.")
-
-    # TODO compare cell by cell if any change is acutally needed
-    elif how_to_add == 3:
-        print("compare")
-
     wb.save(filename=workbook_name)
 
 
