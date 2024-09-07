@@ -12,7 +12,6 @@ import Morr
 from family import calculate_family_portfolios_year_to_years
 import txt_write_move
 import Valme
-from app_logging import logger
 from Excel_functions import column_width, HEADERS, need_new_excel_file, write_to_excel
 from Functions import diff_months
 import utils
@@ -24,16 +23,16 @@ warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 
 
 if __name__ == "__main__":
-    logger.debug(f'Programm: "{__file__}" käivitus: {datetime.datetime.now()}')
+    print(f'Programm: "{__file__}" käivitus: {datetime.datetime.now()}')
     start_time = time.time()
     start_date = datetime.datetime.now()
 
     # create file from consol output'
-    sys.stdout = txt_write_move.Logger()
-    TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_DES_PATH = utils.get_data_copy_paths_based_on_os()
+    TXT_SOURCE, EXCEL_SOURCE, NAS_DES_PATH = utils.get_data_copy_paths_based_on_os()
     utils.copy_file_to_nas(TXT_SOURCE, NAS_DES_PATH)
     utils.copy_file_to_nas(EXCEL_SOURCE, NAS_DES_PATH)
 
+    sys.stdout = txt_write_move.Logger()
     today = date.today()
     # Akadeemia 42-63 Välja ostetud 10.11.2023 - Laenujääk 12 200 EUR
     # Akadeemia 38-20 Müüdud 28.10.2021 Laenujääk 18 800 EUR'

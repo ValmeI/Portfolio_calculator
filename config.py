@@ -16,8 +16,9 @@ if os.path.exists(configFilePath) is False:
 try:
     parser.read(configFilePath)
 except Exception as e:
-    e
+    raise e
 
 # get funderbeam config values
 funderbeam_username = parser.get("Funderbeam", "username")
 funderbeam_password = parser.get("Funderbeam", "password")
+LOGGER_LEVEL = parser.get("LOGGER", "level")

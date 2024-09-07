@@ -17,16 +17,13 @@ def get_data_copy_paths_based_on_os() -> tuple:
     # Define paths using os.path.join for cross-platform compatibility
     TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator", "Print_result.txt")
     EXCEL_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator", "Portfell.xlsx")
-    PC_DES_PATH = os.path.join(BASE_PATH, "Calculators", "portfolio_result")
 
     if os.name == "nt":  # Windows
         NAS_PATH = r"\\RMI_NAS\Python\Calculators\portfolio_result"
     elif os.name == "posix":  # macOS or Linux
         NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"
-    logger.debug(
-        f"TXT_SOURCE: {TXT_SOURCE}, EXCEL_SOURCE: {EXCEL_SOURCE}, PC_DES_PATH: {PC_DES_PATH}, NAS_PATH: {NAS_PATH}"
-    )
-    return TXT_SOURCE, EXCEL_SOURCE, PC_DES_PATH, NAS_PATH
+    logger.debug(f"TXT_SOURCE: {TXT_SOURCE}, EXCEL_SOURCE: {EXCEL_SOURCE}, NAS_PATH: {NAS_PATH}")
+    return TXT_SOURCE, EXCEL_SOURCE, NAS_PATH
 
 
 def copy_file_to_nas(source_file: str, destination_path: str) -> None:

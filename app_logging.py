@@ -3,8 +3,7 @@ import sys
 import traceback
 from types import TracebackType
 from typing import Optional, Type
-
-LOGGER_LEVEL = "DEBUG"
+import config
 
 
 def setup_loguru_logger() -> None:
@@ -13,7 +12,7 @@ def setup_loguru_logger() -> None:
         "<green>{time:YYYY-MM-DD HH:mm:ss.SSS ZZ}</green> | <level>{level: <8}</level> | "
         "<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>{exception}"
     )
-    logger.add(sys.stderr, level=LOGGER_LEVEL, format=log_format, colorize=True, backtrace=True, diagnose=True)
+    logger.add(sys.stderr, level=config.LOGGER_LEVEL, format=log_format, colorize=True, backtrace=True, diagnose=True)
 
 
 def handle_exception(
