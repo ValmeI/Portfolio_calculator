@@ -1,13 +1,15 @@
 import shutil
 from Functions import what_path_for_file
-from colored import attr, fg
+from colored import fg, attr
 import os
 import time
 from datetime import date, datetime
-import mail
 from app_logging import logger
 import subprocess
 import platform
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import config
 
 
 def get_data_copy_paths_based_on_os() -> tuple:
@@ -93,22 +95,11 @@ def generate_mail_body(
 
 def check_if_and_send_email(mail_body: str, day_to_send_email: str, send_every_day: bool = False) -> None:
 
-    SYNOLOGY_PATH = r"Projects/My_Send_Email/synology_pass"
-    password_file_path = what_path_for_file() + SYNOLOGY_PATH
-
-    if os.path.isfile(what_path_for_file() + SYNOLOGY_PATH):
-        no_file = f"E-maili saatmine: Parooli faili ei ole kataloogis: {what_path_for_file()}"
-        no_file = fg("red") + no_file + attr("reset")
-        return
     if date.today().strftime("%A") == day_to_send_email or send_every_day is True:
-        # Variables are: STMP, username, password file, send from, send to, email title and email body'
         try:
-            mail.send_email(
-                stmp_variable="valme.noip.me",  # '192.168.50.235',
-                user="email",
-                password_file=password_file_path,
-                sent_from="email@valme.noip.me",
-                sent_to="val-capital@googlegroups.com",
+            twilio_send_email(
+                sent_from="ignarvalme@gmail.com",
+                sent_to="ignarvalme@gmail.com",
                 sent_subject=f"Portfelli seis: {time.strftime('%d-%m-%Y')}",
                 sent_body=mail_body,
             )
@@ -117,3 +108,17 @@ def check_if_and_send_email(mail_body: str, day_to_send_email: str, send_every_d
             logger.warning(f"{fg('red')}E-maili saatmine ebaõnnestus: {e}{attr('reset')}")
     else:
         print(f"{fg('green')}E-maili saatmine: Pole {day_to_send_email}{attr('reset')}")
+
+
+def twilio_send_email(sent_from: str, sent_to: str, sent_subject: str, sent_body: str) -> None:
+
+    message = Mail(from_email=sent_from, to_emails=sent_to, subject=sent_subject, html_content=sent_body)
+    try:
+        sg = SendGridAPIClient(config.twilio_apy_key)
+        response = sg.send(message)
+        if response.status_code == 202:
+            print(f"\n {fg('green')}{attr('bold')}Email sent{attr('reset')}")
+        else:
+            print(f"\n {fg('red')}{attr('bold')}Email NOT SENT{attr('reset')}, response: {response.body}")
+    except Exception as e:
+        print(str(e))

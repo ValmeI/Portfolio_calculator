@@ -1,9 +1,9 @@
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
-Laenu Vilde 90-193 makstud: 5 Years, 4 Months
+Laenu Vilde 90-193 makstud: 5 Years, 5 Months
 
-Vilde 90-193 laenu jääk: 10780 €. Laenu summa: 17940.0
-Laenu kohutus kokku(Kõik): 10780
+Vilde 90-193 laenu jääk: 10648 €. Laenu summa: 17940.0
+Laenu kohutus kokku(Kõik): 10648
 
 Hetkel korteri/krundi puhas väärtus kokku: 51185.0 €.
 
@@ -11,27 +11,27 @@ Lähtse investeering: [38;5;1m26685.0[0m €.
 Vilde peale makse Isale: [38;5;1m91.13[0m €.
 
 
-Juriidilise isiku väärtus: 80204 €.
-Krüpto: [38;5;1m1078[0m €.
-Juriidilise isiku aktsiad: 58426 €.
+Juriidilise isiku väärtus: 83131 €.
+Krüpto: [38;5;1m1234[0m €.
+Juriidilise isiku aktsiad: 61197 €.
 Funderbeam Kokku: [38;5;1m4400[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4191 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 76013 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m778[0m €.
+Füüsilise isiku aktsia portfell: -4155 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 78976 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m934[0m €.
 
 
-Terve portfell kokku: [38;5;1m127198[0m €.
+Terve portfell kokku: [38;5;1m130161[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -63286.0 €.
-Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 34 years, 6 months
-Veel minna: [38;5;1m372802[0m €.
-Mörr-i aktsiad: 24812 €.
+Krooni miljonär veel minna: -66249.0 €.
+Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 34 years, 7 months
+Veel minna: [38;5;1m369839[0m €.
+Mörr-i aktsiad: 24087 €.
 Mörr-i vaba raha: 9158.58 €.
-Mörr-i portfell kokku: [38;5;1m79206[0m €.
-Kelly portfell: [38;5;1m8947[0m €.
-Pere portfell kokku: [38;5;1m215351[0m €.
+Mörr-i portfell kokku: [38;5;1m78481[0m €.
+Kelly portfell: [38;5;1m8477[0m €.
+Pere portfell kokku: [38;5;1m217119[0m €.
 ==================================================
 Fail juba kaustas olemas.
 =================Ignar's==========================
@@ -43,7 +43,7 @@ Fail juba kaustas olemas.
 4  2022-01-01                     82751              128823                 56 %
 5  2023-01-01                    128823              111318                -14 %
 6  2024-01-01                    111318              142798                 28 %
-7        Täna                    142798              127198                -11 %
+7        Täna                    142798              130161                 -9 %
 =================Mörr's===========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2019-01-01                      1000                3958                296 %
@@ -52,17 +52,18 @@ Fail juba kaustas olemas.
 3  2022-01-01                     34345               68468                 99 %
 4  2023-01-01                     68468               71519                  4 %
 5  2024-01-01                     71519               92587                 29 %
-6        Täna                     92587               79206                -14 %
+6        Täna                     92587               78481                -15 %
 =================Kelly's==========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2022-01-01                         1                1514             151300 %
 1  2023-01-01                      1514                2755                 82 %
 2  2024-01-01                      2755                6214                126 %
-3        Täna                      6214                8947                 44 %
+3        Täna                      6214                8477                 36 %
 ==================================================
 Tänane seis üle kirjutatud
-Mail Sent Successfully
+
+ [38;5;2m[1mEmail sent[0m
 [38;5;2mE-maili saatmine: E-mail saadetud![0m
 Program took: 2 seconds to run
 ==================================================
-Program Start_Time: 2024-09-07 13:49:13 and End_time: 2024-09-07 13:49:14
+Program Start_Time: 2024-09-21 17:10:03 and End_time: 2024-09-21 17:10:05

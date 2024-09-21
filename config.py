@@ -22,3 +22,4 @@ except Exception as e:
 funderbeam_username = parser.get("Funderbeam", "username")
 funderbeam_password = parser.get("Funderbeam", "password")
 LOGGER_LEVEL = parser.get("LOGGER", "level")
+twilio_apy_key = parser.get("TWILIO", "api_key")
