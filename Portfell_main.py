@@ -16,7 +16,6 @@ from Excel_functions import column_width, HEADERS, need_new_excel_file, write_to
 from Functions import diff_months
 import utils
 
-# TODO: Add logguru for logging and different log levels so debug/warning can be turned off from output
 # to IGNORE: UserWarning: Cannot parse header or footer so it will be ignored'
 # warn("""Cannot parse header or footer so it will be ignored""")'
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
