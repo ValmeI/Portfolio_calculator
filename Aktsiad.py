@@ -1,5 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from math import log
 import threading
+from tkinter import N
 import requests
 from app_logging import logger
 import warnings
@@ -115,6 +117,8 @@ def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
             sym = future_to_stock[future]
             try:
                 stock_price = future.result()
+                if stock_price is None:
+                    continue
                 total_value += stock_price * stock_dictionary[sym]
             except Exception as exc:
                 logger.error(f"{sym} generated an exception: {exc}")
@@ -144,6 +148,9 @@ def stocks_portfolio_percentages(portfolio_size: int, stocks_dictionary: dict, o
 
 
 def crypto_in_eur(crypto: str) -> float:
+    if crypto is None:
+        logger.error("Crypto is None")
+    return 0
     crypto = crypto.lower().replace(" ", "")
     logger.debug(f"Fetching the price of {crypto} in EUR")
     try:
