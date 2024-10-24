@@ -1,6 +1,6 @@
 import Aktsiad
 
-MORR_EUR_STOCKS = {"EFT1T": 55, "TKM1T": 563, "TSM1T": 560, "EXXT.DE": 62.809, "SPYW.DE": 243.987}
+MORR_EUR_STOCKS = {"EFT1T.TL": 55, "TKM1T.TL": 563, "TSM1T.TL": 560, "EXXT.DE": 62.809, "SPYW.DE": 243.987}
 
 # morr_usa_stocks = {}
 

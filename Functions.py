@@ -11,7 +11,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-from config import funderbeam_password, funderbeam_username
+from config import FUNDERBEAM_PASSWORD, FUNDERBEAM_USERNAME
 from typing import Optional
 
 
@@ -82,8 +82,8 @@ def get_funderbeam_marketvalue() -> float:
     driver = chrome_driver()
     url = "https://www.funderbeam.com/dashboard"
     driver.get(url)
-    driver.find_element(By.NAME, "username").send_keys(funderbeam_username)
-    driver.find_element(By.NAME, "password").send_keys(funderbeam_password)
+    driver.find_element(By.NAME, "username").send_keys(FUNDERBEAM_USERNAME)
+    driver.find_element(By.NAME, "password").send_keys(FUNDERBEAM_PASSWORD)
     # send enter for links, buttons'
     driver.find_element(By.CLASS_NAME, "button-primary").send_keys("\n")
     # Sleep so it could load role selection page, UPDATE: 21.04.2021 Before it was 1 sleep time, Funderbeam might have perf problems'

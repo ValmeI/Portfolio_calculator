@@ -114,7 +114,7 @@ def twilio_send_email(sent_from: str, sent_to: str, sent_subject: str, sent_body
 
     message = Mail(from_email=sent_from, to_emails=sent_to, subject=sent_subject, html_content=sent_body)
     try:
-        sg = SendGridAPIClient(config.twilio_apy_key)
+        sg = SendGridAPIClient(config.TWILIO_APY_KEY)
         response = sg.send(message)
         if response.status_code == 202:
             print(f"\n {fg('green')}{attr('bold')}Email sent{attr('reset')}")

@@ -1,13 +1,11 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from math import log
-import threading
 import requests
+import threading
 from app_logging import logger
 import warnings
-import yfinance as yf
 from bs4 import BeautifulSoup
 from Functions import chrome_driver
-import logging
+import config
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -35,29 +33,6 @@ def replace_whitespaces(stat: str) -> str:
 
 def add_de_suffix(stock_symbol: str) -> str:
     return stock_symbol + ".DE"
-
-
-def get_stock_price_from_yfinance(stock: str, original_currency: bool) -> float:
-    try:
-        # Suppress "No data found, symbol may be delisted"
-        logging.getLogger("yfinance").setLevel(logging.CRITICAL)
-        yahoo_stock = yf.Ticker(stock)
-        stock_history = yahoo_stock.history(period="2d")
-        if stock_history.empty:
-            stock = add_de_suffix(stock)
-            yahoo_stock = yf.Ticker(stock)
-            stock_history = yahoo_stock.history(period="2d")
-        one_day_close_price = stock_history["Close"][0]
-        stock_price = round(one_day_close_price)
-    except IndexError:
-        logger.warning(f"Could not fetch stock price for {stock}")
-    if original_currency:
-        try:
-            return stock_price
-        except ValueError:
-            logger.error(f"Could not convert {stock_price} to float")
-    stock_price_in_eur = usd_to_eur_convert(stock_price)
-    return stock_price_in_eur
 
 
 def get_stock_price_from_google(stock: str, is_in_original_currency: bool) -> float:
@@ -89,19 +64,20 @@ def get_stock_price_from_google(stock: str, is_in_original_currency: bool) -> fl
         raise e
 
 
-def get_stock_price(stock: str, original_currency: bool) -> float:
+def get_stock_price(stock: str, is_in_original_currency: bool) -> float:
     logger.debug(f"[{threading.current_thread().name}] fetching stock price for {stock}")
     try:
-        stock_price = get_stock_price_from_yfinance(stock, original_currency)
-        if stock_price == 0.0:
-            logger.warning(f"Stock price not found for {stock} from Yahoo Finance, trying Google Search")
-            stock_price = get_stock_price_from_google(stock, original_currency)
+        stock_price = get_stock_price_from_finnhub(stock, is_in_original_currency)
+        if stock_price == 0.0 or stock_price is None:
+            logger.warning(f"Stock price not found for {stock} from Finnhub, trying Yahoo Selenium")
+            stock_price = get_stock_price_from_google(stock, is_in_original_currency)
         else:
-            logger.debug(f"Stock price for {stock} is {stock_price} from Yahoo Finance")
-        return stock_price
+            logger.debug(f"Stock price for {stock} is {stock_price} from Finnhub")
+        return round(stock_price, 2)
     except Exception:  # bad practice but works for now, will fix it later
-        stock_price = get_stock_price_from_google(stock, original_currency)
-        return stock_price
+        stock_price = get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
+        logger.debug(f"Stock price for {stock} is {stock_price} from Yahoo Selenium")
+        return round(stock_price, 2)
 
 
 def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
@@ -155,7 +131,9 @@ def crypto_in_eur(crypto: str) -> float:
             response = requests.get(url, timeout=30)
             if response.status_code == 200:
                 data = response.json()
-                return data[crypto]["eur"]
+                crypto_price = data[crypto]["eur"]
+                logger.debug(f"The price of {crypto} in EUR is {crypto_price}")
+                return crypto_price
         except Exception as e:
             logger.error(f"Failed to fetch the price from the API: {e}")
             return 0
@@ -181,3 +159,64 @@ def usd_to_eur_convert(value_amount: float) -> float:
     conversion_rate = get_usd_to_eur_conversion_rate()
     logger.debug(f"Converting {value_amount} USD to EUR with conversion rate {conversion_rate}")
     return value_amount * conversion_rate
+
+
+def get_stock_price_from_finnhub(stock: str, is_in_original_currency: bool) -> float:
+    try:
+        url = f"https://finnhub.io/api/v1/quote?symbol={stock}&token={config.FINNHUB_API_KEY}"
+        response = requests.get(url)
+        data = response.json()
+
+        if "c" in data:
+            latest_price = data["c"]  # 'c' is the current price
+            logger.debug(f"[{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}")
+            if latest_price is None:
+                latest_price = data["pc"]  # 'pc' is the previous close
+                logger.debug(f"[{threading.current_thread().name}] Stock: {stock} previous close: {latest_price}")
+
+            if is_in_original_currency:
+                return float(latest_price)
+
+            stock_price_in_eur = usd_to_eur_convert(latest_price)
+            return stock_price_in_eur
+        else:
+            logger.error(f"No price data found for {stock}")
+            return 0.0
+
+    except Exception as e:
+        logger.error(f"Failed to fetch stock price from Finnhub: {e}")
+        return 0.0
+
+
+def get_stock_price_from_yahoo_selenium(stock: str, is_in_original_currency: bool) -> float:
+    try:
+        url = f"https://finance.yahoo.com/quote/{stock}/"
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/58.0.3029.110 Safari/537.36"
+            )
+        }
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, "html.parser")
+            price_span = soup.find("fin-streamer", {"data-symbol": stock, "data-field": "regularMarketPrice"})
+            if price_span and price_span.text:
+                price_text = price_span.text.strip().replace(",", "")
+                latest_price = float(price_text)
+                logger.debug(f"[{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}")
+                if is_in_original_currency:
+                    return latest_price
+                else:
+                    stock_price_in_eur = usd_to_eur_convert(latest_price)
+                    return stock_price_in_eur
+            else:
+                logger.error(f"No price data found for {stock}")
+                return 0.0
+        else:
+            logger.error(f"Failed to retrieve data. HTTP Status code: {response.status_code}")
+            return 0.0
+    except Exception as e:
+        logger.error(f"Failed to fetch stock price from Yahoo Finance: {e}")
+        return 0.0

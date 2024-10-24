@@ -19,7 +19,8 @@ except Exception as e:
     raise e
 
 # get funderbeam config values
-funderbeam_username = parser.get("Funderbeam", "username")
-funderbeam_password = parser.get("Funderbeam", "password")
+FUNDERBEAM_USERNAME = parser.get("Funderbeam", "username")
+FUNDERBEAM_PASSWORD = parser.get("Funderbeam", "password")
 LOGGER_LEVEL = parser.get("LOGGER", "level")
-twilio_apy_key = parser.get("TWILIO", "api_key")
+TWILIO_APY_KEY = parser.get("TWILIO", "api_key")
+FINNHUB_API_KEY = parser.get("FINNHUB", "api_key")

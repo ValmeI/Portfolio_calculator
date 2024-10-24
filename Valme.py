@@ -7,7 +7,7 @@ from Functions import what_path_for_file
 
 path = what_path_for_file()
 
-FYS_EUR_STOCKS = {"TAL: TKM1T": 355, "EFT1T": 113}
+FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113}
 
 FYS_USA_STOCKS = {"SXR8": 0.805}
 
@@ -27,7 +27,7 @@ JUR_USA_STOCKS = {
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE.MI": 80.6334}
+JUR_EUR_STOCKS = {"IUSE": 80.6334}
 
 BTC_AMOUNT = 0.016908
 ETH_AMOUNT = 0.12037

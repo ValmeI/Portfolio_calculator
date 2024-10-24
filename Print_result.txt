@@ -11,27 +11,27 @@ Lähtse investeering: [38;5;1m26685.0[0m €.
 Vilde peale makse Isale: [38;5;1m91.13[0m €.
 
 
-Juriidilise isiku väärtus: 84736 €.
-Krüpto: [38;5;1m1334[0m €.
-Juriidilise isiku aktsiad: 62352 €.
+Juriidilise isiku väärtus: 75166 €.
+Krüpto: [38;5;1m1338[0m €.
+Juriidilise isiku aktsiad: 52778 €.
 Funderbeam Kokku: [38;5;1m4400[0m €.
 
 
-Füüsilise isiku aktsia portfell: -9575 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 75161 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m1384[0m €.
+Füüsilise isiku aktsia portfell: -4437 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 70729 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m1388[0m €.
 
 
-Terve portfell kokku: [38;5;1m126346[0m €.
+Terve portfell kokku: [38;5;1m121914[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -62434.0 €.
+Krooni miljonär veel minna: -58002.0 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 34 years, 8 months
-Veel minna: [38;5;1m373654[0m €.
-Mörr-i aktsiad: 17531 €.
+Veel minna: [38;5;1m378086[0m €.
+Mörr-i aktsiad: 24506 €.
 Mörr-i vaba raha: 9158.58 €.
-Mörr-i portfell kokku: [38;5;1m72275[0m €.
-Kelly portfell: [38;5;1m8408[0m €.
-Pere portfell kokku: [38;5;1m207029[0m €.
+Mörr-i portfell kokku: [38;5;1m79250[0m €.
+Kelly portfell: [38;5;1m9029[0m €.
+Pere portfell kokku: [38;5;1m210193[0m €.
 ==================================================
 Fail juba kaustas olemas.
 =================Ignar's==========================
@@ -43,7 +43,7 @@ Fail juba kaustas olemas.
 4  2022-01-01                     82751              128823                 56 %
 5  2023-01-01                    128823              111318                -14 %
 6  2024-01-01                    111318              142798                 28 %
-7        Täna                    142798              126346                -12 %
+7        Täna                    142798              121914                -15 %
 =================Mörr's===========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2019-01-01                      1000                3958                296 %
@@ -52,13 +52,13 @@ Fail juba kaustas olemas.
 3  2022-01-01                     34345               68468                 99 %
 4  2023-01-01                     68468               71519                  4 %
 5  2024-01-01                     71519               92587                 29 %
-6        Täna                     92587               72275                -22 %
+6        Täna                     92587               79250                -14 %
 =================Kelly's==========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2022-01-01                         1                1514             151300 %
 1  2023-01-01                      1514                2755                 82 %
 2  2024-01-01                      2755                6214                126 %
-3        Täna                      6214                8408                 35 %
+3        Täna                      6214                9029                 45 %
 ==================================================
 Tänane seis üle kirjutatud
 
@@ -66,4 +66,4 @@ Tänane seis üle kirjutatud
 [38;5;2mE-maili saatmine: E-mail saadetud![0m
 Program took: 2 seconds to run
 ==================================================
-Program Start_Time: 2024-10-24 11:13:35 and End_time: 2024-10-24 11:13:38
+Program Start_Time: 2024-10-24 19:12:40 and End_time: 2024-10-24 19:12:42
