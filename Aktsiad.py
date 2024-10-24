@@ -1,7 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from math import log
 import threading
-from tkinter import N
 import requests
 from app_logging import logger
 import warnings
@@ -148,19 +147,20 @@ def stocks_portfolio_percentages(portfolio_size: int, stocks_dictionary: dict, o
 
 
 def crypto_in_eur(crypto: str) -> float:
-    if crypto is None:
-        logger.error("Crypto is None")
-    return 0
-    crypto = crypto.lower().replace(" ", "")
-    logger.debug(f"Fetching the price of {crypto} in EUR")
-    try:
-        url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto}&vs_currencies=eur"
-        response = requests.get(url, timeout=30)
-        if response.status_code == 200:
-            data = response.json()
-            return data[crypto]["eur"]
-    except Exception as e:
-        logger.error(f"Failed to fetch the price from the API: {e}")
+    if crypto is not None:
+        crypto = crypto.lower().replace(" ", "")
+        logger.debug(f"Fetching the price of {crypto} in EUR")
+        try:
+            url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto}&vs_currencies=eur"
+            response = requests.get(url, timeout=30)
+            if response.status_code == 200:
+                data = response.json()
+                return data[crypto]["eur"]
+        except Exception as e:
+            logger.error(f"Failed to fetch the price from the API: {e}")
+            return 0
+    else:
+        logger.error(f"Failed to fetch the price from the API: crypto is None")
         return 0
 
 
