@@ -48,13 +48,13 @@ if __name__ == "__main__":
     print(f"Laenu kohutus kokku(Kõik): {BalanceVilde90}")
 
     # Kinnisvara kokku. Liidetakse kõik Dics korterite ostu hinnad - balancid ehk palju laenu veel maksta'
-    kinnisvara_port = Kinnisvara.calculate_real_estate_total_value() + Morr.LAHTSE_RAHA / 2
+    kinnisvara_port = Kinnisvara.calculate_real_estate_total_value() + Morr.LAHTSE_ARVUTUSLIK_VAARTUS / 2
 
     print(f"\nHetkel korteri/krundi puhas väärtus kokku: {kinnisvara_port} €.")
-    print(f"\nLähtse investeering: {fg('red')}{Morr.LAHTSE_RAHA / 2}{attr('reset')} €.")
+    print(f"\nLähtse Väärtus: {fg('red')}{Morr.LAHTSE_ARVUTUSLIK_VAARTUS / 2}{attr('reset')} €.")
 
     # Portfell kokku'
-    Ignar_Kokku = Valme.FysIsik + Valme.JurIsik + kinnisvara_port
+    ignar_total = Valme.FysIsik + Valme.JurIsik + kinnisvara_port
 
     # Ehk 1 000 000 Eesti krooni'
     EESMARK_1 = round(1000000 / 15.6466)
@@ -71,33 +71,33 @@ if __name__ == "__main__":
     print(f"Vaba raha Jur/Füs Kokku: {fg('red')}{Valme.RahaKokku}{attr('reset')} €.")
 
     print("\n")
-    print(f"Terve portfell kokku: {fg('red')}{round(Ignar_Kokku)}{attr('reset')} €.")
+    print(f"Terve portfell kokku: {fg('red')}{round(ignar_total)}{attr('reset')} €.")
     print(f"Eesmärk krooni miljonär: {EESMARK_1} €.")
-    print(f"Krooni miljonär veel minna: {EESMARK_1 - Ignar_Kokku} €.")
+    print(f"Krooni miljonär veel minna: {EESMARK_1 - ignar_total} €.")
     age = date.today() - date(1990, 2, 19)
     years = age.days // 365
     months = (age.days % 365) // 30
     print(f"Eesmärk 35 aastaselt portfelli väärtus {EESMARK_2} €. Vanus hetkel: {years} years, {months} months")
-    print(f"Veel minna: {fg('red')}{round(EESMARK_2 - Ignar_Kokku)}{attr('reset')} €.")
+    print(f"Veel minna: {fg('red')}{round(EESMARK_2 - ignar_total)}{attr('reset')} €.")
 
-    Morr_kokku = Morr.kokku
+    morr_total = Morr.kokku
     print(f"Mörr-i aktsiad: {Morr.m_aktsiad} €.")
     print(f"Mörr-i vaba raha: {Morr.MORR_RAHA} €.")
-    print(f"Mörr-i portfell kokku: {fg('red')}{Morr_kokku}{attr('reset')} €.")
+    print(f"Mörr-i portfell kokku: {fg('red')}{morr_total}{attr('reset')} €.")
 
     # Kelly Portfell'
-    Kelly_kokku = Kelly.Kelly_Portfell_Kokku
-    print(f"Kelly portfell: {fg('red')}{Kelly_kokku}{attr('reset')} €.")
+    kelly_total = Kelly.Kelly_Portfell_Kokku
+    print(f"Kelly portfell: {fg('red')}{kelly_total}{attr('reset')} €.")
 
     # Pere kõik kokku'
-    Pere = Ignar_Kokku + Morr_kokku + Kelly_kokku
+    Pere = ignar_total + morr_total + kelly_total
     print(f"Pere portfell kokku: {fg('red')}{round(Pere)}{attr('reset')} €.")
 
     Aktsiad_kokku = Valme.FysIsik + Valme.JurIsik
     # check if new Excel file is needed and if so, create it
     need_new_excel_file(excel_name="Portfell", sheet_name="Porfelli Info", excel_headers=Excel_functions.HEADERS)
 
-    calculate_family_portfolios_year_to_years(Ignar_Kokku, Morr_kokku, Kelly_kokku)
+    calculate_family_portfolios_year_to_years(ignar_total, morr_total, kelly_total)
 
     # make a list with all the data for Excel file input
     values_list = []
@@ -108,13 +108,13 @@ if __name__ == "__main__":
             Valme.FysIsik,
             Valme.JurIsik,
             Aktsiad_kokku,
-            Ignar_Kokku,
-            Morr_kokku,
+            ignar_total,
+            morr_total,
             Pere,
             Valme.Uus_vilde_summa,
             Valme.RahaKokku,
             Valme.JUR_FUNDERBEAM,
-            Kelly_kokku,
+            kelly_total,
         )
     )
 
@@ -125,12 +125,12 @@ if __name__ == "__main__":
     mail_body = utils.generate_mail_body(
         portfolio_goal_no_1=EESMARK_1,
         portfolio_goal_no_2=EESMARK_2,
-        kelly_total_portfolio=Kelly_kokku,
+        kelly_total_portfolio=kelly_total,
         family_total_portfolio=Pere,
-        ignar_total_portfolio=Ignar_Kokku,
+        ignar_total_portfolio=ignar_total,
         morr_stocks=Morr.m_aktsiad,
         morr_free_cash=Morr.MORR_RAHA,
-        morr_total_portfolio=Morr_kokku,
+        morr_total_portfolio=morr_total,
         vilde_apartment=dateVilde90,
         real_estate=Kinnisvara,
         vilde_balance=BalanceVilde90,

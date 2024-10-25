@@ -19,7 +19,7 @@ from Valme import (
 )
 from Aktsiad import get_stock_price
 from Kinnisvara import Korter1_Hind
-from Morr import LAHTSE_RAHA
+from Morr import LAHTSE_ARVUTUSLIK_VAARTUS
 
 symbol_to_name: dict = {
     "AAPL": "Apple",
@@ -74,7 +74,7 @@ assets = {
     "Liven Võlakirjad": LIVEN_VOLAKIRI,
     "Cleveron Aktsiad": CLEVERON_AKTSIA,
     "Kinnisvara: Akadeemia 12 m2": Korter1_Hind,
-    "Kinnisvara: Maja ehitus": LAHTSE_RAHA / 2,
+    "Kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
 }
 
 assets.update({**stock_with_names_assets})

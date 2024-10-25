@@ -7,7 +7,7 @@ sys.path.append(dirname(dirname(abspath(__file__))))
 
 from Aktsiad import get_stock_price
 from Morr import (
-    LAHTSE_RAHA,
+    LAHTSE_ARVUTUSLIK_VAARTUS,
     MORR_EUR_STOCKS,
     TAHTAJALINE_HOIUS,
     LHV_VOLAKIRI,
@@ -44,7 +44,7 @@ assets = {
     "Holm Bank Võlakirjad": HOLM_VOLAKIRI,
     "InBank Võlakirjad": INBANK_VOLAKIRI,
     "Liven Võlakirjad": LIVEN_VOLAKIRI,
-    "Kinnisvara: Maja ehitus": LAHTSE_RAHA / 2,
+    "Kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
     "Tähtajaline hoius": TAHTAJALINE_HOIUS,
     "Vaba Raha": MORR_RAHA,
 }

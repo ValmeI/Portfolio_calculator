@@ -138,7 +138,7 @@ def crypto_in_eur(crypto: str) -> float:
             logger.error(f"Failed to fetch the price from the API: {e}")
             return 0
     else:
-        logger.error(f"Failed to fetch the price from the API: crypto is None")
+        logger.error("Failed to fetch the price from the API: crypto is None")
         return 0
 
 
@@ -164,7 +164,7 @@ def usd_to_eur_convert(value_amount: float) -> float:
 def get_stock_price_from_finnhub(stock: str, is_in_original_currency: bool) -> float:
     try:
         url = f"https://finnhub.io/api/v1/quote?symbol={stock}&token={config.FINNHUB_API_KEY}"
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         data = response.json()
 
         if "c" in data:
@@ -198,7 +198,7 @@ def get_stock_price_from_yahoo_selenium(stock: str, is_in_original_currency: boo
                 "Chrome/58.0.3029.110 Safari/537.36"
             )
         }
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=60)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
             price_span = soup.find("fin-streamer", {"data-symbol": stock, "data-field": "regularMarketPrice"})
