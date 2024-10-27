@@ -2,6 +2,7 @@ import json
 import os.path
 import time
 from datetime import date
+from venv import logger
 from dateutil import relativedelta
 
 # Funderbean imports'
@@ -29,16 +30,23 @@ def chrome_driver() -> WebDriver:
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--remote-debugging-port=9222")
     options.add_argument("--disable-software-rasterizer")
-    options.add_argument("--disable-extensions")  # Disables Chrome extensions
-    options.add_argument("--disable-background-networking")  # Reduce network usage
-    options.add_argument("--disable-software-rasterizer")
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])  # This line disables the DevTools logging
-    # service = Service(executable_path=r"D:\PycharmProjects\chromedriver.exe")
-    service = Service(ChromeDriverManager().install())
-    service.log_path = "null"  # Disable driver logs
-    service.enable_logging = False  # Disable driver logs
-    # UPDATE 25.01.2021 to avoid cannot find Chrome binary error
-    # options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-background-networking")
+    options.add_experimental_option("excludeSwitches", ["enable-logging"])
+
+    # Define the local path to chromedriver
+    chromedriver_path = "/Users/ignar/.wdm/drivers/chromedriver/mac64/130.0.6723.69/chromedriver-mac-arm64/chromedriver"
+
+    # Check if chromedriver exists locally, otherwise install it
+    if not os.path.exists(chromedriver_path):
+        logger.info("Chromedriver not found locally. Installing with webdriver_manager...")
+        chromedriver_path = ChromeDriverManager().install()
+
+    # Initialize the Service with the determined path
+    service = Service(executable_path=chromedriver_path)
+    service.log_path = "null"
+
+    # Start Chrome with the defined options and service
     driver = webdriver.Chrome(service=service, options=options)
     return driver
 

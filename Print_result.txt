@@ -11,27 +11,27 @@ Lähtse Väärtus: [38;5;1m69032.5[0m €.
 Vilde peale makse Isale: [38;5;1m91.13[0m €.
 
 
-Juriidilise isiku väärtus: 75991 €.
-Krüpto: [38;5;1m1337[0m €.
-Juriidilise isiku aktsiad: 53604 €.
+Juriidilise isiku väärtus: 85863 €.
+Krüpto: [38;5;1m1333[0m €.
+Juriidilise isiku aktsiad: 63480 €.
 Funderbeam Kokku: [38;5;1m4400[0m €.
 
 
-Füüsilise isiku aktsia portfell: -3996 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 71995 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m1387[0m €.
+Füüsilise isiku aktsia portfell: -4422 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 81441 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m1383[0m €.
 
 
-Terve portfell kokku: [38;5;1m165528[0m €.
+Terve portfell kokku: [38;5;1m174974[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -101615.5 €.
+Krooni miljonär veel minna: -111061.5 €.
 Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 34 years, 8 months
-Veel minna: [38;5;1m334472[0m €.
+Veel minna: [38;5;1m325026[0m €.
 Mörr-i aktsiad: 24666 €.
 Mörr-i vaba raha: 9158.58 €.
 Mörr-i portfell kokku: [38;5;1m121757[0m €.
-Kelly portfell: [38;5;1m9392[0m €.
-Pere portfell kokku: [38;5;1m296676[0m €.
+Kelly portfell: [38;5;1m8873[0m €.
+Pere portfell kokku: [38;5;1m305604[0m €.
 ==================================================
 Fail juba kaustas olemas.
 =================Ignar's==========================
@@ -43,7 +43,7 @@ Fail juba kaustas olemas.
 4  2022-01-01                     82751              128823                 56 %
 5  2023-01-01                    128823              111318                -14 %
 6  2024-01-01                    111318              142798                 28 %
-7        Täna                    142798              165528                 16 %
+7        Täna                    142798              174974                 23 %
 =================Mörr's===========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2019-01-01                      1000                3958                296 %
@@ -58,7 +58,7 @@ Fail juba kaustas olemas.
 0  2022-01-01                         1                1514             151300 %
 1  2023-01-01                      1514                2755                 82 %
 2  2024-01-01                      2755                6214                126 %
-3        Täna                      6214                9392                 51 %
+3        Täna                      6214                8873                 43 %
 ==================================================
 Tänane seis üle kirjutatud
 
@@ -66,4 +66,4 @@ Tänane seis üle kirjutatud
 [38;5;2mE-maili saatmine: E-mail saadetud![0m
 Program took: 2 seconds to run
 ==================================================
-Program Start_Time: 2024-10-27 17:12:03 and End_time: 2024-10-27 17:12:04
+Program Start_Time: 2024-10-27 21:02:54 and End_time: 2024-10-27 21:02:55

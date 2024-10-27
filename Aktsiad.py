@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from selenium.common.exceptions import WebDriverException, NoSuchWindowException
 import requests
 import threading
 from app_logging import logger
@@ -6,6 +7,8 @@ import warnings
 from bs4 import BeautifulSoup
 from Functions import chrome_driver
 import config
+import time
+
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -37,40 +40,77 @@ def replace_whitespaces(stat: str) -> str:
 def add_de_suffix(stock_symbol: str) -> str:
     return stock_symbol + ".DE"
 
-
-def get_stock_price_from_google(stock: str, is_in_original_currency: bool) -> float:
+def get_stock_price_from_google(stock: str, is_in_original_currency: bool, max_retries=3) -> float:
+    driver = None  # Initialize driver to None for safety
     try:
-        logger.debug(f"[{threading.current_thread().name}] fetching stock price for {stock} from Google")
-        driver = None
-        if driver is None:
-            driver = chrome_driver()
-        url = GOOGLE_BASE_URL + stock + " stock"
-        driver.get(url)
-        convert_html = driver.page_source
-        soup = BeautifulSoup(convert_html, "lxml")
-        if "vWLAgc" in soup.find_all("span"):
-            str_price_org_currency = soup.find("span", jsname="vWLAgc").text.strip(",.-").replace(" ", "")
-            str_price_org_currency = replace_comma(str_price_org_currency)
-            stock_price: float = float(str_price_org_currency)
-            logger.debug(
-                f"[{threading.current_thread().name}] fetched stock price {stock_price} from stock {stock} from Google"
-            )
-            if is_in_original_currency:
-                driver.quit()
-                return stock_price
-            stock_price_in_eur = usd_to_eur_convert(stock_price)
-            driver.quit()
-            return stock_price_in_eur
-        else:
-            logger.error(f"[{threading.current_thread().name}] Stock price not found for {stock} in Google search")
-            driver.quit()
-            return 0.0
-    except Exception as e:
-        # bad practice but works for now will fix it later
-        logger.error(f"Stock price not found for {stock} in Google search, error: {e}")
-        driver.quit()
-        raise e
+        logger.debug(f"[{threading.current_thread().name}] Fetching stock price for {stock} from Google")
 
+        retries = 0
+        while retries < max_retries:
+            try:
+                # Initialize the Chrome driver
+                if driver is None:
+                    driver = chrome_driver()
+
+                url = GOOGLE_BASE_URL + stock + " stock"
+                driver.get(url)
+
+                time.sleep(2)  # Give the page some time to load
+                soup = BeautifulSoup(driver.page_source, "lxml")
+
+                # Check if the stock price element is present
+                stock_price_span = soup.find("span", jsname="vWLAgc")
+                if stock_price_span:
+                    # Clean up and parse the price text
+                    str_price_org_currency = stock_price_span.text.strip(",.-").replace(" ", "")
+                    str_price_org_currency = str_price_org_currency.replace(",", ".")  # Ensure float format
+                    stock_price: float = float(str_price_org_currency)
+
+                    logger.debug(
+                        f"[{threading.current_thread().name}] Fetched stock price {stock_price} for {stock} from Google"
+                    )
+
+                    # Return the result based on the currency flag
+                    if is_in_original_currency:
+                        return stock_price
+                    else:
+                        stock_price_in_eur = usd_to_eur_convert(stock_price)
+                        return stock_price_in_eur
+                else:
+                    logger.warning(f"[{threading.current_thread().name}] Stock price element not found, retrying...")
+                    retries += 1
+                    if retries >= max_retries:
+                        return 0.0  # Return 0.0 if max retries reached
+
+            except NoSuchWindowException:
+                logger.warning(f"Window unexpectedly closed, retrying... Attempt {retries + 1}/{max_retries}")
+                retries += 1
+                driver.quit()  # Close the invalid driver and retry
+                driver = None  # Reset driver to trigger reinitialization
+                time.sleep(1)  # Brief wait before retrying
+
+            except WebDriverException as e:
+                logger.error(f"WebDriver error on attempt {retries + 1}: {e}")
+                retries += 1
+                driver.quit()
+                driver = None
+                time.sleep(1)
+
+        # Return 0 if unable to fetch after retries
+        logger.error(f"[{threading.current_thread().name}] Failed to fetch stock price for {stock} after {max_retries} attempts.")
+        return 0.0
+
+    except Exception as e:
+        logger.error(f"Unexpected error fetching stock price for {stock}: {e}")
+        raise e  # Re-raise the exception after logging
+
+    finally:
+        # Ensure driver quits regardless of success or failure
+        if driver:
+            try:
+                driver.quit()
+            except WebDriverException:
+                pass  # Ignore errors if driver is already closed
 
 def get_stock_price(stock: str, is_in_original_currency: bool) -> float:
     logger.debug(f"[{threading.current_thread().name}] fetching stock price for {stock}")
@@ -92,7 +132,6 @@ def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
     """Returns total value of stocks in portfolio,
     input: stock dictionary, org_currency = True/False"""
     total_value = 0
-
     with ThreadPoolExecutor(max_workers=MAX_CONCURRENT_INSTANCES) as executor:
         future_to_stock = {executor.submit(get_stock_price, sym, org_currency): sym for sym in stock_dictionary}
 
@@ -103,6 +142,7 @@ def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
                 if stock_price is None:
                     continue
                 total_value += stock_price * stock_dictionary[sym]
+                logger.info(f"Stock price for {sym} is {stock_price}")
             except Exception as exc:
                 logger.error(f"{sym} generated an exception: {exc}")
 
