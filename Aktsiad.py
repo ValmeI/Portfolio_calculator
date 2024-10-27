@@ -11,6 +11,9 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 GOOGLE_BASE_URL = "https://www.google.com/search?q="
 CONVERSION_RATE_CACHE = {}
+WEB_SCRAPE_TIMEOUT = 10
+API_TIMEOUT = 10
+MAX_CONCURRENT_INSTANCES = 5
 
 
 def clean_string(input_string: str) -> str:
@@ -45,18 +48,23 @@ def get_stock_price_from_google(stock: str, is_in_original_currency: bool) -> fl
         driver.get(url)
         convert_html = driver.page_source
         soup = BeautifulSoup(convert_html, "lxml")
-        str_price_org_currency = soup.find("span", jsname="vWLAgc").text.strip(",.-").replace(" ", "")
-        str_price_org_currency = replace_comma(str_price_org_currency)
-        stock_price: float = float(str_price_org_currency)
-        logger.debug(
-            f"[{threading.current_thread().name}] fetched stock price {stock_price} from stock {stock} from Google"
-        )
-        if is_in_original_currency:
+        if "vWLAgc" in soup.find_all("span"):
+            str_price_org_currency = soup.find("span", jsname="vWLAgc").text.strip(",.-").replace(" ", "")
+            str_price_org_currency = replace_comma(str_price_org_currency)
+            stock_price: float = float(str_price_org_currency)
+            logger.debug(
+                f"[{threading.current_thread().name}] fetched stock price {stock_price} from stock {stock} from Google"
+            )
+            if is_in_original_currency:
+                driver.quit()
+                return stock_price
+            stock_price_in_eur = usd_to_eur_convert(stock_price)
             driver.quit()
-            return stock_price
-        stock_price_in_eur = usd_to_eur_convert(stock_price)
-        driver.quit()
-        return stock_price_in_eur
+            return stock_price_in_eur
+        else:
+            logger.error(f"[{threading.current_thread().name}] Stock price not found for {stock} in Google search")
+            driver.quit()
+            return 0.0
     except Exception as e:
         # bad practice but works for now will fix it later
         logger.error(f"Stock price not found for {stock} in Google search, error: {e}")
@@ -85,7 +93,7 @@ def stocks_value_combined(stock_dictionary: dict, org_currency: bool) -> int:
     input: stock dictionary, org_currency = True/False"""
     total_value = 0
 
-    with ThreadPoolExecutor() as executor:
+    with ThreadPoolExecutor(max_workers=MAX_CONCURRENT_INSTANCES) as executor:
         future_to_stock = {executor.submit(get_stock_price, sym, org_currency): sym for sym in stock_dictionary}
 
         for future in as_completed(future_to_stock):
@@ -128,7 +136,7 @@ def crypto_in_eur(crypto: str) -> float:
         logger.debug(f"Fetching the price of {crypto} in EUR")
         try:
             url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto}&vs_currencies=eur"
-            response = requests.get(url, timeout=30)
+            response = requests.get(url, timeout=WEB_SCRAPE_TIMEOUT)
             if response.status_code == 200:
                 data = response.json()
                 crypto_price = data[crypto]["eur"]
@@ -146,7 +154,7 @@ def get_usd_to_eur_conversion_rate() -> float:
     if "USD_EUR" not in CONVERSION_RATE_CACHE:
         logger.debug("Fetching USD to EUR conversion rate")
         url = "https://api.exchangerate-api.com/v4/latest/USD"
-        response = requests.get(url, timeout=30)
+        response = requests.get(url, timeout=WEB_SCRAPE_TIMEOUT)
         if response.status_code == 200:
             data = response.json()
             CONVERSION_RATE_CACHE["USD_EUR"] = data["rates"]["EUR"]
@@ -164,7 +172,7 @@ def usd_to_eur_convert(value_amount: float) -> float:
 def get_stock_price_from_finnhub(stock: str, is_in_original_currency: bool) -> float:
     try:
         url = f"https://finnhub.io/api/v1/quote?symbol={stock}&token={config.FINNHUB_API_KEY}"
-        response = requests.get(url, timeout=60)
+        response = requests.get(url, timeout=API_TIMEOUT)
         data = response.json()
 
         if "c" in data:
@@ -198,7 +206,7 @@ def get_stock_price_from_yahoo_selenium(stock: str, is_in_original_currency: boo
                 "Chrome/58.0.3029.110 Safari/537.36"
             )
         }
-        response = requests.get(url, headers=headers, timeout=60)
+        response = requests.get(url, headers=headers, timeout=WEB_SCRAPE_TIMEOUT)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
             price_span = soup.find("fin-streamer", {"data-symbol": stock, "data-field": "regularMarketPrice"})

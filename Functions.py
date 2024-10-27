@@ -24,9 +24,14 @@ PATH_MACBOOK = r"/Users/ignar/Documents/git/"
 def chrome_driver() -> WebDriver:
     options = Options()
     options.add_argument("--headless")
-    options.add_argument("--no-sandbox")  # Bypass OS security model UPDATE 4.06.2021 problems maybe fixed it
-    options.add_argument("--log-level=3")  # Adjust the log level
-    options.add_argument("--disable-gpu")  # Disabling GPU
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--remote-debugging-port=9222")
+    options.add_argument("--disable-software-rasterizer")
+    options.add_argument("--disable-extensions")  # Disables Chrome extensions
+    options.add_argument("--disable-background-networking")  # Reduce network usage
+    options.add_argument("--disable-software-rasterizer")
     options.add_experimental_option("excludeSwitches", ["enable-logging"])  # This line disables the DevTools logging
     # service = Service(executable_path=r"D:\PycharmProjects\chromedriver.exe")
     service = Service(ChromeDriverManager().install())
