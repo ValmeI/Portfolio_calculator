@@ -10,6 +10,7 @@ import platform
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import config
+import platform
 
 
 def get_data_copy_paths_based_on_os() -> tuple:
@@ -122,3 +123,28 @@ def twilio_send_email(sent_from: str, sent_to: str, sent_subject: str, sent_body
             print(f"\n {fg('red')}{attr('bold')}Email NOT SENT{attr('reset')}, response: {response.body}")
     except Exception as e:
         print(str(e))
+
+
+def get_default_user_agent() -> str:
+    os_type = platform.system().lower()
+    machine_type = platform.machine().lower()
+
+    if os_type == "linux":
+        return (
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+        )
+
+    elif os_type == "darwin":  # macOS
+        if machine_type == "arm64":
+            return "Mozilla/5.0 (Macintosh; Apple Silicon Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+        else:
+            return "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+
+    elif os_type == "windows":
+        return "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+
+    else:
+        # Default fallback to Linux if OS is unidentified
+        return (
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+        )

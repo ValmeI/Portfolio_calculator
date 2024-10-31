@@ -47,7 +47,7 @@ if __name__ == "__main__":
     print(f"{Kinnisvara.Korter3_Nimi} laenu jääk: {BalanceVilde90} €. Laenu summa: {Kinnisvara.Korter3_Laen}")
     print(f"Laenu kohutus kokku(Kõik): {BalanceVilde90}")
 
-    # Kinnisvara kokku. Liidetakse kõik Dics korterite ostu hinnad - balancid ehk palju laenu veel maksta'
+    # Kinnisvara kokku. Liidetakse kõikkorterite ostu hinnad - balancid ehk palju laenu veel maksta'
     kinnisvara_port = Kinnisvara.calculate_real_estate_total_value() + Morr.LAHTSE_ARVUTUSLIK_VAARTUS / 2
 
     print(f"\nHetkel korteri/krundi puhas väärtus kokku: {kinnisvara_port} €.")
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     years = age.days // 365
     months = (age.days % 365) // 30
     print(f"Eesmärk 35 aastaselt portfelli väärtus {EESMARK_2} €. Vanus hetkel: {years} years, {months} months")
-    print(f"Veel minna: {fg('red')}{round(EESMARK_2 - ignar_total)}{attr('reset')} €.")
+    print(f"35 aastase eesmärk veel minna: {fg('red')}{round(EESMARK_2 - ignar_total)}{attr('reset')} €.")
 
     morr_total = Morr.kokku
     print(f"Mörr-i aktsiad: {Morr.m_aktsiad} €.")

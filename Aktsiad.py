@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 from Functions import chrome_driver
 import config
 import time
+from utils import get_default_user_agent
 
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -39,6 +40,7 @@ def replace_whitespaces(stat: str) -> str:
 
 def add_de_suffix(stock_symbol: str) -> str:
     return stock_symbol + ".DE"
+
 
 def get_stock_price_from_google(stock: str, is_in_original_currency: bool, max_retries=3) -> float:
     driver = None  # Initialize driver to None for safety
@@ -77,7 +79,7 @@ def get_stock_price_from_google(stock: str, is_in_original_currency: bool, max_r
                         stock_price_in_eur = usd_to_eur_convert(stock_price)
                         return stock_price_in_eur
                 else:
-                    logger.warning(f"[{threading.current_thread().name}] Stock price element not found, retrying...")
+                    logger.warning(f"[{threading.current_thread().name}] Google Stock price element not found, retrying...")
                     retries += 1
                     if retries >= max_retries:
                         return 0.0  # Return 0.0 if max retries reached
@@ -97,7 +99,9 @@ def get_stock_price_from_google(stock: str, is_in_original_currency: bool, max_r
                 time.sleep(1)
 
         # Return 0 if unable to fetch after retries
-        logger.error(f"[{threading.current_thread().name}] Failed to fetch stock price for {stock} after {max_retries} attempts.")
+        logger.error(
+            f"[{threading.current_thread().name}] Failed to fetch stock price for {stock} after {max_retries} attempts."
+        )
         return 0.0
 
     except Exception as e:
@@ -112,15 +116,19 @@ def get_stock_price_from_google(stock: str, is_in_original_currency: bool, max_r
             except WebDriverException:
                 pass  # Ignore errors if driver is already closed
 
+
 def get_stock_price(stock: str, is_in_original_currency: bool) -> float:
     logger.debug(f"[{threading.current_thread().name}] fetching stock price for {stock}")
     try:
         stock_price = get_stock_price_from_finnhub(stock, is_in_original_currency)
         if stock_price == 0.0 or stock_price is None:
-            logger.warning(f"Stock price not found for {stock} from Finnhub, trying Yahoo Selenium")
+            logger.warning(f"Stock price not found for {stock} from Finnhub, trying Google Selenium")
             stock_price = get_stock_price_from_google(stock, is_in_original_currency)
+            if stock_price == 0.0 or stock_price is None:
+                logger.warning(f"Stock price not found for {stock} from Google, trying Yahoo Selenium")
+                stock_price = get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
         else:
-            logger.debug(f"Stock price for {stock} is {stock_price} from Finnhub")
+            logger.debug(f"Stock price for {stock} is {stock_price} from Web Scraper/Finnhub")
         return round(stock_price, 2)
     except Exception:  # bad practice but works for now, will fix it later
         stock_price = get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
@@ -227,9 +235,7 @@ def get_stock_price_from_finnhub(stock: str, is_in_original_currency: bool) -> f
 
             stock_price_in_eur = usd_to_eur_convert(latest_price)
             return stock_price_in_eur
-        else:
-            logger.error(f"No price data found for {stock}")
-            return 0.0
+        return 0.0
 
     except Exception as e:
         logger.error(f"Failed to fetch stock price from Finnhub: {e}")
@@ -240,12 +246,12 @@ def get_stock_price_from_yahoo_selenium(stock: str, is_in_original_currency: boo
     try:
         url = f"https://finance.yahoo.com/quote/{stock}/"
         headers = {
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/58.0.3029.110 Safari/537.36"
-            )
+            "User-Agent": get_default_user_agent(),
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Connection": "keep-alive",
         }
+
         response = requests.get(url, headers=headers, timeout=WEB_SCRAPE_TIMEOUT)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
