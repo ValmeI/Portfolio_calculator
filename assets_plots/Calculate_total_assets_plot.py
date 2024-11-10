@@ -1,5 +1,5 @@
 import plotly.graph_objs as go
-
+from icecream import ic
 import sys
 from os.path import dirname, abspath
 
@@ -33,11 +33,12 @@ symbol_to_name: dict = {
     "NKE": "Nike",
     "INTC": "Intel",
     "SNOW": "Snowflake",
-    "IUSE.MI": "S&P 500",
+    "IUSE.ETF": "S&P 500",
     "BRK.B": "Berkshire Hathaway B",
     "QCOM": "Qualcomm",
-    "TAL: TKM1T": "Tallinna Kaubamaja",
-    "EFT1T": "EfTEN Real Estate Fund III",
+    "TKM1T.TL": "Tallinna Kaubamaja",
+    "EFT1T.TL": "EfTEN Real Estate Fund III",
+    "SXR8.DE": "iShares Core S&P 500 ETF",
 }
 
 
@@ -64,7 +65,7 @@ fys_usa_stocks: dict = {
 # combine the two dictionaries
 stocks_assets: dict = {**jur_euro_stocks, **fys_euro_stocks, **jur_usa_stocks, **fys_usa_stocks}
 stock_with_names_assets: dict = {symbol_to_name.get(key, key): value for key, value in stocks_assets.items()}
-print(stock_with_names_assets)
+ic(stock_with_names_assets)
 
 assets = {
     "Funderbeam Kokku": JUR_FUNDERBEAM,

@@ -19,10 +19,10 @@ from Morr import (
 )
 
 symbol_to_name: dict = {
-    "TSM1T": "Tallinna Sadam",
-    "TAL: TKM1T": "Tallinna Kaubamaja",
+    "TSM1T.TL": "Tallinna Sadam",
+    "TKM1T.TL": "Tallinna Kaubamaja",
     "EFT1T": "EfTEN Real Estate Fund III",
-    "EXXT.DE": "ETF NASDAQ100",
+    "EXXT.ETF": "ETF NASDAQ100",
     "SPYW.DE": "ETF S&P 500",
 }
 
