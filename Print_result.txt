@@ -1,9 +1,9 @@
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
-Laenu Vilde 90-193 makstud: 5 Years, 6 Months
+Laenu Vilde 90-193 makstud: 5 Years, 7 Months
 
-Vilde 90-193 laenu jääk: 10515 €. Laenu summa: 17940.0
-Laenu kohutus kokku(Kõik): 10515
+Vilde 90-193 laenu jääk: 10381 €. Laenu summa: 17940.0
+Laenu kohutus kokku(Kõik): 10381
 
 Hetkel korteri/krundi puhas väärtus kokku: 93532.5 €.
 
@@ -11,27 +11,27 @@ Lähtse Väärtus: [38;5;1m69032.5[0m €.
 Vilde peale makse Isale: [38;5;1m91.13[0m €.
 
 
-Juriidilise isiku väärtus: 85687 €.
-Krüpto: [38;5;1m1419[0m €.
-Juriidilise isiku aktsiad: 63218 €.
+Juriidilise isiku väärtus: 88620 €.
+Krüpto: [38;5;1m1615[0m €.
+Juriidilise isiku aktsiad: 65955 €.
 Funderbeam Kokku: [38;5;1m4400[0m €.
 
 
-Füüsilise isiku aktsia portfell: -4102 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 81585 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m1469[0m €.
+Füüsilise isiku aktsia portfell: -10000 €.
+Aktsiad/Raha Jur ja Füs isikud kokku: 78620 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m1665[0m €.
 
 
-Terve portfell kokku: [38;5;1m175118[0m €.
+Terve portfell kokku: [38;5;1m172152[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -111205.5 €.
-Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 34 years, 8 months
-Veel minna: [38;5;1m324882[0m €.
-Mörr-i aktsiad: 24216 €.
+Krooni miljonär veel minna: -108240.5 €.
+Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 34 years, 9 months
+35 aastase eesmärk veel minna: [38;5;1m327848[0m €.
+Mörr-i aktsiad: 0 €.
 Mörr-i vaba raha: 9158.58 €.
-Mörr-i portfell kokku: [38;5;1m121307[0m €.
-Kelly portfell: [38;5;1m9230[0m €.
-Pere portfell kokku: [38;5;1m305654[0m €.
+Mörr-i portfell kokku: [38;5;1m97091[0m €.
+Kelly portfell: [38;5;1m486[0m €.
+Pere portfell kokku: [38;5;1m269730[0m €.
 ==================================================
 Fail juba kaustas olemas.
 =================Ignar's==========================
@@ -43,7 +43,7 @@ Fail juba kaustas olemas.
 4  2022-01-01                     82751              128823                 56 %
 5  2023-01-01                    128823              111318                -14 %
 6  2024-01-01                    111318              142798                 28 %
-7        Täna                    142798              175118                 23 %
+7        Täna                    142798              172152                 21 %
 =================Mörr's===========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2019-01-01                      1000                3958                296 %
@@ -52,17 +52,18 @@ Fail juba kaustas olemas.
 3  2022-01-01                     34345               68468                 99 %
 4  2023-01-01                     68468               71519                  4 %
 5  2024-01-01                     71519               92587                 29 %
-6        Täna                     92587              121307                 31 %
+6        Täna                     92587               97091                  5 %
 =================Kelly's==========================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2022-01-01                         1                1514             151300 %
 1  2023-01-01                      1514                2755                 82 %
 2  2024-01-01                      2755                6214                126 %
-3        Täna                      6214                9230                 49 %
+3        Täna                      6214                 486                -92 %
 ==================================================
-Tänane seis üle kirjutatud
-HTTP Error 401: Unauthorized
+Tänane seis lisatud.
+
+ [38;5;2m[1mEmail sent[0m
 [38;5;2mE-maili saatmine: E-mail saadetud![0m
-Program took: 3 seconds to run
+Program took: 2 seconds to run
 ==================================================
-Program Start_Time: 2024-10-31 12:13:04 and End_time: 2024-10-31 12:13:08
+Program Start_Time: 2024-11-10 12:54:13 and End_time: 2024-11-10 12:54:15

@@ -10,12 +10,10 @@ import platform
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import config
-import platform
 
 
 def get_data_copy_paths_based_on_os() -> tuple:
-    BASE_PATH = "Portfolio_calculator"
-    BASE_PATH = what_path_for_file()
+    BASE_PATH = what_path_for_file() or "Portfolio_calculator"  # Default path
 
     # Define paths using os.path.join for cross-platform compatibility
     TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator", "Print_result.txt")
@@ -25,6 +23,8 @@ def get_data_copy_paths_based_on_os() -> tuple:
         NAS_PATH = r"\\RMI_NAS\Python\Calculators\portfolio_result"
     elif os.name == "posix":  # macOS or Linux
         NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"
+    else:
+        NAS_PATH = "Not found"
     logger.debug(f"TXT_SOURCE: {TXT_SOURCE}, EXCEL_SOURCE: {EXCEL_SOURCE}, NAS_PATH: {NAS_PATH}")
     return TXT_SOURCE, EXCEL_SOURCE, NAS_PATH
 

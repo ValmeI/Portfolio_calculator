@@ -79,7 +79,9 @@ def get_stock_price_from_google(stock: str, is_in_original_currency: bool, max_r
                         stock_price_in_eur = usd_to_eur_convert(stock_price)
                         return stock_price_in_eur
                 else:
-                    logger.warning(f"[{threading.current_thread().name}] Google Stock price element not found, retrying...")
+                    logger.warning(
+                        f"[{threading.current_thread().name}] Google Stock price element not found, retrying..."
+                    )
                     retries += 1
                     if retries >= max_retries:
                         return 0.0  # Return 0.0 if max retries reached

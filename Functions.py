@@ -18,8 +18,8 @@ from typing import Optional
 
 PATH_HOME_DESKTOP_PC = r"D:\PycharmProjects/"
 PATH_WIN_LAPTOP = r"C:\PycharmProjects/"
-PATH_LINUX_LAPTOP = r"/home/ignar-valme-p42/personal_git/"
-PATH_MACBOOK = r"/Users/ignar/Documents/git/"
+PATH_LINUX_LAPTOP = r"/home/ignar-valme/personal_git/"
+PATH_MACBOOK = r"/Users/ignar/git/"
 
 
 def chrome_driver() -> WebDriver:
