@@ -29,8 +29,8 @@ JUR_USA_STOCKS = {
 
 JUR_EUR_STOCKS = {"IUSE.ETF": 80.6334}
 
-BTC_AMOUNT = 0.016908
-ETH_AMOUNT = 0.12037
+BTC_AMOUNT = 0
+ETH_AMOUNT = 0
 
 ETH_EUR = Aktsiad.crypto_in_eur("Ethereum") * ETH_AMOUNT
 Bitcoin_EUR = Aktsiad.crypto_in_eur("bitcoin") * BTC_AMOUNT
