@@ -65,6 +65,7 @@ fys_usa_stocks: dict = {
 # combine the two dictionaries
 stocks_assets: dict = {**jur_euro_stocks, **fys_euro_stocks, **jur_usa_stocks, **fys_usa_stocks}
 stock_with_names_assets: dict = {symbol_to_name.get(key, key): value for key, value in stocks_assets.items()}
+ic(stocks_assets)
 ic(stock_with_names_assets)
 
 assets = {

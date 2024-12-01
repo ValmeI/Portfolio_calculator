@@ -9,7 +9,7 @@ from Functions import chrome_driver
 import config
 import time
 from utils import get_default_user_agent
-
+import yfinance as yf
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -124,11 +124,14 @@ def get_stock_price(stock: str, is_in_original_currency: bool) -> float:
     try:
         stock_price = get_stock_price_from_finnhub(stock, is_in_original_currency)
         if stock_price == 0.0 or stock_price is None:
-            logger.warning(f"Stock price not found for {stock} from Finnhub, trying Google Selenium")
-            stock_price = get_stock_price_from_google(stock, is_in_original_currency)
+            logger.warning(f"Stock price not found for {stock} from Finnhub, trying yfinance")
+            stock_price = get_stock_price_from_yfinance(stock, is_in_original_currency)
             if stock_price == 0.0 or stock_price is None:
-                logger.warning(f"Stock price not found for {stock} from Google, trying Yahoo Selenium")
-                stock_price = get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
+                logger.warning(f"Stock price not found for {stock} from yfinance, trying Google Selenium")
+                stock_price = get_stock_price_from_google(stock, is_in_original_currency)
+                if stock_price == 0.0 or stock_price is None:
+                    logger.warning(f"Stock price not found for {stock} from Google, trying Yahoo Selenium")
+                    stock_price = get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
         else:
             logger.debug(f"Stock price for {stock} is {stock_price} from Web Scraper/Finnhub")
         return round(stock_price, 2)
@@ -275,4 +278,19 @@ def get_stock_price_from_yahoo_selenium(stock: str, is_in_original_currency: boo
             return 0.0
     except Exception as e:
         logger.error(f"Failed to fetch stock price from Yahoo Finance: {e}")
+        return 0.0
+
+
+def get_stock_price_from_yfinance(stock: str, is_in_original_currency: bool) -> float:
+    try:
+        ticker = yf.Ticker(stock)
+        latest_price = ticker.history(period="1d").iloc[0]["Close"]
+        logger.debug(f"[{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}")
+        if is_in_original_currency:
+            return latest_price
+        else:
+            stock_price_in_eur = usd_to_eur_convert(latest_price)
+            return stock_price_in_eur
+    except Exception as e:
+        logger.error(f"Failed to fetch stock price from yfinance: {e}")
         return 0.0

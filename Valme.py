@@ -7,7 +7,7 @@ from Functions import what_path_for_file
 
 path = what_path_for_file()
 
-FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113}
+FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113, "SXR8.DE": 1.183}
 
 FYS_USA_STOCKS = {"SXR8.DE": 0.805}
 
@@ -58,7 +58,7 @@ JurAktsiad = round(
     + CLEVERON_AKTSIA
 )
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
-LHV_VOLAKIRI = 2400
+LHV_VOLAKIRI = 4000
 BIGBANK_VOLAKIRI = 4200
 HOLM_VOLAKIRI = 3300
 LIVEN_VOLAKIRI = 4300

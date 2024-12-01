@@ -1,6 +1,6 @@
 import Aktsiad
 
-JUR_EUR_STOCKS = {"EGR1T.TL": 172, "HPR1T.TL": 23, "EXXT.DE": 44.571, "MAGIC.RG": 35}
+JUR_EUR_STOCKS = {"EGR1T.TL": 172, "HPR1T.TL": 23, "EXXT.DE": 44.967, "MAGIC.RG": 35, "IITU.ETF": 0.6} # for some reason IITU is divided by 100
 
 ETH_AMOUNT = 0.10581
 
