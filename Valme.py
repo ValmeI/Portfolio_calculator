@@ -7,7 +7,7 @@ from Functions import what_path_for_file
 
 path = what_path_for_file()
 
-FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113, "SXR8.DE": 1.183}
+FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113, "SXR8.DE": 1.199}
 
 FYS_USA_STOCKS = {"SXR8.DE": 0.805}
 
@@ -27,7 +27,7 @@ JUR_USA_STOCKS = {
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE.ETF": 80.6334}
+JUR_EUR_STOCKS = {"IUSE.ETF": 95.3524}
 
 BTC_AMOUNT = 0
 ETH_AMOUNT = 0
@@ -65,9 +65,9 @@ LIVEN_VOLAKIRI = 4300
 EVERAUS_VOLAKIRI = 5000
 
 # jur isiku raha LHV'
-JUR_RAHA = 600
+JUR_RAHA = 3100
 JUR_FUNDERBEAM = 4400  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
-JUR_IB_RAHA = 150
+JUR_IB_RAHA = 380
 JurIsik = round(
     JUR_RAHA
     + JUR_FUNDERBEAM
