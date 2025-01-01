@@ -41,7 +41,7 @@ def create_excel(excel_name: str, sheet_name: str) -> None:
     file_name = excel_name + ".xlsx"
     wb.save(filename=file_name)
     wb.close()
-    print("==================================================")
+    print("=================================================================================")
     print("Loodud uus fail", file_name)
 
 
@@ -96,7 +96,7 @@ def column_width(excel_name: str, excel_headers: list) -> None:
 # check if excel file is there, if not create it
 def need_new_excel_file(excel_name: str, sheet_name: str, excel_headers: list) -> None:
     if check_if_excel_exists(excel_name):
-        print("==================================================")
+        print("=================================================================================")
         print("Fail juba kaustas olemas.")
     else:
         create_excel(excel_name, sheet_name)
