@@ -1,14 +1,14 @@
-import Aktsiad
+from Aktsiad import StockManager
 
-MORR_EUR_STOCKS = {"EFT1T.TL": 55, "TKM1T.TL": 563, "TSM1T.TL": 560, "EXXT.DE": 62.809, "SPYW.DE": 243.987}
+MORR_EUR_STOCKS = {"EFT1T.TL": 55, "TKM1T.TL": 563, "TSM1T.TL": 560, "EXXT.DE": 74.655, "SPYW.DE": 281.380}
 
 # morr_usa_stocks = {}
 
 # Sõle_Laen_Kuupäev = date(2011, 8, 25) #Müüdud 22.06.2021
 
-VAL_CAPITAL_RAHA = 18600
+VAL_CAPITAL_RAHA = 20107
 
-TAHTAJALINE_HOIUS = 4000
+TAHTAJALINE_HOIUS = 4143.93
 
 # Lähtse väärtuse arvutus, staatiline
 LAHTSE_OMAFINANTSEERING = 53370  # 25.10.2024 seisuga
@@ -18,15 +18,13 @@ LAHTSE_ARVUTUSLIK_VAARTUS = round(
     LAHTSE_HINDAMISAKTI_VAARTUS - LAHTSE_ARVUTUSLIK_VAARTUS_KASUTUS_KOKKU + LAHTSE_OMAFINANTSEERING
 )
 
-m_aktsiad = round(Aktsiad.stocks_value_combined(stock_dictionary=MORR_EUR_STOCKS, org_currency=True))
+margit_stocks_manager = StockManager("Margit")
 
-MORR_RAHA = 6400
+m_aktsiad = round(margit_stocks_manager.stocks_value_combined(stock_dictionary=MORR_EUR_STOCKS, org_currency=True))
 
-LHV_VOLAKIRI = 4000
-BIGBANK_VOLAKIRI = 6200
-INBANK_VOLAKIRI = 1000
-HOLM_VOLAKIRI = 1100
-LIVEN_VOLAKIRI = 2100
+MORR_RAHA = 9106
+
+VOLAKIRJAD_KOKKU = 14782.86
 
 
 kokku = round(
@@ -34,7 +32,5 @@ kokku = round(
     + MORR_RAHA
     + m_aktsiad
     + LAHTSE_ARVUTUSLIK_VAARTUS / 2
-    + LHV_VOLAKIRI
-    + BIGBANK_VOLAKIRI
-    + INBANK_VOLAKIRI
+    + VOLAKIRJAD_KOKKU
 )

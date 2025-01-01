@@ -11,13 +11,10 @@ from Valme import (
     JUR_USA_STOCKS,
     JUR_EUR_STOCKS,
     FYS_EUR_STOCKS,
-    LHV_VOLAKIRI,
-    BIGBANK_VOLAKIRI,
-    HOLM_VOLAKIRI,
-    LIVEN_VOLAKIRI,
+    VOLAKIRJAD_KOKKU,
     CLEVERON_AKTSIA,
 )
-from Aktsiad import get_stock_price
+from Aktsiad import StockManager
 from Kinnisvara import Korter1_Hind
 from Morr import LAHTSE_ARVUTUSLIK_VAARTUS
 
@@ -41,24 +38,25 @@ symbol_to_name: dict = {
     "SXR8.DE": "iShares Core S&P 500 ETF",
 }
 
+ignar_plot_stocks_manager = StockManager("Ignar_plot")
 
 jur_usa_stocks: dict = {
-    stock_sym: int(round(get_stock_price(stock_sym, False) * stock_amount, 0))
+    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price(stock_sym, False) * stock_amount, 0))
     for stock_sym, stock_amount in JUR_USA_STOCKS.items()
 }
 
 jur_euro_stocks: dict = {
-    stock_sym: int(round(get_stock_price(stock_sym, True) * stock_amount, 0))
+    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price(stock_sym, True) * stock_amount, 0))
     for stock_sym, stock_amount in JUR_EUR_STOCKS.items()
 }
 
 fys_euro_stocks: dict = {
-    stock_sym: int(round(get_stock_price(stock_sym, True) * stock_amount, 0))
+    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price(stock_sym, True) * stock_amount, 0))
     for stock_sym, stock_amount in FYS_EUR_STOCKS.items()
 }
 
 fys_usa_stocks: dict = {
-    stock_sym: int(round(get_stock_price(stock_sym, False) * stock_amount, 0))
+    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price(stock_sym, False) * stock_amount, 0))
     for stock_sym, stock_amount in FYS_USA_STOCKS.items()
 }
 
@@ -70,10 +68,7 @@ ic(stock_with_names_assets)
 
 assets = {
     "Funderbeam Kokku": JUR_FUNDERBEAM,
-    "LHV Võlakirjad": LHV_VOLAKIRI,
-    "Bigbank Võlakirjad": BIGBANK_VOLAKIRI,
-    "Holm Bank Võlakirjad": HOLM_VOLAKIRI,
-    "Liven Võlakirjad": LIVEN_VOLAKIRI,
+    "Võlakirjad kokku": VOLAKIRJAD_KOKKU,
     "Cleveron Aktsiad": CLEVERON_AKTSIA,
     "Kinnisvara: Akadeemia 12 m2": Korter1_Hind,
     "Kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
@@ -100,7 +95,7 @@ fig.update_layout(title="Finance Portfolio Overview", showlegend=True)
 
 # Add the total amount as an annotation
 fig.add_annotation(
-    text=f"Total: {kokku_varad} EUR",
+    text=f"Total: {round(kokku_varad)} EUR",
     x=0.5,  # Position in the middle
     y=-0.1,  # Position below the pie chart
     showarrow=False,

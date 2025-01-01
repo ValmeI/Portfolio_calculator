@@ -1,17 +1,19 @@
 [FORMAT]
-# Maximum number of characters on a single line.
-max-line-length = 120
+max-line-length=120
 
 [MESSAGES CONTROL]
-disable = 
-    line-too-long,
+disable=
     missing-module-docstring,
     missing-function-docstring,
     missing-class-docstring,
-    expression-not-assigned,
-    wrong-import-position,
-    wrong-import-order,
+    invalid-name,
     broad-exception-raised,
+    not-callable,
+    ungrouped-imports,
+    wrong-import-order,
+    line-too-long,
     broad-exception-caught,
-    bare-except,
-    invalid-name # Allow snake_case names for now, remove later when we have time to refactor
+    wrong-import-position,
+    dangerous-default-value,
+    trailing-whitespace,
+    import-error

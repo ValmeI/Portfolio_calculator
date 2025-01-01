@@ -5,30 +5,31 @@ from os.path import dirname, abspath
 
 sys.path.append(dirname(dirname(abspath(__file__))))
 
-from Aktsiad import get_stock_price
+from Aktsiad import StockManager
+
 from Morr import (
     LAHTSE_ARVUTUSLIK_VAARTUS,
     MORR_EUR_STOCKS,
     TAHTAJALINE_HOIUS,
-    LHV_VOLAKIRI,
-    BIGBANK_VOLAKIRI,
-    HOLM_VOLAKIRI,
-    LIVEN_VOLAKIRI,
-    INBANK_VOLAKIRI,
+    VOLAKIRJAD_KOKKU,
     MORR_RAHA,
 )
+
+margit_plot_stocks_manager = StockManager("Margit_plot")
 
 symbol_to_name: dict = {
     "TSM1T.TL": "Tallinna Sadam",
     "TKM1T.TL": "Tallinna Kaubamaja",
     "EFT1T": "EfTEN Real Estate Fund III",
+    "EFT1T.TL": "EfTEN Real Estate Fund III",
     "EXXT.ETF": "ETF NASDAQ100",
+    "EXXT.DE": "ETF NASDAQ100",
     "SPYW.DE": "ETF S&P 500",
 }
 
 
 fys_euro_stocks: dict = {
-    stock_sym: int(round(get_stock_price(stock_sym, True) * stock_amount, 0))
+    stock_sym: int(round(margit_plot_stocks_manager.get_stock_price(stock_sym, True) * stock_amount, 0))
     for stock_sym, stock_amount in MORR_EUR_STOCKS.items()
 }
 
@@ -39,11 +40,7 @@ print(stock_with_names_assets)
 
 
 assets = {
-    "LHV Võlakirjad": LHV_VOLAKIRI,
-    "Bigbank Võlakirjad": BIGBANK_VOLAKIRI,
-    "Holm Bank Võlakirjad": HOLM_VOLAKIRI,
-    "InBank Võlakirjad": INBANK_VOLAKIRI,
-    "Liven Võlakirjad": LIVEN_VOLAKIRI,
+    "Võlakirjad kokku": VOLAKIRJAD_KOKKU,
     "Kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
     "Tähtajaline hoius": TAHTAJALINE_HOIUS,
     "Vaba Raha": MORR_RAHA,
@@ -70,7 +67,7 @@ fig.update_layout(title="Finance Portfolio Overview", showlegend=True)
 
 # Add the total amount as an annotation
 fig.add_annotation(
-    text=f"Total: {kokku_varad} EUR",
+    text=f"Total: {round(kokku_varad)} EUR",
     x=0.5,  # Position in the middle
     y=-0.1,  # Position below the pie chart
     showarrow=False,

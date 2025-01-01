@@ -46,6 +46,8 @@ if __name__ == "__main__":
 
     print(f"{Kinnisvara.Korter3_Nimi} laenu jääk: {BalanceVilde90} €. Laenu summa: {Kinnisvara.Korter3_Laen}")
     print(f"Laenu kohutus kokku(Kõik): {BalanceVilde90}")
+    
+    print(f"Val Capital: {Morr.VAL_CAPITAL_RAHA / 2} €.")
 
     # Kinnisvara kokku. Liidetakse kõikkorterite ostu hinnad - balancid ehk palju laenu veel maksta'
     kinnisvara_port = Kinnisvara.calculate_real_estate_total_value() + Morr.LAHTSE_ARVUTUSLIK_VAARTUS / 2

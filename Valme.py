@@ -1,20 +1,23 @@
 from datetime import date
-import Aktsiad
+from Aktsiad import StockManager
 import Excel_functions
 import Functions as F
 import Morr
 from Functions import what_path_for_file
 
+
+ignar_stocks_manager = StockManager("Ignar")
+
 path = what_path_for_file()
 
 FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113, "SXR8.DE": 1.199}
 
-FYS_USA_STOCKS = {"SXR8.DE": 0.805}
+FYS_USA_STOCKS = {"SXR8.DE": 1.233}
 
 JUR_USA_STOCKS = {
     "AAPL": 69,
     "TSLA": 15,
-    "AMD": 40,
+    "AMD": 70,
     "QCOM": 24.9907,
     "MSFT": 14,
     "AMZN": 56,
@@ -27,13 +30,13 @@ JUR_USA_STOCKS = {
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE.ETF": 95.3524}
+JUR_EUR_STOCKS = {"IUSE.ETF": 99.7312}
 
 BTC_AMOUNT = 0
 ETH_AMOUNT = 0
 
-ETH_EUR = Aktsiad.crypto_in_eur("Ethereum") * ETH_AMOUNT
-Bitcoin_EUR = Aktsiad.crypto_in_eur("bitcoin") * BTC_AMOUNT
+ETH_EUR = ignar_stocks_manager.crypto_in_eur("Ethereum") * ETH_AMOUNT
+Bitcoin_EUR = ignar_stocks_manager.crypto_in_eur("bitcoin") * BTC_AMOUNT
 
 # Vanad ja refinants Akadeemia laenu kuupäevad yyyy.mm.dd'
 # Vana_Aka42_63_Laen_Kuupäev = date(2016, 2, 16)
@@ -45,29 +48,26 @@ VILDE90_193_LAEN_KUUPAEV = date(2019, 4, 9)
 
 # emale võlg 10k
 FUSISIK_RAHA = -10000
-FysIsikAktsaid = Aktsiad.stocks_value_combined(
+FysIsikAktsaid = ignar_stocks_manager.stocks_value_combined(
     stock_dictionary=FYS_EUR_STOCKS, org_currency=True
-) + Aktsiad.stocks_value_combined(stock_dictionary=FYS_USA_STOCKS, org_currency=False)
+) + ignar_stocks_manager.stocks_value_combined(stock_dictionary=FYS_USA_STOCKS, org_currency=False)
 
 FysIsik = round(FUSISIK_RAHA + FysIsikAktsaid)
 
 CLEVERON_AKTSIA = 4 * 150  # Ümber hinnatud 11.11.2023. Uus hind 150 EUR, vana koos clevoniga 1050 EUR tk
 JurAktsiad = round(
-    Aktsiad.stocks_value_combined(stock_dictionary=JUR_USA_STOCKS, org_currency=False)
-    + Aktsiad.stocks_value_combined(stock_dictionary=JUR_EUR_STOCKS, org_currency=True)
+    ignar_stocks_manager.stocks_value_combined(stock_dictionary=JUR_USA_STOCKS, org_currency=False)
+    + ignar_stocks_manager.stocks_value_combined(stock_dictionary=JUR_EUR_STOCKS, org_currency=True)
     + CLEVERON_AKTSIA
 )
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
-LHV_VOLAKIRI = 4000
-BIGBANK_VOLAKIRI = 4200
-HOLM_VOLAKIRI = 3300
-LIVEN_VOLAKIRI = 4300
-EVERAUS_VOLAKIRI = 5000
+
+VOLAKIRJAD_KOKKU = 7508.80 + 9491.49
 
 # jur isiku raha LHV'
-JUR_RAHA = 3100
+JUR_RAHA = 2800
 JUR_FUNDERBEAM = 4400  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
-JUR_IB_RAHA = 380
+JUR_IB_RAHA = -3340
 JurIsik = round(
     JUR_RAHA
     + JUR_FUNDERBEAM
@@ -75,8 +75,7 @@ JurIsik = round(
     + JurAktsiad
     + Morr.VAL_CAPITAL_RAHA / 2
     + Jur_Krypto
-    + LHV_VOLAKIRI
-    + BIGBANK_VOLAKIRI
+    + VOLAKIRJAD_KOKKU
 )
 # Mörr on väike karu'
 
