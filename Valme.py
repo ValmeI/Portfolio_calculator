@@ -69,13 +69,7 @@ JUR_RAHA = 2800
 JUR_FUNDERBEAM = 4400  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
 JUR_IB_RAHA = -3340
 JurIsik = round(
-    JUR_RAHA
-    + JUR_FUNDERBEAM
-    + JUR_IB_RAHA
-    + JurAktsiad
-    + Morr.VAL_CAPITAL_RAHA / 2
-    + Jur_Krypto
-    + VOLAKIRJAD_KOKKU
+    JUR_RAHA + JUR_FUNDERBEAM + JUR_IB_RAHA + JurAktsiad + Morr.VAL_CAPITAL_RAHA / 2 + Jur_Krypto + VOLAKIRJAD_KOKKU
 )
 # Mörr on väike karu'
 

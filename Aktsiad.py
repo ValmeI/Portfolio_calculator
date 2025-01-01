@@ -93,7 +93,9 @@ class StockManager:
                             return 0.0  # Return 0.0 if max retries reached
 
                 except NoSuchWindowException:
-                    logger.warning(f"[{self.portfolio_owner}] Window unexpectedly closed, retrying... Attempt {retries + 1}/{max_retries}")
+                    logger.warning(
+                        f"[{self.portfolio_owner}] Window unexpectedly closed, retrying... Attempt {retries + 1}/{max_retries}"
+                    )
                     retries += 1
                     driver.quit()  # Close the invalid driver and retry
                     driver = None  # Reset driver to trigger reinitialization
@@ -129,16 +131,24 @@ class StockManager:
         try:
             stock_price = self.get_stock_price_from_finnhub(stock, is_in_original_currency)
             if stock_price == 0.0 or stock_price is None:
-                logger.warning(f"[{self.portfolio_owner}] Stock price not found for {stock} from Finnhub, trying yfinance")
+                logger.warning(
+                    f"[{self.portfolio_owner}] Stock price not found for {stock} from Finnhub, trying yfinance"
+                )
                 stock_price = self.get_stock_price_from_yfinance(stock, is_in_original_currency)
                 if stock_price == 0.0 or stock_price is None:
-                    logger.warning(f"[{self.portfolio_owner}] Stock price not found for {stock} from yfinance, trying Google Selenium")
+                    logger.warning(
+                        f"[{self.portfolio_owner}] Stock price not found for {stock} from yfinance, trying Google Selenium"
+                    )
                     stock_price = self.get_stock_price_from_google(stock, is_in_original_currency)
                     if stock_price == 0.0 or stock_price is None:
-                        logger.warning(f"[{self.portfolio_owner}] Stock price not found for {stock} from Google, trying Yahoo Selenium")
+                        logger.warning(
+                            f"[{self.portfolio_owner}] Stock price not found for {stock} from Google, trying Yahoo Selenium"
+                        )
                         stock_price = self.get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
             else:
-                logger.debug(f"[{self.portfolio_owner}] Stock price for {stock} is {stock_price} from Web Scraper/Finnhub")
+                logger.debug(
+                    f"[{self.portfolio_owner}] Stock price for {stock} is {stock_price} from Web Scraper/Finnhub"
+                )
             return round(stock_price, 2)
         except Exception:  # bad practice but works for now, will fix it later
             stock_price = self.get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
@@ -150,7 +160,9 @@ class StockManager:
         input: stock dictionary, org_currency = True/False"""
         total_value = 0
         with ThreadPoolExecutor(max_workers=self.max_concurrent_instances) as executor:
-            future_to_stock = {executor.submit(self.get_stock_price, sym, org_currency): sym for sym in stock_dictionary}
+            future_to_stock = {
+                executor.submit(self.get_stock_price, sym, org_currency): sym for sym in stock_dictionary
+            }
 
             for future in as_completed(future_to_stock):
                 sym = future_to_stock[future]
@@ -217,7 +229,9 @@ class StockManager:
 
     def usd_to_eur_convert(self, value_amount: float) -> float:
         conversion_rate = self.get_usd_to_eur_conversion_rate()
-        logger.debug(f"[{self.portfolio_owner}] Converting {value_amount} USD to EUR with conversion rate {conversion_rate}")
+        logger.debug(
+            f"[{self.portfolio_owner}] Converting {value_amount} USD to EUR with conversion rate {conversion_rate}"
+        )
         return value_amount * conversion_rate
 
     def get_stock_price_from_finnhub(self, stock: str, is_in_original_currency: bool) -> float:
@@ -228,10 +242,14 @@ class StockManager:
 
             if "c" in data:
                 latest_price = data["c"]  # 'c' is the current price
-                logger.debug(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}")
+                logger.debug(
+                    f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}"
+                )
                 if latest_price is None:
                     latest_price = data["pc"]  # 'pc' is the previous close
-                    logger.debug(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} previous close: {latest_price}")
+                    logger.debug(
+                        f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} previous close: {latest_price}"
+                    )
 
                 if is_in_original_currency:
                     return float(latest_price)
@@ -261,7 +279,9 @@ class StockManager:
                 if price_span and price_span.text:
                     price_text = price_span.text.strip().replace(",", "")
                     latest_price = float(price_text)
-                    logger.debug(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}")
+                    logger.debug(
+                        f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}"
+                    )
                     if is_in_original_currency:
                         return latest_price
                     else:
@@ -271,7 +291,9 @@ class StockManager:
                     logger.error(f"[{self.portfolio_owner}] No price data found for {stock}")
                     return 0.0
             else:
-                logger.error(f"[{self.portfolio_owner}] Failed to retrieve data. HTTP Status code: {response.status_code}")
+                logger.error(
+                    f"[{self.portfolio_owner}] Failed to retrieve data. HTTP Status code: {response.status_code}"
+                )
                 return 0.0
         except Exception as e:
             logger.error(f"[{self.portfolio_owner}] Failed to fetch stock price from Yahoo Finance: {e}")
@@ -281,14 +303,16 @@ class StockManager:
         try:
             ticker = yf.Ticker(stock)
             history_data = ticker.history(period="1d")
-            
+
             if history_data.empty:
                 logger.warning(f"[{self.portfolio_owner}] No historical data found for {stock}")
                 return 0.0  # Return a default value if no data is found
 
             latest_price = history_data.iloc[0]["Close"]
-            logger.debug(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}")
-            
+            logger.debug(
+                f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}"
+            )
+
             if is_in_original_currency:
                 return latest_price
             else:

@@ -6,6 +6,7 @@ from dateutil.parser import parse
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
 import Functions
+from app_logging import logger
 
 
 HEADERS = [
@@ -104,7 +105,6 @@ def need_new_excel_file(excel_name: str, sheet_name: str, excel_headers: list) -
         column_width(excel_name, excel_headers)
 
 
-# returns all values of given column in list
 def get_excel_column_values(excel_name: str, column_letter: str) -> list:
     # add file type
     file_name = excel_name + ".xlsx"
@@ -121,7 +121,6 @@ def get_excel_column_values(excel_name: str, column_letter: str) -> list:
     return column_list
 
 
-# returns last row of given columns number
 def get_last_row(excel_name: str, column_number: int) -> Any:
     # add file type'
     file_name = excel_name + ".xlsx"
@@ -136,57 +135,54 @@ def get_last_row(excel_name: str, column_number: int) -> Any:
 
 
 def year_to_year_percent(
-    excel_name: str, mm_dd: str, todays_total_portfolio: float, excel_column_input: str, filter_nr_input: int = 0
+    excel_name: str, mm_dd: str, todays_total_portfolio: float, portfolio_history_column: str, filter_nr_input: int = 0
 ) -> pd.DataFrame:
-    file_name = excel_name + ".xlsx"
-    workbook_name = file_name
-    load_workbook(workbook_name).active
-    # all dates and all values from total sum of portfolio'
-    date_and_sum_dict = dict(
-        zip(get_excel_column_values(excel_name, "A"), get_excel_column_values(excel_name, excel_column_input))
-    )
-    amount_list = []
-    date_list = []
-    # to filter out only give dates (mm_dd input) and sums'
-    for date1, amount in date_and_sum_dict.items():
-        if mm_dd in date1:
-            amount_list.append(round(amount))
-            date_list.append(date1)
-            # is same year as last row (for example 2022-01-01) and it is not January 1st, then add today s portfolio amount'
-            if date.today().year == parse(date1).date().year and date.today().month != "1" and date.today().day != "1":
-                amount_list.append(round(todays_total_portfolio))
-                date_list.append(date.today())
+    # Load the workbook and get the data
+    dates = get_excel_column_values(excel_name, "A")
+    amounts = get_excel_column_values(excel_name, portfolio_history_column)
 
-    previous_amount_list = []
-    percentage_increase_list = []
-    # to get previous vs current values and percentage increase'
-    for previous, current in zip(amount_list, amount_list[1:]):
-        percentage_increase = round(100 * ((current - previous) / previous))
-        previous_amount_list.append(previous)
-        percentage_increase_list.append(str(percentage_increase) + " %")
+    # Create a DataFrame from the dates and amounts
+    df = pd.DataFrame({"Date": dates, "Amount": amounts})
 
-    # need to add 0 to the beginning of list, so dataframe would have exactly same amount of rows'
-    if len(previous_amount_list) != len(date_list):
-        # pos and value added'
-        previous_amount_list.insert(0, 0)
+    if df.empty:
+        logger.error("Dataframe is empty for year to year percent calculation")
+        return pd.DataFrame()
 
-    if len(percentage_increase_list) != len(date_list):
-        # pos and value added'
-        percentage_increase_list.insert(0, "0 %")
+    # Filter the DataFrame based on the mm_dd condition
+    df = df[df["Date"].str.contains(mm_dd)]
 
+    # Add today's portfolio amount if conditions are met
+    today = date.today()
+    last_date = parse(df["Date"].iloc[-1]).date()  # Get the last date in the DataFrame
+
+    # Always append today's portfolio amount if the year matches
+    if today.year == last_date.year:
+        new_row = pd.DataFrame({"Date": [today], "Amount": [round(todays_total_portfolio)]})
+        df = pd.concat([df, new_row], ignore_index=True)
+
+    # Calculate previous amounts and percentage increases
+    df["Previous Amount"] = df["Amount"].shift(1)
+    df["Percentage Increase"] = ((df["Amount"] - df["Previous Amount"]) / df["Previous Amount"] * 100).fillna(0).round()
+
+    # final ouput and onvert to integer to remove decimal places
     data = {
-        "Aasta": date_list,
-        "Portfell eelmisel aastal": previous_amount_list,
-        "Portfell see aasta": amount_list,
-        "Protsendiline muutus": percentage_increase_list,
+        "Aasta": df["Date"],
+        "Portfell eelmisel aastal": df["Previous Amount"].fillna(0).astype(int),
+        "Portfell see aasta": df["Amount"].astype(int),
+        "Protsendiline muutus": df["Percentage Increase"].astype(int).astype(str) + " %",
     }
+
+    final_df = pd.DataFrame(data)
 
     pd.set_option("display.max_rows", None)
     pd.set_option("display.max_columns", None)
     pd.set_option("display.width", None)
-    df = pd.DataFrame(data)
-    df = df[df["Portfell see aasta"] >= filter_nr_input]
-    # replace last Aasta columns value with 'Täna'
-    df.iloc[-1, df.columns.get_loc("Aasta")] = "Täna"
-    df.reset_index(drop=True, inplace=True)
-    return df
+
+    # Filter the DataFrame based on the specified condition
+    final_df = final_df[final_df["Portfell see aasta"] >= filter_nr_input].reset_index(drop=True)
+
+    # Replace the last "Aasta" column value with 'Täna'
+    if not final_df.empty:
+        final_df.iloc[-1, final_df.columns.get_loc("Aasta")] = "Täna"
+
+    return final_df
