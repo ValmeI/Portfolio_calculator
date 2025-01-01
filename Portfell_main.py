@@ -140,7 +140,7 @@ if __name__ == "__main__":
     utils.check_if_and_send_email(mail_body=mail_body, day_to_send_email="Sunday", send_every_day=True)
 
     print(f"Program took: {round(time.time() - start_time)} seconds to run")
-    print("==================================================")
+    print("=================================================================================")
     print(
         f"Program Start_Time: {start_date.strftime('%Y-%m-%d %H:%M:%S')} and End_time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
     )
