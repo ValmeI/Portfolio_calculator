@@ -30,7 +30,7 @@ symbol_to_name: dict = {
     "NKE": "Nike",
     "INTC": "Intel",
     "SNOW": "Snowflake",
-    "IUSE.ETF": "S&P 500",
+    "IUSE": "S&P 500",
     "BRK.B": "Berkshire Hathaway B",
     "QCOM": "Qualcomm",
     "TKM1T.TL": "Tallinna Kaubamaja",

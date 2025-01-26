@@ -1,26 +1,31 @@
-import configparser
-import os
+from pydantic_settings import BaseSettings
+from typing import Literal
 
-# get current working directory
-working_directory = os.getcwd()
 
-# parses config.ini file that is in same directory
-configParser = configparser.RawConfigParser()
-configFilePath = f"{working_directory}/config.ini"
-parser = configparser.ConfigParser()
+class Settings(BaseSettings):
+    
+    funderbeam_username: str
+    funderbeam_password: str
+    
+    # Valid log levels that loguru accepts, incase there is typos in the .env and it would make whole code unresponsive
+    logger_level: Literal["TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"]
+    
+    twilio_api_key: str
+    finnhub_api_key: str
 
-if os.path.exists(configFilePath) is False:
-    raise Exception(f"{configFilePath} not found")
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
 
-# try to open config file
+
 try:
-    parser.read(configFilePath)
+    settings = Settings()
 except Exception as e:
-    raise e
+    raise ValueError(f"Environment validation failed: {str(e)}") from e
 
-# get funderbeam config values
-FUNDERBEAM_USERNAME = parser.get("Funderbeam", "username")
-FUNDERBEAM_PASSWORD = parser.get("Funderbeam", "password")
-LOGGER_LEVEL = parser.get("LOGGER", "level")
-TWILIO_APY_KEY = parser.get("TWILIO", "api_key")
-FINNHUB_API_KEY = parser.get("FINNHUB", "api_key")
+# Assign to global variables (optional, for backward compatibility)
+FUNDERBEAM_USERNAME = settings.funderbeam_username
+FUNDERBEAM_PASSWORD = settings.funderbeam_password
+LOGGER_LEVEL = settings.logger_level
+TWILIO_API_KEY = settings.twilio_api_key
+FINNHUB_API_KEY = settings.finnhub_api_key

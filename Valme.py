@@ -10,7 +10,7 @@ ignar_stocks_manager = StockManager("Ignar")
 
 path = what_path_for_file()
 
-FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113, "SXR8.DE": 1.199}
+FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113, "SXR8.DE": 1.270}
 
 FYS_USA_STOCKS = {"SXR8.DE": 1.233}
 
@@ -22,15 +22,12 @@ JUR_USA_STOCKS = {
     "MSFT": 14,
     "AMZN": 56,
     "GOOGL": 36,
-    "NIO": 93,
-    "XPEV": 72,
-    "NKE": 11,
     "INTC": 25,
     "SNOW": 6,
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE.ETF": 99.7312}
+JUR_EUR_STOCKS = {"IUSE.L": 103.9907}
 
 BTC_AMOUNT = 0
 ETH_AMOUNT = 0
