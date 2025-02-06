@@ -3,13 +3,13 @@ from typing import Literal
 
 
 class Settings(BaseSettings):
-    
+
     funderbeam_username: str
     funderbeam_password: str
-    
+
     # Valid log levels that loguru accepts, incase there is typos in the .env and it would make whole code unresponsive
     logger_level: Literal["TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"]
-    
+
     twilio_api_key: str
     finnhub_api_key: str
 

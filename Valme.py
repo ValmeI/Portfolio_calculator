@@ -3,31 +3,26 @@ from Aktsiad import StockManager
 import Excel_functions
 import Functions as F
 import Morr
-from Functions import what_path_for_file
 
 
 ignar_stocks_manager = StockManager("Ignar")
 
-path = what_path_for_file()
 
 FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113, "SXR8.DE": 1.270}
 
-FYS_USA_STOCKS = {"SXR8.DE": 1.233}
+FYS_USA_STOCKS = {}
 
 JUR_USA_STOCKS = {
     "AAPL": 69,
     "TSLA": 15,
     "AMD": 70,
-    "QCOM": 24.9907,
     "MSFT": 14,
     "AMZN": 56,
     "GOOGL": 36,
-    "INTC": 25,
-    "SNOW": 6,
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE.L": 103.9907}
+JUR_EUR_STOCKS = {"IUSE.L": 106.1399, "EXXT.DE": 24.9066}
 
 BTC_AMOUNT = 0
 ETH_AMOUNT = 0
@@ -47,7 +42,7 @@ VILDE90_193_LAEN_KUUPAEV = date(2019, 4, 9)
 FUSISIK_RAHA = -10000
 FysIsikAktsaid = ignar_stocks_manager.stocks_value_combined(
     stock_dictionary=FYS_EUR_STOCKS, org_currency=True
-) + ignar_stocks_manager.stocks_value_combined(stock_dictionary=FYS_USA_STOCKS, org_currency=False)
+)  # + ignar_stocks_manager.stocks_value_combined(stock_dictionary=FYS_USA_STOCKS, org_currency=False)
 
 FysIsik = round(FUSISIK_RAHA + FysIsikAktsaid)
 
@@ -62,9 +57,9 @@ Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 VOLAKIRJAD_KOKKU = 7508.80 + 9491.49
 
 # jur isiku raha LHV'
-JUR_RAHA = 2800
+JUR_RAHA = 0
 JUR_FUNDERBEAM = 4400  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
-JUR_IB_RAHA = -3340
+JUR_IB_RAHA = 80
 JurIsik = round(
     JUR_RAHA + JUR_FUNDERBEAM + JUR_IB_RAHA + JurAktsiad + Morr.VAL_CAPITAL_RAHA / 2 + Jur_Krypto + VOLAKIRJAD_KOKKU
 )

@@ -1,14 +1,8 @@
 from Aktsiad import StockManager
 
-JUR_EUR_STOCKS = {
-    "EGR1T.TL": 172,
-    "HPR1T.TL": 23,
-    "EXXT.DE": 45.863,
-    "MAGIC.RG": 35,
-    "IITU.L": 0.12,
-}  # for some reason IITU is divided by 100
+JUR_EUR_STOCKS = {"EXXT.DE": 52.863}
 
-ETH_AMOUNT = 0.10581
+ETH_AMOUNT = 0
 
 kelly_stocks_manager = StockManager("Kelly")
 ETH_EUR = kelly_stocks_manager.crypto_in_eur("ethereum") * ETH_AMOUNT

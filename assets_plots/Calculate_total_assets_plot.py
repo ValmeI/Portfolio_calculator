@@ -25,17 +25,15 @@ symbol_to_name: dict = {
     "MSFT": "Microsoft",
     "AMZN": "Amazon",
     "GOOGL": "Google",
-    "NIO": "NIO",
-    "XPEV": "Xpeng - ADR",
     "NKE": "Nike",
-    "INTC": "Intel",
-    "SNOW": "Snowflake",
     "IUSE": "S&P 500",
+    "IUSE.L": "S&P 500",
     "BRK.B": "Berkshire Hathaway B",
-    "QCOM": "Qualcomm",
     "TKM1T.TL": "Tallinna Kaubamaja",
     "EFT1T.TL": "EfTEN Real Estate Fund III",
     "SXR8.DE": "iShares Core S&P 500 ETF",
+    "EXXT.DE": "NASDAQ 100",
+    "EXXT.ETF": "NASDAQ 100",
 }
 
 ignar_plot_stocks_manager = StockManager("Ignar_plot")
