@@ -12,6 +12,9 @@ class Settings(BaseSettings):
 
     twilio_api_key: str
     finnhub_api_key: str
+    web_scrape_timeout: int
+    api_timeout: int
+    max_concurrent_instances: int
 
     class Config:
         env_file = ".env"
@@ -29,3 +32,6 @@ FUNDERBEAM_PASSWORD = settings.funderbeam_password
 LOGGER_LEVEL = settings.logger_level
 TWILIO_API_KEY = settings.twilio_api_key
 FINNHUB_API_KEY = settings.finnhub_api_key
+WEB_SCRAPE_TIMEOUT = settings.web_scrape_timeout
+API_TIMEOUT = settings.api_timeout
+MAX_CONCURRENT_INSTANCES = settings.max_concurrent_instances
