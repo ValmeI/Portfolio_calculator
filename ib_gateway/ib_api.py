@@ -29,6 +29,9 @@ class IBPriceFetcher:
 
     def get_stock_price(self, symbol: str, currency: str = "USD") -> Optional[float]:
         try:
+            if not self.ib.isConnected():
+                logger.warning("Lost IB Gateway connection. Reconnecting...")
+                self.connect()
             contract = Stock(symbol, "SMART", currency)
             market_data = self.ib.reqMktData(contract, snapshot=True)
             self.ib.sleep(1)  # Wait for market data to update on IB Gateway
@@ -40,9 +43,9 @@ class IBPriceFetcher:
                 logger.warning(f"No price data available for {symbol} from IB Gateway")
                 self.reconnect()
                 return None
-
+            logger.info(f"Successfully fetched price for {symbol} from IB Gateway: {market_data.last} {currency}")
             return market_data.last
-
+        
         except Exception as e:
             logger.error(f"Error fetching price for {symbol}: {e}")
             return None
