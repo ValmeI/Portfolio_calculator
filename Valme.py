@@ -14,7 +14,6 @@ FYS_USA_STOCKS = {}
 
 JUR_USA_STOCKS = {
     "AAPL": 69,
-    "TSLA": 15,
     "AMD": 70,
     "MSFT": 14,
     "AMZN": 56,
@@ -22,7 +21,7 @@ JUR_USA_STOCKS = {
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE.L": 106.1399, "EXXT.DE": 24.9066}
+JUR_EUR_STOCKS = {"IUSE.L": 109.3572, "EXXT.DE": 43.9988}
 
 BTC_AMOUNT = 0
 ETH_AMOUNT = 0

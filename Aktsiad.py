@@ -10,23 +10,21 @@ import config
 import time
 from utils import get_default_user_agent
 import yfinance as yf
+from ib_gateway.ib_api import IBPriceFetcher
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 GOOGLE_BASE_URL = "https://www.google.com/search?q="
 CONVERSION_RATE_CACHE = {}
-WEB_SCRAPE_TIMEOUT = 10
-API_TIMEOUT = 10
-MAX_CONCURRENT_INSTANCES = 5
 
 
 class StockManager:
     def __init__(self, portfolio_owner: str):
         self.portfolio_owner = portfolio_owner
         self.conversion_rate_cache = {}
-        self.web_scrape_timeout = 10
-        self.api_timeout = 10
-        self.max_concurrent_instances = 5
+        self.web_scrape_timeout = config.WEB_SCRAPE_TIMEOUT
+        self.api_timeout = config.API_TIMEOUT
+        self.max_concurrent_instances = config.MAX_CONCURRENT_INSTANCES
         self.GOOGLE_BASE_URL = "https://www.google.com/search?q="
 
     def log_portfolio_query(self, stock: str):
@@ -49,6 +47,10 @@ class StockManager:
 
     def add_de_suffix(self, stock_symbol: str) -> str:
         return stock_symbol + ".DE"
+
+    def get_stock_price_from_ib_gateway(self, stock: str, is_in_original_currency: bool) -> float:
+        fetcher = IBPriceFetcher()
+        return fetcher.get_stock_price(stock, "EUR" if is_in_original_currency else "USD")
 
     def get_stock_price_from_google(self, stock: str, is_in_original_currency: bool, max_retries=3) -> float:
         driver = None  # Initialize driver to None for safety
@@ -126,25 +128,35 @@ class StockManager:
                 except WebDriverException:
                     pass  # Ignore errors if driver is already closed
 
+    def is_stock_price_valid(self, stock_price: float) -> bool:
+        if stock_price == 0.0 or stock_price is None:
+            return False
+        return True
+
     def get_stock_price(self, stock: str, is_in_original_currency: bool) -> float:
         self.log_portfolio_query(stock)
         try:
-            stock_price = self.get_stock_price_from_finnhub(stock, is_in_original_currency)
-            if stock_price == 0.0 or stock_price is None:
+            stock_price = self.get_stock_price_from_ib_gateway(stock, is_in_original_currency)
+            if self.is_stock_price_valid(stock_price) is False:
                 logger.warning(
-                    f"[{self.portfolio_owner}] Stock price not found for {stock} from Finnhub, trying yfinance"
+                    f"[{self.portfolio_owner}] Stock price not found for {stock} from IB Gateway, trying Finnhub"
                 )
-                stock_price = self.get_stock_price_from_yfinance(stock, is_in_original_currency)
-                if stock_price == 0.0 or stock_price is None:
+                stock_price = self.get_stock_price_from_finnhub(stock, is_in_original_currency)
+                if self.is_stock_price_valid(stock_price) is False:
                     logger.warning(
-                        f"[{self.portfolio_owner}] Stock price not found for {stock} from yfinance, trying Google Selenium"
+                        f"[{self.portfolio_owner}] Stock price not found for {stock} from Finnhub, trying yfinance"
                     )
-                    stock_price = self.get_stock_price_from_google(stock, is_in_original_currency)
-                    if stock_price == 0.0 or stock_price is None:
+                    stock_price = self.get_stock_price_from_yfinance(stock, is_in_original_currency)
+                    if self.is_stock_price_valid(stock_price) is False:
                         logger.warning(
-                            f"[{self.portfolio_owner}] Stock price not found for {stock} from Google, trying Yahoo Selenium"
+                            f"[{self.portfolio_owner}] Stock price not found for {stock} from yfinance, trying Google Selenium"
                         )
-                        stock_price = self.get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
+                        stock_price = self.get_stock_price_from_google(stock, is_in_original_currency)
+                        if self.is_stock_price_valid(stock_price) is False:
+                            logger.warning(
+                                f"[{self.portfolio_owner}] Stock price not found for {stock} from Google, trying Yahoo Selenium"
+                            )
+                            stock_price = self.get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
             else:
                 logger.debug(
                     f"[{self.portfolio_owner}] Stock price for {stock} is {stock_price} from Web Scraper/Finnhub"
