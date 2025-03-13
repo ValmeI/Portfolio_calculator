@@ -74,26 +74,46 @@ cleanup() {
     [ -f "$installer" ] && rm -f "$installer"
 }
 
-# Download installer
-download_installer() {
+# Get download URL and filename for the installer
+get_installer_info() {
     local os=$1
+    local downloads_dir="$HOME/Downloads"
     local url
     local output_file
     
     case "$os" in
         Darwin)
             url=${DOWNLOAD_URLS[macos]}
-            output_file="ibgateway_installer.dmg"
-            echo "📥 Downloading IB Gateway for macOS..."
+            output_file="$downloads_dir/ibgateway_installer.dmg"
+            ;;
+        Linux)
+            url=${DOWNLOAD_URLS[linux]}
+            output_file="$downloads_dir/ibgateway_installer.sh"
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+    
+    echo "$url $output_file"
+}
+
+# Download file using appropriate tool
+download_file() {
+    local url=$1
+    local output_file=$2
+    local os=$3
+    
+    echo "📥 Downloading IB Gateway for $os to $(dirname "$output_file")..."
+    
+    case "$os" in
+        Darwin)
             if ! curl -L -o "$output_file" "$url"; then
                 echo "❌ Failed to download macOS installer"
                 return 1
             fi
             ;;
         Linux)
-            url=${DOWNLOAD_URLS[linux]}
-            output_file="ibgateway_installer.sh"
-            echo "📥 Downloading IB Gateway for Linux..."
             if ! wget -O "$output_file" "$url"; then
                 echo "❌ Failed to download Linux installer"
                 return 1
@@ -104,7 +124,69 @@ download_installer() {
             ;;
     esac
     
+    return 0
+}
+
+# Verify downloaded file
+verify_download() {
+    local file=$1
+    
+    if [ ! -f "$file" ] || [ ! -s "$file" ]; then
+        echo "❌ Downloaded file is missing or empty"
+        return 1
+    fi
+    
+    return 0
+}
+
+# Set file permissions
+set_file_permissions() {
+    local file=$1
+    local os=$2
+    
+    case "$os" in
+        Linux)
+            chmod +x "$file"
+            if [ ! -x "$file" ]; then
+                echo "❌ Failed to set executable permissions"
+                return 1
+            fi
+            echo "🔒 Set executable permissions for the installer"
+            ;;
+    esac
+    
+    return 0
+}
+
+# Main download function
+download_installer() {
+    local os=$1
+    local installer_info
+    local url
+    local output_file
+    
+    # Get installer info
+    installer_info=$(get_installer_info "$os") || return 1
+    read -r url output_file <<< "$installer_info"
+    
+    # Download the file
+    if ! download_file "$url" "$output_file" "$os"; then
+        return 1
+    fi
+    
+    # Verify the download
+    if ! verify_download "$output_file"; then
+        return 1
+    fi
+    
+    # Set permissions if needed
+    if ! set_file_permissions "$output_file" "$os"; then
+        return 1
+    fi
+    
+    echo "✅ Successfully downloaded IB Gateway installer"
     echo "$output_file"
+    return 0
 }
 
 # Check installer file size
@@ -139,19 +221,20 @@ check_installer_size() {
 install_linux() {
     local installer=$1
     
-    chmod +x "$installer"
     echo "🚀 Installing IB Gateway..."
     
     # Try to install without sudo first
-    if ./$installer --mode unattended; then
+    if "$installer" --mode unattended; then
         echo "✅ Installation completed successfully"
+        return 0
     else
         echo "ℹ️ Attempting installation with sudo..."
-        if ! sudo ./$installer --mode unattended; then
+        if ! sudo "$installer" --mode unattended; then
             echo "❌ Installation failed"
-            rm -f "$installer"
             return 1
         fi
+        echo "✅ Installation completed successfully with sudo"
+        return 0
     fi
     
     rm -f "$installer"
@@ -205,20 +288,6 @@ install_macos() {
     return 0
 }
 
-# Get IB Gateway version from installer name
-get_installer_version() {
-    local installer=$1
-    local version
-    
-    # Extract version from installer name if it contains it
-    if [[ $installer =~ [0-9]+\.[0-9]+ ]]; then
-        version=${BASH_REMATCH[0]}
-        echo "📗 Detected IB Gateway version: $version"
-    else
-        echo "⚠️ Could not detect IB Gateway version from installer"
-    fi
-}
-
 # Main execution
 main() {
     local os=$(get_os)
@@ -233,10 +302,12 @@ main() {
     trap 'cleanup "$installer_file" "$os"' EXIT
     
     local installer_file
-    installer_file=$(download_installer "$os")
+    installer_file=$(download_installer "$os" | tail -n1)
+    download_status=$?
     
-    if [ ! -f "$installer_file" ]; then
-        echo "❌ Failed to download IB Gateway installer"
+    if [ $download_status -eq 0 ] && [ -n "$installer_file" ] && [ -f "$installer_file" ] && [ -x "$installer_file" ]; then
+        echo "📦 Using installer: $installer_file"
+    else
         exit 1
     fi
     
@@ -244,7 +315,6 @@ main() {
         exit 1
     fi
     
-    get_installer_version "$installer_file"
     
     case "$os" in
         Linux)

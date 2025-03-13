@@ -15,6 +15,9 @@ class IBPriceFetcher:
             self.ib.connect("127.0.0.1", 4001, clientId=1, timeout=config.API_TIMEOUT)
             self.ib.reqMarketDataType(3)  # Use delayed data if real-time isn't available
             logger.info("Successfully connected to IB Gateway")
+        except ConnectionRefusedError:
+            logger.error("Check if IB Gateway is running and accessible or try to install it first with shell scripts")
+            raise
         except Exception as e:
             logger.error(f"Failed to connect to IB Gateway: {e}")
             raise
