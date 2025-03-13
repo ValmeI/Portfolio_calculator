@@ -48,10 +48,6 @@ class StockManager:
     def add_de_suffix(self, stock_symbol: str) -> str:
         return stock_symbol + ".DE"
 
-    def get_stock_price_from_ib_gateway(self, stock: str, is_in_original_currency: bool) -> float:
-        fetcher = IBPriceFetcher()
-        return fetcher.get_stock_price(stock, "EUR" if is_in_original_currency else "USD")
-
     def get_stock_price_from_google(self, stock: str, is_in_original_currency: bool, max_retries=3) -> float:
         driver = None  # Initialize driver to None for safety
         try:
@@ -136,27 +132,22 @@ class StockManager:
     def get_stock_price(self, stock: str, is_in_original_currency: bool) -> float:
         self.log_portfolio_query(stock)
         try:
-            stock_price = self.get_stock_price_from_ib_gateway(stock, is_in_original_currency)
+            stock_price = self.get_stock_price_from_finnhub(stock, is_in_original_currency)
             if self.is_stock_price_valid(stock_price) is False:
                 logger.warning(
-                    f"[{self.portfolio_owner}] Stock price not found for {stock} from IB Gateway, trying Finnhub"
+                    f"[{self.portfolio_owner}] Stock price not found for {stock} from Finnhub, trying yfinance"
                 )
-                stock_price = self.get_stock_price_from_finnhub(stock, is_in_original_currency)
+                stock_price = self.get_stock_price_from_yfinance(stock, is_in_original_currency)
                 if self.is_stock_price_valid(stock_price) is False:
                     logger.warning(
-                        f"[{self.portfolio_owner}] Stock price not found for {stock} from Finnhub, trying yfinance"
+                        f"[{self.portfolio_owner}] Stock price not found for {stock} from yfinance, trying Google Selenium"
                     )
-                    stock_price = self.get_stock_price_from_yfinance(stock, is_in_original_currency)
+                    stock_price = self.get_stock_price_from_google(stock, is_in_original_currency)
                     if self.is_stock_price_valid(stock_price) is False:
                         logger.warning(
-                            f"[{self.portfolio_owner}] Stock price not found for {stock} from yfinance, trying Google Selenium"
+                            f"[{self.portfolio_owner}] Stock price not found for {stock} from Google, trying Yahoo Selenium"
                         )
-                        stock_price = self.get_stock_price_from_google(stock, is_in_original_currency)
-                        if self.is_stock_price_valid(stock_price) is False:
-                            logger.warning(
-                                f"[{self.portfolio_owner}] Stock price not found for {stock} from Google, trying Yahoo Selenium"
-                            )
-                            stock_price = self.get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
+                        stock_price = self.get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
             else:
                 logger.debug(
                     f"[{self.portfolio_owner}] Stock price for {stock} is {stock_price} from Web Scraper/Finnhub"
@@ -167,27 +158,41 @@ class StockManager:
             logger.debug(f"[{self.portfolio_owner}] Stock price for {stock} is {stock_price} from Yahoo Selenium")
             return round(stock_price, 2)
 
-    def stocks_value_combined(self, stock_dictionary: dict, org_currency: bool) -> int:
-        """Returns total value of stocks in portfolio,
-        input: stock dictionary, org_currency = True/False"""
+    def stocks_value_combined(self, stock_dictionary: dict, org_currency: bool) -> float:
+        """
+        Fetches stock prices in parallel for non-IB sources using ThreadPoolExecutor,
+        but ensures IB Gateway calls run in the main thread.
+        """
         total_value = 0
-        with ThreadPoolExecutor(max_workers=self.max_concurrent_instances) as executor:
-            future_to_stock = {
-                executor.submit(self.get_stock_price, sym, org_currency): sym for sym in stock_dictionary
-            }
+        fetcher = IBPriceFetcher()  # Ensure IB API is initialized in the main thread
+        try:
+            with ThreadPoolExecutor() as executor:
+                futures = {}
 
-            for future in as_completed(future_to_stock):
-                sym = future_to_stock[future]
-                try:
-                    stock_price = future.result()
-                    if stock_price is None:
-                        continue
-                    total_value += stock_price * stock_dictionary[sym]
-                    logger.info(f"[{self.portfolio_owner}] Stock price for {sym} is {stock_price}")
-                except Exception as exc:
-                    logger.error(f"[{self.portfolio_owner}] {sym} generated an exception: {exc}")
+                for symbol in stock_dictionary.keys():
+                    # IB Gateway must be single-threaded
+                    price = fetcher.get_stock_price(symbol, "EUR" if org_currency else "USD")
+                    if price:
+                        total_value += price * stock_dictionary[symbol]
+                    else:
+                        # Other sources (Finnhub, yfinance, Selenium) can run in threads
+                        futures[executor.submit(self.get_stock_price, symbol, True)] = symbol
 
-        return round(total_value)
+                for future in as_completed(futures):
+                    symbol = futures[future]
+                    try:
+                        price = future.result()
+                        if price:
+                            total_value += price * stock_dictionary[symbol]
+                            logger.info(f"Fetched price for {symbol}: {price}")
+                    except Exception as e:
+                        logger.error(f"Error fetching price for {symbol}: {e}")
+        finally:
+            logger.info("Closing IB Gateway connection...")
+            fetcher.disconnect()
+
+        logger.info(f"Total portfolio value: {total_value} USD")
+        return round(total_value, 2)
 
     def stock_amount_value(self, stock_symbol: str, org_currency: bool, stocks_dictionary: dict) -> float:
         """Returns total value of stocks in portfolio,

@@ -8,7 +8,7 @@ import Morr
 ignar_stocks_manager = StockManager("Ignar")
 
 
-FYS_EUR_STOCKS = {"TKM1T.TL": 355, "EFT1T.TL": 113, "SXR8.DE": 1.270}
+FYS_EUR_STOCKS = {"TKM1T": 355, "EFT1T": 113, "SXR8": 1.270}
 
 FYS_USA_STOCKS = {}
 
@@ -21,7 +21,7 @@ JUR_USA_STOCKS = {
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE.L": 109.3572, "EXXT.DE": 43.9988}
+JUR_EUR_STOCKS = {"IUSE": 109.3572, "EXXT": 43.9988}
 
 BTC_AMOUNT = 0
 ETH_AMOUNT = 0
