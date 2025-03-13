@@ -26,9 +26,7 @@ get_macos_path() {
 # Get IB Gateway path for Linux
 get_linux_path() {
     local paths=(
-        "/opt/ibgateway"
-        "/usr/local/ibgateway"
-        "$HOME/ibgateway"
+        "$HOME/Jts"
     )
     
     for path in "${paths[@]}"; do
@@ -83,19 +81,26 @@ start_macos_gateway() {
 # Start IB Gateway on Linux
 start_linux_gateway() {
     local path=$1
-    local binary_paths=(
-        "$path/ibgateway"
-        "$path/bin/ibgateway"
-    )
+    local gateway_dir="$path/ibgateway"
     
-    for binary in "${binary_paths[@]}"; do
-        if [ -x "$binary" ]; then
-            "$binary" -nogui &
-            return 0
-        fi
-    done
+    # Find the version directory (should be a number)
+    local version_dir
+    version_dir=$(find "$gateway_dir" -maxdepth 1 -type d -name "[0-9]*" | sort -rn | head -n1)
     
-    echo "❌ Could not find IB Gateway executable" >&2
+    if [ -z "$version_dir" ]; then
+        echo "❌ Could not find IB Gateway version directory in: $gateway_dir" >&2
+        return 1
+    fi
+    
+    local binary="$version_dir/ibgateway"
+    
+    if [ -x "$binary" ]; then
+        echo "🔧 Found IB Gateway at: $binary"
+        "$binary" -nogui &
+        return 0
+    fi
+    
+    echo "❌ Could not find IB Gateway executable at: $binary" >&2
     return 1
 }
 
@@ -164,6 +169,6 @@ check_gateway_running() {
 }
 
 # Wait for IB Gateway to start (max 30 seconds)
-if ! check_gateway_running 15; then
+if ! check_gateway_running 5; then
     exit 1
 fi
