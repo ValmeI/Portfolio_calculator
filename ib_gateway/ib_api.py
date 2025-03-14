@@ -50,15 +50,15 @@ class IBPriceFetcher:
             )
 
             if not bars:
-                logger.warning(f"No historical data available for {symbol}")
+                logger.warning(f"No historical data available for {symbol} on IB Gateway")
                 return None
 
             close_price = bars[-1].close
-            logger.info(f"Fetched historical close price for {symbol}: {close_price} {currency}")
+            logger.info(f"Fetched historical close price for {symbol}: {close_price} {currency} from IB Gateway")
             return round(close_price, 2)
 
         except Exception as e:
-            logger.error(f"Error fetching price for {symbol}: {e}")
+            logger.error(f"Error fetching price for {symbol}: {e} from IB Gateway")
             return None
 
     def disconnect(self):
