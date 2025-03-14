@@ -1,6 +1,5 @@
 from ib_insync import IB, Stock
 from typing import Optional
-import math
 from app_logging import logger
 import config
 
