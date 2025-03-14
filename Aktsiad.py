@@ -166,7 +166,7 @@ class StockManager:
         but ensures IB Gateway calls run in the main thread.
         """
         total_value = 0
-        fetcher = IBPriceFetcher()  # Ensure IB API is initialized in the main thread
+        fetcher = IBPriceFetcher(self.portfolio_owner)
         try:
             with ThreadPoolExecutor() as executor:
                 futures = {}

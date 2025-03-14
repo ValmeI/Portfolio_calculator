@@ -5,7 +5,8 @@ import config
 
 
 class IBPriceFetcher:
-    def __init__(self):
+    def __init__(self, portfolio_owner: str):
+        self.portfolio_owner = portfolio_owner
         self.ib = IB()
         self._is_connected = False
         self.connect()
@@ -16,12 +17,12 @@ class IBPriceFetcher:
                 self.ib.connect("127.0.0.1", 4001, clientId=1, timeout=config.API_TIMEOUT)
                 self.ib.reqMarketDataType(3)  # Use delayed data if real-time isn't available
                 self._is_connected = True
-                logger.info("Successfully connected to IB Gateway")
+                logger.info(f"[{self.portfolio_owner}] Successfully connected to IB Gateway")
         except ConnectionRefusedError:
-            logger.error("Check if IB Gateway is running and accessible or try to install it first with shell scripts")
+            logger.error(f"[{self.portfolio_owner}] Check if IB Gateway is running and accessible or try to install it first with shell scripts")
             raise
         except Exception as e:
-            logger.error(f"Failed to connect to IB Gateway: {e}")
+            logger.error(f"[{self.portfolio_owner}] Failed to connect to IB Gateway: {e}")
             raise
 
     def reconnect(self):
@@ -29,13 +30,13 @@ class IBPriceFetcher:
             self.disconnect()
             self.connect()
         except Exception as e:
-            logger.error(f"Failed to reconnect to IB Gateway: {e}")
+            logger.error(f"[{self.portfolio_owner}] Failed to reconnect to IB Gateway: {e}")
             raise
 
     def get_stock_price(self, symbol: str, currency: str = "USD") -> Optional[float]:
         try:
             if not self.ib.isConnected():
-                logger.warning("Lost IB Gateway connection. Reconnecting...")
+                logger.warning(f"[{self.portfolio_owner}] Lost IB Gateway connection. Reconnecting...")
                 self.connect()
 
             contract = Stock(symbol, "SMART", currency)
@@ -50,15 +51,15 @@ class IBPriceFetcher:
             )
 
             if not bars:
-                logger.warning(f"No historical data available for {symbol} on IB Gateway")
+                logger.warning(f"[{self.portfolio_owner}] No historical data available for {symbol} on IB Gateway")
                 return None
 
             close_price = bars[-1].close
-            logger.info(f"Fetched historical close price for {symbol}: {close_price} {currency} from IB Gateway")
+            logger.info(f"[{self.portfolio_owner}] Fetched historical close price for {symbol}: {close_price} {currency} from IB Gateway")
             return round(close_price, 2)
 
         except Exception as e:
-            logger.error(f"Error fetching price for {symbol}: {e} from IB Gateway")
+            logger.error(f"[{self.portfolio_owner}] Error fetching price for {symbol}: {e} from IB Gateway")
             return None
 
     def disconnect(self):
@@ -66,9 +67,9 @@ class IBPriceFetcher:
             if self._is_connected:
                 self.ib.disconnect()
                 self._is_connected = False
-                logger.info("Successfully disconnected from IB Gateway")
+                logger.info(f"[{self.portfolio_owner}] Successfully disconnected from IB Gateway")
         except Exception as e:
-            logger.error(f"Error disconnecting from IB Gateway: {e}")
+            logger.error(f"[{self.portfolio_owner}] Error disconnecting from IB Gateway: {e}")
 
     def __del__(self):
         self.disconnect()
