@@ -6,12 +6,10 @@ import datetime
 from colored import attr, fg
 from dateutil.relativedelta import relativedelta
 import Excel_functions
-import Kelly
 import Kinnisvara
-import Morr
 from family import calculate_family_portfolios_year_to_years
 import txt_write_move
-import Valme
+from portfolio_owners import Morr, Kelly, Valme
 from Excel_functions import column_width, HEADERS, need_new_excel_file, write_to_excel
 from Functions import diff_months
 import utils
@@ -21,7 +19,7 @@ import utils
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" or __name__ == "Portfell_main":
     print(f'Programm: "{__file__}" käivitus: {datetime.datetime.now()}')
     start_time = time.time()
     start_date = datetime.datetime.now()

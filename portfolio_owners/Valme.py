@@ -2,7 +2,7 @@ from datetime import date
 from Aktsiad import StockManager
 import Excel_functions
 import Functions as F
-import Morr
+from . import Morr
 
 
 ignar_stocks_manager = StockManager("Ignar")
