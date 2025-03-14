@@ -11,6 +11,7 @@ import time
 from utils import get_default_user_agent
 import yfinance as yf
 from ib_gateway.ib_api import IBPriceFetcher
+from nasdaq_baltic.scrape import NasdaqBalticPriceScrape
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -140,14 +141,15 @@ class StockManager:
                 stock_price = self.get_stock_price_from_yfinance(stock, is_in_original_currency)
                 if self.is_stock_price_valid(stock_price) is False:
                     logger.warning(
-                        f"[{self.portfolio_owner}] Stock price not found for {stock} from yfinance, trying Google Selenium"
+                        f"[{self.portfolio_owner}] Stock price not found for {stock} from yfinance, trying Nasdaq Baltic Scraper"
                     )
-                    stock_price = self.get_stock_price_from_google(stock, is_in_original_currency)
+                    baltic_price_scrape = NasdaqBalticPriceScrape(self.portfolio_owner)
+                    stock_price = baltic_price_scrape.get_stock_price(stock)
                     if self.is_stock_price_valid(stock_price) is False:
                         logger.warning(
-                            f"[{self.portfolio_owner}] Stock price not found for {stock} from Google, trying Yahoo Selenium"
+                            f"[{self.portfolio_owner}] Stock price not found for {stock} from Nasdaq Baltic Scraper, trying Google Selenium"
                         )
-                        stock_price = self.get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
+                        stock_price = self.get_stock_price_from_google(stock, is_in_original_currency)
             else:
                 logger.debug(
                     f"[{self.portfolio_owner}] Stock price for {stock} is {stock_price} from Web Scraper/Finnhub"
