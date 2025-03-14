@@ -84,9 +84,7 @@ label_text = [
 ]
 
 # Create the pie chart
-fig = go.Figure(
-    data=[go.Pie(labels=label_text, values=list(assets.values()), hoverinfo="percent+text", text=hover_text)]
-)
+fig = go.Figure(data=[go.Pie(labels=label_text, values=list(assets.values()), hoverinfo="percent+text", text=hover_text)])
 
 # Update the layout for a cleaner look
 fig.update_layout(title="Finance Portfolio Overview", showlegend=True)

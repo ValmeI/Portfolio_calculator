@@ -59,9 +59,7 @@ VOLAKIRJAD_KOKKU = 7508.80 + 9491.49
 JUR_RAHA = 0
 JUR_FUNDERBEAM = 4400  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
 JUR_IB_RAHA = 80
-JurIsik = round(
-    JUR_RAHA + JUR_FUNDERBEAM + JUR_IB_RAHA + JurAktsiad + Morr.VAL_CAPITAL_RAHA / 2 + Jur_Krypto + VOLAKIRJAD_KOKKU
-)
+JurIsik = round(JUR_RAHA + JUR_FUNDERBEAM + JUR_IB_RAHA + JurAktsiad + Morr.VAL_CAPITAL_RAHA / 2 + Jur_Krypto + VOLAKIRJAD_KOKKU)
 # Mörr on väike karu'
 
 # Raha ehk likviitsus,ka Krypto, jur ja fys kokku'

@@ -35,15 +35,11 @@ def copy_file_to_nas(source_file: str, destination_path: str) -> None:
         if platform.system() in ["Linux", "Darwin"]:  # Darwin is macOS
             try:
                 # Use rsync to copy the file to the NAS destination path
-                result = subprocess.run(
-                    ["rsync", "-av", source_file, destination_path], capture_output=True, text=True, check=True
-                )
+                result = subprocess.run(["rsync", "-av", source_file, destination_path], capture_output=True, text=True, check=True)
                 if result.returncode == 0:
                     print(f'Successfully copied "{source_file}" to "{destination_path}" using rsync.')
                 else:
-                    logger.warning(
-                        f"Failed to copy {source_file} at {datetime.now()} to {destination_path} using rsync: {result.stderr}"
-                    )
+                    logger.warning(f"Failed to copy {source_file} at {datetime.now()} to {destination_path} using rsync: {result.stderr}")
             except Exception as e:
                 logger.error(f"An error occurred while copying {source_file} to NAS using rsync: {e}")
 
@@ -56,9 +52,7 @@ def copy_file_to_nas(source_file: str, destination_path: str) -> None:
         else:
             logger.error(f"Unsupported OS: {platform.system()}")
     else:
-        logger.warning(
-            f"Could not copy at {datetime.now()} to {destination_path} - source file or destination directory missing."
-        )
+        logger.warning(f"Could not copy at {datetime.now()} to {destination_path} - source file or destination directory missing.")
 
 
 def generate_mail_body(
@@ -130,9 +124,7 @@ def get_default_user_agent() -> str:
     machine_type = platform.machine().lower()
 
     if os_type == "linux":
-        return (
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
-        )
+        return "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
 
     elif os_type == "darwin":  # macOS
         if machine_type == "arm64":
@@ -145,6 +137,4 @@ def get_default_user_agent() -> str:
 
     else:
         # Default fallback to Linux if OS is unidentified
-        return (
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
-        )
+        return "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"

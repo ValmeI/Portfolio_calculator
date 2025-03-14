@@ -139,6 +139,4 @@ if __name__ == "__main__" or __name__ == "Portfell_main":
 
     print(f"Program took: {round(time.time() - start_time)} seconds to run")
     print("=================================================================================")
-    print(
-        f"Program Start_Time: {start_date.strftime('%Y-%m-%d %H:%M:%S')} and End_time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-    )
+    print(f"Program Start_Time: {start_date.strftime('%Y-%m-%d %H:%M:%S')} and End_time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")

@@ -51,9 +51,7 @@ def chrome_driver() -> WebDriver:
     return driver
 
 
-def vilde_calculation(
-    input_day: int, last_calculation_sum: float, new_sum_to_add: float, last_input_excel_date: str
-) -> float:
+def vilde_calculation(input_day: int, last_calculation_sum: float, new_sum_to_add: float, last_input_excel_date: str) -> float:
     if date.today().day == input_day and str(date.today()) != last_input_excel_date:
         new_vilde = float(last_calculation_sum)
         new_vilde += float(new_sum_to_add)
