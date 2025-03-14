@@ -71,5 +71,4 @@ class IBPriceFetcher:
             logger.error(f"Error disconnecting from IB Gateway: {e}")
 
     def __del__(self):
-        """Ensure cleanup on object destruction"""
         self.disconnect()
