@@ -22,7 +22,7 @@ class NasdaqBalticPriceScrape:
             price_column = stock_row.find_next_sibling("td")
             price = price_column.text.strip().replace(",", ".")
 
-            logger.info(f"[{self.portfolio_owner}] Stock: {symbol} latest price: {price} EUR")
+            logger.info(f"[{self.portfolio_owner}] Stock: {symbol} latest price: {price} EUR from Nasdaq Baltic")
             return float(price)
 
         except Exception as e:
