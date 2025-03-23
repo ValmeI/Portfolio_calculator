@@ -13,11 +13,14 @@ import config
 
 
 def get_data_copy_paths_based_on_os() -> tuple:
-    BASE_PATH = what_path_for_file() or "Portfolio_calculator"  # Default path
+    BASE_PATH = what_path_for_file() or "Portfolio_calculator/Data"  # Default path
+    logger.debug(f"BASE_PATH: {BASE_PATH}")
+    
 
     # Define paths using os.path.join for cross-platform compatibility
-    TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator", "Print_result.txt")
-    EXCEL_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator", "Portfell.xlsx")
+    TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/Data", "Print_result.txt")
+    EXCEL_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/Data", "Portfell.xlsx")
+    logger.debug(f"TXT_SOURCE: {TXT_SOURCE}, EXCEL_SOURCE: {EXCEL_SOURCE}")
 
     if os.name == "nt":  # Windows
         NAS_PATH = r"\\RMI_NAS\Python\Calculators\portfolio_result"
@@ -25,13 +28,15 @@ def get_data_copy_paths_based_on_os() -> tuple:
         NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"
     else:
         NAS_PATH = "Not found"
-    logger.debug(f"TXT_SOURCE: {TXT_SOURCE}, EXCEL_SOURCE: {EXCEL_SOURCE}, NAS_PATH: {NAS_PATH}")
     return TXT_SOURCE, EXCEL_SOURCE, NAS_PATH
 
 
 def copy_file_to_nas(source_file: str, destination_path: str) -> None:
     # Check if the source file exists and the destination directory exists
-    if os.path.isfile(source_file) and os.path.isdir(destination_path):
+    source_file_check = os.path.join(source_file)
+    destination_path_check = os.path.join(destination_path)
+    
+    if source_file_check and destination_path_check:
         if platform.system() in ["Linux", "Darwin"]:  # Darwin is macOS
             try:
                 # Use rsync to copy the file to the NAS destination path
@@ -52,7 +57,7 @@ def copy_file_to_nas(source_file: str, destination_path: str) -> None:
         else:
             logger.error(f"Unsupported OS: {platform.system()}")
     else:
-        logger.warning(f"Could not copy at {datetime.now()} to {destination_path} - source file or destination directory missing.")
+        logger.warning(f"Could not copy at {datetime.now()} to {destination_path} - source file path found: '{source_file_check}' and destination path found: '{destination_path_check}'")
 
 
 def generate_mail_body(
@@ -138,3 +143,8 @@ def get_default_user_agent() -> str:
     else:
         # Default fallback to Linux if OS is unidentified
         return "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+
+
+if __name__ == "__main__":
+    TXT_SOURCE, EXCEL_SOURCE, NAS_DES_PATH = get_data_copy_paths_based_on_os()
+    copy_file_to_nas(TXT_SOURCE, NAS_DES_PATH)

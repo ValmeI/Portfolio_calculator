@@ -79,11 +79,15 @@ class StockManager:
 
                         # Return the result based on the currency flag
                         if is_in_original_currency:
-                            logger.info(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock price for {stock} is {stock_price} {"EUR" if is_in_original_currency else "USD"}")
+                            logger.info(
+                                f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock price for {stock} is {stock_price} {"EUR" if is_in_original_currency else "USD"}"
+                            )
                             return stock_price
                         else:
                             stock_price_in_eur = self.usd_to_eur_convert(stock_price)
-                            logger.info(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock price for {stock} is {stock_price_in_eur} EUR")
+                            logger.info(
+                                f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock price for {stock} is {stock_price_in_eur} EUR"
+                            )
                             return stock_price_in_eur
                     else:
                         logger.warning(
@@ -91,7 +95,9 @@ class StockManager:
                         )
                         retries += 1
                         if retries >= max_retries:
-                            logger.error(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Failed to fetch stock price for {stock} after {max_retries} attempts.")
+                            logger.error(
+                                f"[{self.portfolio_owner}] [{threading.current_thread().name}] Failed to fetch stock price for {stock} after {max_retries} attempts."
+                            )
                             return 0.0  # Return 0.0 if max retries reached
 
                 except NoSuchWindowException:
@@ -256,21 +262,29 @@ class StockManager:
 
             if "c" in data:
                 latest_price = data["c"]  # 'c' is the current price
-                logger.debug(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price} EUR from Finnhub")
+                logger.debug(
+                    f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price} EUR from Finnhub"
+                )
                 if latest_price is None:
                     latest_price = data["pc"]  # 'pc' is the previous close
-                    logger.debug(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} previous close: {latest_price} EUR from Finnhub")
+                    logger.debug(
+                        f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} previous close: {latest_price} EUR from Finnhub"
+                    )
 
                 if is_in_original_currency:
                     if self.is_greater_than_zero(latest_price):
-                        logger.info(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price} EUR from Finnhub")
+                        logger.info(
+                            f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price} EUR from Finnhub"
+                        )
                         return latest_price
                     else:
                         return None
 
                 stock_price_in_eur = self.usd_to_eur_convert(latest_price)
                 if self.is_greater_than_zero(stock_price_in_eur):
-                    logger.info(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {stock_price_in_eur} EUR from Finnhub")
+                    logger.info(
+                        f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {stock_price_in_eur} EUR from Finnhub"
+                    )
                     return stock_price_in_eur
                 else:
                     return None
@@ -299,11 +313,15 @@ class StockManager:
                     latest_price = float(price_text)
                     logger.debug(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}")
                     if is_in_original_currency:
-                        logger.info(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price} EUR from Yahoo Selenium")
+                        logger.info(
+                            f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price} EUR from Yahoo Selenium"
+                        )
                         return latest_price
                     else:
                         stock_price_in_eur = self.usd_to_eur_convert(latest_price)
-                        logger.info(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {stock_price_in_eur} EUR from Yahoo Selenium")
+                        logger.info(
+                            f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {stock_price_in_eur} EUR from Yahoo Selenium"
+                        )
                         return stock_price_in_eur
                 else:
                     logger.error(f"[{self.portfolio_owner}] No price data found for {stock}")
@@ -328,11 +346,15 @@ class StockManager:
             logger.debug(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price}")
 
             if is_in_original_currency:
-                logger.info(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price} EUR from yfinance")
+                logger.info(
+                    f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {latest_price} EUR from yfinance"
+                )
                 return latest_price
             else:
                 stock_price_in_eur = self.usd_to_eur_convert(latest_price)
-                logger.info(f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {stock_price_in_eur} EUR from yfinance")
+                logger.info(
+                    f"[{self.portfolio_owner}] [{threading.current_thread().name}] Stock: {stock} latest price: {stock_price_in_eur} EUR from yfinance"
+                )
                 return stock_price_in_eur
         except Exception as e:
             logger.error(f"[{self.portfolio_owner}] Failed to fetch stock price from yfinance: {e}")

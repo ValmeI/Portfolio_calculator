@@ -1,8 +1,13 @@
 import sys
+import os
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+TXT_DIR = os.path.join(DATA_DIR, "txt")
+PRINT_RESULT_TXT = os.path.join(TXT_DIR, "Print_result.txt")
 
 
 class Logger(object):
-    def __init__(self, log_file="Print_result.txt", mode="w", encoding="utf8"):
+    def __init__(self, log_file=PRINT_RESULT_TXT, mode="w", encoding="utf8"):
         self.terminal = sys.stdout
         try:
             self.log = open(log_file, mode, encoding=encoding)
