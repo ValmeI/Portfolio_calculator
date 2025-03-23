@@ -1,5 +1,5 @@
 import shutil
-from Functions import what_path_for_file
+from functions import what_path_for_file
 from colored import fg, attr
 import os
 import time

@@ -5,7 +5,7 @@ from os.path import dirname, abspath
 
 sys.path.append(dirname(dirname(abspath(__file__))))
 
-from Valme import (
+from valme import (
     FYS_USA_STOCKS,
     JUR_FUNDERBEAM,
     JUR_USA_STOCKS,
@@ -14,9 +14,9 @@ from Valme import (
     VOLAKIRJAD_KOKKU,
     CLEVERON_AKTSIA,
 )
-from Aktsiad import StockManager
-from Kinnisvara import Korter1_Hind
-from Morr import LAHTSE_ARVUTUSLIK_VAARTUS
+from aktsiad import StockManager
+from kinnisvara import Korter1_Hind
+from morr import LAHTSE_ARVUTUSLIK_VAARTUS
 
 symbol_to_name: dict = {
     "AAPL": "Apple",
@@ -58,7 +58,6 @@ fys_usa_stocks: dict = {
     for stock_sym, stock_amount in FYS_USA_STOCKS.items()
 }
 
-# combine the two dictionaries
 stocks_assets: dict = {**jur_euro_stocks, **fys_euro_stocks, **jur_usa_stocks, **fys_usa_stocks}
 stock_with_names_assets: dict = {symbol_to_name.get(key, key): value for key, value in stocks_assets.items()}
 ic(stocks_assets)
@@ -67,9 +66,9 @@ ic(stock_with_names_assets)
 assets = {
     "Funderbeam Kokku": JUR_FUNDERBEAM,
     "Võlakirjad kokku": VOLAKIRJAD_KOKKU,
-    "Cleveron Aktsiad": CLEVERON_AKTSIA,
-    "Kinnisvara: Akadeemia 12 m2": Korter1_Hind,
-    "Kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
+    "Cleveron aktsiad": CLEVERON_AKTSIA,
+    "kinnisvara: Akadeemia 12 m2": Korter1_Hind,
+    "kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
 }
 
 assets.update({**stock_with_names_assets})

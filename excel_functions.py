@@ -5,16 +5,16 @@ import pandas as pd
 from dateutil.parser import parse
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
-import Functions
+import functions
 from app_logging import logger
 
 
 HEADERS = [
     "Kuupäev",
-    "Kinnisvara puhas väärtus",
+    "kinnisvara puhas väärtus",
     "Füüsilise isiku aktsiad",
     "Juriidilise isiku aktsiad",
-    "Aktsiad kokku",
+    "aktsiad kokku",
     "Terve portfell kokku",
     "Mörr-i portfell",
     "Pere portfell kokku",
@@ -46,7 +46,7 @@ def create_excel(excel_name: str, sheet_name: str) -> None:
 
 
 def check_if_excel_exists(excel_name: str) -> bool:
-    if os.path.isfile(Functions.what_path_for_file() + "Portfolio_calculator/" + excel_name + ".xlsx"):
+    if os.path.isfile(functions.what_path_for_file() + "Portfolio_calculator/" + excel_name + ".xlsx"):
         return True
     else:
         return False

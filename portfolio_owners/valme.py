@@ -1,8 +1,8 @@
 from datetime import date
-from Aktsiad import StockManager
-import Excel_functions
-import Functions as F
-from . import Morr
+from aktsiad import StockManager
+import excel_functions
+import functions as F
+from . import morr
 
 
 ignar_stocks_manager = StockManager("Ignar")
@@ -46,7 +46,7 @@ FysIsikAktsaid = ignar_stocks_manager.stocks_value_combined(
 FysIsik = round(FUSISIK_RAHA + FysIsikAktsaid)
 
 CLEVERON_AKTSIA = 4 * 150  # Ümber hinnatud 11.11.2023. Uus hind 150 EUR, vana koos clevoniga 1050 EUR tk
-JurAktsiad = round(
+Juraktsiad = round(
     ignar_stocks_manager.stocks_value_combined(stock_dictionary=JUR_USA_STOCKS, org_currency=False)
     + ignar_stocks_manager.stocks_value_combined(stock_dictionary=JUR_EUR_STOCKS, org_currency=True)
     + CLEVERON_AKTSIA
@@ -59,11 +59,11 @@ VOLAKIRJAD_KOKKU = 7508.80 + 9491.49
 JUR_RAHA = 0
 JUR_FUNDERBEAM = 4400  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
 JUR_IB_RAHA = 80
-JurIsik = round(JUR_RAHA + JUR_FUNDERBEAM + JUR_IB_RAHA + JurAktsiad + Morr.VAL_CAPITAL_RAHA / 2 + Jur_Krypto + VOLAKIRJAD_KOKKU)
+JurIsik = round(JUR_RAHA + JUR_FUNDERBEAM + JUR_IB_RAHA + Juraktsiad + morr.VAL_CAPITAL_RAHA / 2 + Jur_Krypto + VOLAKIRJAD_KOKKU)
 # Mörr on väike karu'
 
 # Raha ehk likviitsus,ka Krypto, jur ja fys kokku'
-RahaKokku = round(FUSISIK_RAHA + JUR_RAHA + Morr.VAL_CAPITAL_RAHA / 2 + JUR_IB_RAHA + Jur_Krypto)
+RahaKokku = round(FUSISIK_RAHA + JUR_RAHA + morr.VAL_CAPITAL_RAHA / 2 + JUR_IB_RAHA + Jur_Krypto)
 
 # üür'
 VILDE_ISA = 240
@@ -74,9 +74,9 @@ ARVUTAMISE_KP = 1
 
 Uus_vilde_summa = F.vilde_calculation(
     input_day=ARVUTAMISE_KP,
-    last_calculation_sum=Excel_functions.get_last_row(excel_name="Portfell", column_number=9),
+    last_calculation_sum=excel_functions.get_last_row(excel_name="Portfell", column_number=9),
     new_sum_to_add=round(F.dividend_with_certain_date(VILDE_ISA) - VILDE_LAEN - VILDE_KINDLUSTUS, 2),
-    last_input_excel_date=Excel_functions.get_last_row(excel_name="Portfell", column_number=1),
+    last_input_excel_date=excel_functions.get_last_row(excel_name="Portfell", column_number=1),
 )
 
 Uus_vilde_summa = round(Uus_vilde_summa, 2)

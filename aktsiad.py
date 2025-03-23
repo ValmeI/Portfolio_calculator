@@ -5,7 +5,7 @@ import threading
 from app_logging import logger
 import warnings
 from bs4 import BeautifulSoup
-from Functions import chrome_driver
+from functions import chrome_driver
 import config
 import time
 from utils import get_default_user_agent

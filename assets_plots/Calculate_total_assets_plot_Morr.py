@@ -5,9 +5,9 @@ from os.path import dirname, abspath
 
 sys.path.append(dirname(dirname(abspath(__file__))))
 
-from Aktsiad import StockManager
+from aktsiad import StockManager
 
-from Morr import (
+from morr import (
     LAHTSE_ARVUTUSLIK_VAARTUS,
     MORR_EUR_STOCKS,
     TAHTAJALINE_HOIUS,
@@ -33,7 +33,6 @@ fys_euro_stocks: dict = {
     for stock_sym, stock_amount in MORR_EUR_STOCKS.items()
 }
 
-# combine the two dictionaries
 stocks_assets: dict = {**fys_euro_stocks}
 stock_with_names_assets: dict = {symbol_to_name.get(key, key): value for key, value in stocks_assets.items()}
 print(stock_with_names_assets)
@@ -41,7 +40,7 @@ print(stock_with_names_assets)
 
 assets = {
     "Võlakirjad kokku": VOLAKIRJAD_KOKKU,
-    "Kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
+    "kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
     "Tähtajaline hoius": TAHTAJALINE_HOIUS,
     "Vaba Raha": MORR_RAHA,
 }

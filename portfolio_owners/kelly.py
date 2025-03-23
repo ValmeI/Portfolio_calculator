@@ -1,4 +1,4 @@
-from Aktsiad import StockManager
+from aktsiad import StockManager
 
 JUR_EUR_STOCKS = {"EXXT": 52.863}
 

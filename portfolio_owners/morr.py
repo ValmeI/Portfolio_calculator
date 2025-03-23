@@ -1,4 +1,4 @@
-from Aktsiad import StockManager
+from aktsiad import StockManager
 
 MORR_EUR_STOCKS = {"EFT1T": 55, "TKM1T": 563, "TSM1T": 560, "EXXT": 74.655, "SPYW": 281.380}
 

@@ -19,7 +19,7 @@ Funderbeam Kokku: [38;5;1m4400[0m €.
 
 
 Füüsilise isiku aktsia portfell: -3503 €.
-Aktsiad/Raha Jur ja Füs isikud kokku: 95334 €.
+Aktsiadaktsiad/Raha Jur ja Füs isikud kokku: 95334 €.
 Vaba raha Jur/Füs Kokku: [38;5;1m203[0m €.
 
 
@@ -31,7 +31,7 @@ Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 35 years, 1 
 Mörr-i aktsiad: 28059 €.
 Mörr-i vaba raha: 6067 €.
 Mörr-i portfell kokku: [38;5;1m120548[0m €.
-Kelly portfell: [38;5;1m9341[0m €.
+kelly portfell: [38;5;1m9341[0m €.
 Pere portfell kokku: [38;5;1m311239[0m €.
 =================================================================================
 Fail juba kaustas olemas.
@@ -64,10 +64,10 @@ Fail juba kaustas olemas.
 3  2025-01-01                      6214               10290                 66 %
 4        Täna                     10290                9341                 -9 %
 =================================================================================
-Tänane seis lisatud.
+Tänane seis üle kirjutatud
 
  [38;5;2m[1mEmail sent[0m
 [38;5;2mE-maili saatmine: E-mail saadetud![0m
 Program took: 2 seconds to run
 =================================================================================
-Program Start_Time: 2025-03-23 12:38:03 and End_time: 2025-03-23 12:38:05
+Program Start_Time: 2025-03-23 12:48:39 and End_time: 2025-03-23 12:48:40
