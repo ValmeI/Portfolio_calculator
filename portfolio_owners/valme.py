@@ -53,7 +53,7 @@ Juraktsiad = round(
 )
 Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
-VOLAKIRJAD_KOKKU = 7508.80 + 9491.49
+VOLAKIRJAD_KOKKU = 7508.80 + 9491.49 + 5000 # Everaus
 
 # jur isiku raha LHV'
 JUR_RAHA = 1000

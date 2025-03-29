@@ -65,6 +65,7 @@ if __name__ == "__main__" or __name__ == "Portfell_main":
     print(f"Krüpto: {fg('red')}{valme.Jur_Krypto}{attr('reset')} €.")
     print(f"Juriidilise isiku aktsiad: {valme.Juraktsiad} €.")
     print(f"Funderbeam Kokku: {fg('red')}{valme.JUR_FUNDERBEAM}{attr('reset')} €.")
+    print(f"Võlakirjade väärtus: {fg('red')}{valme.VOLAKIRJAD_KOKKU}{attr('reset')} €.")
     print("\n")
     print(f"Füüsilise isiku aktsia portfell: {valme.FysIsik} €.")
     print(f"Aktsiadaktsiad/Raha Jur ja Füs isikud kokku: {valme.FysIsik + valme.JurIsik} €.")

@@ -38,7 +38,7 @@ print(stock_with_names_assets)
 
 assets = {
     "Võlakirjad kokku": VOLAKIRJAD_KOKKU,
-    "kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
+    "Kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
     "Tähtajaline hoius": TAHTAJALINE_HOIUS,
     "Vaba Raha": MORR_RAHA,
 }

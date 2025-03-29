@@ -61,8 +61,8 @@ assets = {
     "Funderbeam Kokku": JUR_FUNDERBEAM,
     "Võlakirjad kokku": VOLAKIRJAD_KOKKU,
     "Cleveron aktsiad": CLEVERON_AKTSIA,
-    "kinnisvara: Akadeemia 12 m2": Korter1_Hind,
-    "kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
+    "Kinnisvara: Akadeemia 12 m2": Korter1_Hind,
+    "Kinnisvara: Maja ehitus": LAHTSE_ARVUTUSLIK_VAARTUS / 2,
 }
 
 assets.update({**stock_with_names_assets})
