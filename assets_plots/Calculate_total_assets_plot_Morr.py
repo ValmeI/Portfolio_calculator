@@ -1,13 +1,11 @@
 import plotly.graph_objs as go
 
-import sys
-from os.path import dirname, abspath
 
-sys.path.append(dirname(dirname(abspath(__file__))))
+
 
 from aktsiad import StockManager
 
-from morr import (
+from portfolio_owners.morr import (
     LAHTSE_ARVUTUSLIK_VAARTUS,
     MORR_EUR_STOCKS,
     TAHTAJALINE_HOIUS,
@@ -29,7 +27,7 @@ symbol_to_name: dict = {
 
 
 fys_euro_stocks: dict = {
-    stock_sym: int(round(margit_plot_stocks_manager.get_stock_price(stock_sym, True) * stock_amount, 0))
+    stock_sym: int(round(margit_plot_stocks_manager.get_stock_price_for_plot(stock_sym, True) * stock_amount, 0))
     for stock_sym, stock_amount in MORR_EUR_STOCKS.items()
 }
 

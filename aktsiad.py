@@ -138,6 +138,10 @@ class StockManager:
         return True
 
     def get_stock_price(self, stock: str, is_in_original_currency: bool) -> float:
+        
+        """
+        This is used for threads as IB Price Fetcher is not thread safe
+        """
         self.log_portfolio_query(stock)
         try:
             stock_price = self.get_stock_price_from_finnhub(stock, is_in_original_currency)
@@ -160,6 +164,16 @@ class StockManager:
             stock_price = self.get_stock_price_from_yahoo_selenium(stock, is_in_original_currency)
             logger.debug(f"[{self.portfolio_owner}] Stock price for {stock} is {stock_price} from Yahoo Selenium")
             return round(stock_price, 2)
+        
+    def get_stock_price_for_plot(self, stock: str, is_in_original_currency: bool) -> float:
+        """
+        This is used for plotly charts and nothings are done in threads here
+        """
+        fetcher = IBPriceFetcher(self.portfolio_owner)
+        price = fetcher.get_stock_price(stock, "EUR" if is_in_original_currency else "USD")
+        if price:
+            return price
+        return self.get_stock_price(stock, is_in_original_currency)
 
     def stocks_value_combined(self, stock_dictionary: dict, org_currency: bool) -> float:
         """

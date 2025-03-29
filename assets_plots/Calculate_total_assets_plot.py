@@ -1,11 +1,7 @@
 import plotly.graph_objs as go
 from icecream import ic
-import sys
-from os.path import dirname, abspath
 
-sys.path.append(dirname(dirname(abspath(__file__))))
-
-from valme import (
+from portfolio_owners.valme import (
     FYS_USA_STOCKS,
     JUR_FUNDERBEAM,
     JUR_USA_STOCKS,
@@ -16,16 +12,14 @@ from valme import (
 )
 from aktsiad import StockManager
 from kinnisvara import Korter1_Hind
-from morr import LAHTSE_ARVUTUSLIK_VAARTUS
+from portfolio_owners.morr import LAHTSE_ARVUTUSLIK_VAARTUS
 
 symbol_to_name: dict = {
     "AAPL": "Apple",
-    "TSLA": "Tesla",
     "AMD": "AMD",
     "MSFT": "Microsoft",
     "AMZN": "Amazon",
     "GOOGL": "Google",
-    "NKE": "Nike",
     "IUSE": "S&P 500",
     "IUSE.L": "S&P 500",
     "BRK.B": "Berkshire Hathaway B",
@@ -39,22 +33,22 @@ symbol_to_name: dict = {
 ignar_plot_stocks_manager = StockManager("Ignar_plot")
 
 jur_usa_stocks: dict = {
-    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price(stock_sym, False) * stock_amount, 0))
+    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price_for_plot(stock_sym, False) * stock_amount, 0))
     for stock_sym, stock_amount in JUR_USA_STOCKS.items()
 }
 
 jur_euro_stocks: dict = {
-    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price(stock_sym, True) * stock_amount, 0))
+    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price_for_plot(stock_sym, True) * stock_amount, 0))
     for stock_sym, stock_amount in JUR_EUR_STOCKS.items()
 }
 
 fys_euro_stocks: dict = {
-    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price(stock_sym, True) * stock_amount, 0))
+    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price_for_plot(stock_sym, True) * stock_amount, 0))
     for stock_sym, stock_amount in FYS_EUR_STOCKS.items()
 }
 
 fys_usa_stocks: dict = {
-    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price(stock_sym, False) * stock_amount, 0))
+    stock_sym: int(round(ignar_plot_stocks_manager.get_stock_price_for_plot(stock_sym, False) * stock_amount, 0))
     for stock_sym, stock_amount in FYS_USA_STOCKS.items()
 }
 
