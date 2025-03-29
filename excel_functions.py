@@ -1,6 +1,7 @@
 from datetime import date
 import os.path
 from typing import Any
+from webbrowser import get
 import pandas as pd
 from dateutil.parser import parse
 from openpyxl import Workbook, load_workbook
@@ -24,40 +25,42 @@ HEADERS = [
     "Kelly portfell kokku",
 ]
 
+def get_excel_path(excel_name: str) -> str:
+    base_path = functions.what_path_for_file() or ""
+    file_name = excel_name + ".xlsx"
+    file_path = os.path.join(base_path, "Portfolio_calculator/data", file_name)
+    logger.debug(f"Excel file path: {file_path}")
+    return file_path
+
 
 def freeze_excel_row(excel_name: str) -> None:
-    file_name = excel_name + ".xlsx"
-    workbook_name = file_name
-    wb = load_workbook(workbook_name)
+    file_path = get_excel_path(excel_name)
+    wb = load_workbook(file_path)
     sheet1 = wb.active
     sheet1.freeze_panes = "A2"  # freeze first row
-    wb.save(filename=workbook_name)
+    wb.save(filename=file_path)
 
 
 def create_excel(excel_name: str, sheet_name: str) -> None:
     wb = Workbook()
     sheet1 = wb.active
     sheet1.title = sheet_name
-    file_name = excel_name + ".xlsx"
-    wb.save(filename=file_name)
+    file_path = get_excel_path(excel_name)
+    wb.save(filename=file_path)
     wb.close()
     print("=================================================================================")
-    print("Loodud uus fail", file_name)
+    print("Loodud uus fail", file_path)
 
 
 def check_if_excel_exists(excel_name: str) -> bool:
-    if os.path.isfile(functions.what_path_for_file() + "Portfolio_calculator/" + excel_name + ".xlsx"):
-        return True
-    else:
-        return False
+    return bool(get_excel_path(excel_name))
 
 
 # how_to_add: 1 = append, 2 = overwrite,
 # compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on
 def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, compare_column: int = None) -> None:
-    file_name = excel_name + ".xlsx"
-    workbook_name = file_name
-    wb = load_workbook(workbook_name)
+    file_path = get_excel_path(excel_name)
+    wb = load_workbook(file_path)
     sheet1 = wb.active
     # just append a row'
     if how_to_add == 1:
@@ -74,13 +77,13 @@ def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, 
         else:
             sheet1.append(list_of_data)
             print("Tänane seis lisatud.")
-    wb.save(filename=workbook_name)
+    wb.save(filename=file_path)
+    wb.close()
 
 
 def column_width(excel_name: str, excel_headers: list) -> None:
-    file_name = excel_name + ".xlsx"
-    workbook_name = file_name
-    wb = load_workbook(workbook_name)
+    file_path = get_excel_path(excel_name)
+    wb = load_workbook(file_path)
     sheet1 = wb.active
     for i, col_value in enumerate(excel_headers, 1):
         # if column length is very small (less then 5), then give static length of 10, else length of column'
@@ -90,7 +93,8 @@ def column_width(excel_name: str, excel_headers: list) -> None:
             column_extender = len(col_value)
         # wants column letter for input, as i. Width input is in the end of it'
         sheet1.column_dimensions[get_column_letter(i)].width = column_extender
-    wb.save(filename=workbook_name)
+    wb.save(filename=file_path)
+    wb.close()
 
 
 # check if excel file is there, if not create it
@@ -106,10 +110,8 @@ def need_new_excel_file(excel_name: str, sheet_name: str, excel_headers: list) -
 
 
 def get_excel_column_values(excel_name: str, column_letter: str) -> list:
-    # add file type
-    file_name = excel_name + ".xlsx"
-    workbook_name = file_name
-    wb = load_workbook(workbook_name)
+    file_path = get_excel_path(excel_name)
+    wb = load_workbook(file_path)
     sheet1 = wb.active
     column_list = []
     # using enumerate to get index and then to skip header row
@@ -122,11 +124,8 @@ def get_excel_column_values(excel_name: str, column_letter: str) -> list:
 
 
 def get_last_row(excel_name: str, column_number: int) -> Any:
-    # add file type'
-    file_name = excel_name + ".xlsx"
-
-    workbook_name = file_name
-    wb = load_workbook(workbook_name)
+    file_path = get_excel_path(excel_name)
+    wb = load_workbook(file_path)
     sheet1 = wb.active
 
     max_rows = sheet1.max_row

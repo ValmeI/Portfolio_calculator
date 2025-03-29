@@ -2,8 +2,7 @@ import sys
 import os
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
-TXT_DIR = os.path.join(DATA_DIR, "txt")
-PRINT_RESULT_TXT = os.path.join(TXT_DIR, "Print_result.txt")
+PRINT_RESULT_TXT = os.path.join(DATA_DIR, "Print_result.txt")
 
 
 class Logger(object):

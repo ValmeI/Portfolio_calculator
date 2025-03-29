@@ -18,22 +18,38 @@ def get_data_copy_paths_based_on_os() -> tuple:
     
 
     # Define paths using os.path.join for cross-platform compatibility
-    TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/Data", "Print_result.txt")
-    EXCEL_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/Data", "Portfell.xlsx")
+    TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/data", "Print_result.txt")
+    EXCEL_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/data", "Portfell.xlsx")
     logger.debug(f"TXT_SOURCE: {TXT_SOURCE}, EXCEL_SOURCE: {EXCEL_SOURCE}")
 
     if os.name == "nt":  # Windows
         NAS_PATH = r"\\RMI_NAS\Python\Calculators\portfolio_result"
     elif os.name == "posix":  # macOS or Linux
-        NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"
+        if platform.system() == "Darwin":  # macOS
+            NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"
+        elif platform.system() == "Linux":  # Linux
+            NAS_PATH = "/mnt/RMI_NAS/Python/Calculators/portfolio_result"
+        else:
+            NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"  # Default fallback
     else:
         NAS_PATH = "Not found"
     return TXT_SOURCE, EXCEL_SOURCE, NAS_PATH
 
+def check_data_paths(txt_source: str = None, excel_source: str = None, nas_path: str = None) -> bool:
+    can_access_txt = os.path.exists(txt_source) if txt_source is not None else False
+    can_access_excel = os.path.exists(excel_source) if excel_source is not None else False
+    can_access_nas = os.path.exists(nas_path) if nas_path is not None else False
+    logger.debug(f"can_access_txt: {can_access_txt}, can_access_excel: {can_access_excel}, can_access_nas: {can_access_nas}")
+    return can_access_txt and can_access_excel and can_access_nas
+
 
 def copy_file_to_nas(source_file: str, destination_path: str) -> None:
+    if not check_data_paths(txt_source=source_file, nas_path=destination_path):
+        logger.error(f"Failed to copy {source_file} to {destination_path} - source file or destination path not found")
+        return
+        
     # Check if the source file exists and the destination directory exists
-    source_file_check = os.path.join(source_file)
+    source_file_check = os.path.join(source_file) # TODO: have to redo some of this as there is probabaly duplicate code
     destination_path_check = os.path.join(destination_path)
     
     if source_file_check and destination_path_check:
