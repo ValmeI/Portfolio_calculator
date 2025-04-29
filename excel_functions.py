@@ -1,7 +1,6 @@
 from datetime import date
 import os.path
 from typing import Any
-from webbrowser import get
 import pandas as pd
 from dateutil.parser import parse
 from openpyxl import Workbook, load_workbook
