@@ -25,10 +25,15 @@ HEADERS = [
     "Kelly portfell kokku",
 ]
 
+
 def get_excel_path(excel_name: str) -> str:
-    base_path = functions.what_path_for_file() or ""
+    base_path = functions.what_path_for_file()
+    if not base_path:
+        # Use the directory of this script as fallback
+        base_path = os.path.abspath(os.path.dirname(__file__))
     file_name = excel_name + ".xlsx"
-    file_path = os.path.join(base_path, "Portfolio_calculator/data", file_name)
+    file_path = os.path.join(base_path, "data", file_name)
+    file_path = os.path.abspath(file_path)
     logger.debug(f"Excel file path: {file_path}")
     return file_path
 

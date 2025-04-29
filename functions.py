@@ -16,12 +16,6 @@ from config import FUNDERBEAM_PASSWORD, FUNDERBEAM_USERNAME
 from typing import Optional
 
 
-PATH_HOME_DESKTOP_PC = r"D:\PycharmProjects/"
-PATH_WIN_LAPTOP = r"C:\PycharmProjects/"
-PATH_LINUX_LAPTOP = r"/home/valme/git/"
-PATH_MACBOOK = r"/Users/ignar/git/"
-
-
 def chrome_driver() -> WebDriver:
     options = Options()
     options.add_argument("--headless")
@@ -51,7 +45,9 @@ def chrome_driver() -> WebDriver:
     return driver
 
 
-def vilde_calculation(input_day: int, last_calculation_sum: float, new_sum_to_add: float, last_input_excel_date: str) -> float:
+def vilde_calculation(
+    input_day: int, last_calculation_sum: float, new_sum_to_add: float, last_input_excel_date: str
+) -> float:
     if date.today().day == input_day and str(date.today()) != last_input_excel_date:
         new_vilde = float(last_calculation_sum)
         new_vilde += float(new_sum_to_add)
@@ -66,17 +62,8 @@ def dividend_with_certain_date(total: float) -> float:
 
 
 def what_path_for_file() -> Optional[str]:
-    if os.path.exists(PATH_HOME_DESKTOP_PC):
-        return str(PATH_HOME_DESKTOP_PC)
-    elif os.path.exists(PATH_WIN_LAPTOP):
-        return str(PATH_WIN_LAPTOP)
-    elif os.path.exists(PATH_LINUX_LAPTOP):
-        return str(PATH_LINUX_LAPTOP)
-    elif os.path.exists(PATH_MACBOOK):
-        return str(PATH_MACBOOK)
-    else:
-        print(f"WARNING: Current Device path is not found: {os.getcwd()}")
-        return None
+    project_root = os.path.abspath(os.path.dirname(__file__))
+    return project_root
 
 
 def diff_months(date2: date, date1: date) -> int:

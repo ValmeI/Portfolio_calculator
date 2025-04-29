@@ -26,8 +26,12 @@ def handle_exception(
     if issubclass(exc_type, KeyboardInterrupt):
         sys.__excepthook__(exc_type, exc_value, exc_traceback)
     else:
-        traceback_string = "".join(traceback.format_exception(exc_type, exc_value, exc_traceback, limit=stack_row_limit))
-        logger.error(f"An unhandled exception occurred: {exc_type.__name__}: {exc_value}, traceback: {traceback_string}")
+        traceback_string = "".join(
+            traceback.format_exception(exc_type, exc_value, exc_traceback, limit=stack_row_limit)
+        )
+        logger.error(
+            f"An unhandled exception occurred: {exc_type.__name__}: {exc_value}, traceback: {traceback_string}"
+        )
 
 
 sys.excepthook = handle_exception

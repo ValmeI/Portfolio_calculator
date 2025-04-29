@@ -1,38 +1,41 @@
 Vilde 90-193 laenumakse: 155 € + kindlustus.
 
-Laenu Vilde 90-193 makstud: 5 Years, 11 Months
+Laenu Vilde 90-193 makstud: 6 Years, 0 Months
 
-Vilde 90-193 laenu jääk: 9840 €. Laenu summa: 17940.0
-Laenu kohutus kokku(Kõik): 9840
-Val Capital: 10560.92 €.
+Vilde 90-193 laenu jääk: 9703 €. Laenu summa: 17940.0
+Laenu kohutus kokku(Kõik): 9703
+Val Capital: 10785.0 €.
 
-Hetkel korteri/krundi puhas väärtus kokku: 75087.5 €.
+Hetkel korteri/krundi puhas väärtus kokku: 118847.5 €.
 
-Lähtse Väärtus: [38;5;1m50587.5[0m €.
+Lähtse Väärtus: [38;5;1m94347.5[0m €.
 Vilde peale makse Isale: [38;5;1m109.31[0m €.
 
 
-Juriidilise isiku väärtus: 105515 €.
+Juriidilise isiku väärtus: 105186 €.
 Krüpto: [38;5;1m0[0m €.
-Juriidilise isiku aktsiad: 67354 €.
+Juriidilise isiku aktsiad: 66801 €.
 Funderbeam Kokku: [38;5;1m4400[0m €.
+Võlakirjade väärtus: [38;5;1m22000.29[0m €.
 
 
-Füüsilise isiku aktsia portfell: -3530 €.
-Aktsiadaktsiad/Raha Jur ja Füs isikud kokku: 101985 €.
-Vaba raha Jur/Füs Kokku: [38;5;1m1761[0m €.
+Füüsilise isiku aktsia portfell: -3753 €.
+Aktsiadaktsiad/Raha Jur ja Füs isikud kokku: 101433 €.
+Vaba raha Jur/Füs Kokku: [38;5;1m1985[0m €.
 
 
-Terve portfell kokku: [38;5;1m177072[0m €.
+Terve portfell kokku: [38;5;1m220280[0m €.
 Eesmärk krooni miljonär: 63912 €.
-Krooni miljonär veel minna: -113160.5 €.
-Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 35 years, 1 months
-35 aastase eesmärk veel minna: [38;5;1m322928[0m €.
-Mörr-i aktsiad: 27517 €.
-Mörr-i vaba raha: 7067 €.
-Mörr-i portfell kokku: [38;5;1m110515[0m €.
-kelly portfell: [38;5;1m9506[0m €.
-Pere portfell kokku: [38;5;1m297094[0m €.
+Krooni miljonär veel minna: -156368.5 €.
+Eesmärk 35 aastaselt portfelli väärtus 500000 €. Vanus hetkel: 35 years, 2 months
+35 aastase eesmärk veel minna: [38;5;1m279720[0m €.
+Mörr-i aktsiad: 32841 €.
+Mörr-i Val Capital: 10785.0 €.
+Mörr-i vaba raha: 11123 €.
+Mörr-i Lähse väärtus: 94347.5 €.
+Mörr-i portfell kokku: [38;5;1m163879[0m €.
+kelly portfell: [38;5;1m9299[0m €.
+Pere portfell kokku: [38;5;1m393458[0m €.
 =================================================================================
 Fail juba kaustas olemas.
 ===================================Ignar's=======================================
@@ -45,7 +48,7 @@ Fail juba kaustas olemas.
 5  2023-01-01                    128823              111317                -14 %
 6  2024-01-01                    111317              142798                 28 %
 7  2025-01-01                    142798              189572                 33 %
-8        Täna                    189572              177072                 -7 %
+8        Täna                    189572              220280                 16 %
 =====================================Mörr's======================================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2019-01-01                      1000                3958                296 %
@@ -55,19 +58,18 @@ Fail juba kaustas olemas.
 4  2023-01-01                     68468               71519                  4 %
 5  2024-01-01                     71519               92587                 29 %
 6  2025-01-01                     92587              123898                 34 %
-7        Täna                    123898              110515                -11 %
+7        Täna                    123898              163879                 32 %
 =====================================Kelly's=====================================
         Aasta  Portfell eelmisel aastal  Portfell see aasta Protsendiline muutus
 0  2022-01-01                         1                1514             151300 %
 1  2023-01-01                      1514                2755                 82 %
 2  2024-01-01                      2755                6214                126 %
 3  2025-01-01                      6214               10290                 66 %
-4        Täna                     10290                9506                 -8 %
+4        Täna                     10290                9299                -10 %
 =================================================================================
 Tänane seis üle kirjutatud
-
- [38;5;2m[1mEmail sent[0m
+HTTP Error 401: Unauthorized
 [38;5;2mE-maili saatmine: E-mail saadetud![0m
-Program took: 2 seconds to run
+Program took: 1 seconds to run
 =================================================================================
-Program Start_Time: 2025-03-29 18:24:02 and End_time: 2025-03-29 18:24:04
+Program Start_Time: 2025-04-29 18:38:02 and End_time: 2025-04-29 18:38:03

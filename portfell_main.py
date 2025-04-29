@@ -83,12 +83,14 @@ if __name__ == "__main__" or __name__ == "Portfell_main":
 
     morr_total = morr.kokku
     print(f"Mörr-i aktsiad: {morr.m_aktsiad} €.")
+    print(f"Mörr-i Val Capital: {morr.VAL_CAPITAL_RAHA / 2} €.")
     print(f"Mörr-i vaba raha: {morr.MORR_RAHA} €.")
+    print(f"Mörr-i Lähse väärtus: {morr.LAHTSE_ARVUTUSLIK_VAARTUS / 2} €.")
     print(f"Mörr-i portfell kokku: {fg('red')}{morr_total}{attr('reset')} €.")
 
     # kelly Portfell'
     kelly_total = kelly.Kelly_Portfell_Kokku
-    print(f"kelly portfell: {fg('red')}{kelly_total}{attr('reset')} €.")
+    print(f"Kelly portfell: {fg('red')}{kelly_total}{attr('reset')} €.")
 
     # Pere kõik kokku'
     Pere = ignar_total + morr_total + kelly_total
@@ -140,4 +142,6 @@ if __name__ == "__main__" or __name__ == "Portfell_main":
 
     print(f"Program took: {round(time.time() - start_time)} seconds to run")
     print("=================================================================================")
-    print(f"Program Start_Time: {start_date.strftime('%Y-%m-%d %H:%M:%S')} and End_time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(
+        f"Program Start_Time: {start_date.strftime('%Y-%m-%d %H:%M:%S')} and End_time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+    )

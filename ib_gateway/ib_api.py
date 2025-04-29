@@ -19,7 +19,9 @@ class IBPriceFetcher:
                 self._is_connected = True
                 logger.info(f"[{self.portfolio_owner}] Successfully connected to IB Gateway")
         except ConnectionRefusedError:
-            logger.error(f"[{self.portfolio_owner}] Check if IB Gateway is running and accessible or try to install it first with shell scripts")
+            logger.error(
+                f"[{self.portfolio_owner}] Check if IB Gateway is running and accessible or try to install it first with shell scripts"
+            )
             raise
         except Exception as e:
             logger.error(f"[{self.portfolio_owner}] Failed to connect to IB Gateway: {e}")
@@ -55,7 +57,9 @@ class IBPriceFetcher:
                 return None
 
             close_price = bars[-1].close
-            logger.info(f"[{self.portfolio_owner}] Fetched historical close price for {symbol}: {close_price} {currency} from IB Gateway")
+            logger.info(
+                f"[{self.portfolio_owner}] Fetched historical close price for {symbol}: {close_price} {currency} from IB Gateway"
+            )
             return round(close_price, 2)
 
         except Exception as e:

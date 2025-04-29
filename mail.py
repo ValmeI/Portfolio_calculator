@@ -5,7 +5,9 @@ from termcolor import colored
 from secrets import token_hex
 
 
-def send_email(stmp_variable: str, user: str, password_file: str, sent_from: str, sent_to: str, sent_subject: str, sent_body: str) -> None:
+def send_email(
+    stmp_variable: str, user: str, password_file: str, sent_from: str, sent_to: str, sent_subject: str, sent_body: str
+) -> None:
     try:
         with open(password_file + ".txt", "r", encoding="utf8") as open_file:
             password = open_file.read().strip()

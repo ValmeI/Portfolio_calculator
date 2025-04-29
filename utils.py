@@ -15,7 +15,6 @@ import config
 def get_data_copy_paths_based_on_os() -> tuple:
     BASE_PATH = what_path_for_file() or "Portfolio_calculator/Data"  # Default path
     logger.debug(f"BASE_PATH: {BASE_PATH}")
-    
 
     # Define paths using os.path.join for cross-platform compatibility
     TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/data", "Print_result.txt")
@@ -35,11 +34,14 @@ def get_data_copy_paths_based_on_os() -> tuple:
         NAS_PATH = "Not found"
     return TXT_SOURCE, EXCEL_SOURCE, NAS_PATH
 
+
 def check_data_paths(txt_source: str = None, excel_source: str = None, nas_path: str = None) -> bool:
     can_access_txt = os.path.exists(txt_source) if txt_source is not None else False
     can_access_excel = os.path.exists(excel_source) if excel_source is not None else False
     can_access_nas = os.path.exists(nas_path) if nas_path is not None else False
-    logger.debug(f"can_access_txt: {can_access_txt}, can_access_excel: {can_access_excel}, can_access_nas: {can_access_nas}")
+    logger.debug(
+        f"can_access_txt: {can_access_txt}, can_access_excel: {can_access_excel}, can_access_nas: {can_access_nas}"
+    )
     return can_access_txt and can_access_excel and can_access_nas
 
 
@@ -47,20 +49,26 @@ def copy_file_to_nas(source_file: str, destination_path: str) -> None:
     if not check_data_paths(txt_source=source_file, nas_path=destination_path):
         logger.error(f"Failed to copy {source_file} to {destination_path} - source file or destination path not found")
         return
-        
+
     # Check if the source file exists and the destination directory exists
-    source_file_check = os.path.join(source_file) # TODO: have to redo some of this as there is probabaly duplicate code
+    source_file_check = os.path.join(
+        source_file
+    )  # TODO: have to redo some of this as there is probabaly duplicate code
     destination_path_check = os.path.join(destination_path)
-    
+
     if source_file_check and destination_path_check:
         if platform.system() in ["Linux", "Darwin"]:  # Darwin is macOS
             try:
                 # Use rsync to copy the file to the NAS destination path
-                result = subprocess.run(["rsync", "-av", source_file, destination_path], capture_output=True, text=True, check=True)
+                result = subprocess.run(
+                    ["rsync", "-av", source_file, destination_path], capture_output=True, text=True, check=True
+                )
                 if result.returncode == 0:
                     print(f'Successfully copied "{source_file}" to "{destination_path}" using rsync.')
                 else:
-                    logger.warning(f"Failed to copy {source_file} at {datetime.now()} to {destination_path} using rsync: {result.stderr}")
+                    logger.warning(
+                        f"Failed to copy {source_file} at {datetime.now()} to {destination_path} using rsync: {result.stderr}"
+                    )
             except Exception as e:
                 logger.error(f"An error occurred while copying {source_file} to NAS using rsync: {e}")
 
@@ -73,7 +81,9 @@ def copy_file_to_nas(source_file: str, destination_path: str) -> None:
         else:
             logger.error(f"Unsupported OS: {platform.system()}")
     else:
-        logger.warning(f"Could not copy at {datetime.now()} to {destination_path} - source file path found: '{source_file_check}' and destination path found: '{destination_path_check}'")
+        logger.warning(
+            f"Could not copy at {datetime.now()} to {destination_path} - source file path found: '{source_file_check}' and destination path found: '{destination_path_check}'"
+        )
 
 
 def generate_mail_body(
@@ -145,7 +155,9 @@ def get_default_user_agent() -> str:
     machine_type = platform.machine().lower()
 
     if os_type == "linux":
-        return "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+        return (
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+        )
 
     elif os_type == "darwin":  # macOS
         if machine_type == "arm64":
@@ -158,7 +170,9 @@ def get_default_user_agent() -> str:
 
     else:
         # Default fallback to Linux if OS is unidentified
-        return "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+        return (
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
+        )
 
 
 if __name__ == "__main__":

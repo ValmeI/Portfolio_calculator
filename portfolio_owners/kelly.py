@@ -1,6 +1,6 @@
 from aktsiad import StockManager
 
-JUR_EUR_STOCKS = {"EXXT": 54.784}
+JUR_EUR_STOCKS = {"EXXT": 56.011}
 
 ETH_AMOUNT = 0
 
