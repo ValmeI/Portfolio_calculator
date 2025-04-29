@@ -1,4 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Require Bash 4+
+if [[ "${BASH_VERSINFO:-0}" -lt 4 ]]; then
+  echo "Error: This script requires Bash version 4.0 or higher."
+  echo "On macOS, install a newer Bash with Homebrew: brew install bash"
+  echo "Then run with: /opt/homebrew/bin/bash $0"
+  exit 1
+fi
 
 # URLs for different OS installers
 declare -A DOWNLOAD_URLS=(
@@ -244,44 +252,37 @@ install_linux() {
 # Install on macOS
 install_macos() {
     local installer=$1
-    
     echo "🚀 Installing IB Gateway..."
+    local MOUNT_OUTPUT MOUNT_POINT INSTALLER_APP
     MOUNT_OUTPUT=$(hdiutil attach "$installer")
-    MOUNT_POINT=$(echo "$MOUNT_OUTPUT" | grep "/Volumes/" | sed 's/.*\/Volumes\//\/Volumes\//g')
-    
+    echo "DEBUG: hdiutil attach output:"
+    echo "$MOUNT_OUTPUT"
+    MOUNT_POINT=$(echo "$MOUNT_OUTPUT" | grep '/Volumes/' | tail -n1 | awk '{for(i=3;i<=NF;i++) printf "%s%s", $i, (i<NF?OFS:"\n")}')
     if [ -z "$MOUNT_POINT" ]; then
-        echo "❌ Failed to find the mounted volume"
+        echo "❌ Failed to find the mounted volume."
         rm -f "$installer"
         return 1
     fi
-    
     echo "💾 Mounted disk image at: $MOUNT_POINT"
     echo "📂 Contents of mount point:"
     ls -la "$MOUNT_POINT"
-    
     INSTALLER_APP=$(find "$MOUNT_POINT" -name "*Installer.app" -maxdepth 1 2>/dev/null)
-    
     if [ -z "$INSTALLER_APP" ]; then
-        echo "❌ Could not find the installer application"
-        hdiutil detach "$MOUNT_POINT" -force 2>/dev/null
+        echo "❌ Could not find the IB Gateway Installer.app in $MOUNT_POINT"
+        hdiutil detach "$MOUNT_POINT" || hdiutil detach "$MOUNT_POINT" -force 2>/dev/null
         rm -f "$installer"
         return 1
     fi
-    
-    echo "🔍 Found installer at: $INSTALLER_APP"
-    echo "📦 Running IB Gateway installer..."
-    open "$INSTALLER_APP"
-    
-    echo "ℹ️ Please complete the installation using the installer window."
+    echo "🟢 Found installer app: $INSTALLER_APP"
     echo "📙 Installation Instructions:"
-    echo "1. Click 'Next' to start the installation"
-    echo "2. Accept the license agreement"
-    echo "3. Choose the installation location (recommended: /Applications)"
-    echo "4. Complete the installation"
-    echo "5. After installation is complete, you can close the installer"
-    
-    read -p "✅ Press Enter after completing the installation..."
-    
+    echo "1. The IB Gateway installer should now open. If not, open it manually: $INSTALLER_APP"
+    echo "2. Click 'Next' to start the installation."
+    echo "3. Accept the license agreement."
+    echo "4. Choose the installation location (recommended: /Applications)."
+    echo "5. Complete the installation."
+    echo "6. After installation is complete, you can close the installer."
+    open "$INSTALLER_APP"
+    read -p "✅ Press Enter after completing the installation and closing the installer..."
     echo "🧹 Cleaning up..."
     hdiutil detach "$MOUNT_POINT" || hdiutil detach "$MOUNT_POINT" -force 2>/dev/null
     rm -f "$installer"
@@ -305,7 +306,11 @@ main() {
     installer_file=$(download_installer "$os" | tail -n1)
     download_status=$?
     
-    if [ $download_status -eq 0 ] && [ -n "$installer_file" ] && [ -f "$installer_file" ] && [ -x "$installer_file" ]; then
+    if [ $download_status -eq 0 ] && [ -n "$installer_file" ] && [ -f "$installer_file" ]; then
+        if [ "$os" = "Linux" ] && [ ! -x "$installer_file" ]; then
+            echo "❌ Installer is not executable on Linux"
+            exit 1
+        fi
         echo "📦 Using installer: $installer_file"
     else
         exit 1
