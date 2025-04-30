@@ -87,7 +87,6 @@ def copy_file_to_nas(source_file: str, destination_path: str) -> None:
 
 
 def generate_mail_body(
-    portfolio_goal_no_1: float,
     portfolio_goal_no_2: float,
     kelly_total_portfolio: float,
     family_total_portfolio: float,
@@ -103,9 +102,7 @@ def generate_mail_body(
     # for combining results to send in e-mail
     mail_body = (
         f"\nTerve portfell kokku: {ignar_total_portfolio} €."
-        + f"\nEesmärk krooni miljonär: {portfolio_goal_no_1} €."
-        + f"\nKrooni miljonär veel minna: {portfolio_goal_no_1 - ignar_total_portfolio} €."
-        + f"\nEesmärk 35 aastaselt portfelli väärtus: {portfolio_goal_no_1} €."
+        + f"\nEesmärk 35 aastaselt portfelli väärtus: {portfolio_goal_no_2} €."
         + f"\nVeel minna: {portfolio_goal_no_2 - ignar_total_portfolio} €."
         + f"\nMörr-i aktsiad: {morr_stocks} €."
         + f"\nMörr-i vaba raha: {morr_free_cash} €."

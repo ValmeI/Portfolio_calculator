@@ -56,13 +56,10 @@ if __name__ == "__main__" or __name__ == "Portfell_main":
     # Portfell kokku'
     ignar_total = valme.FysIsik + valme.JurIsik + kinnisvara_port
 
-    # Ehk 1 000 000 Eesti krooni'
-    EESMARK_1 = round(1000000 / 15.6466)
     EESMARK_2 = 500000
     print(f"Vilde peale makse Isale: {fg('red')}{valme.Uus_vilde_summa}{attr('reset')} €.")
     print("\n")
     print(f"Juriidilise isiku väärtus: {valme.JurIsik} €.")
-    print(f"Krüpto: {fg('red')}{valme.Jur_Krypto}{attr('reset')} €.")
     print(f"Juriidilise isiku aktsiad: {valme.Juraktsiad} €.")
     print(f"Funderbeam Kokku: {fg('red')}{valme.JUR_FUNDERBEAM}{attr('reset')} €.")
     print(f"Võlakirjade väärtus: {fg('red')}{valme.VOLAKIRJAD_KOKKU}{attr('reset')} €.")
@@ -73,8 +70,6 @@ if __name__ == "__main__" or __name__ == "Portfell_main":
 
     print("\n")
     print(f"Terve portfell kokku: {fg('red')}{round(ignar_total)}{attr('reset')} €.")
-    print(f"Eesmärk krooni miljonär: {EESMARK_1} €.")
-    print(f"Krooni miljonär veel minna: {EESMARK_1 - ignar_total} €.")
     age = date.today() - date(1990, 2, 19)
     years = age.days // 365
     months = (age.days % 365) // 30
@@ -126,7 +121,6 @@ if __name__ == "__main__" or __name__ == "Portfell_main":
     write_to_excel(excel_name="Portfell", list_of_data=values_list, how_to_add=2, compare_column=1)
     column_width(excel_name="Portfell", excel_headers=HEADERS)
     mail_body = utils.generate_mail_body(
-        portfolio_goal_no_1=EESMARK_1,
         portfolio_goal_no_2=EESMARK_2,
         kelly_total_portfolio=kelly_total,
         family_total_portfolio=Pere,

@@ -23,12 +23,6 @@ JUR_USA_STOCKS = {
 
 JUR_EUR_STOCKS = {"IUSE": 119.8133, "EXXT": 56.8561}
 
-BTC_AMOUNT = 0
-ETH_AMOUNT = 0
-
-ETH_EUR = ignar_stocks_manager.crypto_in_eur("Ethereum") * ETH_AMOUNT
-Bitcoin_EUR = ignar_stocks_manager.crypto_in_eur("bitcoin") * BTC_AMOUNT
-
 # Vanad ja refinants Akadeemia laenu kuupäevad yyyy.mm.dd'
 # Vana_Aka42_63_Laen_Kuupäev = date(2016, 2, 16)
 # Vana_Aka38_20_Laen_Kuupäev = date(2017, 5, 9)
@@ -51,7 +45,6 @@ Juraktsiad = round(
     + ignar_stocks_manager.stocks_value_combined(stock_dictionary=JUR_EUR_STOCKS, org_currency=True)
     + CLEVERON_AKTSIA
 )
-Jur_Krypto = round(Bitcoin_EUR + ETH_EUR)
 
 VOLAKIRJAD_KOKKU = 7508.80 + 9491.49 + 5000  # Everaus
 
@@ -60,12 +53,12 @@ JUR_RAHA = 1000
 JUR_FUNDERBEAM = 4400  # F.get_funderbeam_marketvalue() # 26.08.2023 Commented out because of Funderbeam added 2FA and market value does not change that often anymore
 JUR_IB_RAHA = 200
 JurIsik = round(
-    JUR_RAHA + JUR_FUNDERBEAM + JUR_IB_RAHA + Juraktsiad + morr.VAL_CAPITAL_RAHA / 2 + Jur_Krypto + VOLAKIRJAD_KOKKU
+    JUR_RAHA + JUR_FUNDERBEAM + JUR_IB_RAHA + Juraktsiad + morr.VAL_CAPITAL_RAHA / 2  + VOLAKIRJAD_KOKKU
 )
 # Mörr on väike karu'
 
-# Raha ehk likviitsus,ka Krypto, jur ja fys kokku'
-RahaKokku = round(FUSISIK_RAHA + JUR_RAHA + morr.VAL_CAPITAL_RAHA / 2 + JUR_IB_RAHA + Jur_Krypto)
+# Raha ehk likviitsus, jur ja fys kokku'
+RahaKokku = round(FUSISIK_RAHA + JUR_RAHA + morr.VAL_CAPITAL_RAHA / 2 + JUR_IB_RAHA)
 
 # üür'
 VILDE_ISA = 240

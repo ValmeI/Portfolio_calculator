@@ -128,13 +128,28 @@ def get_excel_column_values(excel_name: str, column_letter: str) -> list:
 
 
 def get_last_row(excel_name: str, column_number: int) -> Any:
+    logger.debug(f"excel name is {excel_name}, column number is {column_number}")
     file_path = get_excel_path(excel_name)
     wb = load_workbook(file_path)
     sheet1 = wb.active
 
     max_rows = sheet1.max_row
-    cell = sheet1.cell(column=column_number, row=max_rows).value
-    return cell
+    cell = sheet1.cell(row=max_rows, column=column_number).value
+    logger.debug(f"Checked max_row={max_rows}, cell value={cell}")
+
+    if cell not in (None, ''):
+        return cell
+
+    # If the last row is empty, scan upwards for the nearest non-empty cell
+    # Issue is that if excel file has been modified manually, then last row might be empty for example onlyOffice etc
+    for row in range(max_rows - 1, 0, -1):
+        cell = sheet1.cell(row=row, column=column_number).value
+        if cell not in (None, ''):
+            logger.debug(f"Found last non-empty cell at row {row} with value {cell}")
+            return cell
+
+    logger.debug("No non-empty cells found in the column")
+    return None
 
 
 def year_to_year_percent(
@@ -152,7 +167,7 @@ def year_to_year_percent(
         return pd.DataFrame()
 
     # Filter the DataFrame based on the mm_dd condition
-    df = df[df["Date"].str.contains(mm_dd)]
+    df = df[df["Date"].str.contains(mm_dd, na=False)]
 
     # Add today's portfolio amount if conditions are met
     today = date.today()

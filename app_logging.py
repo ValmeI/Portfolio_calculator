@@ -19,7 +19,7 @@ def handle_exception(
     exc_type: Type[BaseException],
     exc_value: BaseException,
     exc_traceback: Optional[TracebackType],
-    stack_row_limit: int = 3,
+    stack_row_limit: int = 10,
 ) -> None:
     """Global exception handler to catch and log any uncaught exceptions:"""
     # Allow program to exit without logging an error when KeyboardInterrupt is raised
