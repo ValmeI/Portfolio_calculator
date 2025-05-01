@@ -10,7 +10,7 @@ import kinnisvara
 from family import calculate_family_portfolios_year_to_years
 import txt_write_move
 from portfolio_owners import morr, kelly, valme
-from excel_functions import column_width, HEADERS, need_new_excel_file, write_to_excel
+from excel_functions import set_column_width, HEADERS, is_new_excel_needed, write_to_excel
 from functions import diff_months
 import utils
 
@@ -93,7 +93,7 @@ if __name__ == "__main__" or __name__ == "Portfell_main":
 
     aktsiad_kokku = valme.FysIsik + valme.JurIsik
     # check if new Excel file is needed and if so, create it
-    need_new_excel_file(excel_name="Portfell", sheet_name="Porfelli Info", excel_headers=excel_functions.HEADERS)
+    is_new_excel_needed(excel_name="Portfell", sheet_name="Porfelli Info", excel_headers=excel_functions.HEADERS)
 
     calculate_family_portfolios_year_to_years(ignar_total, morr_total, kelly_total)
 
@@ -119,7 +119,7 @@ if __name__ == "__main__" or __name__ == "Portfell_main":
     # how_to_add: 1 = append, 2 = overwrite, 3 = compare if change is needed
     # compare_column for overwrite: 1 is first column in excel (A) and 2 is B and so on
     write_to_excel(excel_name="Portfell", list_of_data=values_list, how_to_add=2, compare_column=1)
-    column_width(excel_name="Portfell", excel_headers=HEADERS)
+    set_column_width(excel_name="Portfell", excel_headers=HEADERS)
     mail_body = utils.generate_mail_body(
         portfolio_goal_no_2=EESMARK_2,
         kelly_total_portfolio=kelly_total,

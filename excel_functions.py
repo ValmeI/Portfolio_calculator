@@ -74,7 +74,6 @@ def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, 
         max_row = sheet1.max_row
         # Overwrite row if compared column value (ex. date) is the same as given data column'
         if sheet1.cell(column=compare_column, row=max_row).value == list_of_data[compare_column - 1]:
-            # easier to delete row and append looks easier than replace cell by cell'
             sheet1.delete_rows(max_row)
             sheet1.append(list_of_data)
             print("Tänane seis üle kirjutatud")
@@ -85,7 +84,7 @@ def write_to_excel(excel_name: str, list_of_data: list, how_to_add: int = None, 
     wb.close()
 
 
-def column_width(excel_name: str, excel_headers: list) -> None:
+def set_column_width(excel_name: str, excel_headers: list) -> None:
     file_path = get_excel_path(excel_name)
     wb = load_workbook(file_path)
     sheet1 = wb.active
@@ -100,9 +99,7 @@ def column_width(excel_name: str, excel_headers: list) -> None:
     wb.save(filename=file_path)
     wb.close()
 
-
-# check if excel file is there, if not create it
-def need_new_excel_file(excel_name: str, sheet_name: str, excel_headers: list) -> None:
+def is_new_excel_needed(excel_name: str, sheet_name: str, excel_headers: list) -> None:
     if check_if_excel_exists(excel_name):
         print("=================================================================================")
         print("Fail juba kaustas olemas.")
@@ -110,7 +107,7 @@ def need_new_excel_file(excel_name: str, sheet_name: str, excel_headers: list) -
         create_excel(excel_name, sheet_name)
         freeze_excel_row(excel_name)
         write_to_excel(excel_name, HEADERS)
-        column_width(excel_name, excel_headers)
+        set_column_width(excel_name, excel_headers)
 
 
 def get_excel_column_values(excel_name: str, column_letter: str) -> list:
@@ -118,7 +115,7 @@ def get_excel_column_values(excel_name: str, column_letter: str) -> list:
     wb = load_workbook(file_path)
     sheet1 = wb.active
     column_list = []
-    # using enumerate to get index and then to skip header row
+    # to skip header row
     for index, col in enumerate(sheet1[column_letter]):
         if index == 0:
             continue
@@ -141,7 +138,7 @@ def get_last_row(excel_name: str, column_number: int) -> Any:
         return cell
 
     # If the last row is empty, scan upwards for the nearest non-empty cell
-    # Issue is that if excel file has been modified manually, then last row might be empty for example onlyOffice etc
+    # Issue is that if excel file has been modified manually, then last row might be empty for example OnlyOffice etc
     for row in range(max_rows - 1, 0, -1):
         cell = sheet1.cell(row=row, column=column_number).value
         if cell not in (None, ''):
@@ -155,21 +152,16 @@ def get_last_row(excel_name: str, column_number: int) -> Any:
 def year_to_year_percent(
     excel_name: str, mm_dd: str, todays_total_portfolio: float, portfolio_history_column: str, filter_nr_input: int = 0
 ) -> pd.DataFrame:
-    # Load the workbook and get the data
+
     dates = get_excel_column_values(excel_name, "A")
     amounts = get_excel_column_values(excel_name, portfolio_history_column)
-
-    # Create a DataFrame from the dates and amounts
     df = pd.DataFrame({"Date": dates, "Amount": amounts})
 
     if df.empty:
         logger.error("Dataframe is empty for year to year percent calculation")
         return pd.DataFrame()
 
-    # Filter the DataFrame based on the mm_dd condition
     df = df[df["Date"].str.contains(mm_dd, na=False)]
-
-    # Add today's portfolio amount if conditions are met
     today = date.today()
     last_date = parse(df["Date"].iloc[-1]).date()  # Get the last date in the DataFrame
 
@@ -178,11 +170,9 @@ def year_to_year_percent(
         new_row = pd.DataFrame({"Date": [today], "Amount": [round(todays_total_portfolio)]})
         df = pd.concat([df, new_row], ignore_index=True)
 
-    # Calculate previous amounts and percentage increases
     df["Previous Amount"] = df["Amount"].shift(1)
     df["Percentage Increase"] = ((df["Amount"] - df["Previous Amount"]) / df["Previous Amount"] * 100).fillna(0).round()
 
-    # final ouput and onvert to integer to remove decimal places
     data = {
         "Aasta": df["Date"],
         "Portfell eelmisel aastal": df["Previous Amount"].fillna(0).astype(int),
@@ -196,7 +186,6 @@ def year_to_year_percent(
     pd.set_option("display.max_columns", None)
     pd.set_option("display.width", None)
 
-    # Filter the DataFrame based on the specified condition
     final_df = final_df[final_df["Portfell see aasta"] >= filter_nr_input].reset_index(drop=True)
 
     # Replace the last "Aasta" column value with 'Täna'

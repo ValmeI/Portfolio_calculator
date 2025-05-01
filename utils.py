@@ -12,24 +12,24 @@ from sendgrid.helpers.mail import Mail
 import config
 
 
-def get_data_copy_paths_based_on_os() -> tuple:
-    BASE_PATH = what_path_for_file() or "Portfolio_calculator/Data"  # Default path
-    logger.debug(f"BASE_PATH: {BASE_PATH}")
+BASE_PATH = what_path_for_file() or "Portfolio_calculator/Data"  # Default path
+TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/data", "Print_result.txt")
+EXCEL_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/data", "Portfell.xlsx")
+SERVER_PARTIAL_PATH = "Calculators/portfolio_result"
 
-    # Define paths using os.path.join for cross-platform compatibility
-    TXT_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/data", "Print_result.txt")
-    EXCEL_SOURCE = os.path.join(BASE_PATH, "Portfolio_calculator/data", "Portfell.xlsx")
-    logger.debug(f"TXT_SOURCE: {TXT_SOURCE}, EXCEL_SOURCE: {EXCEL_SOURCE}")
+def get_data_copy_paths_based_on_os() -> tuple:
+    logger.debug(f"BASE_PATH: {BASE_PATH}")
+    logger.debug(f"TXT_SOURCE: {TXT_SOURCE}, EXCEL_SOURCE: {EXCEL_SOURCE}, SERVER_PARTIAL_PATH: {SERVER_PARTIAL_PATH}")
 
     if os.name == "nt":  # Windows
         NAS_PATH = r"\\RMI_NAS\Python\Calculators\portfolio_result"
     elif os.name == "posix":  # macOS or Linux
         if platform.system() == "Darwin":  # macOS
-            NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"
+            NAS_PATH = f"/Volumes/Python/{SERVER_PARTIAL_PATH}"
         elif platform.system() == "Linux":  # Linux
-            NAS_PATH = "/mnt/RMI_NAS/Python/Calculators/portfolio_result"
+            NAS_PATH = f"/mnt/RMI_NAS/Python/{SERVER_PARTIAL_PATH}"
         else:
-            NAS_PATH = "/Volumes/Python/Calculators/portfolio_result"  # Default fallback
+            NAS_PATH = f"/Volumes/Python/{SERVER_PARTIAL_PATH}"  # Default fallback
     else:
         NAS_PATH = "Not found"
     return TXT_SOURCE, EXCEL_SOURCE, NAS_PATH
@@ -150,13 +150,7 @@ def twilio_send_email(sent_from: str, sent_to: str, sent_subject: str, sent_body
 def get_default_user_agent() -> str:
     os_type = platform.system().lower()
     machine_type = platform.machine().lower()
-
-    if os_type == "linux":
-        return (
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
-        )
-
-    elif os_type == "darwin":  # macOS
+    if os_type == "darwin":  # macOS
         if machine_type == "arm64":
             return "Mozilla/5.0 (Macintosh; Apple Silicon Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"
         else:
@@ -173,5 +167,5 @@ def get_default_user_agent() -> str:
 
 
 if __name__ == "__main__":
-    TXT_SOURCE, EXCEL_SOURCE, NAS_DES_PATH = get_data_copy_paths_based_on_os()
-    copy_file_to_nas(TXT_SOURCE, NAS_DES_PATH)
+    TXT, EXCEL, NAS_DES = get_data_copy_paths_based_on_os()
+    copy_file_to_nas(TXT, NAS_DES)
