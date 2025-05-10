@@ -21,7 +21,7 @@ JUR_USA_STOCKS = {
     "BRK.B": 2,
 }
 
-JUR_EUR_STOCKS = {"IUSE": 119.8133, "EXXT": 56.8561}
+JUR_EUR_STOCKS = {"IUSE": 124.9067, "EXXT": 60.3646}
 
 # Vanad ja refinants Akadeemia laenu kuupäevad yyyy.mm.dd'
 # Vana_Aka42_63_Laen_Kuupäev = date(2016, 2, 16)
